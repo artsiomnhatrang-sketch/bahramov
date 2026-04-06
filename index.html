@@ -983,12 +983,29 @@
       .hero-content { width: 70%; }
     }
     @media (max-width: 600px) {
-      .hero-bg-left,
-      .hero-bg-right { display: none !important; }
+      .hero-bg-left {
+        display: block;
+        width: 45%;
+        height: 100%;
+        opacity: 0.5;
+        left: 0;
+        top: 0;
+        transform: none;
+      }
+      .hero-bg-right {
+        display: block;
+        width: 45%;
+        height: 100%;
+        opacity: 0.5;
+        right: 0;
+        top: 0;
+        transform: none;
+      }
       .hero-content {
         width: 92%;
         left: 50%; top: 50%;
         transform: translate(-50%, -50%);
+        z-index: 2;
       }
       .hero-bullets { grid-template-columns: 1fr 1fr; }
       .hero-btns { flex-direction: column; }
