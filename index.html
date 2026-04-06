@@ -985,27 +985,32 @@
     @media (max-width: 600px) {
       .hero-bg-left {
         display: block;
-        width: 45%;
-        height: 100%;
-        opacity: 0.5;
+        width: 38%;
+        height: 70%;
+        opacity: 1;
         left: 0;
-        top: 0;
-        transform: none;
+        top: 50%;
+        transform: translateY(-50%);
+        object-fit: cover;
+        object-position: right center;
       }
       .hero-bg-right {
         display: block;
-        width: 45%;
-        height: 100%;
-        opacity: 0.5;
+        width: 38%;
+        height: 70%;
+        opacity: 1;
         right: 0;
-        top: 0;
-        transform: none;
+        top: 50%;
+        transform: translateY(-50%);
+        object-fit: cover;
+        object-position: left center;
       }
       .hero-content {
-        width: 92%;
+        width: 60%;
         left: 50%; top: 50%;
         transform: translate(-50%, -50%);
         z-index: 2;
+        position: relative;
       }
       .hero-bullets { grid-template-columns: 1fr 1fr; }
       .hero-btns { flex-direction: column; }
