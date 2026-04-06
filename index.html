@@ -983,37 +983,9 @@
       .hero-content { width: 70%; }
     }
     @media (max-width: 600px) {
-      .hero-bg-left {
-        display: block;
-        width: 30%;
-        height: 60%;
-        opacity: 0.8;
-        left: 0;
-        top: 50%;
-        bottom: auto;
-        transform: translateY(-50%);
-        object-fit: cover;
-        object-position: right center;
-      }
-      .hero-bg-right {
-        display: block;
-        width: 30%;
-        height: 60%;
-        opacity: 0.8;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        object-fit: cover;
-        object-position: left center;
-      }
-      .hero-content {
-        width: 80%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 2;
-        position: relative;
-      }
+      .hero-bg-left { display: none !important; }
+      .hero-bg-right { display: none !important; }
+      .hero-content { width: 92%; }
       .hero-bullets { grid-template-columns: 1fr 1fr; }
       .hero-btns { flex-direction: column; }
       .hero-btns .btn { width: 100%; justify-content: center; }
