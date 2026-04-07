@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Артём Бахрамов — AI-стратег и эксперт по соцсетям</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0a;
+      --bg2: #0a0a0a;
+      --bg3: #141414;
+      --orange: #f4672a;
+      --orange-dim: rgba(244,103,42,0.12);
+      --orange-border: rgba(244,103,42,0.35);
+      --text: #e8e8e8;
+      --muted: #888;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+    }
+    .nav-logo span { color: var(--orange); }
+    nav a.nav-cta {
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: opacity .2s;
+    }
+    nav a.nav-cta:hover { opacity: .85; }
+    nav a.nav-bonus {
+      color: var(--orange);
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 100px;
+      border: 1.5px solid var(--orange);
+      transition: background .2s, color .2s;
+    }
+    nav a.nav-bonus:hover { background: var(--orange); color: #fff; }
+
+    /* ─── SHARED ─── */
+    .container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+    section { padding: 100px 0; }
+    .section-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--orange);
+    }
+    h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(28px, 4vw, 46px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    h2 .accent { color: var(--orange); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+    }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid rgba(255,255,255,0.2);
+    }
+    .btn-outline:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+
+    /* Side photos */
+    .hero-bg-left,
+    .hero-bg-right {
+      position: absolute;
+      bottom: 0;
+      height: 92%;
+      width: 38%;
+      object-fit: contain;
+      object-position: bottom center;
+      pointer-events: none;
+      display: block;
+    }
+    .hero-bg-left {
+      left: 0;
+      -webkit-mask-image:
+        linear-gradient(to right, rgba(0,0,0,0.9) 40%, transparent 100%),
+        linear-gradient(to top, transparent 0%, black 15%);
+      mask-image:
+        linear-gradient(to right, rgba(0,0,0,0.9) 40%, transparent 100%),
+        linear-gradient(to top, transparent 0%, black 15%);
+      -webkit-mask-composite: destination-in;
+      mask-composite: intersect;
+    }
+    .hero-bg-right {
+      right: 0;
+      -webkit-mask-image:
+        linear-gradient(to left, rgba(0,0,0,0.9) 40%, transparent 100%),
+        linear-gradient(to top, transparent 0%, black 15%);
+      mask-image:
+        linear-gradient(to left, rgba(0,0,0,0.9) 40%, transparent 100%),
+        linear-gradient(to top, transparent 0%, black 15%);
+      -webkit-mask-composite: destination-in;
+      mask-composite: intersect;
+    }
+
+    /* Center content — absolutely positioned */
+    .hero-content {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 42%;
+      max-width: 520px;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+      overflow: visible;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 100px;
+      padding: 5px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+    .hero-eyebrow .dot {
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:.35; transform:scale(1.6); }
+    }
+
+    .hero-name {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .hero-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+      letter-spacing: -0.01em;
+      margin-bottom: 14px;
+      max-width: 460px;
+    }
+    .hero-title .accent { color: var(--orange); }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(200,200,200,0.7);
+      line-height: 1.6;
+      max-width: 400px;
+      margin-bottom: 20px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .hero-btns .btn { border-radius: 100px; padding: 11px 24px; font-size: 14px; }
+
+    /* 2×2 bullet grid */
+    .hero-bullets {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .hero-bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(220,220,220,0.8);
+      line-height: 1.4;
+      padding: 10px 13px;
+      border-right: 1px solid rgba(255,255,255,0.09);
+      border-bottom: 1px solid rgba(255,255,255,0.09);
+    }
+    .hero-bullets li:nth-child(2n) { border-right: none; }
+    .hero-bullets li:nth-child(3),
+    .hero-bullets li:nth-child(4) { border-bottom: none; }
+    .hero-bullets li::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--orange);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    /* Stats — kept below hero on scroll, not inside hero */
+    .stat-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 28px;
+      letter-spacing: 0.03em;
+      color: var(--orange);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      color: var(--muted);
+      line-height: 1.3;
+    }
+
+    /* ─── CASE ─── */
+    #case { background: var(--bg2); }
+    .case-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .case-header-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    a.case-all-btn {
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    a.case-all-btn:hover { background: var(--orange); color: #fff; }
+    .cases-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .case-card {
+      background: var(--bg);
+      border: 1px solid var(--orange-border);
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .case-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(244,103,42,0.12);
+    }
+    .case-card-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .case-avatar {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .case-avatar img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .case-card-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 2px;
+    }
+    .case-card-niche {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    /* Before → After row */
+    .case-before-after {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 20px 24px;
+    }
+    .case-ba-block { flex: 1; }
+    .case-ba-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .case-ba-label.before { color: var(--muted); }
+    .case-ba-label.after  { color: var(--orange); }
+    .case-ba-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 34px;
+      line-height: 1;
+      letter-spacing: 0.02em;
+    }
+    .case-ba-value.before { color: #555; }
+    .case-ba-value.after  { color: var(--orange); }
+    .case-ba-arrow {
+      font-size: 22px;
+      color: var(--orange);
+      flex-shrink: 0;
+    }
+    /* Extra metrics row */
+    .case-metrics {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .case-metric-tag {
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 12px;
+      color: var(--orange);
+      font-weight: 500;
+    }
+    /* Tools row */
+    .case-tools {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .case-tool {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    .case-timing {
+      font-size: 12px;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .case-timing::before {
+      content: '⏱';
+      font-size: 13px;
+    }
+    .case-card-footer {
+      margin-top: auto;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+    }
+    .case-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--orange);
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .case-link:hover { opacity: .75; }
+
+    /* ─── PROBLEMS ─── */
+    #problems { background: var(--bg2); }
+    .problems-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 60px;
+    }
+    .problems-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .problem-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .2s;
+    }
+    .problem-card:hover { border-color: var(--orange-border); }
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .3s;
+    }
+    .problem-card:hover::before { transform: scaleX(1); }
+    .problem-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--orange);
+      letter-spacing: 0.15em;
+      margin-bottom: 16px;
+    }
+    .problem-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      line-height: 1.35;
+    }
+    .problem-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+    /* ─── FOR WHOM ─── */
+    #forwhom {}
+    .forwhom-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .tab-btn {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 8px;
+      cursor: pointer;
+      border: 1.5px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      transition: all .2s;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      border-color: var(--orange);
+      color: var(--orange);
+      background: var(--orange-dim);
+    }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: block; }
+    .forwhom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+    .forwhom-block {
+      border-radius: 12px;
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .forwhom-block.now { background: var(--bg2); }
+    .forwhom-block.after {
+      background: linear-gradient(135deg, rgba(244,103,42,0.08), rgba(244,103,42,0.04));
+      border-color: var(--orange-border);
+    }
+    .block-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .block-label.now-label { color: var(--muted); }
+    .block-label.after-label { color: var(--orange); }
+    .forwhom-block ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .forwhom-block ul li {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .forwhom-block.now ul li::before {
+      content: '✕';
+      color: #555;
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+    .forwhom-block.after ul li::before {
+      content: '✓';
+      color: var(--orange);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    /* ─── SERVICES ─── */
+    #services { background: var(--bg2); }
+    .services-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 60px;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+    .services-grid .service-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: 560px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .service-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 36px;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 60px rgba(244,103,42,0.1);
+    }
+    .service-icon {
+      width: 48px; height: 48px;
+      border-radius: 10px;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+    .service-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+    .service-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .service-card ul li {
+      display: flex;
+      gap: 10px;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+    .service-card ul li::before {
+      content: '●';
+      color: var(--orange);
+      font-size: 7px;
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .service-card-btns {
+      display: flex;
+      gap: 8px;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    a.svc-btn {
+      color: var(--orange);
+      border: 1.5px solid var(--orange);
+      border-radius: 100px;
+      padding: 8px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      transition: background .2s, color .2s;
+      white-space: nowrap;
+    }
+    a.svc-btn:hover { background: var(--orange); color: #fff; }
+    /* Price tag inside service card */
+    .service-price {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+      margin: 12px 0 16px;
+    }
+    .service-price-value {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px;
+      color: var(--orange);
+      letter-spacing: 0.02em;
+      line-height: 1;
+    }
+    .service-price-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .service-tagline {
+      font-size: 13px;
+      color: rgba(232,232,232,0.55);
+      font-style: italic;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+
+    /* ─── PACKAGE ─── */
+    #package { position: relative; }
+    .package-wrap {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 60px;
+      align-items: start;
+    }
+    .package-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 24px;
+    }
+    .package-left h2 { margin-bottom: 12px; }
+    .package-subtitle { font-size: 16px; color: var(--muted); margin-bottom: 36px; }
+    .package-items {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .pkg-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.5;
+      transition: border-color .2s;
+    }
+    .pkg-item:hover { border-color: var(--orange-border); }
+    .pkg-item-num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .package-card {
+      background: var(--bg2);
+      border: 2px solid var(--orange-border);
+      border-radius: 16px;
+      padding: 40px;
+      position: sticky;
+      top: 100px;
+    }
+    .price-label {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .price-value {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 44px;
+      font-weight: 900;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .price-value span { color: var(--orange); }
+    .price-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .package-card .btn { width: 100%; justify-content: center; margin-bottom: 16px; font-size: 15px; }
+    .package-card-note {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .package-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 24px 0;
+    }
+    .package-includes-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .package-card-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .package-card-list li {
+      display: flex;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .package-card-list li::before {
+      content: '→';
+      color: var(--orange);
+      flex-shrink: 0;
+      font-weight: 700;
+    }
+
+    /* ─── STEPS ─── */
+    #steps { background: var(--bg2); }
+    .steps-header {
+      text-align: center;
+      max-width: 540px;
+      margin: 0 auto 60px;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      position: relative;
+    }
+    .steps-grid::before {
+      content: '';
+      position: absolute;
+      top: 36px; left: 12.5%; right: 12.5%;
+      height: 1px;
+      background: linear-gradient(90deg, var(--orange-border), var(--orange-border));
+      z-index: 0;
+    }
+    .step-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      transition: border-color .2s, transform .2s;
+    }
+    .step-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-4px);
+    }
+    .step-circle {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: var(--orange-dim);
+      border: 2px solid var(--orange);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: var(--orange);
+      margin: 0 auto 20px;
+    }
+    .step-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .step-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    /* ─── CTA ─── */
+    #cta {
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px; height: 400px;
+      background: radial-gradient(ellipse, rgba(244,103,42,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .cta-inner { position: relative; z-index: 1; }
+    .cta-inner h2 {
+      font-size: clamp(28px, 5vw, 56px);
+      margin-bottom: 20px;
+    }
+    .cta-inner p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+    .cta-inner .btn { font-size: 16px; padding: 18px 44px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--muted); }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .container { padding: 0 24px; }
+      section { padding: 60px 0; }
+      nav { padding: 16px 24px; }
+      .hero-bg-left, .hero-bg-right { width: 28%; }
+      .hero-content { width: 60%; }
+      .cases-grid, .problems-grid, .services-grid { grid-template-columns: 1fr; }
+      .forwhom-grid { grid-template-columns: 1fr; }
+      .package-wrap { grid-template-columns: 1fr; }
+      .package-card { position: static; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .steps-grid::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      /* Nav: hide audit CTA, keep logo + bonus */
+      nav a.nav-cta { display: none; }
+      /* Section spacing tighter */
+      section { padding: 48px 0; }
+      .container { padding: 0 16px; }
+      /* Hero bullets: 2 columns */
+      .hero-bullets { grid-template-columns: 1fr 1fr; }
+      .hero-bullets li:nth-child(2n) { border-right: none; }
+      .hero-bullets li:nth-child(3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
+      .hero-bullets li:nth-child(4) { border-bottom: none; }
+      /* Hero photos: compact side strips */
+      .hero-bg-left,
+      .hero-bg-right {
+        width: 22%;
+        height: 130px;
+        bottom: auto;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      .hero-bg-right { display: block; opacity: 0.7; }
+      .hero-content { width: 70%; }
+    }
+    @media (max-width: 600px) {
+      .hero-bg-left { display: block; width: 30%; height: auto; max-height: 85vw; bottom: 0; top: auto; transform: none; opacity: 0.85; object-fit: contain; object-position: bottom center; }
+      .hero-bg-right { display: block; width: 30%; height: auto; max-height: 85vw; bottom: 0; top: auto; transform: none; opacity: 0.85; object-fit: contain; object-position: bottom center; }
+      .hero-content { width: 100%; max-width: 100%; }
+      .hero-bullets { grid-template-columns: 1fr 1fr; }
+      .hero-btns { flex-direction: column; }
+      .hero-btns .btn { width: 100%; justify-content: center; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .cases-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">А<span>.</span>Бахрамов</div>
+  <a href="https://t.me/bahramovartem_bot" class="nav-bonus" target="_blank" rel="noopener">🎁 Бонусы</a>
+  <a href="https://t.me/m/8mtf5rZ2N2Ni" class="nav-cta" target="_blank" rel="noopener">Получить бесплатный аудит →</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <img class="hero-bg-left"  src="robot.jpg" alt="" />
+  <img class="hero-bg-right" src="hero-cyborg.png" alt="" />
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="dot"></span>
+      AI-стратег · Эксперт по соцсетям
+    </div>
+    <p class="hero-name">Артём Бахрамов</p>
+    <h1 class="hero-title">
+      Поток клиентов из соцсетей на <span class="accent">автопилоте</span>
+    </h1>
+    <p class="hero-subtitle">Выстраиваю системы роста в соцсетях с помощью AI-инструментов, чат-ботов и контент-стратегий. Без воды, только измеримые результаты.</p>
+    <div class="hero-btns">
+      <a href="https://t.me/m/8mtf5rZ2N2Ni" class="btn btn-primary" target="_blank" rel="noopener">
+        Получить бесплатный аудит →
+      </a>
+      <a href="#services" class="btn btn-outline">
+        Услуги и цены
+      </a>
+    </div>
+    <ul class="hero-bullets">
+      <li>Аудитория, которая покупает, а не просто смотрит</li>
+      <li>Контент быстро и без выгорания</li>
+      <li>Чат-боты и автоматизация</li>
+      <li>Защита аккаунта и стратегия</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CASE -->
+<section id="case">
+  <div class="container">
+    <div class="case-header">
+      <div class="section-label" style="justify-content:center;">Кейсы</div>
+      <h2>Реальные результаты <span class="accent">реальных клиентов</span></h2>
+    </div>
+    <div class="cases-grid">
+
+      <!-- Кейс 1 -->
+      <div class="case-card">
+        <div class="case-card-top">
+          <div class="case-avatar">АС</div>
+          <div>
+            <div class="case-card-name">Архитектурная студия</div>
+            <div style="font-size:12px;color:var(--orange);margin-bottom:2px;">@eldarmurakov</div>
+            <div class="case-card-niche">Архитектура и строительство</div>
+          </div>
+        </div>
+        <div class="case-before-after">
+          <div class="case-ba-block">
+            <div class="case-ba-label before">До</div>
+            <div class="case-ba-value before">212 000</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
+          </div>
+          <div class="case-ba-arrow">→</div>
+          <div class="case-ba-block">
+            <div class="case-ba-label after">После</div>
+            <div class="case-ba-value after">219 000</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <span class="case-metric-tag">+400% охваты</span>
+          <span class="case-metric-tag">+70% вовлечённость</span>
+          <span class="case-metric-tag">без таргета</span>
+        </div>
+        <div class="case-tools">
+          <span class="case-tool">Геймификация</span>
+          <span class="case-tool">AI-автоматизация</span>
+          <span class="case-tool">Reels-воронка</span>
+        </div>
+        <div class="case-timing">7 дней до результата</div>
+        <div class="case-card-footer" style="display:flex;gap:16px;flex-wrap:wrap;">
+          <a href="https://www.instagram.com/eldarmurakov" class="case-link" target="_blank" rel="noopener">
+            Смотреть аккаунт →
+          </a>
+          <a href="https://t.me/bahramovartem/216" class="case-link" target="_blank" rel="noopener">
+            Разбор кейса →
+          </a>
+        </div>
+      </div>
+
+      <!-- Кейс 2 -->
+      <div class="case-card">
+        <div class="case-card-top">
+          <div class="case-avatar">АП</div>
+          <div>
+            <div class="case-card-name">@a.platonovva</div>
+            <div class="case-card-niche">Таролог / эзотерика</div>
+          </div>
+        </div>
+        <div class="case-before-after">
+          <div class="case-ba-block">
+            <div class="case-ba-label before">До</div>
+            <div class="case-ba-value before">300</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
+          </div>
+          <div class="case-ba-arrow">→</div>
+          <div class="case-ba-block">
+            <div class="case-ba-label after">После</div>
+            <div class="case-ba-value after">146 000</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
+          </div>
+        </div>
+        <div class="case-metrics">
+          <span class="case-metric-tag">×487 рост</span>
+          <span class="case-metric-tag">с 300 до 146K</span>
+        </div>
+        <div class="case-tools">
+          <span class="case-tool">Контент-стратегия</span>
+          <span class="case-tool">Подключение AI-робота</span>
+          <span class="case-tool">Воронка продаж</span>
+        </div>
+        <div class="case-timing">Подтверждённый результат</div>
+        <div class="case-card-footer">
+          <a href="https://www.instagram.com/a.platonovva/" class="case-link" target="_blank" rel="noopener">
+            Смотреть аккаунт →
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center; margin-top: 2rem;">
+      <a href="https://t.me/bahramovartem/216" target="_blank" rel="noopener" class="btn btn-outline">Все кейсы клиентов →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">Услуги</div>
+      <h2>Выбери <span class="accent">свою задачу</span></h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;">Точечное решение или система под ключ. Под любой запрос</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Пакет СИСТЕМА</h3>
+        <div class="service-price">
+          <span class="service-price-value">39 900 ₽</span>
+        </div>
+        <p class="service-tagline">Всё под ключ. Окупается с первых 2-3 клиентов</p>
+        <ul>
+          <li>Аудит аккаунта и стратегическая сессия</li>
+          <li>Контент-стратегия на 3 месяца</li>
+          <li>AI-ассистент под твой голос</li>
+          <li>Чат-бот с воронкой продаж</li>
+          <li>Сопровождение 30 дней</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔓</div>
+        <h3>Разблокировка аккаунта</h3>
+        <div class="service-price">
+          <span class="service-price-value">от 10 000 ₽</span>
+        </div>
+        <p class="service-tagline">Instagram и Telegram. Возврат взломанных аккаунтов</p>
+        <ul>
+          <li>Разблокировка забаненных аккаунтов</li>
+          <li>Возврат взломанного профиля</li>
+          <li>Защита и настройка 2FA после восстановления</li>
+          <li>Резервная система на случай повтора</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🧹</div>
+        <h3>Чистка от ботов</h3>
+        <div class="service-price">
+          <span class="service-price-value">16 000 ₽</span>
+        </div>
+        <p class="service-tagline">Безопасная очистка. Охваты растут, алгоритмы довольны</p>
+        <ul>
+          <li>Аудит подписчиков и выявление ботов</li>
+          <li>Поэтапная безопасная очистка</li>
+          <li>Повышение показателя вовлечённости</li>
+          <li>Рост органических охватов после чистки</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚀</div>
+        <h3>Трафик + Воронка</h3>
+        <div class="service-price">
+          <span class="service-price-value">15 000 ₽/мес</span>
+        </div>
+        <p class="service-tagline">Автоматизированный трафик без рекламного бюджета</p>
+        <ul>
+          <li>AI-робот для роста видимости в поиске Instagram до +70%</li>
+          <li>Алгоритмизация постов и Reels в Интересное и Рекомендованное</li>
+          <li>Активность в сторис у аудитории конкурентов</li>
+          <li>Добавление всех подписчиков в Близкие друзья</li>
+          <li>Автоприветствие новым подписчикам в директ</li>
+          <li>Доступ к обучающим материалам по контенту</li>
+        </ul>
+        <p style="font-size:11px;color:var(--muted);margin-top:14px;letter-spacing:0.03em;">Ежемесячная подписка · Результат с первой недели</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤖</div>
+        <h3>AI-агент под ключ</h3>
+        <div class="service-price">
+          <span class="service-price-value">от 30 000 ₽</span>
+        </div>
+        <p class="service-tagline">Чат-бот который продаёт 24/7 пока ты спишь</p>
+        <ul>
+          <li>Разработка AI-агента под твою нишу</li>
+          <li>Автоворонка с квалификацией лидов</li>
+          <li>Интеграция с Telegram, Instagram</li>
+          <li>Подключение к CRM и оплатам</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📱</div>
+        <h3>Разработка приложений</h3>
+        <div class="service-price">
+          <span class="service-price-value">Индивидуально</span>
+        </div>
+        <p class="service-tagline">MVP за 2 дня. От идеи до готового продукта</p>
+        <ul>
+          <li>Telegram Mini Apps под ключ</li>
+          <li>Чат-боты для Instagram, Telegram, TikTok</li>
+          <li>Сайты и лендинги</li>
+          <li>Срок и цена зависят от сложности задачи</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PACKAGE -->
+<section id="package">
+  <div class="container">
+    <div class="package-wrap">
+      <div class="package-left">
+        <div class="section-label">Флагманский продукт</div>
+        <div class="package-badge">🔥 Хит продаж</div>
+        <h2>Пакет <span class="accent">СИСТЕМА</span></h2>
+        <p class="package-subtitle">Всё необходимое для построения работающих соцсетей с нуля до стабильных продаж. В одном пакете</p>
+        <div class="package-items">
+          <div class="pkg-item">
+            <span class="pkg-item-num">01</span>
+            <span>Полный аудит текущего аккаунта и стратегическая сессия 2 часа</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">02</span>
+            <span>Настройка защиты аккаунта и создание страховочной системы</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">03</span>
+            <span>Разработка контент-стратегии на 3 месяца с контент-планом</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">04</span>
+            <span>Настройка персонального AI-ассистента для генерации контента</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">05</span>
+            <span>Разработка чат-бота с воронкой продаж под твою нишу</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">06</span>
+            <span>Упаковка профиля и оформление под целевую аудиторию</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">07</span>
+            <span>Настройка автоматизации ответов и рассылок</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">08</span>
+            <span>Сопровождение 30 дней: вопросы, корректировки, отчёты</span>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="package-card">
+          <p class="price-label">Стоимость пакета</p>
+          <div class="price-value"><span>39 900</span> ₽</div>
+          <p class="price-sub">Единоразовый платёж · без скрытых комиссий</p>
+          <a href="https://t.me/m/8mtf5rZ2N2Ni" class="btn btn-primary" target="_blank" rel="noopener">
+            Получить бесплатный аудит →
+          </a>
+          <a href="https://t.me/m/8mtf5rZ2N2Ni" class="btn btn-outline" target="_blank" rel="noopener">
+            Задать вопрос
+          </a>
+          <div class="package-divider"></div>
+          <p class="package-includes-label">В пакет входит</p>
+          <ul class="package-card-list">
+            <li>8 блоков работы</li>
+            <li>30 дней сопровождения</li>
+            <li>Чат-бот под ключ</li>
+            <li>AI-инструменты и шаблоны</li>
+            <li>Контент-план на 3 месяца</li>
+          </ul>
+          <div class="package-divider"></div>
+          <p class="package-card-note">Также доступны отдельные услуги.<br>Обсудим задачи и подберём формат под тебя.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div class="section-label" style="justify-content:center;">Начать</div>
+      <h2>Готов превратить соцсети<br>в <span class="accent">источник дохода?</span></h2>
+      <p>Разберём твою ситуацию и составим план. Первая консультация бесплатно.</p>
+      <a href="https://t.me/m/8mtf5rZ2N2Ni" class="btn btn-primary" target="_blank" rel="noopener">
+        Получить бесплатный аудит →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+
+<script>
+  function switchTab(id, el) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + id).classList.add('active');
+    el.classList.add('active');
+  }
+
+  // Intersection observer for subtle fade-in
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.service-card').forEach(card => {
+    const btns = document.createElement('div');
+    btns.className = 'service-card-btns';
+    btns.innerHTML =
+      '<a href="https://t.me/m/8mtf5rZ2N2Ni" class="svc-btn" target="_blank" rel="noopener">Telegram →</a>' +
+      '<a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX →</a>';
+    card.appendChild(btns);
+  });
+
+  document.querySelectorAll('.service-card, .case-stat, .pkg-item').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .5s ease, transform .5s ease, border-color .2s';
+    observer.observe(el);
+  });
+</script>
+
+<footer style="
+  background: #0d0d0d;
+  border-top: 1px solid #1e1e1e;
+  padding: 28px 30px 24px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  color: #555;
+  line-height: 2;
+">
+  <p style="font-size:12px; margin-bottom:6px;">
+    © 2026 Крайко Артём Владимирович &nbsp;·&nbsp; УНП: KB3551682 &nbsp;·&nbsp; Самозанятый, Республика Беларусь
+  </p>
+  <p style="font-size:12px; margin-bottom:8px;">
+    <a href="offer.html"   style="color:#f4672a;text-decoration:none;margin:0 8px;">Публичная оферта</a>
+    <span style="color:#333;">·</span>
+    <a href="privacy.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Политика конфиденциальности</a>
+    <span style="color:#333;">·</span>
+    <a href="consent.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Согласие на обработку ПД</a>
+  </p>
+  <p style="font-size:11px; color:#888888;">
+    Используя сайт и сервисы, вы принимаете условия оферты и соглашаетесь с обработкой персональных данных
+  </p>
+</footer>
+
+</body>
+</html>
