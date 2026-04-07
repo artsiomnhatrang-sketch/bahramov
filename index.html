@@ -983,9 +983,9 @@
       .hero-content { width: 70%; }
     }
     @media (max-width: 600px) {
-      .hero-bg-left { display: none !important; }
-      .hero-bg-right { display: none !important; }
-      .hero-content { width: 92%; }
+      .hero-bg-left { display: block; width: 18%; height: 100px; bottom: auto; top: 50%; transform: translateY(-50%); opacity: 0.6; }
+      .hero-bg-right { display: block; width: 18%; height: 100px; bottom: auto; top: 50%; transform: translateY(-50%); opacity: 0.6; }
+      .hero-content { width: 64%; }
       .hero-bullets { grid-template-columns: 1fr 1fr; }
       .hero-btns { flex-direction: column; }
       .hero-btns .btn { width: 100%; justify-content: center; }
