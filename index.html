@@ -152,25 +152,22 @@
       position: absolute;
       top: 0;
       height: 100%;
-      width: 38%;
+      width: 42%;
       object-fit: cover;
-      object-position: center;
       pointer-events: none;
       z-index: 0;
     }
     .hero-bg-left {
       left: 0;
-      -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
-      -webkit-mask-composite: source-in;
-              mask-image: linear-gradient(to right, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
-              mask-composite: intersect;
+      object-position: left center;
+      -webkit-mask-image: linear-gradient(to right, #000 0%, #000 50%, transparent 95%);
+              mask-image: linear-gradient(to right, #000 0%, #000 50%, transparent 95%);
     }
     .hero-bg-right {
       right: 0;
-      -webkit-mask-image: linear-gradient(to left, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
-      -webkit-mask-composite: source-in;
-              mask-image: linear-gradient(to left, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
-              mask-composite: intersect;
+      object-position: right center;
+      -webkit-mask-image: linear-gradient(to left, #000 0%, #000 50%, transparent 95%);
+              mask-image: linear-gradient(to left, #000 0%, #000 50%, transparent 95%);
     }
     .hero-content {
       position: relative;
