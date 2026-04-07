@@ -144,40 +144,44 @@
     #hero {
       position: relative;
       min-height: 100vh;
-      background: #0a0a0a;
       overflow: hidden;
+      background: #000;
     }
-
-    /* Side photos */
     .hero-bg-left,
     .hero-bg-right {
       position: absolute;
-      bottom: 0;
-      height: 92%;
+      top: 0;
+      height: 100%;
       width: 38%;
-      object-fit: contain;
-      object-position: bottom;
+      object-fit: cover;
+      object-position: center;
       pointer-events: none;
-      display: block;
+      z-index: 0;
     }
-    .hero-bg-left { left: 0; width: 36%; }
-    .hero-bg-right { right: 0; width: 44%; }
-
-    /* Center content — absolutely positioned */
+    .hero-bg-left {
+      left: 0;
+      -webkit-mask-image: linear-gradient(to right, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
+      -webkit-mask-composite: source-in;
+              mask-image: linear-gradient(to right, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
+              mask-composite: intersect;
+    }
+    .hero-bg-right {
+      right: 0;
+      -webkit-mask-image: linear-gradient(to left, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
+      -webkit-mask-composite: source-in;
+              mask-image: linear-gradient(to left, #000 55%, transparent 100%), linear-gradient(to top, #000 80%, transparent 100%);
+              mask-composite: intersect;
+    }
     .hero-content {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      width: 42%;
-      max-width: 520px;
-      padding: 20px;
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 24px;
       text-align: center;
       display: flex;
       flex-direction: column;
       align-items: center;
-      z-index: 2;
-      overflow: visible;
     }
 
     .hero-eyebrow {
@@ -950,22 +954,48 @@
       .hero-bullets li:nth-child(2n) { border-right: none; }
       .hero-bullets li:nth-child(3) { border-bottom: 1px solid rgba(255,255,255,0.09); }
       .hero-bullets li:nth-child(4) { border-bottom: none; }
-      /* Hero photos: compact side strips */
-      .hero-bg-left,
-      .hero-bg-right {
-        width: 22%;
-        height: 130px;
-        bottom: auto;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-      .hero-bg-right { display: block; opacity: 0.7; }
-      .hero-content { width: 70%; }
+      /* Hero photos */
+      .hero-bg-left, .hero-bg-right { width: 28%; }
+      .hero-content { max-width: 100%; padding: 60px 20px; }
     }
     @media (max-width: 600px) {
-          .hero-bg-left { display: block; width: 20%; height: auto; max-height: 350px; bottom: 0; opacity: 0.8; object-fit: contain; object-position: bottom; }
-          .hero-bg-right { display: block; width: 20%; height: auto; max-height: 350px; bottom: 0; opacity: 0.8; object-fit: contain; object-position: bottom; }
-          .hero-content { width: 60%; max-width: 100%; position: relative; top: auto; left: auto; transform: none; }
+      .hero-bg-left,
+      .hero-bg-right {
+        display: block;
+        width: 22%;
+        height: auto;
+        max-height: 70%;
+        top: 50%;
+        bottom: auto;
+        transform: translateY(-50%);
+        opacity: 0.85;
+        object-fit: contain;
+        object-position: center;
+      }
+      .hero-bg-left {
+        -webkit-mask-image: linear-gradient(to right, #000 25%, transparent 100%);
+                mask-image: linear-gradient(to right, #000 25%, transparent 100%);
+      }
+      .hero-bg-right {
+        -webkit-mask-image: linear-gradient(to left, #000 25%, transparent 100%);
+                mask-image: linear-gradient(to left, #000 25%, transparent 100%);
+      }
+      .hero-content {
+        width: 100%;
+        max-width: 100%;
+        position: relative;
+        top: auto; left: auto;
+        transform: none;
+        padding: 50px 14px;
+      }
+      .hero-content h1,
+      .hero-content p,
+      .hero-btns,
+      .hero-bullets {
+        padding-left: 24%;
+        padding-right: 24%;
+        box-sizing: border-box;
+      }
       .hero-btns { flex-direction: column; }
       .hero-btns .btn { width: 100%; justify-content: center; }
       .steps-grid { grid-template-columns: 1fr; }
