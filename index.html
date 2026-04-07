@@ -153,10 +153,10 @@
     .hero-bg-right {
       position: absolute;
       bottom: 0;
-      height: 85%;
+      height: 92%;
       width: 38%;
-      object-fit: cover;
-      object-position: center top;
+      object-fit: contain;
+      object-position: bottom center;
       pointer-events: none;
       display: block;
     }
@@ -983,8 +983,8 @@
       .hero-content { width: 70%; }
     }
     @media (max-width: 600px) {
-      .hero-bg-left { display: block; width: 32%; height: auto; bottom: 0; top: auto; transform: none; opacity: 0.8; }
-      .hero-bg-right { display: block; width: 32%; height: auto; bottom: 0; top: auto; transform: none; opacity: 0.8; }
+      .hero-bg-left { display: block; width: 30%; height: auto; max-height: 55vw; bottom: 0; top: auto; transform: none; opacity: 0.85; object-fit: contain; object-position: bottom center; }
+      .hero-bg-right { display: block; width: 30%; height: auto; max-height: 55vw; bottom: 0; top: auto; transform: none; opacity: 0.85; object-fit: contain; object-position: bottom center; }
       .hero-content { width: 100%; max-width: 100%; }
       .hero-bullets { grid-template-columns: 1fr 1fr; }
       .hero-btns { flex-direction: column; }
@@ -1007,7 +1007,7 @@
 <!-- HERO -->
 <section id="hero">
   <img class="hero-bg-left"  src="robot.jpg" alt="" />
-  <img class="hero-bg-right" src="photo.jpg" alt="" />
+  <img class="hero-bg-right" src="hero-cyborg.png" alt="" />
   <div class="hero-content">
     <div class="hero-eyebrow">
       <span class="dot"></span>
