@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Блог — Артём Бахрам | AI-стратег</title>
+
+  <meta name="description" content="Блог Артёма Бахрама об AI-агентах, автоматизации бизнеса, чат-ботах и контент-стратегиях. Практические статьи для предпринимателей." />
+  <link rel="canonical" href="https://bahramovai.com/blog/" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://bahramovai.com/blog/" />
+  <meta property="og:title" content="Блог — Артём Бахрам | AI-стратег" />
+  <meta property="og:description" content="Практические статьи об AI-агентах, автоматизации бизнеса, чат-ботах и контент-стратегиях." />
+  <meta property="og:image" content="https://bahramovai.com/photo.jpg" />
+  <meta property="og:locale" content="ru_RU" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --bg3: #0a0a0a;
+      --orange: #f4672a;
+      --orange-dim: rgba(244,103,42,0.12);
+      --orange-border: rgba(244,103,42,0.35);
+      --text: #e8e8e8;
+      --muted: #888;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+    nav a.nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav a.nav-link:hover { color: #fff; }
+    nav a.nav-link.active { color: var(--orange); }
+    nav a.nav-cta {
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: opacity .2s;
+    }
+    nav a.nav-cta:hover { opacity: .85; }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 40px; }
+
+    .page-hero {
+      padding: 140px 0 60px;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 24px; height: 2px;
+      background: var(--orange);
+    }
+    h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 700;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+    h1 .accent { color: var(--orange); }
+    .page-hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 560px;
+    }
+
+    .blog-section { padding: 60px 0 100px; }
+
+    .empty-state {
+      border: 1px dashed var(--orange-border);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      background: var(--orange-dim);
+    }
+    .empty-state .icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+    .empty-state h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+    .empty-state p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .posts-grid {
+      display: grid;
+      gap: 24px;
+    }
+    .post-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      text-decoration: none;
+      display: block;
+      transition: border-color .2s, transform .2s;
+    }
+    .post-card:hover {
+      border-color: var(--orange-border);
+      transform: translateY(-3px);
+    }
+    .post-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+    .post-tag {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--orange);
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+    .post-date {
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .post-card h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(17px, 2.5vw, 22px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+    .post-card p {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .post-read-more {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--orange);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--muted); }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav a.nav-cta { display: none; }
+      .container { padding: 0 24px; }
+      .post-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">А<span>.</span>Бахрам</a>
+  <div class="nav-links">
+    <a href="/blog/" class="nav-link active">Блог</a>
+    <a href="https://t.me/m/8mtf5rZ2N2Ni" class="nav-cta" target="_blank" rel="noopener">Бесплатный аудит →</a>
+  </div>
+</nav>
+
+<div class="page-hero">
+  <div class="container">
+    <div class="section-label">Блог</div>
+    <h1>Статьи об <span class="accent">AI</span> и автоматизации</h1>
+    <p>Практические материалы для предпринимателей: как внедрять нейросети, автоматизировать рутину и масштабировать бизнес с помощью технологий.</p>
+  </div>
+</div>
+
+<section class="blog-section">
+  <div class="container">
+    <div class="posts-grid">
+
+      <a href="/blog/ai-agents-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">AI-агенты</span>
+          <span class="post-date">27 апреля 2026</span>
+        </div>
+        <h2>AI-агенты в 2026: что это, зачем бизнесу и как внедрить</h2>
+        <p>Разбираем, что такое AI-агенты, чем они отличаются от обычных чат-ботов и как малый и средний бизнес уже использует их для автоматизации рутины, работы с клиентами и роста продаж.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>© 2026 <a href="/">bahramovai.com</a> · <a href="https://t.me/bahramovai" target="_blank" rel="noopener">Telegram</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
