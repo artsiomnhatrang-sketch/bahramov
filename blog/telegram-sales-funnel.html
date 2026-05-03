@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году — Артём Бахрам</title>
+    <meta name="description" content="Как настроить воронку продаж в Telegram с нуля: 5 этапов, инструменты (ChatPlace, BotHelp, n8n), AI-агент внутри воронки и 3 кейса с реальными цифрами.">
+    <meta name="keywords" content="воронка продаж Telegram, автоматизация Telegram, чат-бот Telegram, автоворонка мессенджер, Telegram бот для бизнеса, ChatPlace Telegram, автоматизация продаж">
+    <link rel="canonical" href="https://bahramovai.com/blog/telegram-sales-funnel.html">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году">
+    <meta property="og:description" content="5 этапов воронки, инструменты, AI-агент внутри чата и 3 кейса с реальными результатами. Полный гайд по автоворонке в Telegram.">
+    <meta property="og:url" content="https://bahramovai.com/blog/telegram-sales-funnel.html">
+    <meta property="og:type" content="article">
+    <meta property="og:image" content="https://bahramovai.com/photo.jpg">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="BahramovAI">
+    <meta property="article:published_time" content="2026-04-30">
+    <meta property="article:author" content="Артём Бахрам">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Воронка продаж в Telegram: как настроить и автоматизировать в 2026">
+    <meta name="twitter:description" content="5 этапов автоворонки в Telegram, инструменты и кейсы с конверсией до 34%.">
+
+    <!-- JSON-LD Article -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году",
+        "description": "Как настроить воронку продаж в Telegram с нуля: 5 этапов, инструменты, AI-агент внутри воронки и 3 кейса с реальными цифрами.",
+        "image": "https://bahramovai.com/photo.jpg",
+        "author": {
+            "@type": "Person",
+            "name": "Артём Бахрам",
+            "jobTitle": "AI-стратег, эксперт по автоматизации продаж в мессенджерах",
+            "url": "https://bahramovai.com",
+            "knowsAbout": ["воронка продаж Telegram", "автоматизация Telegram", "чат-бот Telegram", "автоворонка мессенджер", "ChatPlace", "AI-агенты", "автоматизация бизнеса"]
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "BahramovAI",
+            "url": "https://bahramovai.com"
+        },
+        "datePublished": "2026-04-30",
+        "dateModified": "2026-04-30",
+        "mainEntityOfPage": "https://bahramovai.com/blog/telegram-sales-funnel.html",
+        "keywords": ["воронка продаж Telegram", "автоматизация Telegram", "чат-бот Telegram", "автоворонка мессенджер", "ChatPlace", "AI-агент в воронке"]
+    }
+    </script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000000; color: #e0e0e0; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
+        a { color: #f4672a; text-decoration: none; transition: opacity 0.2s; }
+        a:hover { opacity: 0.8; }
+        .header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(0,0,0,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.06); padding: 16px 0; }
+        .header-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: #ffffff; letter-spacing: 1px; }
+        .header-nav { display: flex; gap: 28px; align-items: center; }
+        .header-nav a { color: #999; font-size: 15px; font-weight: 500; }
+        .header-nav a:hover { color: #fff; }
+        .btn-cta { background: #f4672a; color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+        .breadcrumbs { max-width: 760px; margin: 0 auto; padding: 100px 24px 0; font-size: 14px; color: #666; }
+        .breadcrumbs a { color: #888; }
+        .breadcrumbs span { color: #555; }
+        .article-meta { max-width: 760px; margin: 0 auto; padding: 32px 24px 0; display: flex; align-items: center; gap: 16px; font-size: 14px; color: #666; }
+        .article-tag { background: rgba(244,103,42,0.12); color: #f4672a; padding: 4px 14px; border-radius: 20px; font-weight: 600; font-size: 13px; }
+        .article { max-width: 760px; margin: 0 auto; padding: 32px 24px 80px; }
+        .article h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(28px,5vw,40px); font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 32px; }
+        .article h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(20px,3.5vw,26px); font-weight: 600; color: #ffffff; margin-top: 56px; margin-bottom: 20px; line-height: 1.35; }
+        .article h3 { font-family: 'Unbounded', sans-serif; font-size: clamp(17px,2.5vw,20px); font-weight: 600; color: #f4672a; margin-top: 40px; margin-bottom: 16px; line-height: 1.4; }
+        .article p { margin-bottom: 20px; color: #ccc; }
+        .article strong { color: #ffffff; font-weight: 600; }
+        .article ul, .article ol { margin-bottom: 20px; padding-left: 24px; }
+        .article li { margin-bottom: 10px; color: #ccc; }
+        .highlight-block { background: rgba(244,103,42,0.06); border-left: 3px solid #f4672a; padding: 24px 28px; margin: 32px 0; border-radius: 0 12px 12px 0; }
+        .highlight-block p { margin-bottom: 0; color: #ddd; }
+        .highlight-block strong { color: #f4672a; }
+        .case-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px 32px; margin: 32px 0; }
+        .case-block h4 { font-family: 'Unbounded', sans-serif; font-size: 16px; color: #f4672a; margin-bottom: 12px; }
+        .case-block p { margin-bottom: 8px; font-size: 15px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+        .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; text-align: center; }
+        .stat-number { font-family: 'Unbounded', sans-serif; font-size: 32px; font-weight: 700; color: #f4672a; display: block; margin-bottom: 8px; }
+        .stat-label { font-size: 14px; color: #888; line-height: 1.4; }
+        .tool-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px 28px; margin: 20px 0; }
+        .tool-block h4 { font-family: 'Unbounded', sans-serif; font-size: 16px; color: #ffffff; margin-bottom: 10px; }
+        .tool-block .tool-tag { display: inline-block; background: rgba(244,103,42,0.12); color: #f4672a; padding: 2px 10px; border-radius: 6px; font-size: 12px; font-weight: 600; margin-bottom: 10px; }
+        .tool-block p { margin-bottom: 6px; font-size: 15px; }
+        .funnel-step { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 24px 28px; margin: 16px 0; display: flex; gap: 20px; align-items: flex-start; }
+        .funnel-step-num { font-family: 'Unbounded', sans-serif; font-size: 28px; font-weight: 900; color: #f4672a; line-height: 1; flex-shrink: 0; min-width: 36px; }
+        .funnel-step-content h4 { font-family: 'Unbounded', sans-serif; font-size: 15px; color: #fff; margin-bottom: 8px; }
+        .funnel-step-content p { font-size: 15px; color: #aaa; margin: 0; }
+        .funnel-arrow { text-align: center; color: #f4672a; font-size: 20px; margin: 4px 0; }
+        .week-plan { counter-reset: day; }
+        .week-plan .day-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px 24px; margin: 12px 0; display: flex; gap: 16px; align-items: flex-start; }
+        .day-label { font-family: 'Unbounded', sans-serif; font-size: 11px; font-weight: 700; color: #f4672a; letter-spacing: 0.1em; white-space: nowrap; padding-top: 2px; min-width: 60px; }
+        .day-content { font-size: 15px; color: #ccc; }
+        .day-content strong { color: #fff; }
+        .cta-block { background: linear-gradient(135deg, rgba(244,103,42,0.12), rgba(244,103,42,0.04)); border: 1px solid rgba(244,103,42,0.2); border-radius: 20px; padding: 40px; text-align: center; margin: 56px 0 0; }
+        .cta-block h3 { color: #ffffff; margin-top: 0; margin-bottom: 16px; }
+        .cta-block p { color: #aaa; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta-button { display: inline-block; background: #f4672a; color: #fff; padding: 16px 36px; border-radius: 12px; font-weight: 600; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+        .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(244,103,42,0.3); opacity: 1; }
+        .footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 24px; text-align: center; font-size: 14px; color: #555; }
+        .footer a { color: #777; }
+        @media (max-width: 640px) {
+            .header-nav { gap: 16px; }
+            .article { padding: 24px 16px 60px; }
+            .breadcrumbs { padding: 90px 16px 0; }
+            .article-meta { padding: 24px 16px 0; }
+            .cta-block { padding: 28px 20px; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .case-block, .tool-block { padding: 20px; }
+            .funnel-step { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="header">
+    <div class="header-inner">
+        <a href="https://bahramovai.com/" class="logo">А.Бахрам</a>
+        <nav class="header-nav">
+            <a href="https://bahramovai.com/blog/">Блог</a>
+            <a href="https://t.me/m/8mtf5rZ2N2Ni" class="btn-cta" target="_blank" rel="noopener">Бесплатный аудит →</a>
+        </nav>
+    </div>
+</header>
+
+<div class="breadcrumbs">
+    <a href="/">Главная</a> › <a href="/blog/">Блог</a> › <span>Воронка продаж в Telegram</span>
+</div>
+
+<div class="article-meta">
+    <span class="article-tag">Воронки продаж</span>
+    <span>30 апреля 2026</span>
+    <span>· 9 мин чтения</span>
+</div>
+
+<main class="article">
+
+    <h1>Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году</h1>
+
+    <p>Пока email-рассылки открывают 20% подписчиков, а посты в Instagram видит от силы 7% аудитории, сообщение в Telegram читают <strong>85 из 100 получателей</strong>. Это не маркетинговая байка — это реальность 2026 года, которую уже используют тысячи бизнесов для построения автоматических воронок продаж.</p>
+
+    <p>Telegram-воронка — это последовательность сообщений, которая ведёт потенциального клиента от первого касания до оплаты. Автоматически, без участия менеджера, круглосуточно. В этой статье — всё, что нужно знать, чтобы запустить такую воронку с нуля.</p>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <span class="stat-number">85%</span>
+            <div class="stat-label">открываемость сообщений в Telegram vs 20% в email</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">3 мин</span>
+            <div class="stat-label">среднее время до прочтения сообщения в Telegram</div>
+        </div>
+        <div class="stat-card">
+            <span class="stat-number">×2–4</span>
+            <div class="stat-label">рост конверсии при переходе с холодных звонков на Telegram-воронку</div>
+        </div>
+    </div>
+
+    <h2>Почему Telegram — лучший канал для воронки продаж</h2>
+
+    <p>Дело не только в открываемости. У Telegram есть три свойства, которые делают его идеальной средой для автоматических продаж.</p>
+
+    <p><strong>Скорость.</strong> Люди проверяют Telegram десятки раз в день. Сообщение в директ Instagram может ждать ответа сутки — в Telegram на него реагируют в среднем за 3 минуты. Для продаж это критично: чем быстрее контакт, тем выше вероятность сделки.</p>
+
+    <p><strong>Интерактивность.</strong> Telegram поддерживает кнопки, квизы, опросы, inline-меню — прямо внутри чата. Пользователь не уходит на сайт, не открывает форму, не звонит. Он нажимает кнопку — и делает следующий шаг в воронке. Каждый лишний шаг — это потеря части аудитории. Telegram их убирает.</p>
+
+    <p><strong>Оплата внутри чата.</strong> Через Telegram Payments можно принять оплату прямо в диалоге с ботом. Клиент выбрал продукт, нажал «Купить», ввёл карту — оплата прошла без перехода на внешний сайт. Конверсия на этом шаге на 40–60% выше, чем при редиректе на лендинг.</p>
+
+    <div class="highlight-block">
+        <p><strong>Главное преимущество Telegram-воронки:</strong> вся цепочка — от первого сообщения до оплаты — происходит в одном месте, которое человек открывает сам по 20–30 раз в день. Это не push-уведомление, которое раздражает. Это личный разговор в привычном пространстве.</p>
+    </div>
+
+    <h2>5 этапов Telegram-воронки</h2>
+
+    <div class="funnel-step">
+        <div class="funnel-step-num">01</div>
+        <div class="funnel-step-content">
+            <h4>Точка входа — лид-магнит</h4>
+            <p>Человек попадает в бот через ссылку в Instagram, рекламу, пост или реферальный механизм. Первое сообщение — мгновенная ценность: чек-лист, PDF-гайд, мини-курс, скидка. Задача: зацепить и убедить остаться. Конверсия из перехода по ссылке в старт бота — 60–80% при правильном лид-магните.</p>
+        </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+        <div class="funnel-step-num">02</div>
+        <div class="funnel-step-content">
+            <h4>Квалификация — сегментация кнопками</h4>
+            <p>Сразу после лид-магнита — 1–2 вопроса с кнопками: «Что вас интересует?», «Какой у вас бюджет?», «Вы уже пробовали X?». Ответы сегментируют аудиторию и определяют, какое сообщение придёт следующим. Один бот — несколько персонализированных веток под разные сегменты.</p>
+        </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+        <div class="funnel-step-num">03</div>
+        <div class="funnel-step-content">
+            <h4>Прогрев — 3–5 контентных сообщений</h4>
+            <p>В течение 3–7 дней бот отправляет полезный контент: кейсы, экспертные инсайты, разборы ошибок, ответы на частые возражения. Каждое сообщение повышает доверие и готовность купить. Между сообщениями — паузы (1–2 дня), чтобы не спамить и не раздражать.</p>
+        </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+        <div class="funnel-step-num">04</div>
+        <div class="funnel-step-content">
+            <h4>Оффер — продающее сообщение с дедлайном</h4>
+            <p>После прогрева — конкретное предложение с ограничением по времени или количеству мест. Чёткая структура: что именно, что получит клиент, сколько стоит, почему сейчас. Кнопка «Купить» или «Записаться» ведёт к оплате или заявке прямо в чате.</p>
+        </div>
+    </div>
+    <div class="funnel-arrow">↓</div>
+    <div class="funnel-step">
+        <div class="funnel-step-num">05</div>
+        <div class="funnel-step-content">
+            <h4>Дожим — follow-up через 24 / 48 / 72 часа</h4>
+            <p>Те, кто не купил, получают серию напоминаний: через сутки — «Успеваете?», через двое — дополнительная ценность или бонус, через трое — последний шанс. Дожим в среднем добирает 20–35% продаж от тех, кто не купил сразу.</p>
+        </div>
+    </div>
+
+    <h2>Инструменты для Telegram-воронки</h2>
+
+    <div class="tool-block">
+        <div class="tool-tag">Рекомендую</div>
+        <h4>ChatPlace</h4>
+        <p>Визуальный конструктор воронок для Telegram и Instagram. Строите логику перетаскиванием блоков — без кода. Главное преимущество: встроенный AI-агент, который умеет вести свободный диалог вместо жёстких кнопок. Подходит для большинства бизнес-задач: от простых автоответов до сложных многошаговых воронок с сегментацией.</p>
+    </div>
+
+    <div class="tool-block">
+        <h4>BotHelp</h4>
+        <p>Хороший вариант для простых линейных воронок без разветвлений. Быстрый старт, понятный интерфейс. Ограничен в гибкости: сложные условия и интеграции реализуются с трудом. Оптимально — для первой воронки с лид-магнитом и 3–4 прогревочными сообщениями.</p>
+    </div>
+
+    <div class="tool-block">
+        <h4>n8n + Telegram Bot API</h4>
+        <p>Для кастомных интеграций, которые нельзя сделать в визуальных конструкторах. Подключение к CRM, динамические данные из базы, сложная логика ветвлений, интеграция с внешними сервисами. Требует технических знаний или разработчика, зато даёт полный контроль над воронкой.</p>
+    </div>
+
+    <h2>AI-агент внутри воронки — тренд 2026</h2>
+
+    <p>Классическая воронка с кнопками работает хорошо — но у неё есть предел. Пользователь не всегда выбирает из предложенных вариантов: он хочет задать свой вопрос, уточнить детали, возразить. Жёсткий сценарий не справляется — диалог обрывается.</p>
+
+    <p>В 2026 году лучшие воронки работают иначе: на определённом этапе кнопки уступают место AI-агенту, который ведёт свободный разговор. Человек пишет что угодно — агент понимает контекст, отвечает по делу, отрабатывает возражения и мягко ведёт к покупке.</p>
+
+    <div class="highlight-block">
+        <p><strong>Как это работает на практике:</strong> первые этапы воронки (лид-магнит, квалификация) — кнопки и чёткий сценарий. На этапе прогрева и оффера — AI-агент, который отвечает на вопросы, объясняет ценность продукта и закрывает возражения в свободном диалоге. Конверсия на этапе «оффер → оплата» вырастает на 40–80% по сравнению с чисто кнопочным ботом.</p>
+    </div>
+
+    <p>ChatPlace позволяет комбинировать оба подхода: часть шагов — кнопки, часть — AI-агент с загруженной базой знаний о продукте. Это оптимальная архитектура для большинства ниш в 2026 году.</p>
+
+    <h2>3 кейса: реальные результаты</h2>
+
+    <div class="case-block">
+        <h4>Кейс 1: Онлайн-школа по финансовой грамотности</h4>
+        <p><strong>Задача:</strong> увеличить конверсию из подписчиков бота в оплату курса.</p>
+        <p><strong>До:</strong> линейная воронка из 4 сообщений, конверсия из подписки в оплату — 18%.</p>
+        <p><strong>Что изменили:</strong> добавили квалификацию (3 вопроса с кнопками), разбили аудиторию на 2 сегмента (новички / опытные), сделали разные цепочки прогрева. На этапе оффера подключили AI-агента для ответов на вопросы про программу.</p>
+        <p><strong>Результат:</strong> конверсия из подписки в оплату выросла с <strong>18% до 34%</strong>. При той же базе подписчиков выручка выросла почти вдвое.</p>
+    </div>
+
+    <div class="case-block">
+        <h4>Кейс 2: Сеть салонов красоты (3 точки)</h4>
+        <p><strong>Задача:</strong> автоматизировать запись клиентов без участия администратора.</p>
+        <p><strong>До:</strong> запись только по звонку или в директ Instagram — менеджер вёл вручную. Ночные и выходные заявки терялись.</p>
+        <p><strong>Что сделали:</strong> Telegram-бот с выбором услуги → мастера → даты через встроенный календарь → автоподтверждение → напоминание за 2 часа до записи.</p>
+        <p><strong>Результат:</strong> <strong>+60% записей</strong> за первый месяц. 40% новых записей — в нерабочее время (после 20:00 и в выходные). Администратор освободился для работы в зале.</p>
+    </div>
+
+    <div class="case-block">
+        <h4>Кейс 3: Инфобизнес, продажа наставничества</h4>
+        <p><strong>Задача:</strong> снизить нагрузку на отдел продаж без потери выручки.</p>
+        <p><strong>До:</strong> 2 менеджера по продажам обрабатывали заявки вручную, ФОТ — 120 000 ₽/мес. Конверсия — 22%.</p>
+        <p><strong>Что сделали:</strong> полная автоворонка в Telegram: квалификация → 5 прогревочных сообщений за 7 дней → AI-агент на этапе продажи → оплата внутри чата. Менеджеры оставлены только для VIP-клиентов с чеком от 150К.</p>
+        <p><strong>Результат:</strong> автоворонка закрывает 80% сделок самостоятельно. Конверсия выросла до 28%. <strong>Экономия на ФОТ — 120 000 ₽/месяц.</strong> Выручка выросла на 35% за счёт скорости обработки и работы 24/7.</p>
+    </div>
+
+    <h2>Пошаговый план запуска за неделю</h2>
+
+    <div class="week-plan">
+        <div class="day-item">
+            <div class="day-label">День 1</div>
+            <div class="day-content"><strong>Стратегия.</strong> Определите цель воронки (продажа / запись / лид-магнит), опишите аудиторию, выберите лид-магнит и основной оффер.</div>
+        </div>
+        <div class="day-item">
+            <div class="day-label">День 2</div>
+            <div class="day-content"><strong>Контент.</strong> Напишите все тексты: приветствие, квалификационные вопросы, 3–5 прогревочных сообщений, продающее сообщение, 3 follow-up. Используйте AI-ассистента для ускорения.</div>
+        </div>
+        <div class="day-item">
+            <div class="day-label">День 3–4</div>
+            <div class="day-content"><strong>Сборка.</strong> Регистрируйтесь в ChatPlace, создайте бота в Telegram (@BotFather), подключите к платформе, соберите воронку по схеме из этой статьи.</div>
+        </div>
+        <div class="day-item">
+            <div class="day-label">День 5</div>
+            <div class="day-content"><strong>AI-агент.</strong> Загрузите базу знаний о продукте, настройте агента на этап прогрева/продажи, протестируйте 20–30 вопросами.</div>
+        </div>
+        <div class="day-item">
+            <div class="day-label">День 6</div>
+            <div class="day-content"><strong>Тест.</strong> Пройдите воронку сами и попросите 3–5 знакомых. Проверьте все ветки, кнопки, задержки между сообщениями, оплату.</div>
+        </div>
+        <div class="day-item">
+            <div class="day-label">День 7</div>
+            <div class="day-content"><strong>Запуск.</strong> Опубликуйте ссылку на бота в Instagram, добавьте в шапку профиля, запустите трафик. Первые данные по конверсии — через 48 часов.</div>
+        </div>
+    </div>
+
+    <div class="highlight-block">
+        <p><strong>Важно:</strong> не пытайтесь сделать идеально с первого раза. Запустите минимальную версию, посмотрите где аудитория «отваливается», доработайте именно эти шаги. Воронка улучшается итерационно — за 2–3 недели реальной работы она становится значительно эффективнее стартовой версии.</p>
+    </div>
+
+    <div class="cta-block">
+        <h3>Хотите запустить Telegram-воронку под ваш бизнес?</h3>
+        <p>Проведу бесплатный аудит: разберём вашу нишу и аудиторию, спроектируем структуру воронки и определим, какой инструмент подойдёт лучше всего. Обычно 30–40 минут — и у вас готовый план на руках.</p>
+        <a href="https://t.me/m/8mtf5rZ2N2Ni" class="cta-button" target="_blank" rel="noopener">Получить бесплатный аудит →</a>
+    </div>
+
+</main>
+
+<footer class="footer">
+    <p>© 2026 <a href="/">bahramovai.com</a> · <a href="/blog/">Блог</a> · <a href="https://t.me/bahramovai" target="_blank" rel="noopener">Telegram</a></p>
+</footer>
+
+</body>
+</html>
