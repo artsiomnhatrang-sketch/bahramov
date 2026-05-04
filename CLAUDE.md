@@ -43,7 +43,7 @@
     ├── index.html          — список статей (ОБНОВЛЯТЬ при новой статье)
     └── [статьи].html
 
-## Опубликованные статьи (13 штук)
+## Опубликованные статьи (14 штук)
 1. 7-signs-you-need-ai-agent.html — 7 признаков, что бизнесу нужен AI-агент
 2. ai-agents-2026.html — AI-агенты в 2026: что это, зачем бизнесу и как внедрить
 3. ai-assistant-5-tasks.html — 5 задач для AI-ассистента
@@ -57,6 +57,7 @@
 11. telegram-sales-funnel.html — Воронка продаж в Telegram
 12. virtual-assistant-cost-roi.html — Виртуальный ассистент: стоимость и окупаемость
 13. train-ai-agent-like-manager.html — Как обучить AI-агента отвечать как менеджер: пошаговый гайд
+14. instagram-account-recovery-2026.html — Почему Instagram блокирует аккаунты в 2026 и как восстановить доступ легально
 
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
