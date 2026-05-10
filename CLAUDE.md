@@ -58,6 +58,7 @@
 12. virtual-assistant-cost-roi.html — Виртуальный ассистент: стоимость и окупаемость
 13. train-ai-agent-like-manager.html — Как обучить AI-агента отвечать как менеджер: пошаговый гайд
 14. instagram-account-recovery-2026.html — Почему Instagram блокирует аккаунты в 2026 и как восстановить доступ легально
+15. instagram-novyy-akkaunt-blokirovka-2026.html — Почему Instagram блокирует новые аккаунты сразу после регистрации — и как обойти device fingerprinting в 2026
 
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
