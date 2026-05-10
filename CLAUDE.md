@@ -59,6 +59,7 @@
 13. train-ai-agent-like-manager.html — Как обучить AI-агента отвечать как менеджер: пошаговый гайд
 14. instagram-account-recovery-2026.html — Почему Instagram блокирует аккаунты в 2026 и как восстановить доступ легально
 15. instagram-novyy-akkaunt-blokirovka-2026.html — Почему Instagram блокирует новые аккаунты сразу после регистрации — и как обойти device fingerprinting в 2026
+16. instagram-blokirovki-may-2026.html — Массовые блокировки Instagram в мае 2026: когда закончится волна и как сохранить свой аккаунт
 
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
