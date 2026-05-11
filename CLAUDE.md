@@ -61,6 +61,7 @@
 15. instagram-novyy-akkaunt-blokirovka-2026.html — Почему Instagram блокирует новые аккаунты сразу после регистрации — и как обойти device fingerprinting в 2026
 16. instagram-blokirovki-may-2026.html — Массовые блокировки Instagram в мае 2026: когда закончится волна и как сохранить свой аккаунт
 17. instagram-posle-razblokirovki-cheklist-2026.html — Что делать после разблокировки Instagram: чек-лист 2026
+18. instagram-cepnaya-blokirovka-multiakkaunty-2026.html — Цепная блокировка Instagram: как защитить несколько аккаунтов в 2026
 
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
