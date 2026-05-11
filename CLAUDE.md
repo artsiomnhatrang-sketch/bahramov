@@ -62,6 +62,7 @@
 16. instagram-blokirovki-may-2026.html — Массовые блокировки Instagram в мае 2026: когда закончится волна и как сохранить свой аккаунт
 17. instagram-posle-razblokirovki-cheklist-2026.html — Что делать после разблокировки Instagram: чек-лист 2026
 18. instagram-cepnaya-blokirovka-multiakkaunty-2026.html — Цепная блокировка Instagram: как защитить несколько аккаунтов в 2026
+19. instagram-dva-akkaunta-odin-telefon-2026.html — Два аккаунта Instagram на одном телефоне: как не получить бан в 2026
 
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
