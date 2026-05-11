@@ -63,6 +63,7 @@
 17. instagram-posle-razblokirovki-cheklist-2026.html — Что делать после разблокировки Instagram: чек-лист 2026
 18. instagram-cepnaya-blokirovka-multiakkaunty-2026.html — Цепная блокировка Instagram: как защитить несколько аккаунтов в 2026
 19. instagram-dva-akkaunta-odin-telefon-2026.html — Два аккаунта Instagram на одном телефоне: как не получить бан в 2026
+20. instagram-recheck-prosadka-ohvatov-2026.html — Recheck Instagram 2026: почему просели охваты и что делать
 
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
