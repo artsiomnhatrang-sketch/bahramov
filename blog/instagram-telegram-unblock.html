@@ -502,7 +502,50 @@
                 padding: 20px;
             }
         }
-    </style>
+  
+    /* Related posts */
+    .related-posts { padding: 60px 0 40px; }
+    .related-posts h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: #e8e8e8; margin-bottom: 28px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .related-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+    .related-card:hover {
+      border-color: rgba(244,103,42,0.35);
+      transform: translateY(-3px);
+    }
+    .related-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: #e8e8e8; margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .related-card p {
+      font-size: 13px; color: #666;
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .related-card span {
+      font-size: 13px; color: #f4672a;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .related-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 

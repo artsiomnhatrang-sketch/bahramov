@@ -381,6 +381,49 @@
       .cta-block { padding: 28px 24px; }
       .related-block { padding: 24px 20px; }
     }
+
+    /* Related posts */
+    .related-posts { padding: 60px 0 40px; }
+    .related-posts h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 20px; font-weight: 700;
+      color: #e8e8e8; margin-bottom: 28px;
+    }
+    .related-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .related-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-radius: 12px;
+      padding: 24px;
+      transition: border-color 0.2s, transform 0.2s;
+      text-decoration: none;
+      display: block;
+    }
+    .related-card:hover {
+      border-color: rgba(244,103,42,0.35);
+      transform: translateY(-3px);
+    }
+    .related-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px; font-weight: 600;
+      color: #e8e8e8; margin-bottom: 10px;
+      line-height: 1.5;
+    }
+    .related-card p {
+      font-size: 13px; color: #666;
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .related-card span {
+      font-size: 13px; color: #f4672a;
+      font-weight: 500;
+    }
+    @media (max-width: 768px) {
+      .related-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -533,14 +576,28 @@
 
     <p>Если же ты пытаешься действовать в это время как обычно (с автоматизацией, массфолловингом, частыми переключениями устройств) — проверка может перерасти в реальную блокировку. И тогда придётся восстанавливаться уже всерьёз.</p>
 
-    <div class="related-block">
-      <div class="related-label">Читать ещё по теме</div>
-      <div class="related-links">
-        <a href="/blog/instagram-posle-razblokirovki-cheklist-2026.html" class="related-link">Что делать после разблокировки Instagram: чек-лист 2026</a>
-        <a href="/blog/instagram-cepnaya-blokirovka-multiakkaunty-2026.html" class="related-link">Цепная блокировка Instagram: как защитить несколько аккаунтов в 2026</a>
-        <a href="/blog/instagram-blokirovki-may-2026.html" class="related-link">Массовые блокировки Instagram в мае 2026: что происходит</a>
-      </div>
+<section class="related-posts">
+  <div style="max-width:760px;margin:0 auto;padding:0 24px">
+    <h2>Читайте также</h2>
+    <div class="related-grid">
+      <a href="/blog/instagram-blokirovki-may-2026.html" class="related-card">
+        <h3>Массовые блокировки Instagram в мае 2026</h3>
+        <p>Что происходит во время волны банов и как защитить аккаунт прямо сейчас.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/instagram-posle-razblokirovki-cheklist-2026.html" class="related-card">
+        <h3>Что делать после разблокировки Instagram</h3>
+        <p>Пошаговый чек-лист: от настроек безопасности до первого поста после возврата.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/instagram-cepnaya-blokirovka-multiakkaunty-2026.html" class="related-card">
+        <h3>Цепная блокировка Instagram: защита нескольких аккаунтов</h3>
+        <p>Почему банят все аккаунты сразу и как разорвать цепочку блокировок.</p>
+        <span>Читать →</span>
+      </a>
     </div>
+  </div>
+</section>
 
     <div class="cta-block">
       <h3>Аккаунт ведёт себя странно? Разберёмся</h3>
