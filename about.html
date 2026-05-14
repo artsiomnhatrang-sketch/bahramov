@@ -255,7 +255,111 @@
       .links-grid { grid-template-columns: 1fr; }
       .hero-name { font-size: 26px; }
     }
+
+    /* FAQ */
+    .faq { padding: 80px 0; background: var(--bg); }
+    .faq-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .faq h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .faq details { border-bottom: 1px solid #222; }
+    .faq details:first-of-type { border-top: 1px solid #222; }
+    .faq summary {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+      cursor: pointer;
+      padding: 20px 0;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 16px;
+      transition: color .2s;
+      line-height: 1.5;
+    }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary::after {
+      content: '+';
+      color: var(--orange);
+      font-size: 1.4rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      margin-top: -2px;
+    }
+    .faq details[open] summary { color: var(--orange); }
+    .faq details[open] summary::after { content: '−'; }
+    .faq-answer {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted);
+      padding: 0 32px 20px 0;
+    }
+    .faq-answer a { color: var(--orange); text-decoration: none; }
+    .faq-answer a:hover { text-decoration: underline; }
+    @media (max-width: 768px) {
+      .faq { padding: 48px 0; }
+      .faq h2 { margin-bottom: 32px; }
+      .faq summary { font-size: 0.82rem; padding: 16px 0; }
+      .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Где можно посмотреть кейсы?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Свежие кейсы публикую в Telegram-канале t.me/bahramovartem — там разборы проектов, до/после, цифры по выручке и заявкам."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Где почитать отзывы клиентов?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Отзывы собираю в отдельном канале t.me/bahramreviews — реальные сообщения от клиентов после работы."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Как со мной связаться?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Telegram: @bahramovartsiom — пишите напрямую, отвечаю лично. Email: artsiomnhatrang@gmail.com. Бесплатный аудит соцсетей — по запросу в Telegram."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Где ты находишься и как работаешь удалённо?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Базируюсь в Нячанге (Вьетнам), работаю удалённо с клиентами из России, Беларуси, Казахстана и других стран. Все процессы — онлайн: созвоны в Telegram или Zoom, передача доступов через защищённые каналы, отчёты в письменном виде."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "С какими нишами работаешь?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Малый и средний бизнес: услуги, инфобизнес, e-commerce, локальные сервисы, эксперты и консультанты. Основной фокус — там, где есть входящий поток заявок через Instagram или Telegram и где автоматизация быстро окупается."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -422,6 +526,49 @@
       </a>
 
     </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="faq-inner">
+    <h2>Частые вопросы</h2>
+
+    <details>
+      <summary>Где можно посмотреть кейсы?</summary>
+      <div class="faq-answer">
+        Свежие кейсы публикую в Telegram-канале: <a href="https://t.me/bahramovartem" target="_blank" rel="noopener noreferrer">@bahramovartem</a> — там разборы проектов, до/после, цифры по выручке и заявкам.
+      </div>
+    </details>
+
+    <details>
+      <summary>Где почитать отзывы клиентов?</summary>
+      <div class="faq-answer">
+        Отзывы собираю в отдельном канале: <a href="https://t.me/bahramreviews" target="_blank" rel="noopener noreferrer">@bahramreviews</a> — реальные сообщения от клиентов после работы.
+      </div>
+    </details>
+
+    <details>
+      <summary>Как со мной связаться?</summary>
+      <div class="faq-answer">
+        Telegram: <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer">@bahramovartsiom</a> — пишите напрямую, отвечаю лично. Email: <a href="mailto:artsiomnhatrang@gmail.com">artsiomnhatrang@gmail.com</a>. Бесплатный аудит соцсетей — по запросу в Telegram.
+      </div>
+    </details>
+
+    <details>
+      <summary>Где ты находишься и как работаешь удалённо?</summary>
+      <div class="faq-answer">
+        Базируюсь в Нячанге (Вьетнам), работаю удалённо с клиентами из России, Беларуси, Казахстана и других стран. Все процессы — онлайн: созвоны в Telegram или Zoom, передача доступов через защищённые каналы, отчёты в письменном виде.
+      </div>
+    </details>
+
+    <details>
+      <summary>С какими нишами работаешь?</summary>
+      <div class="faq-answer">
+        Малый и средний бизнес: услуги, инфобизнес, e-commerce, локальные сервисы, эксперты и консультанты. Основной фокус — там, где есть входящий поток заявок через Instagram или Telegram и где автоматизация быстро окупается.
+      </div>
+    </details>
+
   </div>
 </section>
 
