@@ -333,11 +333,16 @@
 
         .stat-number {
             font-family: 'Unbounded', sans-serif;
-            font-size: 32px;
+            font-size: clamp(20px, 4vw, 32px);
             font-weight: 700;
             color: #f4672a;
             display: block;
             margin-bottom: 8px;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            hyphens: auto;
+            line-height: 1.1;
+            max-width: 100%;
         }
 
         .stat-label {
@@ -653,16 +658,16 @@
 
         <div class="stats-grid">
             <div class="stat-card">
-                <span class="stat-number">значительный рост</span>
-                <span class="stat-label">жалоб на блокировки Instagram с марта 2026</span>
+                <span class="stat-number">×2–×3</span>
+                <span class="stat-label">рост жалоб на блокировки Instagram с марта 2026 (оценка по чатам предпринимателей)</span>
             </div>
             <div class="stat-card">
-                <span class="stat-number">часто несколько часов</span>
+                <span class="stat-number">часы</span>
                 <span class="stat-label">столько живёт новый аккаунт, созданный с заблокированного устройства</span>
             </div>
             <div class="stat-card">
                 <span class="stat-number">большинство</span>
-                <span class="stat-label">заблокированных аккаунтов — без какого-либо реального нарушения правил</span>
+                <span class="stat-label">пострадавших аккаунтов — без явного нарушения правил</span>
             </div>
         </div>
 
