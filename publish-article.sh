@@ -14,6 +14,12 @@ DOMAIN="https://bahramovai.com"
 FULL_URL="${DOMAIN}${ARTICLE_PATH}"
 INDEXNOW_KEY="0j0fuyj9g8pu8v1bftid0tymwhnxyxgh"
 
+echo "→ Проверка stat-card (pre-publish)..."
+python3 scripts/check-stat-cards.py || {
+  echo "✗ Исправь РИСК/КРИТИЧНО и повтори publish"
+  exit 1
+}
+
 echo "→ Пушу изменения в git..."
 git add .
 git commit -m "Publish: ${ARTICLE_PATH}" || echo "Нечего коммитить"
