@@ -1,5 +1,32 @@
 # BahramovAI — контекст проекта для Claude Code
 
+## ЦЕЛЬ проекта
+SEO + GEO видимость bahramovai.com: ранжироваться в Google и Яндекс по запросам
+про AI-агентов и автоматизацию соцсетей. Попадать в ответы нейросетей
+(ChatGPT, Perplexity, Gemini, Claude) на вопросы об Артёме Бахраме и его услугах.
+Стратегия: экспертный контент с реальными цифрами, тематические кластеры,
+JSON-LD, внутренняя перелинковка, регулярный постинг на vc.ru/LinkedIn/Telegram/YouTube.
+
+## СДЕЛАНО
+- 20 статей в блоге (тематические кластеры: AI-агенты, Instagram-блокировки, Telegram, автоматизация)
+- about.html — страница "Обо мне" с JSON-LD Person + FAQPage
+- FAQ-секция на главной (index.html) с FAQPage JSON-LD
+- BreadcrumbList JSON-LD добавлен во все 20 статей
+- Внутренняя перелинковка: 41 контекстная ссылка между статьями
+- llms.txt расширен: услуги, цены, кейсы
+- Яндекс.Вебмастер зарегистрирован (yandex_4569c44e850f20f1.html в корне)
+- Google Search Console подключён
+- vc.ru: 2 опубликованные статьи (массовые блокировки IG — вторая)
+- YouTube Short опубликован
+- scripts/check-stat-cards.py + интеграция в publish-article.sh (pre-publish автопроверка)
+
+## TODO (приоритизировано)
+1. Оптимизация изображений: сжать photo.jpg (188 КБ); подключить photo.webp в about.html через <picture>; решить судьбу hero-cyborg.png (943 КБ, сирота — удалить или убрать из git)
+2. Привязать YouTube канал к artsiomnhatrang@gmail.com для связки с Google Search Console
+3. Проверить FAQPage в Rich Results (через search.google.com/test/rich-results) — через 2-3 дня после публикации
+4. Следующие статьи: "AI-агент vs чат-бот: что выбрать", "Сколько стоит чат-бот в 2026"
+5. Продолжить дистрибуцию: vc.ru, LinkedIn, Telegram-канал, YouTube Shorts
+
 ## Кто владелец
 - Имя: Артём Бахрам (Artsiom Bahram / Артём Бахрамов)
 - Роль: AI-стратег, эксперт по автоматизации соцсетей
@@ -25,25 +52,39 @@
 ## SEO — что уже настроено
 - robots.txt — разрешает индексацию, ссылка на sitemap
 - sitemap.xml — обновлять при добавлении каждой статьи!
-- llms.txt — для нейросетей
+- llms.txt — для нейросетей (услуги, цены, кейсы)
 - Google Search Console — подключён (верификация googlecd6247cb3e635c34.html)
-- Мета-теги: description, canonical, Open Graph, Twitter Card, JSON-LD Schema.org
+- Яндекс.Вебмастер — подключён (верификация yandex_4569c44e850f20f1.html)
+- Мета-теги: description, canonical, Open Graph, Twitter Card
+- JSON-LD: Article (блог), Person + FAQPage (about.html), FAQPage (главная), BreadcrumbList (все 20 статей)
 
 ## Структура папок
 ~/Developer/bahramov/
 ├── index.html              — главная (лендинг)
+├── about.html              — страница "Обо мне" (JSON-LD Person + FAQPage)
 ├── CNAME                   — bahramovai.com
 ├── robots.txt
 ├── sitemap.xml             — ОБНОВЛЯТЬ при каждой новой статье
-├── llms.txt
+├── llms.txt                — для нейросетей (услуги, цены, кейсы)
 ├── googlecd6247cb3e635c34.html — верификация Google
+├── yandex_4569c44e850f20f1.html — верификация Яндекс.Вебмастер
 ├── offer.html
 ├── privacy.html
+├── photo.jpg               — портрет (188 КБ, og:image на всех страницах + JSON-LD — не менять формат!)
+├── photo.webp              — портрет WebP (134 КБ, СИРОТА — не подключён; TODO: <picture> в about.html)
+├── robot.jpg               — декор hero (149 КБ, fallback в <picture> на index.html)
+├── robot.webp              — декор hero WebP (104 КБ, <source> в <picture> на index.html)
+├── hero-cyborg.jpg         — декор hero (102 КБ, fallback в <picture> на index.html)
+├── hero-cyborg.webp        — декор hero WebP (69 КБ, <source> в <picture> на index.html)
+├── hero-cyborg.png         — СИРОТА 943 КБ, нигде не используется (TODO: удалить)
+├── scripts/
+│   ├── check-stat-cards.py — pre-publish проверка статистических карточек
+│   └── publish-article.sh  — скрипт публикации с автопроверкой
 └── blog/
     ├── index.html          — список статей (ОБНОВЛЯТЬ при новой статье)
     └── [статьи].html
 
-## Опубликованные статьи (14 штук)
+## Опубликованные статьи (20 статей)
 1. 7-signs-you-need-ai-agent.html — 7 признаков, что бизнесу нужен AI-агент
 2. ai-agents-2026.html — AI-агенты в 2026: что это, зачем бизнесу и как внедрить
 3. ai-assistant-5-tasks.html — 5 задач для AI-ассистента
