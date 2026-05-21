@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Чат-бот vs AI-агент 2026 — Артём Бахрам</title>
+
+  <meta name="description" content="Почему классический чат-бот сливает заявки в 2026 и чем AI-агент его обгоняет. Разбор отличий, реальный кейс −150 000 ₽/мес и когда менять." />
+  <link rel="canonical" href="https://bahramovai.com/blog/ai-agent-vs-chatbot-2026.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://bahramovai.com/blog/ai-agent-vs-chatbot-2026.html" />
+  <meta property="og:title" content="Чат-бот vs AI-агент 2026 — Артём Бахрам" />
+  <meta property="og:description" content="Почему классический чат-бот сливает заявки в 2026 и чем AI-агент его обгоняет. Разбор отличий, реальный кейс −150 000 ₽/мес и когда менять." />
+  <meta property="og:image" content="https://bahramovai.com/photo.jpg" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="article:published_time" content="2026-05-21" />
+  <meta property="article:author" content="Артём Бахрам" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Чат-бот vs AI-агент 2026 — Артём Бахрам" />
+  <meta name="twitter:description" content="Почему классический чат-бот сливает заявки в 2026 и чем AI-агент его обгоняет. Разбор отличий, реальный кейс −150 000 ₽/мес и когда менять." />
+  <meta name="twitter:image" content="https://bahramovai.com/photo.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Чат-бот мёртв. AI-агент vs чат-бот в 2026",
+    "description": "Почему классический чат-бот сливает заявки в 2026 и чем AI-агент его обгоняет. Разбор отличий, реальный кейс −150 000 ₽/мес и когда менять.",
+    "image": "https://bahramovai.com/photo.jpg",
+    "datePublished": "2026-05-21",
+    "dateModified": "2026-05-21",
+    "url": "https://bahramovai.com/blog/ai-agent-vs-chatbot-2026.html",
+    "inLanguage": "ru",
+    "author": {
+      "@type": "Person",
+      "name": "Артём Бахрам",
+      "url": "https://bahramovai.com"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Артём Бахрам",
+      "url": "https://bahramovai.com"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://bahramovai.com/blog/ai-agent-vs-chatbot-2026.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://bahramovai.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://bahramovai.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Чат-бот мёртв. AI-агент vs чат-бот в 2026",
+        "item": "https://bahramovai.com/blog/ai-agent-vs-chatbot-2026.html"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --bg3: #0a0a0a;
+      --orange: #f4672a;
+      --orange-dim: rgba(244,103,42,0.12);
+      --orange-border: rgba(244,103,42,0.35);
+      --text: #e8e8e8;
+      --muted: #888;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    nav a.nav-link { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; }
+    nav a.nav-link:hover { color: #fff; }
+    nav a.nav-cta { background: var(--orange); color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 6px; transition: opacity .2s; }
+    nav a.nav-cta:hover { opacity: .85; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+    .article-header { padding: 130px 0 48px; border-bottom: 1px solid var(--border); }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-size: 13px; color: var(--muted); }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .post-tag { font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); background: var(--orange-dim); border: 1px solid var(--orange-border); padding: 4px 10px; border-radius: 100px; }
+    .post-date { font-size: 13px; color: var(--muted); }
+    .post-readtime { font-size: 13px; color: var(--muted); }
+
+    h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 20px; }
+    .article-header .lead { font-size: 18px; color: var(--muted); line-height: 1.7; }
+
+    .article-body { padding: 56px 0 80px; }
+    .article-body h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: #fff; margin: 52px 0 18px; line-height: 1.3; }
+    .article-body h2 .accent { color: var(--orange); }
+    .article-body h3 { font-family: 'Unbounded', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin: 32px 0 12px; }
+    .article-body p { font-size: 16px; color: var(--text); line-height: 1.8; margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 16px 0 24px 0; padding-left: 0; list-style: none; }
+    .article-body ul li, .article-body ol li { font-size: 16px; color: var(--text); line-height: 1.75; padding: 6px 0 6px 24px; position: relative; }
+    .article-body ul li::before { content: ''; position: absolute; left: 0; top: 16px; width: 8px; height: 2px; background: var(--orange); }
+    .article-body ol { counter-reset: item; }
+    .article-body ol li { counter-increment: item; }
+    .article-body ol li::before { content: counter(item) "."; position: absolute; left: 0; color: var(--orange); font-weight: 600; font-size: 14px; }
+    .article-body a { color: var(--orange); text-decoration: underline; text-decoration-color: rgba(244,103,42,0.4); transition: text-decoration-color .2s; }
+    .article-body a:hover { text-decoration-color: var(--orange); }
+
+    .highlight-box { background: var(--orange-dim); border: 1px solid var(--orange-border); border-left: 3px solid var(--orange); border-radius: 8px; padding: 20px 24px; margin: 28px 0; }
+    .highlight-box p { margin: 0; font-size: 15px; color: var(--text); }
+    .highlight-box strong { color: var(--orange); }
+
+    .example-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 28px 0; }
+    .example-block .example-label { font-family: 'Unbounded', sans-serif; font-size: 9px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+    .example-block p { margin: 0 0 8px; font-size: 15px; color: var(--muted); }
+    .example-block p:last-child { margin-bottom: 0; }
+    .example-block strong { color: var(--text); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+    .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; text-align: center; }
+    .stat-number { font-family: 'Unbounded', sans-serif; font-size: clamp(20px, 4vw, 32px); font-weight: 700; color: var(--orange); display: block; margin-bottom: 8px; word-break: break-word; overflow-wrap: anywhere; hyphens: auto; line-height: 1.1; max-width: 100%; }
+    .stat-label { font-size: 14px; color: var(--muted); line-height: 1.4; }
+
+    .compare-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 15px; }
+    .compare-table th { font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); padding: 12px 16px; border-bottom: 1px solid var(--orange-border); text-align: left; }
+    .compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { color: var(--muted); font-weight: 500; }
+    .compare-table .bad { color: #ff453a; }
+    .compare-table .good { color: #30d158; }
+
+    .case-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px 32px; margin: 24px 0; }
+    .case-block h4 { font-family: 'Unbounded', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+    .case-block p { margin-bottom: 10px; font-size: 15px; }
+    .case-block p:last-child { margin-bottom: 0; }
+
+    .checklist { margin: 24px 0; padding-left: 0; list-style: none; }
+    .checklist li { font-size: 16px; color: var(--text); line-height: 1.75; padding: 10px 0 10px 32px; position: relative; border-bottom: 1px solid var(--border); }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before { content: '✕'; position: absolute; left: 0; color: #ff453a; font-weight: 700; font-size: 14px; top: 12px; }
+
+    .cta-block { background: var(--orange-dim); border: 1px solid var(--orange-border); border-radius: 16px; padding: 40px; margin: 60px 0 0; text-align: center; }
+    .cta-block h3 { font-family: 'Unbounded', sans-serif; font-size: clamp(18px, 3vw, 24px); font-weight: 700; color: #fff; margin-bottom: 14px; line-height: 1.3; }
+    .cta-block p { font-size: 15px; color: var(--muted); margin-bottom: 28px; }
+    .cta-block .cta-note { font-size: 13px; color: var(--muted); margin-top: 20px; margin-bottom: 0; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; background: var(--orange); color: #fff; transition: all .2s; }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; }
+    footer p { font-size: 13px; color: var(--muted); }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav a.nav-cta { display: none; }
+      .container { padding: 0 24px; }
+      .cta-block { padding: 28px 24px; }
+      .compare-table { font-size: 13px; }
+      .compare-table th, .compare-table td { padding: 10px 8px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">А<span>.</span>Бахрам</a>
+  <div class="nav-links">
+    <a href="/blog/" class="nav-link">Блог</a>
+    <a href="https://t.me/bahramovartem_bot" class="nav-link" target="_blank" rel="noopener noreferrer">🎁 Бонусы</a>
+    <a href="https://t.me/bahramovartsiom" class="nav-cta" target="_blank" rel="noopener noreferrer">Бесплатный аудит →</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Главная</a>
+      <span>›</span>
+      <a href="/blog/">Блог</a>
+      <span>›</span>
+      <span>AI-агент vs чат-бот 2026</span>
+    </div>
+    <div class="post-meta">
+      <span class="post-tag">AI-агенты</span>
+      <span class="post-tag">Автоматизация</span>
+      <span class="post-date">21 мая 2026</span>
+      <span class="post-readtime">· 9 мин чтения</span>
+    </div>
+    <h1>Чат-бот мёртв. AI-агент vs чат-бот в 2026</h1>
+    <p class="lead">У тебя стоит чат-бот — и ты теряешь клиентов каждый день. Не потому что бот плохой, а потому что сама идея «дерева сценариев» устарела. Разбираю, почему это так и что с этим делать.</p>
+  </div>
+</header>
+
+<article class="article-body">
+  <div class="container">
+
+    <p>Представь: потенциальный клиент заходит в твой Telegram-бот в 23:17. Пишет: «Привет, хотел бы узнать про ваши услуги, но у меня нестандартная ситуация — мы небольшая команда, но оборот приличный». Бот отвечает: «Выберите категорию: 1️⃣ Малый бизнес 2️⃣ Средний бизнес 3️⃣ Крупный бизнес». Клиент не понимает, куда нажать. Уходит. Покупает у конкурента.</p>
+
+    <p>Это не придуманный сценарий. Это то, что происходит с большинством скриптовых ботов каждый день. Классический чат-бот построен на дереве сценариев — он умеет отвечать только на то, что ты предусмотрел при настройке. Стоит клиенту выйти за рамки скрипта — бот ломается, теряется или зависает в петле.</p>
+
+    <p>В 2026 году у этой проблемы есть решение — <a href="/blog/ai-agents-2026.html">AI-агент</a>, который понимает контекст, ведёт живой диалог и доводит клиента до целевого действия. В этой статье разберём разницу без технического жаргона, покажем реальный кейс и дадим чёткий критерий: когда стоит переходить, а когда — нет.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">−150 000 ₽</span>
+        <div class="stat-label">экономия в месяц на реальном кейсе</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">×3</span>
+        <div class="stat-label">меньше менеджеров на чате</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">&lt; 1 мин</span>
+        <div class="stat-label">время ответа AI-агента</div>
+      </div>
+    </div>
+
+    <h2>В чём разница между <span class="accent">чат-ботом</span> и AI-агентом</h2>
+
+    <p>Чтобы понять разницу, не нужно разбираться в нейросетях. Нужно увидеть два разных подхода к автоматизации диалога.</p>
+
+    <p><strong>Классический чат-бот</strong> — это дерево решений. Ты, как владелец, заранее прописываешь все возможные вопросы и ответы. Клиент нажимает кнопку или пишет ключевое слово → бот выдаёт заготовленный ответ. Предсказуемо. Дёшево. Но жёстко ограничено тем, что ты успел прописать.</p>
+
+    <p><strong>AI-агент</strong> — это система на основе языковой модели, которая понимает смысл сообщения, а не только его форму. Клиент пишет что угодно, как угодно — агент понимает суть, удерживает контекст всего разговора, задаёт уточняющие вопросы и строит ответ исходя из конкретной ситуации.</p>
+
+    <div class="highlight-box">
+      <p><strong>Простая аналогия:</strong> чат-бот — это банкомат. Строго по меню, только те операции, что в него заложены. AI-агент — это менеджер, которому ты сказал «разберись с клиентом» — и он разбирается, даже если ситуация нестандартная.</p>
+    </div>
+
+    <table class="compare-table">
+      <thead>
+        <tr>
+          <th>Параметр</th>
+          <th>Чат-бот</th>
+          <th>AI-агент</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Понимание вопроса</td>
+          <td class="bad">Только по ключевым словам</td>
+          <td class="good">Понимает смысл и контекст</td>
+        </tr>
+        <tr>
+          <td>Нестандартный вопрос</td>
+          <td class="bad">Зависает или шлёт «не понял»</td>
+          <td class="good">Отвечает по базе знаний</td>
+        </tr>
+        <tr>
+          <td>Память о диалоге</td>
+          <td class="bad">Нет или только в рамках сессии</td>
+          <td class="good">Помнит весь разговор</td>
+        </tr>
+        <tr>
+          <td>Работа с возражениями</td>
+          <td class="bad">Не умеет</td>
+          <td class="good">Обрабатывает как менеджер</td>
+        </tr>
+        <tr>
+          <td>Стоимость настройки</td>
+          <td class="good">Ниже</td>
+          <td>Выше, но окупается быстрее</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Почему классический чат-бот <span class="accent">теряет клиентов</span> в 2026</h2>
+
+    <p>Клиенты стали требовательнее. Они давно научились распознавать ботов и не хотят тратить время на неудобные сценарии. Вот четыре ситуации, где скриптовый бот стабильно сливает заявку.</p>
+
+    <h3>Нестандартный вопрос</h3>
+
+    <div class="example-block">
+      <div class="example-label">Типичный диалог с чат-ботом</div>
+      <p><strong>Клиент:</strong> Я слышал, что у вас есть AI-агент под ключ, но мне нужно интегрировать с 1С — такое вообще реально?</p>
+      <p><strong>Бот:</strong> Не понял вашего запроса. Выберите один из вариантов: 1️⃣ Услуги 2️⃣ Цены 3️⃣ Связаться с менеджером</p>
+      <p><strong>Клиент:</strong> [уходит]</p>
+    </div>
+
+    <p>Клиент пришёл с конкретным вопросом — и не получил ответа. Бот не обязан знать про 1С, если это не прописано. AI-агент с грамотно собранной базой знаний ответил бы сразу и квалифицировал бы запрос.</p>
+
+    <h3>Длинное сообщение с несколькими вопросами</h3>
+
+    <div class="example-block">
+      <div class="example-label">Типичный диалог с чат-ботом</div>
+      <p><strong>Клиент:</strong> Добрый день. Хотел узнать: сколько стоит настройка, как долго занимает, и есть ли у вас примеры для ниши онлайн-образования?</p>
+      <p><strong>Бот:</strong> Стоимость наших услуг от 15 000 ₽. Для уточнения деталей оставьте заявку.</p>
+    </div>
+
+    <p>Бот уцепился за ключевое слово «стоимость» и проигнорировал два других вопроса. Клиент почувствовал себя незамеченным — и ушёл думать, что обычно означает «не вернулся».</p>
+
+    <h3>Эмоция или возражение</h3>
+
+    <div class="example-block">
+      <div class="example-label">Типичный диалог с чат-ботом</div>
+      <p><strong>Клиент:</strong> Сколько-то тысяч за агента? Это же очень дорого для моего небольшого бизнеса...</p>
+      <p><strong>Бот:</strong> Спасибо за ваш интерес! Для оформления заявки нажмите кнопку ниже.</p>
+    </div>
+
+    <p>Клиент выразил возражение — и получил полное игнорирование. AI-агент обработал бы его: объяснил, почему это инвестиция, привёл расчёт окупаемости, предложил более доступный стартовый вариант.</p>
+
+    <h3>Свободная формулировка вместо кнопки</h3>
+
+    <p>Клиент написал «расскажи про кейсы» вместо того, чтобы нажать кнопку «Примеры работ». Бот не распознал свободную формулировку. После второго «Не понял, попробуйте ещё раз» большинство людей просто закрывают диалог.</p>
+
+    <h2>Что умеет AI-агент, <span class="accent">чего не умеет чат-бот</span></h2>
+
+    <p>Конкретные возможности, которые принципиально отличают AI-агента от скриптового бота:</p>
+
+    <ul>
+      <li><strong>Понимает свободную речь.</strong> Клиент может написать как угодно — агент поймёт суть, а не только точное совпадение с ключевым словом.</li>
+      <li><strong>Удерживает контекст всего диалога.</strong> Если клиент представился в начале разговора — агент запомнит это и будет обращаться по имени до конца переписки.</li>
+      <li><strong>Работает с базой знаний.</strong> Вы загружаете документы, прайсы, кейсы, FAQ — агент отвечает на их основе точно и в тоне бренда. Как правильно это настроить — разбираю в статье про <a href="/blog/train-ai-agent-like-manager.html">обучение AI-агента</a>.</li>
+      <li><strong>Обрабатывает возражения.</strong> «Дорого», «нам не нужно», «подумаю» — агент умеет отвечать на это профессионально, не уходя в игнор и не отправляя стандартную отписку.</li>
+      <li><strong>Дожимает до целевого действия.</strong> Напоминает, задаёт уточняющие вопросы, предлагает альтернативы — не отпускает клиента без результата.</li>
+      <li><strong>Корректно передаёт менеджеру.</strong> Когда нужен живой человек — агент передаёт полное резюме диалога, чтобы менеджер не переспрашивал клиента с нуля.</li>
+      <li><strong>Работает 24/7 без деградации.</strong> В 3 часа ночи отвечает так же качественно, как в 10 утра в понедельник.</li>
+    </ul>
+
+    <h2>Кейс: AI-агент заменил <span class="accent">3 менеджеров</span> и сэкономил 150 000 ₽/мес</h2>
+
+    <div class="case-block">
+      <h4>Ситуация до</h4>
+      <p>Онлайн-сервис с входящим потоком 400–600 обращений в месяц через Telegram. Три менеджера на чате, фонд оплаты труда — заметная часть операционных расходов. Проблемы: ответы в нерабочее время — ожидание 3–4 часа; в пиковые периоды — очередь и потеря обращений; менеджеры тратили большую часть времени на однотипные вопросы про тарифы, доступ и сроки.</p>
+    </div>
+
+    <div class="case-block">
+      <h4>Что сделали</h4>
+      <p>Запустили AI-агента на базе ChatPlace с подключённой базой знаний: документы по тарифам, FAQ, инструкции по подключению, типовые ответы на возражения. Агент обучен отвечать в тоне компании и чётко знает, когда передавать человеку — нестандартные запросы, конфликтные ситуации, крупные сделки.</p>
+    </div>
+
+    <div class="case-block">
+      <h4>Результат через 6 недель</h4>
+      <p>AI-агент закрывает более 80% обращений без участия менеджера. Один менеджер контролирует эскалированные случаи вместо троих. Экономия на фонде оплаты труда — около 150 000 ₽ в месяц. Время первого ответа — меньше минуты в любое время суток. Количество потерянных обращений снизилось кратно.</p>
+    </div>
+
+    <div class="highlight-box">
+      <p><strong>Важно:</strong> AI-агент не заменил людей полностью — он убрал рутину. Менеджер теперь занимается тем, что действительно требует человека: сложными переговорами и сопровождением ключевых клиентов.</p>
+    </div>
+
+    <h2>Когда чат-бот <span class="accent">всё ещё имеет смысл</span></h2>
+
+    <p>Честный разбор без маркетинга. Классический чат-бот по-прежнему хорошо работает в нескольких сценариях:</p>
+
+    <ul>
+      <li><strong>Простой FAQ.</strong> Если 90% вопросов — «когда открыты», «как оплатить», «где адрес» — бот справляется идеально и стоит дешевле.</li>
+      <li><strong>Базовая запись на услугу.</strong> «Запишитесь на консультацию» → выбор времени → подтверждение. Чёткий линейный сценарий, нет нестандартных веток — бот ок.</li>
+      <li><strong>Простая воронка для сбора контактов.</strong> Если задача — получить email или телефон и передать в CRM, скриптовый бот справляется не хуже агента, но дешевле. Подробно о том, как строить <a href="/blog/telegram-sales-funnel.html">воронку продаж в Telegram</a>, писал отдельно.</li>
+      <li><strong>Ограниченный бюджет на старте.</strong> Если бизнес только тестирует автоматизацию — начать с простого бота разумно. Главное понимать, что это временное решение, а не финал.</li>
+    </ul>
+
+    <p>Правило простое: если твой сценарий линейный и все варианты легко предусмотреть — бот. Если клиенты задают разные вопросы по-разному и тебе важна конверсия из диалога в заявку — нужен агент.</p>
+
+    <h2>Как понять, что <span class="accent">пора менять</span></h2>
+
+    <p>Чек-лист признаков, что твой чат-бот стал тормозом, а не помощником. Три и более совпадения — вопрос смены инструмента стоит ребром:</p>
+
+    <ul class="checklist">
+      <li>Клиенты регулярно пишут «не понял», «позовите человека», «как выйти на менеджера»</li>
+      <li>Менеджеры получают уже раздражённых клиентов — значит, бот успел их довести</li>
+      <li>Диалог в боте обрывается на полуслове у значительной части пользователей</li>
+      <li>Входящий поток есть, а заявок мало — это почти всегда проблема обработки интереса</li>
+      <li>Бот настраивался больше года назад и с тех пор не обновлялся</li>
+      <li>Конкуренты отвечают быстрее и качественнее, хотя у тебя тоже есть бот</li>
+      <li>Ты сам не можешь объяснить, что происходит с клиентом после первого сообщения</li>
+    </ul>
+
+    <p>Подробнее об этих симптомах — в статье про <a href="/blog/7-signs-you-need-ai-agent.html">7 признаков, что бизнесу нужен AI-агент</a>.</p>
+
+    <div class="cta-block">
+      <h3>Разберём твой кейс бесплатно</h3>
+      <p>Если у тебя уже стоит бот — посмотрю, где он теряет клиентов и что с этим делать. Если только думаешь об автоматизации — помогу выбрать правильный инструмент под твою ситуацию. Без шаблонных советов — только конкретный разбор.</p>
+      <a href="https://t.me/bahramovartsiom" class="btn-primary" target="_blank" rel="noopener noreferrer">
+        Написать в Telegram →
+      </a>
+      <p class="cta-note">Ещё один пример работы с AI-инструментами в соцсетях — кейс архитектурной студии @eldarmurakov: с 212К до 219К подписчиков, +400% охватов за 7 дней.</p>
+    </div>
+
+  </div>
+</article>
+
+<footer>
+  <div class="container">
+    <p>© 2026 Артём Бахрам · <a href="/blog/">Блог</a> · <a href="/about.html">Обо мне</a> · <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer">Telegram</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
