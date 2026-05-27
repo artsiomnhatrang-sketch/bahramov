@@ -1260,7 +1260,7 @@
         </div>
         <div class="case-timing">7 дней до результата</div>
         <div class="case-card-footer" style="display:flex;gap:16px;flex-wrap:wrap;">
-          <a href="https://t.me/bahramovartem/216" class="case-link" target="_blank" rel="noopener">
+          <a href="https://www.instagram.com/eldarmurakov" class="case-link" target="_blank" rel="noopener">
             Смотреть аккаунт →
           </a>
           <a href="https://blog.chatplace.io/7000-podpischikov-bez-targeta-igra-v-bloge-arhitektora" class="case-link" target="_blank" rel="noopener noreferrer">
@@ -1599,6 +1599,12 @@
       '<a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX →</a>';
     card.appendChild(btns);
   });
+
+  const unbanCard = Array.from(document.querySelectorAll('.service-card')).find(c => c.querySelector('h3')?.textContent.includes('Разблокировка'));
+  if (unbanCard) {
+    const btnsDiv = unbanCard.querySelector('.service-card-btns');
+    if (btnsDiv) btnsDiv.insertAdjacentHTML('beforeend', '<a href="https://t.me/bahramreviews/24" class="svc-btn" target="_blank" rel="noopener noreferrer">Кейсы разбанов →</a>');
+  }
 
   document.querySelectorAll('.service-card, .case-stat, .pkg-item').forEach(el => {
     el.style.opacity = '0';
