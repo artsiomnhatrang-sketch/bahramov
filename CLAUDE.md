@@ -172,3 +172,6 @@ AI-агенты, ИИ-агенты, виртуальные ассистенты,
 9. Stat-card: только короткие значения (2-3 слова макс). CSS-страховка обязательна: clamp(20px, 4vw, 32px) + word-break: break-word + overflow-wrap: anywhere
 10. JSON-LD: три блока — Article + BreadcrumbList + FAQPage
 11. НЕ выдумывать названия систем Meta, НЕ подставлять цифры без источника, НЕ называть ChatPlace партнёром Meta
+
+## В конце сессии
+В конце каждой сессии выполнять инструкцию из SESSION-END.md (обновить STATUS.md).
