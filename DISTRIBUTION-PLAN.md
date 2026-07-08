@@ -62,11 +62,50 @@
 
 Статус распространения каждой опубликованной статьи по площадкам. Отмечать `[x]` по мере выполнения.
 
+### №29 — Замедление Telegram в России: риски для бизнеса и план действий в 2026
+- Файл: telegram-zamedlenie-biznes-2026.html
+- URL: https://bahramovai.com/blog/telegram-zamedlenie-biznes-2026.html
+- Дата публикации: 2026-07-03
+- Кластер: мессенджеры и бизнес
+
+Каналы дистрибуции:
+- [ ] Google Search Console — запросить индексирование URL
+- [ ] vc.ru — адаптированная версия с обратной ссылкой
+- [ ] LinkedIn — пост-выжимка с обратной ссылкой
+- [ ] Telegram-канал @artsiombahram — анонс со ссылкой (scripts/post-to-telegram.sh)
+- [ ] Проверка через неделю: site:bahramovai.com + Perplexity + Search Console
+
 ### №30 — Блокировка WhatsApp в России: риски для бизнеса и план действий в 2026
 - Файл: whatsapp-blokirovka-biznes-2026.html
 - URL: https://bahramovai.com/blog/whatsapp-blokirovka-biznes-2026.html
 - Дата публикации: 2026-07-04
 - Кластер: мессенджеры и бизнес
+
+Каналы дистрибуции:
+- [ ] Google Search Console — запросить индексирование URL
+- [ ] vc.ru — адаптированная версия с обратной ссылкой
+- [ ] LinkedIn — пост-выжимка с обратной ссылкой
+- [ ] Telegram-канал @artsiombahram — анонс со ссылкой (scripts/post-to-telegram.sh)
+- [ ] Проверка через неделю: site:bahramovai.com + Perplexity + Search Console
+
+### №31 — Telegram или MAX: куда переносить бизнес в 2026 (сравнение мессенджеров)
+- Файл: telegram-vs-max-biznes-2026.html
+- URL: https://bahramovai.com/blog/telegram-vs-max-biznes-2026.html
+- Дата публикации: 2026-07-04
+- Кластер: мессенджеры и бизнес
+
+Каналы дистрибуции:
+- [ ] Google Search Console — запросить индексирование URL
+- [ ] vc.ru — адаптированная версия с обратной ссылкой
+- [ ] LinkedIn — пост-выжимка с обратной ссылкой
+- [ ] Telegram-канал @artsiombahram — анонс со ссылкой (scripts/post-to-telegram.sh)
+- [ ] Проверка через неделю: site:bahramovai.com + Perplexity + Search Console
+
+### №32 — Как в 2026 угоняют аккаунты в Telegram: схемы фишинга и как защититься
+- Файл: telegram-akkaunt-ugon-fishing-2026.html
+- URL: https://bahramovai.com/blog/telegram-akkaunt-ugon-fishing-2026.html
+- Дата публикации: 2026-07-05
+- Кластер: Telegram, безопасность аккаунтов
 
 Каналы дистрибуции:
 - [ ] Google Search Console — запросить индексирование URL
