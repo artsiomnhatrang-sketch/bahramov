@@ -141,8 +141,9 @@
     .breadcrumb a:hover { text-decoration: underline; }
     .post-meta {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
-      gap: 12px;
+      gap: 8px 12px;
       margin-bottom: 20px;
     }
     .post-tag {
@@ -157,8 +158,12 @@
       padding: 4px 10px;
       border-radius: 100px;
     }
-    .post-date { font-size: 13px; color: var(--muted); }
-    .post-readtime { font-size: 13px; color: var(--muted); }
+    .post-date { font-size: 13px; color: var(--muted); white-space: nowrap; }
+    .post-readtime { font-size: 13px; color: var(--muted); white-space: nowrap; }
+    /* Разделитель «·» — замыкающий: ставится в КОНЦЕ каждого элемента-даты через ::after.
+       При переносе новая строка начинается с текста, а не с точки. У последнего элемента
+       байлайна (.post-readtime) ::after нет — финальной точки в конце не будет. */
+    .post-date::after { content: "·"; margin-left: 6px; color: var(--muted); }
 
     h1 {
       font-family: 'Unbounded', sans-serif;
@@ -514,8 +519,8 @@
       <span class="post-tag">Instagram</span>
       <span class="post-tag">Безопасность</span>
       <span class="post-date">30 мая 2026</span>
-      <span class="post-date">· обновлено 7 июля 2026</span>
-      <span class="post-readtime">· 10 мин чтения</span>
+      <span class="post-date">обновлено 7 июля 2026</span>
+      <span class="post-readtime">10 мин чтения</span>
     </div>
     <h1>Нарушение целостности аккаунта Instagram: почему блокируют и как вернуть доступ</h1>
     <p class="lead">Instagram заблокировал за «нарушение целостности аккаунта»? Это не случайная ошибка — конкретный класс ограничений Meta с отдельной логикой и отдельным порядком апелляции.</p>
