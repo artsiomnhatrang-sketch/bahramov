@@ -25,8 +25,7 @@
 - Предыстория (2026-07-16): опубликована №33 (`e092bd2`).
 
 ## В работе / не завершено
-- **IndexNow не догнал изменённые страницы.** В `6c0704d` менялись `about.html` и `blog/7-signs-you-need-ai-agent.html`, но пинга по ним после этого не было (последний прогон ушёл на `/` — главную, которая не менялась). Скрипт шлёт в IndexNow **ровно один URL из аргумента**. Догнать:
-  `./publish-article.sh /about.html` и `./publish-article.sh /blog/7-signs-you-need-ai-agent.html`
+- ✅ **IndexNow-догон выполнен (2026-07-18).** Пропинганы оба изменённых в `6c0704d` URL: `/about.html` и `/blog/7-signs-you-need-ai-agent.html` — по каждому `./publish-article.sh` вернул `✓ IndexNow OK` + `✓ Bing sitemap ping OK`. Пункт закрыт.
 - **Анонс в Telegram @artsiombahram** про статью в Т-Бизнесе — НЕ сделан (`scripts/post-to-telegram.sh`). Последний невыполненный пункт по кейсу @eldarmurakov.
 - **Внешняя дистрибуция №33 не выполнена**: vc.ru, LinkedIn, Telegram-анонс, GSC. Журнала для №33 в DISTRIBUTION-PLAN.md нет.
 - У №33 **ноль входящих** внутренних ссылок — добавить 1–2 донора (кандидаты: №26, №17, №24).
