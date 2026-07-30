@@ -1,4 +1,11 @@
 User-agent: *
 Allow: /
+# Внутренние рабочие документы — не индексировать в поиске
+Disallow: /CLAUDE.md
+Disallow: /PROJECT-BLUEPRINT.md
+Disallow: /STATUS.md
+Disallow: /SESSION-END.md
+Disallow: /DISTRIBUTION-PLAN.md
+Disallow: /drafts/
 
 Sitemap: https://bahramovai.com/sitemap.xml
