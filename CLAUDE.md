@@ -139,6 +139,26 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 33. instagram-bezopasnyy-zapusk-posle-blokirovki-2026.html — Безопасный запуск Instagram после блокировки: новый или переупакованный аккаунт (телефон, поведение, фото, связи)
 34. telegram-ai-agenty-konstruktor-2026.html — Нативные AI-агенты в Telegram: стоит ли бизнесу отказываться от внешних платформ в 2026 (Managed Bots и встроенный AI-редактор — когда нативного агента хватает, а когда нужна внешняя платформа под продажи)
 
+## Контент-фабрика на агентах (собрана 31.07.2026)
+Слой агентов Claude Code поверх сайта. Роли в `.claude/agents/` (локально, gitignored):
+editor, writer, reviewer, publisher, scriptwriter, scout. Единый свод правил для них —
+`PROJECT-BLUEPRINT.md` (раздел 9 = правила честности).
+- **Статьи:** editor → writer → reviewer (гейт честности) → publisher (готовит коммит,
+  обновляет листинг/sitemap/счётчик). `git push` / `publish-article.sh` — ТОЛЬКО вручную
+  владельцем. Гейт не обходить даже по просьбе «сделай всё сам».
+- **Reels:** scriptwriter → личка Telegram через `scripts/telegram_send.py`. Отдельный
+  бот **@bahramov_reels_bot** (НЕ боевой @bahramovartem_bot, тот завязан на ChatPlace/CTA).
+- **Тренды:** scout собирает дайджест (ниша топ-5 + блок «на радаре»). Ежедневно 09:00 ICT
+  через ОБЛАЧНУЮ routine `trig_01R7fpXFLf4iz5bjQyT4XGTi` (claude.ai/code/routines).
+  Облако НЕ видит `.env`/`.claude/` — промпт routine самодостаточен, токены вшиты в него.
+  Источники: Wordstat + веб + vc/Habr рабочие; Reddit (анти-бот) и Google Trends (404) пока нет.
+- **Секреты** в `.env` (gitignored, chmod 600): `TELEGRAM_BOT_TOKEN` (reels-бот),
+  `TELEGRAM_CHAT_ID`, `WORDSTAT_TOKEN`. Wordstat: `POST https://api.wordstat.yandex.net/v1/topRequests`,
+  `Authorization: Bearer`. С Mac Артёма (Нячанг) Яндекс недоступен по TLS — Wordstat дёргать
+  только из облака.
+- ⚠️ Два источника правды: `.claude/agents/scout.md` (локально) и промпт облачной routine —
+  при изменениях синхронить ОБА вручную.
+
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
 - Настройка AI-агентов и чат-ботов (ChatPlace)
