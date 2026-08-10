@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Условия оказания услуг и границы ответственности — Артём Бахрам</title>
+
+  <meta name="description" content="Условия оказания услуг по восстановлению и настройке аккаунтов: когда работа считается выполненной и за что исполнитель отвечает, а за что — нет." />
+  <link rel="canonical" href="https://bahramovai.com/blog/usloviya-okazaniya-uslug.html" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://bahramovai.com/blog/usloviya-okazaniya-uslug.html" />
+  <meta property="og:title" content="Условия оказания услуг и границы ответственности — Артём Бахрам" />
+  <meta property="og:description" content="Условия оказания услуг по восстановлению и настройке аккаунтов: когда работа считается выполненной и за что исполнитель отвечает, а за что — нет." />
+  <meta property="og:image" content="https://bahramovai.com/photo.jpg" />
+  <meta property="og:locale" content="ru_RU" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Условия оказания услуг и границы ответственности — Артём Бахрам" />
+  <meta name="twitter:description" content="Условия оказания услуг по восстановлению и настройке аккаунтов: когда работа считается выполненной и за что исполнитель отвечает, а за что — нет." />
+  <meta name="twitter:image" content="https://bahramovai.com/photo.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://bahramovai.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://bahramovai.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Условия оказания услуг",
+        "item": "https://bahramovai.com/blog/usloviya-okazaniya-uslug.html"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --bg3: #0a0a0a;
+      --orange: #f4672a;
+      --orange-dim: rgba(244,103,42,0.12);
+      --orange-border: rgba(244,103,42,0.35);
+      --text: #e8e8e8;
+      --muted: #888;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fff;
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    nav a.nav-link {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color .2s;
+    }
+    nav a.nav-link:hover { color: #fff; }
+    nav a.nav-cta {
+      background: var(--orange);
+      color: #fff;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 6px;
+      transition: opacity .2s;
+    }
+    nav a.nav-cta:hover { opacity: .85; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+    .article-header {
+      padding: 130px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+
+    h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 700;
+      line-height: 1.2;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .article-header .lead {
+      font-size: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .article-body { padding: 56px 0 80px; }
+
+    .article-body h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(20px, 3vw, 26px);
+      font-weight: 700;
+      color: #fff;
+      margin: 52px 0 18px;
+      line-height: 1.3;
+    }
+    .article-body h2 .accent { color: var(--orange); }
+    .article-body p {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .article-body ul, .article-body ol {
+      margin: 16px 0 24px 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    .article-body ul li, .article-body ol li {
+      font-size: 16px;
+      color: var(--text);
+      line-height: 1.75;
+      padding: 6px 0 6px 24px;
+      position: relative;
+    }
+    .article-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 16px;
+      width: 8px; height: 2px;
+      background: var(--orange);
+    }
+    .article-body ol { counter-reset: item; }
+    .article-body ol li { counter-increment: item; }
+    .article-body ol li::before {
+      content: counter(item) ".";
+      position: absolute;
+      left: 0;
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .article-body a { color: var(--orange); }
+    .article-body .btn-primary { color: #fff; text-decoration: none; }
+
+    .highlight-box {
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-left: 3px solid var(--orange);
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin: 28px 0;
+    }
+    .highlight-box p { margin: 0; font-size: 15px; color: var(--text); }
+    .highlight-box strong { color: var(--orange); }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+    footer p { font-size: 13px; color: var(--muted); }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav a.nav-cta { display: none; }
+      .container { padding: 0 24px; }
+    }
+  </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(110081984, "init", {
+        ssr:true,
+        webvisor:true,
+        clickmap:true,
+        accurateTrackBounce:true,
+        trackLinks:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110081984" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">А<span>.</span>Бахрам</a>
+  <div class="nav-links">
+    <a href="/blog/" class="nav-link">Блог</a>
+    <a href="/about.html" class="nav-link">Обо мне</a>
+    <a href="https://t.me/bahramovartem_bot" class="nav-link" target="_blank" rel="noopener noreferrer">🎁 Бонусы</a>
+    <a href="https://t.me/bahramovartsiom" class="nav-cta" target="_blank" rel="noopener noreferrer">Получить бесплатный аудит →</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Главная</a>
+      <span>›</span>
+      <a href="/blog/">Блог</a>
+      <span>›</span>
+      <span>Условия оказания услуг</span>
+    </div>
+    <h1>Условия оказания услуг и границы ответственности</h1>
+    <p class="lead">Этот документ описывает, когда услуга считается оказанной и за что исполнитель отвечает, а за что — нет. Он не содержит технических рекомендаций по ведению аккаунта: они вынесены в отдельные статьи блога. Здесь — только юридические границы.</p>
+  </div>
+</header>
+
+<article class="article-body">
+  <div class="container">
+
+    <p>Ниже описаны общие условия, на которых оказываются услуги по восстановлению доступа и настройке аккаунтов. Они важны прежде всего, если вы заказывали такую работу у специалиста — в том числе у меня.</p>
+
+    <h2>1. Когда работа считается <span class="accent">выполненной</span></h2>
+    <p>Услуга по восстановлению доступа считается оказанной в полном объёме в момент успешной разблокировки аккаунта и передачи доступа владельцу. С этого момента управление аккаунтом и вся дальнейшая активность находятся в зоне ответственности владельца.</p>
+
+    <h2>2. За что исполнитель <span class="accent">не отвечает</span></h2>
+    <p>Исполнитель не несёт ответственности за любые последующие ограничения или блокировки, наступившие после передачи доступа и вызванные действиями клиента, его сотрудников, подрядчиков или третьих лиц. В частности, это касается:</p>
+    <ul>
+      <li>нарушения правил сообщества и условий использования площадки после передачи доступа;</li>
+      <li>публикации запрещённого или спорного контента;</li>
+      <li>действий команды или сторонних сервисов, которым владелец предоставил доступ;</li>
+      <li>технических сбоев и изменений на стороне самой площадки (Meta / Instagram).</li>
+    </ul>
+
+    <h2>3. Границы <span class="accent">возможного</span></h2>
+    <p>Финальное решение о статусе любого аккаунта всегда остаётся за модерацией и алгоритмами площадки. Исполнитель не является представителем Meta или Instagram, не влияет на их внутренние решения и не может обойти правила площадки.</p>
+    <p>Поэтому результат работы не гарантируется заранее: возможны ситуации, в которых доступ вернуть не удаётся, и это не зависит от исполнителя. Любые сроки, если они обсуждаются, носят ориентировочный характер и не являются обязательством площадки.</p>
+
+    <div class="highlight-box">
+      <p><strong>Важно:</strong> честный подход исключает обещания «гарантированного разбана» и «100% результата». Если такие гарантии кто-то даёт — это повод усомниться в добросовестности.</p>
+    </div>
+
+    <h2>4. Что <span class="accent">не входит</span> в услуги</h2>
+    <p>Не предлагаются и не оказываются: обход правил и условий использования площадки, подделка документов или данных, «гарантированный» возврат аккаунтов, заблокированных по причинам, не зависящим от исполнителя. Работа ведётся только легальными и штатными для площадки способами.</p>
+
+    <p>Если у вас есть вопросы по условиям — можно обсудить их до начала работы. Технические рекомендации по безопасному ведению аккаунта после восстановления собраны в блоге, например в <a href="/blog/instagram-posle-razblokirovki-cheklist-2026.html">чек-листе после разблокировки</a>.</p>
+
+  </div>
+</article>
+
+<footer>
+  <div class="container">
+    <p>© 2026 <a href="/">bahramovai.com</a> · <a href="/blog/">Блог</a> · <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer">Telegram</a></p>
+  </div>
+</footer>
+
+</body>
+</html>

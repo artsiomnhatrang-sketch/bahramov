@@ -212,6 +212,66 @@
       gap: 6px;
     }
 
+    /* Category navigation + sections */
+    .cat-nav {
+      position: sticky;
+      top: 56px;
+      z-index: 50;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 16px 0;
+      margin-bottom: 44px;
+      background: rgba(0,0,0,0.9);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .cat-nav a {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 8px 16px;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+    .cat-nav a:hover {
+      color: #fff;
+      border-color: var(--orange-border);
+      background: var(--orange-dim);
+    }
+    .cat-section { scroll-margin-top: 184px; }
+    .cat-section + .cat-section { margin-top: 72px; }
+    .cat-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .cat-title .count {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+    }
+    .cat-desc {
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 620px;
+    }
+
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 0;
@@ -267,31 +327,31 @@
 
 <section class="blog-section">
   <div class="container">
-    <div class="posts-grid">
 
-      <a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html" class="post-card">
+    <div class="cat-nav">
+      <a href="#razblokirovki">Разблокировки</a>
+      <a href="#messengery">Мессенджеры</a>
+      <a href="#prodvizhenie">Продвижение</a>
+      <a href="#ai-assistenty">AI-ассистенты</a>
+    </div>
+
+    <div class="cat-section" id="razblokirovki">
+      <h2 class="cat-title">Разблокировки и безопасность аккаунтов <span class="count">15 статей</span></h2>
+      <p class="cat-desc">Почему банят Instagram и Telegram, как вернуть доступ легально и как вести аккаунт, чтобы не словить бан снова.</p>
+      <div class="posts-grid">
+
+        <a href="/blog/instagram-usloviya-ispolzovaniya-kto-mozhet-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
-          <span class="post-tag">Продвижение</span>
-          <span class="post-date">1 августа 2026</span>
+          <span class="post-tag">Блокировки</span>
+          <span class="post-date">10 августа 2026</span>
         </div>
-        <h2>Продвижение Instagram «СКАЙНЕТ»: как аккаунт видят целевые люди и часть становится клиентами</h2>
-        <p>Пакет под ключ: вывод профиля в поиск, продвижение постов и рилс, ИИ-взаимодействие с целевой аудиторией, автоворонка, Close Friends и сопровождение. Первый месяц — 17 000 ₽, далее 15 000 ₽/мес.</p>
+        <h2>Право на аккаунт Instagram: условия использования и кто вообще может иметь профиль в 2026</h2>
+        <p>Отдельная ветка банов — не за контент, а за само право иметь аккаунт: возраст до 13, обход удалённого профиля, отказ от проверки возраста. Что значат формулировки «по-прежнему нарушает» и «повторная проверка недоступна».</p>
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/telegram-ai-agenty-konstruktor-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Telegram</span>
-          <span class="post-tag">AI-агенты</span>
-          <span class="post-date">28 июля 2026</span>
-        </div>
-        <h2>Нативные AI-агенты в Telegram: стоит ли бизнесу отказываться от внешних платформ в 2026</h2>
-        <p>Telegram весной 2026 добавил Managed Bots и встроенный AI-редактор. Разбираем, когда нативного агента бизнесу хватает, а когда под продажи нужна внешняя платформа автоматизации.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/instagram-bezopasnyy-zapusk-posle-blokirovki-2026.html" class="post-card">
+        <a href="/blog/instagram-bezopasnyy-zapusk-posle-blokirovki-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Блокировки</span>
@@ -302,7 +362,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/telegram-akkaunt-ugon-fishing-2026.html" class="post-card">
+        <a href="/blog/telegram-akkaunt-ugon-fishing-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Безопасность</span>
           <span class="post-tag">Telegram</span>
@@ -313,62 +373,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/telegram-vs-max-biznes-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Мессенджеры</span>
-          <span class="post-tag">Telegram</span>
-          <span class="post-date">4 июля 2026</span>
-        </div>
-        <h2>Telegram или MAX: куда переносить бизнес в 2026</h2>
-        <p>Telegram под замедлением, MAX не блокируют, но требует регистрации в РФ. Сравнительная таблица, кому что подходит и как перенести клиентов без потерь.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/whatsapp-blokirovka-biznes-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Мессенджеры</span>
-          <span class="post-tag">Telegram</span>
-          <span class="post-date">4 июля 2026</span>
-        </div>
-        <h2>Блокировка WhatsApp в России: риски для бизнеса и план действий в 2026</h2>
-        <p>Домены WhatsApp исключены из НСДИ, доступ во многом через VPN. Что произошло, чем грозит бизнесу и как перенести клиентов в Telegram или MAX без потерь.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/telegram-zamedlenie-biznes-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Telegram</span>
-          <span class="post-tag">Мессенджеры</span>
-          <span class="post-date">3 июля 2026</span>
-        </div>
-        <h2>Замедление Telegram в России: риски для бизнеса и план действий в 2026</h2>
-        <p>Telegram работает нестабильно, звонки отключены, реклама под вопросом ФАС. Что происходит на самом деле, чем это грозит бизнесу и что делать прямо сейчас.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/max-messenger-biznes-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Мессенджеры</span>
-          <span class="post-tag">Чат-боты</span>
-          <span class="post-date">28 июня 2026</span>
-        </div>
-        <h2>Мессенджер MAX для бизнеса в 2026: стоит ли заводить чат-бота</h2>
-        <p>WhatsApp заблокирован, Telegram замедляют — бизнес ищет устойчивый канал. Разбираю возможности MAX Bot, честные плюсы и минусы и когда бот в MAX окупается.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/chatbot-cost-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Автоматизация</span>
-          <span class="post-tag">Чат-боты</span>
-          <span class="post-date">23 июня 2026</span>
-        </div>
-        <h2>Сколько стоит чат-бот для бизнеса в 2026 году</h2>
-        <p>Разбор цен от платформ-конструкторов до разработки под ключ и AI-агента на LLM. От чего зависит стоимость, реальные пакеты и как считать окупаемость.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/instagram-povtornaya-blokirovka-2026.html" class="post-card">
+        <a href="/blog/instagram-povtornaya-blokirovka-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Блокировки</span>
@@ -379,7 +384,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-celostnost-akkaunta-2026.html" class="post-card">
+        <a href="/blog/instagram-celostnost-akkaunta-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Безопасность</span>
@@ -390,7 +395,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-registraciya-progrev-2026.html" class="post-card">
+        <a href="/blog/instagram-registraciya-progrev-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Прогрев</span>
@@ -401,40 +406,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-kommercheskiy-kontent-bez-bana.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Instagram</span>
-          <span class="post-tag">Монетизация</span>
-          <span class="post-date">29 мая 2026</span>
-        </div>
-        <h2>Коммерческий контент в Instagram без бана: как работать легально</h2>
-        <p>Как вести коммерческий аккаунт в Instagram и не получить бан. Правила платформы, Paid Partnership Label, партнёрский маркетинг — разбираем легальные схемы работы.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/chatgpt-dlya-biznesa-10-scenariev.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">ChatGPT</span>
-          <span class="post-tag">Автоматизация</span>
-          <span class="post-date">27 мая 2026</span>
-        </div>
-        <h2>ChatGPT для бизнеса в 2026: 10 рабочих сценариев</h2>
-        <p>10 проверенных сценариев, где ChatGPT реально экономит часы: контент, аналитика, продажи, найм. Что умеет GPT-5.5 и где нужен уже AI-агент.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/ai-agent-vs-chatbot-2026.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">AI-агенты</span>
-          <span class="post-tag">Автоматизация</span>
-          <span class="post-date">21 мая 2026</span>
-        </div>
-        <h2>Чат-бот мёртв. AI-агент vs чат-бот в 2026</h2>
-        <p>Почему классический чат-бот сливает заявки в 2026 и чем AI-агент его обгоняет. Разбор отличий, реальный кейс −150 000 ₽/мес и когда менять инструмент.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/instagram-recheck-prosadka-ohvatov-2026.html" class="post-card">
+        <a href="/blog/instagram-recheck-prosadka-ohvatov-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Охваты</span>
@@ -445,7 +417,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-dva-akkaunta-odin-telefon-2026.html" class="post-card">
+        <a href="/blog/instagram-dva-akkaunta-odin-telefon-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Безопасность</span>
@@ -456,7 +428,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-cepnaya-blokirovka-multiakkaunty-2026.html" class="post-card">
+        <a href="/blog/instagram-cepnaya-blokirovka-multiakkaunty-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Мультиаккаунты</span>
@@ -467,7 +439,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-posle-razblokirovki-cheklist-2026.html" class="post-card">
+        <a href="/blog/instagram-posle-razblokirovki-cheklist-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-tag">Безопасность</span>
@@ -478,7 +450,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-blokirovki-may-2026.html" class="post-card">
+        <a href="/blog/instagram-blokirovki-may-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag" style="color:#fff;background:var(--orange);border-color:var(--orange);">Актуально</span>
           <span class="post-tag">Instagram</span>
@@ -489,7 +461,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-novyy-akkaunt-blokirovka-2026.html" class="post-card">
+        <a href="/blog/instagram-novyy-akkaunt-blokirovka-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-date">10 мая 2026</span>
@@ -499,7 +471,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/instagram-account-recovery-2026.html" class="post-card">
+        <a href="/blog/instagram-account-recovery-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-date">4 мая 2026</span>
@@ -509,17 +481,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/train-ai-agent-like-manager.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">AI-агенты</span>
-          <span class="post-date">4 мая 2026</span>
-        </div>
-        <h2>Как обучить AI-агента отвечать как менеджер: пошаговый гайд с примерами</h2>
-        <p>Системный промпт, база знаний, few-shot диалоги и настройка эскалации — рабочий метод из 5 шагов, который превращает шаблонного бота в AI-агента, который реально продаёт.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/instagram-mass-ban-2026.html" class="post-card">
+        <a href="/blog/instagram-mass-ban-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Instagram</span>
           <span class="post-date">4 мая 2026</span>
@@ -529,77 +491,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/7-signs-you-need-ai-agent.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">AI-агенты</span>
-          <span class="post-date">3 мая 2026</span>
-        </div>
-        <h2>7 признаков, что вам нужен AI-агент прямо сейчас</h2>
-        <p>Узнайте себя в этих ситуациях — и посчитайте, сколько денег уходит каждый день без автоматизации. Чек-лист с реальными цифрами потерь.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/personal-brand-ai-strategy.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Личный бренд</span>
-          <span class="post-date">3 мая 2026</span>
-        </div>
-        <h2>Личный бренд эксперта с помощью AI: стратегия за 30 дней</h2>
-        <p>Пошаговый план для фрилансеров и экспертов: позиционирование, контент-система с нейросетями, AI-воронка входящих клиентов и 3 кейса с реальными результатами.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/telegram-1000-subscribers.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Telegram</span>
-          <span class="post-date">3 мая 2026</span>
-        </div>
-        <h2>Как набрать первую 1000 подписчиков в Telegram в 2026</h2>
-        <p>7 рабочих методов — от личной базы до AI-воронки из Instagram. Пошаговый план на 30 дней, 3 кейса с реальными цифрами и типичные ошибки, из-за которых каналы не растут.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/ai-strategy-small-business.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">AI-стратегия</span>
-          <span class="post-date">3 мая 2026</span>
-        </div>
-        <h2>AI-стратегия для малого бизнеса: с чего начать и как внедрить в 2026</h2>
-        <p>6 шагов построения AI-стратегии: аудит задач, матрица приоритетов, реальные инструменты, дорожная карта на 3 месяца и 3 кейса с измеримыми результатами.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/virtual-assistant-cost-roi.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Автоматизация</span>
-          <span class="post-date">3 мая 2026</span>
-        </div>
-        <h2>Виртуальный ассистент: сколько стоит и когда окупается в 2026</h2>
-        <p>Сравниваем штатного сотрудника за 85–170 тыс ₽/мес и AI-агента за 5–15 тыс. Детальная разбивка расходов, 3 кейса с расчётом окупаемости и честный список когда автоматизация не сработает.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/telegram-sales-funnel.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Воронки продаж</span>
-          <span class="post-date">30 апреля 2026</span>
-        </div>
-        <h2>Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году</h2>
-        <p>Открываемость 85%, оплата внутри чата, AI-агент вместо менеджера — разбираем 5 этапов Telegram-воронки с кейсами и пошаговым планом запуска за неделю.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/ai-content-without-burnout.html" class="post-card">
-        <div class="post-meta">
-          <span class="post-tag">Нейросети</span>
-          <span class="post-date">29 апреля 2026</span>
-        </div>
-        <h2>Нейросети для создания контента без выгорания: гайд для предпринимателей 2026</h2>
-        <p>Как создавать контент для соцсетей с помощью нейросетей и не выгорать? Инструменты, связки, система и кейсы — полный гайд.</p>
-        <span class="post-read-more">Читать статью →</span>
-      </a>
-
-      <a href="/blog/instagram-telegram-unblock.html" class="post-card">
+        <a href="/blog/instagram-telegram-unblock.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Разблокировка</span>
           <span class="post-date">28 апреля 2026</span>
@@ -609,7 +501,221 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/ai-assistant-5-tasks.html" class="post-card">
+      </div>
+    </div>
+
+    <div class="cat-section" id="messengery">
+      <h2 class="cat-title">Мессенджеры для бизнеса <span class="count">4 статьи</span></h2>
+      <p class="cat-desc">Telegram, MAX и WhatsApp в 2026: замедления, блокировки и куда переносить бизнес без потери клиентов.</p>
+      <div class="posts-grid">
+
+        <a href="/blog/telegram-vs-max-biznes-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Мессенджеры</span>
+          <span class="post-tag">Telegram</span>
+          <span class="post-date">4 июля 2026</span>
+        </div>
+        <h2>Telegram или MAX: куда переносить бизнес в 2026</h2>
+        <p>Telegram под замедлением, MAX не блокируют, но требует регистрации в РФ. Сравнительная таблица, кому что подходит и как перенести клиентов без потерь.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/whatsapp-blokirovka-biznes-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Мессенджеры</span>
+          <span class="post-tag">Telegram</span>
+          <span class="post-date">4 июля 2026</span>
+        </div>
+        <h2>Блокировка WhatsApp в России: риски для бизнеса и план действий в 2026</h2>
+        <p>Домены WhatsApp исключены из НСДИ, доступ во многом через VPN. Что произошло, чем грозит бизнесу и как перенести клиентов в Telegram или MAX без потерь.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/telegram-zamedlenie-biznes-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Telegram</span>
+          <span class="post-tag">Мессенджеры</span>
+          <span class="post-date">3 июля 2026</span>
+        </div>
+        <h2>Замедление Telegram в России: риски для бизнеса и план действий в 2026</h2>
+        <p>Telegram работает нестабильно, звонки отключены, реклама под вопросом ФАС. Что происходит на самом деле, чем это грозит бизнесу и что делать прямо сейчас.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/max-messenger-biznes-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Мессенджеры</span>
+          <span class="post-tag">Чат-боты</span>
+          <span class="post-date">28 июня 2026</span>
+        </div>
+        <h2>Мессенджер MAX для бизнеса в 2026: стоит ли заводить чат-бота</h2>
+        <p>WhatsApp заблокирован, Telegram замедляют — бизнес ищет устойчивый канал. Разбираю возможности MAX Bot, честные плюсы и минусы и когда бот в MAX окупается.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+      </div>
+    </div>
+
+    <div class="cat-section" id="prodvizhenie">
+      <h2 class="cat-title">Продвижение и контент <span class="count">6 статей</span></h2>
+      <p class="cat-desc">Рост аккаунтов и каналов, личный бренд, воронки продаж и контент с нейросетями.</p>
+      <div class="posts-grid">
+
+        <a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Instagram</span>
+          <span class="post-tag">Продвижение</span>
+          <span class="post-date">1 августа 2026</span>
+        </div>
+        <h2>Продвижение Instagram «СКАЙНЕТ»: как аккаунт видят целевые люди и часть становится клиентами</h2>
+        <p>Пакет под ключ: вывод профиля в поиск, продвижение постов и рилс, ИИ-взаимодействие с целевой аудиторией, автоворонка, Close Friends и сопровождение. Первый месяц — 17 000 ₽, далее 15 000 ₽/мес.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/instagram-kommercheskiy-kontent-bez-bana.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Instagram</span>
+          <span class="post-tag">Монетизация</span>
+          <span class="post-date">29 мая 2026</span>
+        </div>
+        <h2>Коммерческий контент в Instagram без бана: как работать легально</h2>
+        <p>Как вести коммерческий аккаунт в Instagram и не получить бан. Правила платформы, Paid Partnership Label, партнёрский маркетинг — разбираем легальные схемы работы.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/personal-brand-ai-strategy.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Личный бренд</span>
+          <span class="post-date">3 мая 2026</span>
+        </div>
+        <h2>Личный бренд эксперта с помощью AI: стратегия за 30 дней</h2>
+        <p>Пошаговый план для фрилансеров и экспертов: позиционирование, контент-система с нейросетями, AI-воронка входящих клиентов и 3 кейса с реальными результатами.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/telegram-1000-subscribers.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Telegram</span>
+          <span class="post-date">3 мая 2026</span>
+        </div>
+        <h2>Как набрать первую 1000 подписчиков в Telegram в 2026</h2>
+        <p>7 рабочих методов — от личной базы до AI-воронки из Instagram. Пошаговый план на 30 дней, 3 кейса с реальными цифрами и типичные ошибки, из-за которых каналы не растут.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/telegram-sales-funnel.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Воронки продаж</span>
+          <span class="post-date">30 апреля 2026</span>
+        </div>
+        <h2>Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году</h2>
+        <p>Открываемость 85%, оплата внутри чата, AI-агент вместо менеджера — разбираем 5 этапов Telegram-воронки с кейсами и пошаговым планом запуска за неделю.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/ai-content-without-burnout.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Нейросети</span>
+          <span class="post-date">29 апреля 2026</span>
+        </div>
+        <h2>Нейросети для создания контента без выгорания: гайд для предпринимателей 2026</h2>
+        <p>Как создавать контент для соцсетей с помощью нейросетей и не выгорать? Инструменты, связки, система и кейсы — полный гайд.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+      </div>
+    </div>
+
+    <div class="cat-section" id="ai-assistenty">
+      <h2 class="cat-title">AI-ассистенты и автоматизация <span class="count">11 статей</span></h2>
+      <p class="cat-desc">AI-агенты и чат-боты для бизнеса: чем отличаются, сколько стоят, как внедрить и обучить.</p>
+      <div class="posts-grid">
+
+        <a href="/blog/telegram-ai-agenty-konstruktor-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Telegram</span>
+          <span class="post-tag">AI-агенты</span>
+          <span class="post-date">28 июля 2026</span>
+        </div>
+        <h2>Нативные AI-агенты в Telegram: стоит ли бизнесу отказываться от внешних платформ в 2026</h2>
+        <p>Telegram весной 2026 добавил Managed Bots и встроенный AI-редактор. Разбираем, когда нативного агента бизнесу хватает, а когда под продажи нужна внешняя платформа автоматизации.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/chatbot-cost-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Автоматизация</span>
+          <span class="post-tag">Чат-боты</span>
+          <span class="post-date">23 июня 2026</span>
+        </div>
+        <h2>Сколько стоит чат-бот для бизнеса в 2026 году</h2>
+        <p>Разбор цен от платформ-конструкторов до разработки под ключ и AI-агента на LLM. От чего зависит стоимость, реальные пакеты и как считать окупаемость.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/chatgpt-dlya-biznesa-10-scenariev.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">ChatGPT</span>
+          <span class="post-tag">Автоматизация</span>
+          <span class="post-date">27 мая 2026</span>
+        </div>
+        <h2>ChatGPT для бизнеса в 2026: 10 рабочих сценариев</h2>
+        <p>10 проверенных сценариев, где ChatGPT реально экономит часы: контент, аналитика, продажи, найм. Что умеет GPT-5.5 и где нужен уже AI-агент.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/ai-agent-vs-chatbot-2026.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">AI-агенты</span>
+          <span class="post-tag">Автоматизация</span>
+          <span class="post-date">21 мая 2026</span>
+        </div>
+        <h2>Чат-бот мёртв. AI-агент vs чат-бот в 2026</h2>
+        <p>Почему классический чат-бот сливает заявки в 2026 и чем AI-агент его обгоняет. Разбор отличий, реальный кейс −150 000 ₽/мес и когда менять инструмент.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/train-ai-agent-like-manager.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">AI-агенты</span>
+          <span class="post-date">4 мая 2026</span>
+        </div>
+        <h2>Как обучить AI-агента отвечать как менеджер: пошаговый гайд с примерами</h2>
+        <p>Системный промпт, база знаний, few-shot диалоги и настройка эскалации — рабочий метод из 5 шагов, который превращает шаблонного бота в AI-агента, который реально продаёт.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/7-signs-you-need-ai-agent.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">AI-агенты</span>
+          <span class="post-date">3 мая 2026</span>
+        </div>
+        <h2>7 признаков, что вам нужен AI-агент прямо сейчас</h2>
+        <p>Узнайте себя в этих ситуациях — и посчитайте, сколько денег уходит каждый день без автоматизации. Чек-лист с реальными цифрами потерь.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/ai-strategy-small-business.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">AI-стратегия</span>
+          <span class="post-date">3 мая 2026</span>
+        </div>
+        <h2>AI-стратегия для малого бизнеса: с чего начать и как внедрить в 2026</h2>
+        <p>6 шагов построения AI-стратегии: аудит задач, матрица приоритетов, реальные инструменты, дорожная карта на 3 месяца и 3 кейса с измеримыми результатами.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/virtual-assistant-cost-roi.html" class="post-card">
+        <div class="post-meta">
+          <span class="post-tag">Автоматизация</span>
+          <span class="post-date">3 мая 2026</span>
+        </div>
+        <h2>Виртуальный ассистент: сколько стоит и когда окупается в 2026</h2>
+        <p>Сравниваем штатного сотрудника за 85–170 тыс ₽/мес и AI-агента за 5–15 тыс. Детальная разбивка расходов, 3 кейса с расчётом окупаемости и честный список когда автоматизация не сработает.</p>
+        <span class="post-read-more">Читать статью →</span>
+      </a>
+
+        <a href="/blog/ai-assistant-5-tasks.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">AI-ассистент</span>
           <span class="post-date">28 апреля 2026</span>
@@ -619,7 +725,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/chatplace-instagram-automation.html" class="post-card">
+        <a href="/blog/chatplace-instagram-automation.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">Автоматизация</span>
           <span class="post-date">27 апреля 2026</span>
@@ -629,7 +735,7 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
-      <a href="/blog/ai-agents-2026.html" class="post-card">
+        <a href="/blog/ai-agents-2026.html" class="post-card">
         <div class="post-meta">
           <span class="post-tag">AI-агенты</span>
           <span class="post-date">27 апреля 2026</span>
@@ -639,7 +745,9 @@
         <span class="post-read-more">Читать статью →</span>
       </a>
 
+      </div>
     </div>
+
   </div>
 </section>
 
