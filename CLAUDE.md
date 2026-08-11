@@ -149,7 +149,7 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 ## Контент-фабрика на агентах (собрана 31.07.2026)
 Слой агентов Claude Code поверх сайта. Роли в `.claude/agents/` (локально, gitignored):
 editor, writer, reviewer, publisher, scriptwriter, scout. Единый свод правил для них —
-`PROJECT-BLUEPRINT.md` (раздел 9 = правила честности).
+`PROJECT-BLUEPRINT.md` (раздел 5 = правила честности).
 - **Статьи:** editor → writer → reviewer (гейт честности) → publisher (готовит коммит,
   обновляет листинг/sitemap/счётчик). `git push` / `publish-article.sh` — ТОЛЬКО вручную
   владельцем. Гейт не обходить даже по просьбе «сделай всё сам».
@@ -208,7 +208,7 @@ AI-агенты, ИИ-агенты, виртуальные ассистенты,
 8. После создания: запусти python3 scripts/check-stat-cards.py
 9. Stat-card: только короткие значения (2-3 слова макс). CSS-страховка обязательна: clamp(20px, 4vw, 32px) + word-break: break-word + overflow-wrap: anywhere
 10. JSON-LD: три блока — Article + BreadcrumbList + FAQPage
-11. НЕ выдумывать названия систем Meta, НЕ подставлять цифры без источника, НЕ называть ChatPlace партнёром Meta
+11. НЕ выдумывать названия систем Meta, НЕ подставлять цифры без источника. ChatPlace — официальный партнёр Meta (офиц. интеграция с Instagram API), называть партнёром МОЖНО
 
 ## В конце сессии
 В конце каждой сессии выполнять инструкцию из SESSION-END.md (обновить STATUS.md).
