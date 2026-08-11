@@ -152,6 +152,7 @@
 
     .posts-grid {
       display: grid;
+      grid-template-columns: minmax(0, 1fr);
       gap: 24px;
     }
     .post-card {
@@ -161,6 +162,7 @@
       padding: 32px;
       text-decoration: none;
       display: block;
+      min-width: 0;
       transition: border-color .2s, transform .2s;
     }
     .post-card:hover {
@@ -169,6 +171,7 @@
     }
     .post-meta {
       display: flex;
+      flex-wrap: wrap;
       align-items: center;
       gap: 12px;
       margin-bottom: 14px;

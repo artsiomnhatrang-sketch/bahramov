@@ -341,10 +341,12 @@
     }
 
     /* Comparison table */
+    .cmp-scroll { overflow-x: auto; margin: 28px 0; -webkit-overflow-scrolling: touch; }
     .cmp-table {
       width: 100%;
       border-collapse: collapse;
-      margin: 28px 0;
+      margin: 0;
+      min-width: 480px;
       font-size: 14px;
       background: var(--bg3);
       border: 1px solid var(--border);
@@ -738,6 +740,7 @@
 
     <h3>Сравнение по задачам бизнеса</h3>
 
+    <div class="cmp-scroll">
     <table class="cmp-table">
       <thead>
         <tr>
@@ -784,6 +787,7 @@
         </tr>
       </tbody>
     </table>
+    </div>
 
     <p>Закономерность видно сразу: чем ближе задача к «поддержке», тем увереннее нативный вариант. Чем ближе к «продажам и масштабу», тем нужнее внешняя платформа. Кстати, вопрос цены внешнего решения не так страшен, как кажется, — я разбирал реальные уровни и факторы в статье о том, <a href="/blog/chatbot-cost-2026.html">сколько стоит чат-бот для бизнеса</a>.</p>
 
