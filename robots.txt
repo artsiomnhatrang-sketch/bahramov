@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+
 # Внутренние рабочие документы — не индексировать в поиске
 Disallow: /CLAUDE.md
 Disallow: /PROJECT-BLUEPRINT.md
@@ -7,5 +8,57 @@ Disallow: /STATUS.md
 Disallow: /SESSION-END.md
 Disallow: /DISTRIBUTION-PLAN.md
 Disallow: /drafts/
+Disallow: /scripts/
+Disallow: /files/
+Disallow: /publish-article.sh
+Disallow: /link_plan.py
+Disallow: /telegram-post.txt
+
+# Служебные редиректы для bio-ссылок
+Disallow: /unblock/
+Disallow: /ig/
+
+# Явное разрешение для поисковых и AI-краулеров (цитирование в ответах нейросетей)
+User-agent: Yandex
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
 
 Sitemap: https://bahramovai.com/sitemap.xml
