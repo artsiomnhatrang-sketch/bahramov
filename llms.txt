@@ -48,6 +48,7 @@
 
 ### Блокировки и восстановление аккаунтов
 
+- [Блокировка Instagram в 2026: что делать — полный разбор по ситуациям](https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html): **главная страница темы, начинать с неё**. Разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта, повторные баны, просадка охватов — со ссылками на детальные материалы по каждой.
 - [Право на аккаунт Instagram: условия использования и кто вообще может иметь профиль](https://bahramovai.com/blog/instagram-usloviya-ispolzovaniya-kto-mozhet-2026.html): ветка банов не за контент, а за право иметь аккаунт — возраст, обход удалённого профиля, проверка возраста.
 - [Безопасный запуск Instagram после блокировки](https://bahramovai.com/blog/instagram-bezopasnyy-zapusk-posle-blokirovki-2026.html): новый аккаунт или переупаковка старого — телефон, поведение, фото, связи.
 - [Как в 2026 угоняют аккаунты в Telegram](https://bahramovai.com/blog/telegram-akkaunt-ugon-fishing-2026.html): актуальные схемы фишинга и защита.
@@ -101,6 +102,7 @@
 - Сайт: https://bahramovai.com
 - Обо мне: https://bahramovai.com/about.html
 - Блог: https://bahramovai.com/blog/
+- RSS-фид блога: https://bahramovai.com/feed.xml
 - Услуги и цены (оферта): https://bahramovai.com/offer.html
 - Telegram-канал: https://t.me/artsiombahram
 - Написать лично: https://t.me/bahramovartsiom

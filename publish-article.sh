@@ -20,6 +20,9 @@ python3 scripts/check-stat-cards.py || {
   exit 1
 }
 
+echo "→ Обновляю RSS-фид..."
+python3 scripts/seo-sync.py
+
 echo "→ Пушу изменения в git..."
 git add .
 git commit -m "Publish: ${ARTICLE_PATH}" || echo "Нечего коммитить"
@@ -28,19 +31,18 @@ git push
 echo "→ Жду 30 секунд, чтобы GitHub Pages успел задеплоить..."
 sleep 30
 
-echo "→ Пингую IndexNow (Bing, Yandex)..."
-curl -s "https://api.indexnow.org/indexnow?url=${FULL_URL}&key=${INDEXNOW_KEY}" \
-  && echo " ✓ IndexNow OK" \
-  || echo " ✗ IndexNow ошибка"
+echo "→ Пингую IndexNow (Bing, Yandex) — статья + листинг блога..."
+for URL in "${FULL_URL}" "${DOMAIN}/blog/"; do
+  curl -s -o /dev/null -w "%{http_code}" \
+    "https://api.indexnow.org/indexnow?url=${URL}&key=${INDEXNOW_KEY}" \
+    | xargs -I{} echo "   {} ← ${URL}"
+done
 
-echo "→ Пингую Google перечитать sitemap..."
-curl -s "https://www.google.com/ping?sitemap=${DOMAIN}/sitemap.xml" \
-  > /dev/null && echo " ✓ Google sitemap ping OK"
-
-echo "→ Пингую Bing перечитать sitemap..."
-curl -s "https://www.bing.com/ping?sitemap=${DOMAIN}/sitemap.xml" \
-  > /dev/null && echo " ✓ Bing sitemap ping OK"
+# Google отключил sitemap-ping в июне 2023, Bing — вслед за ним.
+# Единственный рабочий путь ускорить Google — «Проверка URL» в Search Console.
 
 echo ""
 echo "Готово! Статья опубликована: ${FULL_URL}"
-echo "Индексация: Bing/Yandex — часы, Google — 1-3 дня."
+echo "Индексация: Bing/Yandex — часы (IndexNow)."
+echo "Google: запроси индексацию вручную в Search Console →"
+echo "  https://search.google.com/search-console/inspect?resource_id=sc-domain:bahramovai.com&id=${FULL_URL}"

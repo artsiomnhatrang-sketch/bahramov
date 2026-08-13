@@ -8,6 +8,7 @@
   <!-- SEO -->
   <meta name="description" content="AI-стратег Артём Бахрам — автоматизация Instagram и Telegram, чат-боты и AI-агенты для бизнеса. Контент-стратегии с нейросетями для русскоязычной аудитории." />
   <link rel="canonical" href="https://bahramovai.com/" />
+  <link rel="alternate" type="application/rss+xml" title="Блог Артёма Бахрама" href="https://bahramovai.com/feed.xml" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -1181,6 +1182,69 @@
       .cases-grid { grid-template-columns: 1fr; }
     }
 
+    /* Свежее в блоге */
+    .latest { padding: 80px 0; background: var(--bg); }
+    .latest-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+    .latest h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.3rem, 3vw, 1.9rem);
+      font-weight: 700;
+      color: var(--text);
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .latest-sub {
+      text-align: center;
+      color: #8a8a8a;
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+    .latest-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+    .latest-card {
+      display: block;
+      padding: 22px;
+      border: 1px solid #1e1e1e;
+      border-radius: 12px;
+      background: #0a0a0a;
+      text-decoration: none;
+      transition: border-color .2s, transform .2s;
+    }
+    .latest-card:hover { border-color: rgba(244,103,42,0.45); transform: translateY(-2px); }
+    .latest-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 10px;
+    }
+    .latest-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+    .latest-card p { font-size: 14px; color: #8a8a8a; line-height: 1.55; margin: 0; }
+    .latest-more { text-align: center; margin-top: 36px; }
+    .latest-more a {
+      color: var(--orange);
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+    }
+    .latest-more a:hover { text-decoration: underline; }
+
+    @media (max-width: 768px) {
+      .latest { padding: 48px 0; }
+      .latest-sub { margin-bottom: 28px; }
+    }
+
     /* FAQ */
     .faq { padding: 80px 0; background: var(--bg); }
     .faq-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; }
@@ -1647,6 +1711,41 @@
           <p class="package-card-note">Также доступны отдельные услуги.<br>Обсудим задачи и подберём формат под тебя.</p>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- Свежее в блоге -->
+<section class="latest" id="latest">
+  <div class="latest-inner">
+    <h2>Читайте в блоге</h2>
+    <p class="latest-sub">Разборы из практики: что реально работает в 2026 году</p>
+
+    <div class="latest-grid">
+      <a href="/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html" class="latest-card">
+        <span class="latest-tag">Блокировки</span>
+        <h3>Блокировка Instagram в 2026: что делать</h3>
+        <p>Полный разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта, просадка охватов.</p>
+      </a>
+      <a href="/blog/telegram-1000-subscribers.html" class="latest-card">
+        <span class="latest-tag">Telegram</span>
+        <h3>Первая 1000 подписчиков в Telegram</h3>
+        <p>С чего начать канал в 2026 году и как набрать первую тысячу без бюджета на рекламу.</p>
+      </a>
+      <a href="/blog/ai-assistant-5-tasks.html" class="latest-card">
+        <span class="latest-tag">AI-ассистент</span>
+        <h3>5 задач для AI-ассистента предпринимателя</h3>
+        <p>Что можно снять с себя уже сегодня — с конкретными сценариями и примерами.</p>
+      </a>
+      <a href="/blog/max-messenger-biznes-2026.html" class="latest-card">
+        <span class="latest-tag">Мессенджеры</span>
+        <h3>Мессенджер MAX для бизнеса</h3>
+        <p>Стоит ли заводить чат-бота в MAX в 2026 году и кому это действительно нужно.</p>
+      </a>
+    </div>
+
+    <div class="latest-more">
+      <a href="/blog/">Все статьи блога →</a>
     </div>
   </div>
 </section>
