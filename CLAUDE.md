@@ -48,6 +48,8 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 - Локация: Нячанг, Вьетнам
 - Email: artsiomnhatrang@gmail.com
 - Telegram: @bahramovartsiom
+- YouTube: **@bahramovai** — рабочий канал, только его указывать в sameAs/llms.txt/разметке.
+  Второй канал @bahramav тоже принадлежит владельцу, но НЕ ведётся — на сайте не упоминать.
 - Сайт: https://bahramovai.com
 
 ## Технические детали сайта
