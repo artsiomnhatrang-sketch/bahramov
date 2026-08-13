@@ -34,7 +34,7 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 1. Оптимизация изображений (частично сделано):
    ✅ photo.webp подключён в about.html через <picture> (20 мая)
    ⏸ photo.jpg (188 КБ) — НЕ сжимать через sips, файл уже оптимизирован (проверено: sips -s formatOptions 80 увеличивает размер до 248 КБ). Для дальнейшего сжатия нужен cwebp/jpegoptim через Homebrew (Homebrew не установлен).
-   ⏳ hero-cyborg.png (943 КБ, сирота) — решить судьбу: удалить или вынести в .gitignore-папку
+   ✅ hero-cyborg.png — убран из репо 13.08.2026 (в .gitignore), файл остался локально на диске
 2. Привязать YouTube канал к artsiomnhatrang@gmail.com для связки с Google Search Console
 3. Проверить FAQPage в Rich Results (через search.google.com/test/rich-results) — через 2-3 дня после публикации
 4. Следующие статьи (кандидаты, проверять на дубль перед написанием):
@@ -93,7 +93,6 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 ├── robot.webp              — декор hero WebP (104 КБ, <source> в <picture> на index.html)
 ├── hero-cyborg.jpg         — декор hero (102 КБ, fallback в <picture> на index.html)
 ├── hero-cyborg.webp        — декор hero WebP (69 КБ, <source> в <picture> на index.html)
-├── hero-cyborg.png         — СИРОТА 943 КБ, нигде не используется (TODO: удалить)
 ├── publish-article.sh      — скрипт публикации с автопроверкой
 ├── scripts/
 │   └── check-stat-cards.py — pre-publish проверка статистических карточек

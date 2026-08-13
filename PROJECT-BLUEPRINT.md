@@ -84,7 +84,7 @@
 - `me.jpg` / `me.webp` — **живое фото Артёма**, hero на about.html
 - `photo.jpg` / `photo.webp` — **робот**, только og:image / twitter:image / JSON-LD превью. Не удалять, формат в мета-тегах оставлять `photo.jpg` (не WebP — соцсети не все понимают)
 - `robot.*`, `hero-cyborg.*` — декор hero на index.html через `<picture>`
-- `hero-cyborg.png` (943 КБ) — сирота, судьба не решена
+- `hero-cyborg.png` (943 КБ) — убран из репо 13.08.2026, в `.gitignore`, файл лежит локально
 
 ### Логотип
 **BAHRAMOV.AI** — белое «BAHRAMOV» + оранжевая точка + оранжевое «AI», чёрный фон, тонкая оранжевая рамка, шрифт **Unbounded ExtraBold**. Файл `logo_v1_bahramov-ai.png`.
