@@ -72,9 +72,11 @@ for f in files:
         if isinstance(r,str) and not r.startswith("ext:") and r not in (None,"skip") and not os.path.isfile(r):
             broken_img.append(f"{f}: img {s} -> нет {r}")
 
-# внешние ссылки
+# внешние ссылки (--fast пропускает: сетевые запросы — самая долгая часть)
+import sys
+FAST = "--fast" in sys.argv
 extres=[]
-for u in sorted(ext):
+for u in ([] if FAST else sorted(ext)):
     st=None
     for meth in ("HEAD","GET"):
         try:
@@ -117,6 +119,7 @@ sec("Проблемы структуры/SEO", structure)
 sec("Мёртвая ссылка t.me/bahramovai", deadtg)
 sec("Sitemap рассинхрон", sm)
 print(f"\n=== Внешние ссылки ({len(extres)}) ===")
+if FAST: print("  пропущено (--fast)")
 for u,st in extres:
     mark = "✅" if st==200 else ("⚠️ проверить вручную" if (isinstance(st,str) or st in (403,405,429,999)) else "❌")
     print(f"  {mark} [{st}] {u}")

@@ -67,11 +67,17 @@ PY
   exit 0
 fi
 
+# --fast пропускает проверку внешних ссылок (единственная сетевая часть, ~20 сек)
+FASTFLAG=""
+[ "${1:-}" = "--fast" ] && FASTFLAG="--fast"
+
 # --- Обычный режим: полная проверка перед пушем ---
-printf "${BOLD}PREFLIGHT — проверка сайта перед публикацией${OFF}\n"
+printf "${BOLD}PREFLIGHT — проверка сайта перед публикацией${OFF}"
+[ -n "$FASTFLAG" ] && printf " ${YELLOW}(быстрый режим)${OFF}"
+printf "\n"
 
 section "1. Техника: ссылки, картинки, разметка, sitemap"
-AUDIT=$(python3 scripts/site-audit.py 2>&1)
+AUDIT=$(python3 scripts/site-audit.py $FASTFLAG 2>&1)
 for check in "Битые внутренние ссылки" "Битые картинки" "Ссылки без href" "Sitemap рассинхрон" "Кривая кодировка"; do
   n=$(echo "$AUDIT" | grep -o "=== $check ([0-9]*)" | grep -o '[0-9]*')
   if [ "${n:-0}" = "0" ]; then ok "$check: чисто"; else bad "$check: $n"; fi

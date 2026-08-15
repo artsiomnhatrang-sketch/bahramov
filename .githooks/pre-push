@@ -1,0 +1,22 @@
+#!/bin/bash
+# Автоматическая проверка перед каждым git push.
+# Блокирует пуш, если сломаны ссылки, разметка или sitemap.
+#
+# Пропустить проверку (например, срочный хотфикс):
+#   git push --no-verify
+#
+# Хук включается командой (уже выполнена):
+#   git config core.hooksPath .githooks
+
+REPO="$(git rev-parse --show-toplevel)"
+[ -x "$REPO/scripts/preflight.sh" ] || exit 0
+
+echo "→ preflight перед пушем…"
+if "$REPO/scripts/preflight.sh" --fast; then
+  exit 0
+fi
+
+echo
+echo "✗ Пуш остановлен: есть блокирующие проблемы (см. выше)."
+echo "  Исправь их или пропусти проверку: git push --no-verify"
+exit 1
