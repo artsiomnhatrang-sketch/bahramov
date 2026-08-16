@@ -177,6 +177,12 @@ editor, writer, reviewer, publisher, scriptwriter, scout. Единый свод 
   через ОБЛАЧНУЮ routine `trig_01R7fpXFLf4iz5bjQyT4XGTi` (claude.ai/code/routines).
   Облако НЕ видит `.env`/`.claude/` — промпт routine самодостаточен, токены вшиты в него.
   Источники: Wordstat + веб + vc/Habr рабочие; Reddit (анти-бот) и Google Trends (404) пока нет.
+- **Автопостинг в канал.** Бот **@bahramov_reels_bot** добавлен админом в канал
+  @artsiombahram (id `-1003901787423`) с единственным правом — публикация
+  сообщений. `scripts/rss-to-telegram.py` берёт новые статьи из `feed.xml` и
+  постит их в канал; вызов встроен в publish-article.sh. Состояние (что уже
+  отправлено) — `scripts/.telegram-posted.json`, в gitignore. При переустановке
+  на новой машине сначала `--init`, иначе в канал улетят все статьи разом.
 - **Секреты** в `.env` (gitignored, chmod 600): `TELEGRAM_BOT_TOKEN` (reels-бот),
   `TELEGRAM_CHAT_ID`, `WORDSTAT_TOKEN`. Wordstat: `POST https://api.wordstat.yandex.net/v1/topRequests`,
   `Authorization: Bearer`. С Mac Артёма (Нячанг) Яндекс недоступен по TLS — Wordstat дёргать
@@ -245,6 +251,7 @@ AI-агенты, ИИ-агенты, виртуальные ассистенты,
 | `python3 scripts/overlap-audit.py` | Карта пересечений между всеми статьями: дубли тем, дословные повторы, одинаковые заголовки |
 | `python3 scripts/content-audit.py --changed` | Честность только новых/изменённых текстов: цифры без атрибуции, обещания результата, советы по обходу |
 | `python3 scripts/seo-sync.py` | Пересобрать `feed.xml` после новой статьи (вызывается и из publish-article.sh) |
+| `python3 scripts/rss-to-telegram.py` | Публикует новые статьи из RSS в канал @artsiombahram. Вызывается из publish-article.sh, руками не нужен. `--dry-run` — посмотреть текст без отправки |
 | `python3 scripts/site-audit.py` | Подробный технический аудит, если preflight что-то нашёл |
 | `python3 scripts/check-stat-cards.py` | Отдельная проверка карточек со статистикой |
 

@@ -41,6 +41,9 @@ done
 # Google отключил sitemap-ping в июне 2023, Bing — вслед за ним.
 # Единственный рабочий путь ускорить Google — «Проверка URL» в Search Console.
 
+echo "→ Публикую анонс в Telegram-канал…"
+python3 scripts/rss-to-telegram.py
+
 echo ""
 echo "Готово! Статья опубликована: ${FULL_URL}"
 echo "Индексация: Bing/Yandex — часы (IndexNow)."
