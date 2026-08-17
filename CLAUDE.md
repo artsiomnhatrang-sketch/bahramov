@@ -188,6 +188,13 @@ editor, writer, reviewer, publisher, scriptwriter, scout. Единый свод 
   постит их в канал; вызов встроен в publish-article.sh. Состояние (что уже
   отправлено) — `scripts/.telegram-posted.json`, в gitignore. При переустановке
   на новой машине сначала `--init`, иначе в канал улетят все статьи разом.
+- **Яндекс OAuth-приложение** (для API Вебмастера): ClientID `146e45f36e154497900ae5492d37e824`,
+  права `webmaster:hostinfo` + `webmaster:verify`, создано 17.08.2026 в аккаунте
+  artsiomnhatrang@gmail.com. Токен лежит в `.env` как `YANDEX_WEBMASTER_TOKEN`.
+  Токены Яндекса живут около года — когда `yandex-recrawl.py` начнёт отвечать
+  «Токен не работает», перевыпустить по ссылке (приложение пересоздавать НЕ нужно):
+  `https://oauth.yandex.ru/authorize?response_type=token&client_id=146e45f36e154497900ae5492d37e824`
+  → «Разрешить» → скопировать `access_token=` из адресной строки → заменить строку в `.env`.
 - **Секреты** в `.env` (gitignored, chmod 600): `TELEGRAM_BOT_TOKEN` (reels-бот),
   `TELEGRAM_CHAT_ID`, `WORDSTAT_TOKEN`. Wordstat: `POST https://api.wordstat.yandex.net/v1/topRequests`,
   `Authorization: Bearer`. С Mac Артёма (Нячанг) Яндекс недоступен по TLS — Wordstat дёргать
