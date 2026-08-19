@@ -195,6 +195,23 @@ editor, writer, reviewer, publisher, scriptwriter, scout. Единый свод 
   «Токен не работает», перевыпустить по ссылке (приложение пересоздавать НЕ нужно):
   `https://oauth.yandex.ru/authorize?response_type=token&client_id=146e45f36e154497900ae5492d37e824`
   → «Разрешить» → скопировать `access_token=` из адресной строки → заменить строку в `.env`.
+- **Новостной конвейер (собран 17.08.2026).** Отдельная ветка контент-фабрики:
+  горячие ИИ-новости → пост в канал + сценарий Reels, всё по кнопкам в Telegram.
+  `scripts/news-daily.sh` — одна команда на весь цикл: `news-collect.py` тянет
+  13 источников (западные первоисточники, Habr/vc.ru, Meta Newsroom, веб-зеркала
+  каналов @ai_newz / @data_secrets / @seeallochnaya / @denissexy / @telegram)
+  в `.news/<дата>.json` → агент **news-editor** отбирает 5 тем с углом подачи →
+  `tg-digest.py` шлёт дайджест с inline-кнопками. Владелец жмёт номер,
+  `tg-watcher.py` ловит нажатие и запускает **smm-copywriter** (пост) и
+  **scriptwriter** (сценарий рилса), присылает оба черновика. Пост уходит
+  в канал ТОЛЬКО по кнопке «Опубликовать» — автопубликации нет нигде.
+  Проверка всего разом: `python3 scripts/tg-watcher.py --selftest`.
+  Папка `.news/` в gitignore (сырьё, дайджесты, черновики).
+  ⚠️ Конвейер запускает агентов через `claude -p`, а это **отдельный логин CLI**:
+  токен десктопного приложения ему не наследуется. Если selftest пишет
+  «CLI claude не авторизован» — открыть Терминал, выполнить `claude`, войти.
+  Промпт агенту передавать ТОЛЬКО через stdin: `--allowedTools` вариадический
+  и съедает позиционный аргумент.
 - **Секреты** в `.env` (gitignored, chmod 600): `TELEGRAM_BOT_TOKEN` (reels-бот),
   `TELEGRAM_CHAT_ID`, `WORDSTAT_TOKEN`. Wordstat: `POST https://api.wordstat.yandex.net/v1/topRequests`,
   `Authorization: Bearer`. С Mac Артёма (Нячанг) Яндекс недоступен по TLS — Wordstat дёргать
@@ -265,6 +282,8 @@ AI-агенты, ИИ-агенты, виртуальные ассистенты,
 | `python3 scripts/seo-sync.py` | Пересобрать `feed.xml` после новой статьи (вызывается и из publish-article.sh) |
 | `python3 scripts/yandex-recrawl.py` | Переобход страниц в Яндекс.Вебмастере через API (интерфейс ассистенту заблокирован, API — нет). `--check` покажет остаток суточной квоты (150/сутки) |
 | `python3 scripts/rss-to-telegram.py` | Публикует новые статьи из RSS в канал @artsiombahram. Вызывается из publish-article.sh, руками не нужен. `--dry-run` — посмотреть текст без отправки |
+| `./scripts/news-daily.sh` | **Ежедневный новостной цикл**: сбор ИИ-новостей → отбор агентом news-editor → дайджест с кнопками в Telegram. `--dry-run` — без отправки |
+| `python3 scripts/tg-watcher.py` | Слушает кнопки в боте и запускает агентов по выбранной новости. Должен быть запущен, иначе нажатия не сработают. `--selftest` — проверить бота, канал, агентов и логин CLI |
 | `python3 scripts/site-audit.py` | Подробный технический аудит, если preflight что-то нашёл |
 | `python3 scripts/check-stat-cards.py` | Отдельная проверка карточек со статистикой |
 
