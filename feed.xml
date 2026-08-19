@@ -5,13 +5,27 @@
     <link>https://bahramovai.com/blog/</link>
     <description>AI-агенты, автоматизация Instagram и Telegram, восстановление заблокированных аккаунтов, воронки продаж в мессенджерах.</description>
     <language>ru</language>
-    <lastBuildDate>Wed, 19 Aug 2026 08:06:52 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 19 Aug 2026 09:13:53 +0000</lastBuildDate>
     <atom:link href="https://bahramovai.com/feed.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://bahramovai.com/photo.jpg</url>
       <title>Блог Артёма Бахрама</title>
       <link>https://bahramovai.com/blog/</link>
     </image>
+    <item>
+      <title>Чистка Instagram от ботов и мёртвых подписчиков: когда нужна и что меняется после</title>
+      <link>https://bahramovai.com/blog/instagram-chistka-ot-botov-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-chistka-ot-botov-2026.html</guid>
+      <description>Как понять, что у вас в подписчиках боты, посчитать долю мёртвых и почему массовое удаление опасно. Что чистка реально даёт, а чего от неё ждать не стоит.</description>
+      <pubDate>Wed, 19 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Пакет «СИСТЕМА» за 39 900 ₽: что входит, как проходит работа и что остаётся у вас на выходе</title>
+      <link>https://bahramovai.com/blog/paket-sistema-avtomatizaciya-socsetey-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/paket-sistema-avtomatizaciya-socsetey-2026.html</guid>
+      <description>Пакет «СИСТЕМА» за 39 900 ₽: 13 блоков работы, чат-бот под ключ, AI-ассистент, контент-план на 3 месяца и 30 дней сопровождения. Как проходит работа по шагам.</description>
+      <pubDate>Wed, 19 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Блокировка Instagram в 2026: что делать — полный разбор по ситуациям</title>
       <link>https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html</link>
@@ -172,20 +186,6 @@
       <guid isPermaLink="true">https://bahramovai.com/blog/instagram-novyy-akkaunt-blokirovka-2026.html</guid>
       <description>Создаёшь новый Instagram-аккаунт, а его блокируют через час? Дело не в email и не в VPN. Разбираем device fingerprinting Meta и что реально работает в 2026.</description>
       <pubDate>Sun, 10 May 2026 09:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Почему Instagram блокирует аккаунты в 2026 и как восстановить доступ легально</title>
-      <link>https://bahramovai.com/blog/instagram-account-recovery-2026.html</link>
-      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-account-recovery-2026.html</guid>
-      <description>Причины блокировок Instagram в 2026 и пошаговый протокол легального восстановления: апелляция, верификация, шаблоны обращений. Только официальные каналы Meta.</description>
-      <pubDate>Mon, 04 May 2026 09:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Массовые блокировки Instagram в 2026: почему банят даже новые аккаунты</title>
-      <link>https://bahramovai.com/blog/instagram-mass-ban-2026.html</link>
-      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-mass-ban-2026.html</guid>
-      <description>С марта 2026 года Meta запустила волну массовых блокировок Instagram. Банят старые аккаунты, новые и даже только что созданные. Разбираем причины, кто в зоне риска и что делать прямо сейчас.</description>
-      <pubDate>Mon, 04 May 2026 09:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
