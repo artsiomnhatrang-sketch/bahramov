@@ -655,5 +655,17 @@
   </p>
 </footer>
 
+<script>
+  (function () {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('t.me/') === -1 && href.indexOf('max.ru/') === -1) return;
+      var name = href.indexOf('bahramovartem_bot') !== -1 ? 'bonus_click' : 'tg_about_page';
+      if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', name);
+    }, true);
+  })();
+</script>
 </body>
 </html>

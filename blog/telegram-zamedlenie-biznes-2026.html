@@ -390,7 +390,15 @@
 
     <p>Проще говоря: Telegram сегодня — это рабочий, но ненадёжный канал. Правильная реакция бизнеса — не бегство и не игнорирование, а спокойная диверсификация: оставить Telegram как один из каналов, но выстроить рядом дубли и собственную базу контактов, которую у вас никто не отключит.</p>
 
-    <div class="cta-block">
+    <div data-offer-box style="max-width:760px;margin:40px auto;padding:24px;border:1px solid rgba(244,103,42,0.35);border-radius:14px;background:rgba(244,103,42,0.06);font-family:'Inter',sans-serif;">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#f4672a;margin-bottom:10px;">Нужна помощь с этим?</div>
+  <div style="font-family:'Unbounded',sans-serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:6px;">AI-агент под ключ — от 30 000 ₽</div>
+  <p style="font-size:14.5px;line-height:1.6;color:#a5a5a5;margin:0 0 16px;">Чат-бот с воронкой продаж в Telegram, Instagram и MAX: квалификация заявок, интеграция с CRM и оплатами.</p>
+  <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f4672a;color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:12px 24px;border-radius:100px;">Рассчитать стоимость →</a>
+  <div style="font-size:12px;color:#7a7a7a;margin-top:12px;">Сначала бесплатный разбор — посмотрю ситуацию и скажу, что делать. Ни к чему не обязывает.</div>
+</div>
+
+<div class="cta-block">
         <h3>Не хотите зависеть от одного мессенджера?</h3>
         <p>Напишите мне — разберём ваши каналы и заявки, прикинем, как выстроить мультиканальную схему с дублированием в MAX и WhatsApp, чтобы замедление Telegram не било по выручке. Без давления и продажи лишнего.</p>
         <a href="https://t.me/bahramovartsiom" class="cta-button" target="_blank" rel="noopener noreferrer">Обсудить мультиканальную стратегию для вашего бизнеса →</a>
@@ -427,5 +435,18 @@
     <p>© 2026 <a href="/">bahramovai.com</a> · <a href="/blog/">Блог</a> · <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer">Telegram</a></p>
 </footer>
 
+<script>
+  // Цель Метрики: из какого кластера блога пришло обращение
+  (function () {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('t.me/') === -1 && href.indexOf('max.ru/') === -1) return;
+      var name = href.indexOf('bahramovartem_bot') !== -1 ? 'bonus_click' : 'tg_blog_messengery';
+      if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', name);
+    }, true);
+  })();
+</script>
 </body>
 </html>
