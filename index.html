@@ -1419,6 +1419,23 @@
       color: #7e7e7e;
       line-height: 1.4;
     }
+    .trust-kind {
+      display: inline-block;
+      margin-top: 7px;
+      font-family: 'Inter', sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #6a6a6a;
+      border: 1px solid #262626;
+      border-radius: 100px;
+      padding: 2px 8px;
+    }
+    .trust-kind-press {
+      color: var(--orange);
+      border-color: var(--orange-border);
+    }
     @media (max-width: 900px) {
       .trust-inner { padding: 0 24px; gap: 16px; }
     }
@@ -1711,19 +1728,22 @@
 <!-- ПОЛОСА ДОВЕРИЯ -->
 <section class="trust">
   <div class="trust-inner">
-    <span class="trust-label">Обо мне пишут</span>
+    <span class="trust-label">Публикации</span>
     <div class="trust-items">
       <a class="trust-item" href="https://vc.ru/marketing/2888231-kak-ai-agent-avtomatiziroval-instagram" target="_blank" rel="noopener noreferrer">
         <div class="trust-name">vc.ru</div>
         <div class="trust-desc">AI-агент заменил 3 менеджеров</div>
+        <div class="trust-kind">моя статья</div>
       </a>
       <a class="trust-item" href="https://vc.ru/marketing/2918649-massovye-blokirovki-instagram" target="_blank" rel="noopener noreferrer">
         <div class="trust-name">vc.ru</div>
         <div class="trust-desc">Массовые блокировки Instagram в мае 2026</div>
+        <div class="trust-kind">моя статья</div>
       </a>
       <a class="trust-item" href="https://secrets.tbank.ru/blogi-kompanij/gejmifikaciya-v-premium-nishe/" target="_blank" rel="noopener noreferrer">
         <div class="trust-name">Т-Бизнес секреты</div>
         <div class="trust-desc">Геймификация в премиум-нише: кейс архитектора</div>
+        <div class="trust-kind trust-kind-press">материал редакции</div>
       </a>
     </div>
   </div>
