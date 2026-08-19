@@ -583,9 +583,11 @@
     .case-ba-label.after  { color: var(--orange); }
     .case-ba-value {
       font-family: 'Bebas Neue', sans-serif;
-      font-size: 34px;
+      /* ужимаем на узких экранах, чтобы 7-значные числа не рвались на две строки */
+      font-size: clamp(21px, 5.4vw, 34px);
       line-height: 1;
       letter-spacing: 0.02em;
+      white-space: nowrap;
     }
     .case-ba-value.before { color: #555; }
     .case-ba-value.after  { color: var(--orange); }
@@ -870,6 +872,8 @@
       white-space: nowrap;
     }
     a.svc-btn:hover { background: var(--orange); color: #fff; }
+    a.svc-btn.svc-btn-main { background: var(--orange); color: #fff; }
+    a.svc-btn.svc-btn-main:hover { opacity: .88; }
     /* Price tag inside service card */
     .service-price {
       display: flex;
@@ -1143,20 +1147,36 @@
     @media (max-width: 600px) {
       #hero { min-height: auto; }
       section { padding: 60px 0; }
-      .hero-bg-left,
+      /* Один фон на весь блок вместо двух обрезков по краям */
+      .hero-bg-left { display: none; }
       .hero-bg-right {
         display: block;
-        max-width: 35%;
-        width: auto;
-        height: 45%;
-        top: 50%;
-        bottom: auto;
-        transform: translateY(-50%);
-        opacity: 0.35;
-        object-fit: contain;
+        left: 0; right: 0; top: 0; bottom: 0;
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        transform: none;
+        object-fit: cover;
+        object-position: 50% 12%;
+        opacity: 0.5;
+        -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 92%);
+        mask-image: linear-gradient(to bottom, black 40%, transparent 92%);
       }
-      .hero-bg-left  { left: -5%; }
-      .hero-bg-right { right: -5%; }
+      /* Затемнение под текстом, чтобы заголовок читался поверх фото */
+      #hero::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background: radial-gradient(ellipse at 50% 32%,
+          rgba(0,0,0,0.88) 0%,
+          rgba(0,0,0,0.66) 42%,
+          rgba(0,0,0,0.20) 100%);
+      }
+      /* Имя дублирует бейдж выше — на мобиле убираем, кнопка поднимается */
+      .hero-name { display: none; }
+      .hero-subtitle { font-size: 13.5px; line-height: 1.5; margin-bottom: 16px; }
       .hero-content {
         width: 100%;
         max-width: 100%;
@@ -1298,6 +1318,237 @@
       .faq summary { font-size: 0.82rem; padding: 16px 0; }
       .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
     }
+
+    /* ─── MOBILE STICKY CTA ─── */
+    .mobile-cta { display: none; }
+    @media (max-width: 768px) {
+      body { padding-bottom: 104px; }
+      .mobile-cta {
+        display: block;
+        position: fixed;
+        left: 0; right: 0; bottom: 0;
+        z-index: 200;
+        padding: 10px 14px;
+        padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+        background: rgba(10,10,10,0.94);
+        backdrop-filter: blur(12px);
+        border-top: 1px solid var(--border);
+        transform: translateY(130%);
+        transition: transform .28s ease;
+      }
+      .mobile-cta.visible { transform: translateY(0); }
+      .mobile-cta a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 15px 18px;
+        background: var(--orange);
+        color: #fff;
+        font-family: 'Inter', sans-serif;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 100px;
+      }
+      .mobile-cta-note {
+        margin: 6px 0 0;
+        text-align: center;
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        color: #7a7a7a;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mobile-cta { transition: none; }
+    }
+
+    /* ─── ПОЛОСА ДОВЕРИЯ ─── */
+    .trust {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #070707;
+      padding: 26px 0;
+    }
+    .trust-inner {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+    .trust-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #6a6a6a;
+      white-space: nowrap;
+    }
+    .trust-items {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .trust-item {
+      display: block;
+      flex: 1 1 200px;
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: #0b0b0b;
+      text-decoration: none;
+      transition: border-color .2s, transform .2s;
+    }
+    .trust-item:hover { border-color: rgba(244,103,42,0.5); transform: translateY(-2px); }
+    .trust-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 3px;
+    }
+    .trust-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #7e7e7e;
+      line-height: 1.4;
+    }
+    @media (max-width: 900px) {
+      .trust-inner { padding: 0 24px; gap: 16px; }
+    }
+    @media (max-width: 768px) {
+      .trust { padding: 18px 0; }
+      .trust-inner { flex-direction: column; align-items: stretch; gap: 10px; }
+      .trust-items { flex-direction: column; gap: 6px; }
+      .trust-item { flex: none; padding: 9px 13px; }
+      .trust-name { font-size: 13px; margin-bottom: 1px; }
+      .trust-desc { font-size: 11.5px; line-height: 1.35; }
+    }
+
+    /* ─── КТО Я ─── */
+    .about-me { padding: 80px 0; background: #060606; border-top: 1px solid var(--border); }
+    .about-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+    .about-photo {
+      width: 220px;
+      height: 220px;
+      border-radius: 16px;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+    .about-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.2rem, 2.4vw, 1.7rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .about-role {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--orange);
+      margin-bottom: 16px;
+    }
+    .about-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #9a9a9a;
+      margin-bottom: 12px;
+    }
+    .about-legal {
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      color: #6a6a6a;
+      margin-bottom: 20px;
+    }
+    .about-links { display: flex; gap: 12px; flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .about-me { padding: 48px 0; }
+      .about-inner {
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding: 0 16px;
+        justify-items: center;
+        text-align: center;
+      }
+      .about-photo { width: 160px; height: 160px; }
+      .about-links { justify-content: center; }
+      .about-text { font-size: 14px; }
+    }
+
+    .package-guarantee {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: #b9b9b9;
+      background: var(--orange-dim);
+      border: 1px solid var(--orange-border);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin: 0 0 18px;
+    }
+
+    /* ─── ОТЗЫВЫ И КЕЙСЫ ─── */
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .proof-card {
+      display: block;
+      padding: 24px 22px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg3);
+      text-decoration: none;
+      transition: border-color .2s, transform .2s;
+    }
+    .proof-card:hover { border-color: var(--orange-border); transform: translateY(-3px); }
+    .proof-icon { font-size: 22px; margin-bottom: 12px; }
+    .proof-name {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .proof-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 13.5px;
+      color: var(--muted);
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+    .proof-link { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--orange); }
+    @media (max-width: 900px) { .proof-grid { grid-template-columns: 1fr; } }
+
+    .cta-bonus {
+      margin-top: 22px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #8a8a8a;
+    }
+    .cta-bonus a { color: var(--orange); text-decoration: none; font-weight: 600; }
+    .cta-bonus a:hover { text-decoration: underline; }
   </style>
 
   <script type="application/ld+json">
@@ -1363,6 +1614,22 @@
       },
       {
         "@type": "Question",
+        "name": "Есть ли гарантии результата?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "На пакете «СИСТЕМА» минимальная гарантия такая: охваты вырастут минимум на 15 000, а посещения профиля увеличатся примерно втрое — за счёт AI-инструментов, которые внедряются в рамках пакета. Это работает, даже если клиент сам не ведёт страницу. Границы ответственности исполнителя описаны в условиях оказания услуг на bahramovai.com/blog/usloviya-okazaniya-uslug.html."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Через сколько будут первые результаты?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Первые результаты видно уже за первую неделю. Они отслеживаются по двум источникам: статистика аккаунта (охваты, посещения профиля) и внутренняя CRM сервиса — сколько людей заходит в воронку и какая по ней доходимость."
+        }
+      },
+      {
+        "@type": "Question",
         "name": "Где можно прочитать кейсы и статьи?",
         "acceptedAnswer": {
           "@type": "Answer",
@@ -1398,19 +1665,21 @@
   <div class="nav-logo">А<span>.</span>Бахрам</div>
   <a href="/blog/" class="nav-blog">Блог</a>
   <a href="/about.html" class="nav-blog">Обо мне</a>
-  <a href="https://t.me/bahramovartem_bot" class="nav-bonus" target="_blank" rel="noopener noreferrer">🎁 Бонусы</a>
+  <a href="https://t.me/bahramovartem_bot" class="nav-bonus" target="_blank" rel="noopener noreferrer">🎁 Мини-курс</a>
   <a href="https://t.me/bahramovartsiom" class="nav-cta" target="_blank" rel="noopener noreferrer">Получить бесплатный аудит →</a>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
   <picture>
+    <!-- На мобиле левый робот скрыт (CSS) — подсовываем пустышку, чтобы не тратить 106 КБ трафика -->
+    <source media="(max-width: 600px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" />
     <source srcset="robot.webp" type="image/webp" />
     <img class="hero-bg-left" src="robot.jpg" alt="" width="900" height="1200" decoding="async" fetchpriority="low" />
   </picture>
   <picture>
     <source srcset="hero-cyborg.webp" type="image/webp" />
-    <img class="hero-bg-right" src="hero-cyborg.jpg" alt="" width="900" height="1200" decoding="async" fetchpriority="low" />
+    <img class="hero-bg-right" src="hero-cyborg.jpg" alt="" width="900" height="1200" decoding="async" />
   </picture>
   <div class="hero-content">
     <div class="hero-eyebrow">
@@ -1426,7 +1695,7 @@
       <a href="https://t.me/bahramovartsiom" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
         Получить бесплатный аудит →
       </a>
-      <a href="#services" class="btn btn-outline">
+      <a href="#package" class="btn btn-outline">
         Услуги и цены
       </a>
     </div>
@@ -1436,6 +1705,59 @@
       <li>Чат-боты и автоматизация</li>
       <li>Защита аккаунта и стратегия</li>
     </ul>
+  </div>
+</section>
+
+<!-- ПОЛОСА ДОВЕРИЯ -->
+<section class="trust">
+  <div class="trust-inner">
+    <span class="trust-label">Обо мне пишут</span>
+    <div class="trust-items">
+      <a class="trust-item" href="https://vc.ru/marketing/2888231-kak-ai-agent-avtomatiziroval-instagram" target="_blank" rel="noopener noreferrer">
+        <div class="trust-name">vc.ru</div>
+        <div class="trust-desc">AI-агент заменил 3 менеджеров</div>
+      </a>
+      <a class="trust-item" href="https://vc.ru/marketing/2918649-massovye-blokirovki-instagram" target="_blank" rel="noopener noreferrer">
+        <div class="trust-name">vc.ru</div>
+        <div class="trust-desc">Массовые блокировки Instagram в мае 2026</div>
+      </a>
+      <a class="trust-item" href="https://secrets.tbank.ru/blogi-kompanij/gejmifikaciya-v-premium-nishe/" target="_blank" rel="noopener noreferrer">
+        <div class="trust-name">Т-Бизнес секреты</div>
+        <div class="trust-desc">Геймификация в премиум-нише: кейс архитектора</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ЗНАКОМАЯ СИТУАЦИЯ -->
+<section id="problems">
+  <div class="container">
+    <div class="case-header">
+      <div class="section-label" style="justify-content:center;">Знакомо?</div>
+      <h2>С чем ко мне <span class="accent">приходят чаще всего</span></h2>
+    </div>
+    <div class="problems-grid">
+      <div class="problem-card">
+        <div class="problem-num">01</div>
+        <h3>Аккаунт заблокировали — доступа нет</h3>
+        <p>Профиль отключён или ограничен, переписка с клиентами оборвалась, а поддержка отвечает шаблонами. Каждый день простоя — упущенные заявки.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">02</div>
+        <h3>Подписчики есть, а заявок нет</h3>
+        <p>Аудитория набрана, охваты идут, но в директ никто не пишет. Между просмотром и покупкой нет ничего, что доводило бы человека до разговора.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">03</div>
+        <h3>На контент не хватает времени</h3>
+        <p>Публикации выходят по вдохновению, а не по плану. Стоит выпасть на неделю — охваты падают, и всё приходится разгонять заново.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-num">04</div>
+        <h3>Заявки теряются в переписке</h3>
+        <p>Вопросы приходят круглосуточно, отвечать некому и некогда. Пока человек ждёт ответа, он уходит к тому, кто ответил быстрее.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1461,18 +1783,19 @@
         <div class="case-before-after">
           <div class="case-ba-block">
             <div class="case-ba-label before">До</div>
-            <div class="case-ba-value before">212 000</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
+            <div class="case-ba-value before">120 000</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:3px;">охватов за месяц</div>
           </div>
           <div class="case-ba-arrow">→</div>
           <div class="case-ba-block">
             <div class="case-ba-label after">После</div>
-            <div class="case-ba-value after">219 000</div>
-            <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
+            <div class="case-ba-value after">3 000 000</div>
+            <div style="font-size:11px;color:var(--muted);margin-top:3px;">охватов за месяц</div>
           </div>
         </div>
         <div class="case-metrics">
-          <span class="case-metric-tag">+400% охваты</span>
+          <span class="case-metric-tag">212K → 219K подписчиков</span>
+          <span class="case-metric-tag">+7 000 за 10 дней</span>
           <span class="case-metric-tag">+70% вовлечённость</span>
           <span class="case-metric-tag">без таргета</span>
         </div>
@@ -1481,7 +1804,7 @@
           <span class="case-tool">AI-автоматизация</span>
           <span class="case-tool">Reels-воронка</span>
         </div>
-        <div class="case-timing">7 дней до результата</div>
+        <div class="case-timing">10 дней до результата</div>
         <div class="case-card-footer" style="display:flex;gap:16px;flex-wrap:wrap;">
           <a href="https://www.instagram.com/eldarmurakov" class="case-link" target="_blank" rel="noopener">
             Смотреть аккаунт →
@@ -1510,13 +1833,13 @@
           <div class="case-ba-arrow">→</div>
           <div class="case-ba-block">
             <div class="case-ba-label after">После</div>
-            <div class="case-ba-value after">165 000</div>
+            <div class="case-ba-value after">255 000</div>
             <div style="font-size:11px;color:var(--muted);margin-top:3px;">подписчиков</div>
           </div>
         </div>
         <div class="case-metrics">
-          <span class="case-metric-tag">×487 рост</span>
-          <span class="case-metric-tag">с 300 до 146K</span>
+          <span class="case-metric-tag">×850 рост</span>
+          <span class="case-metric-tag">с 300 до 255K</span>
         </div>
         <div class="case-tools">
           <span class="case-tool">Контент-стратегия</span>
@@ -1534,112 +1857,6 @@
     </div>
     <div style="text-align:center; margin-top: 2rem;">
       <a href="https://t.me/bahramovartem/216" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Все кейсы клиентов →</a>
-    </div>
-  </div>
-</section>
-
-<!-- SERVICES -->
-<section id="services">
-  <div class="container">
-    <div class="services-header">
-      <div class="section-label">Услуги</div>
-      <h2>Выбери <span class="accent">свою задачу</span></h2>
-      <p style="color:var(--muted);font-size:16px;margin-top:12px;">Точечное решение или система под ключ. Под любой запрос</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card">
-        <div class="service-icon">⚙️</div>
-        <h3>Пакет СИСТЕМА</h3>
-        <div class="service-price">
-          <span class="service-price-value">39 900 ₽</span>
-        </div>
-        <p class="service-tagline">Всё под ключ. Окупается с первых 2-3 клиентов</p>
-        <ul>
-          <li>Аудит аккаунта и стратегическая сессия</li>
-          <li>Контент-стратегия на 3 месяца</li>
-          <li>AI-ассистент под твой голос</li>
-          <li>Чат-бот с воронкой продаж</li>
-          <li>Сопровождение 30 дней</li>
-          <li>AI-робот для роста видимости в поиске Instagram до +70%</li>
-          <li>Алгоритмизация постов и Reels в Интересное и Рекомендованное</li>
-          <li>Активность в сторис у аудитории конкурентов</li>
-          <li>Добавление подписчиков в Близкие друзья</li>
-          <li>Автоприветствие новым подписчикам в директ</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🔓</div>
-        <h3>Разблокировка аккаунта</h3>
-        <div class="service-price">
-          <span class="service-price-value">от 10 000 ₽</span>
-        </div>
-        <p class="service-tagline">Instagram и Telegram. Возврат взломанных аккаунтов</p>
-        <ul>
-          <li>Разблокировка забаненных аккаунтов</li>
-          <li>Возврат взломанного профиля</li>
-          <li>Защита и настройка 2FA после восстановления</li>
-          <li>Резервная система на случай повтора</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🧹</div>
-        <h3>Чистка от ботов</h3>
-        <div class="service-price">
-          <span class="service-price-value">16 000 ₽</span>
-        </div>
-        <p class="service-tagline">Безопасная очистка. Охваты растут, алгоритмы довольны</p>
-        <ul>
-          <li>Аудит подписчиков и выявление ботов</li>
-          <li>Поэтапная безопасная очистка</li>
-          <li>Повышение показателя вовлечённости</li>
-          <li>Рост органических охватов после чистки</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🚀</div>
-        <h3>Трафик + Воронка</h3>
-        <div class="service-price">
-          <span class="service-price-value">15 000 ₽/мес</span>
-        </div>
-        <p class="service-tagline">Автоматизированный трафик без рекламного бюджета</p>
-        <ul>
-          <li>AI-робот для роста видимости в поиске Instagram до +70%</li>
-          <li>Алгоритмизация постов и Reels в Интересное и Рекомендованное</li>
-          <li>Активность в сторис у аудитории конкурентов</li>
-          <li>Добавление всех подписчиков в Близкие друзья</li>
-          <li>Автоприветствие новым подписчикам в директ</li>
-          <li>Доступ к обучающим материалам по контенту</li>
-        </ul>
-        <p style="font-size:11px;color:var(--muted);margin-top:14px;letter-spacing:0.03em;">Ежемесячная подписка · Результат с первой недели</p>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">🤖</div>
-        <h3>AI-агент под ключ</h3>
-        <div class="service-price">
-          <span class="service-price-value">от 30 000 ₽</span>
-        </div>
-        <p class="service-tagline">Чат-бот который продаёт 24/7 пока ты спишь</p>
-        <ul>
-          <li>Разработка AI-агента под твою нишу</li>
-          <li>Автоворонка с квалификацией лидов</li>
-          <li>Интеграция с Telegram, Instagram</li>
-          <li>Подключение к CRM и оплатам</li>
-        </ul>
-      </div>
-      <div class="service-card">
-        <div class="service-icon">📱</div>
-        <h3>Разработка приложений</h3>
-        <div class="service-price">
-          <span class="service-price-value">Индивидуально</span>
-        </div>
-        <p class="service-tagline">MVP за 2 дня. От идеи до готового продукта</p>
-        <ul>
-          <li>Telegram Mini Apps под ключ</li>
-          <li>Чат-боты для Instagram, Telegram, TikTok</li>
-          <li>Сайты и лендинги</li>
-          <li>Срок и цена зависят от сложности задачи</li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -1686,6 +1903,26 @@
             <span class="pkg-item-num">08</span>
             <span>Сопровождение 30 дней: вопросы, корректировки, отчёты</span>
           </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">09</span>
+            <span>AI-робот для роста видимости в поиске Instagram до +70%</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">10</span>
+            <span>Алгоритмизация постов и Reels в Интересное и Рекомендованное</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">11</span>
+            <span>Активность в сторис у аудитории конкурентов</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">12</span>
+            <span>Добавление подписчиков в Близкие друзья</span>
+          </div>
+          <div class="pkg-item">
+            <span class="pkg-item-num">13</span>
+            <span>Автоприветствие новым подписчикам в директ</span>
+          </div>
         </div>
       </div>
       <div>
@@ -1693,6 +1930,7 @@
           <p class="price-label">Стоимость пакета</p>
           <div class="price-value"><span>39 900</span> ₽</div>
           <p class="price-sub">Единоразовый платёж · без скрытых комиссий</p>
+          <p class="package-guarantee">Минимальная гарантия: +15 000 охватов и рост посещений профиля в 3 раза за счёт AI-инструментов пакета — даже если ты не ведёшь страницу сам</p>
           <a href="https://t.me/bahramovartsiom" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
             Получить бесплатный аудит →
           </a>
@@ -1702,7 +1940,7 @@
           <div class="package-divider"></div>
           <p class="package-includes-label">В пакет входит</p>
           <ul class="package-card-list">
-            <li>8 блоков работы</li>
+            <li>13 блоков работы</li>
             <li>30 дней сопровождения</li>
             <li>Чат-бот под ключ</li>
             <li>AI-инструменты и шаблоны</li>
@@ -1711,6 +1949,196 @@
           <div class="package-divider"></div>
           <p class="package-card-note">Также доступны отдельные услуги.<br>Обсудим задачи и подберём формат под тебя.</p>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <div class="section-label">Услуги</div>
+      <h2>Или решить <span class="accent">одну задачу</span></h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;">Если вся система пока не нужна — берём точечно то, что горит</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" data-svc="unban">
+        <div class="service-icon">🔓</div>
+        <h3>Разблокировка аккаунта</h3>
+        <div class="service-price">
+          <span class="service-price-value">от 10 000 ₽</span>
+        </div>
+        <p class="service-tagline">Instagram и Telegram. Возврат взломанных аккаунтов</p>
+        <ul>
+          <li>Разблокировка забаненных аккаунтов</li>
+          <li>Возврат взломанного профиля</li>
+          <li>Защита и настройка 2FA после восстановления</li>
+          <li>Резервная система на случай повтора</li>
+        </ul>
+        <div class="service-card-btns">
+          <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
+          <a href="https://t.me/bahramreviews/24" class="svc-btn" target="_blank" rel="noopener noreferrer">Кейсы разбанов</a>
+          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX</a>
+        </div>
+      </div>
+      <div class="service-card" data-svc="bots">
+        <div class="service-icon">🧹</div>
+        <h3>Чистка от ботов</h3>
+        <div class="service-price">
+          <span class="service-price-value">16 000 ₽</span>
+        </div>
+        <p class="service-tagline">Безопасная очистка. Охваты растут, алгоритмы довольны</p>
+        <ul>
+          <li>Аудит подписчиков и выявление ботов</li>
+          <li>Поэтапная безопасная очистка</li>
+          <li>Повышение показателя вовлечённости</li>
+          <li>Рост органических охватов после чистки</li>
+        </ul>
+        <div class="service-card-btns">
+          <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Проверить мой аккаунт &rarr;</a>
+          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX</a>
+        </div>
+      </div>
+      <div class="service-card" data-svc="traffic">
+        <div class="service-icon">🚀</div>
+        <h3>Трафик + Воронка</h3>
+        <div class="service-price">
+          <span class="service-price-value">15 000 ₽/мес</span>
+        </div>
+        <p class="service-tagline">Автоматизированный трафик без рекламного бюджета</p>
+        <ul>
+          <li>AI-робот для роста видимости в поиске Instagram до +70%</li>
+          <li>Алгоритмизация постов и Reels в Интересное и Рекомендованное</li>
+          <li>Активность в сторис у аудитории конкурентов</li>
+          <li>Добавление всех подписчиков в Близкие друзья</li>
+          <li>Автоприветствие новым подписчикам в директ</li>
+          <li>Доступ к обучающим материалам по контенту</li>
+        </ul>
+        <p style="font-size:11px;color:var(--muted);margin-top:14px;letter-spacing:0.03em;">Ежемесячная подписка · Результат с первой недели</p>
+        <div class="service-card-btns">
+          <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Подключить трафик &rarr;</a>
+          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX</a>
+        </div>
+      </div>
+      <div class="service-card" data-svc="agent">
+        <div class="service-icon">🤖</div>
+        <h3>AI-агент под ключ</h3>
+        <div class="service-price">
+          <span class="service-price-value">от 30 000 ₽</span>
+        </div>
+        <p class="service-tagline">Чат-бот который продаёт 24/7 пока ты спишь</p>
+        <ul>
+          <li>Разработка AI-агента под твою нишу</li>
+          <li>Автоворонка с квалификацией лидов</li>
+          <li>Интеграция с Telegram, Instagram</li>
+          <li>Подключение к CRM и оплатам</li>
+        </ul>
+        <div class="service-card-btns">
+          <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
+          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX</a>
+        </div>
+      </div>
+      <div class="service-card" data-svc="apps">
+        <div class="service-icon">📱</div>
+        <h3>Разработка приложений</h3>
+        <div class="service-price">
+          <span class="service-price-value">Индивидуально</span>
+        </div>
+        <p class="service-tagline">MVP за 2 дня. От идеи до готового продукта</p>
+        <ul>
+          <li>Telegram Mini Apps под ключ</li>
+          <li>Чат-боты для Instagram, Telegram, TikTok</li>
+          <li>Сайты и лендинги</li>
+          <li>Срок и цена зависят от сложности задачи</li>
+        </ul>
+        <div class="service-card-btns">
+          <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить проект &rarr;</a>
+          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- КАК ПРОХОДИТ РАБОТА -->
+<section id="steps">
+  <div class="container">
+    <div class="case-header">
+      <div class="section-label" style="justify-content:center;">Как это устроено</div>
+      <h2>Как проходит <span class="accent">работа</span></h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-circle">1</div>
+        <h3>Пишешь в Telegram</h3>
+        <p>Рассказываешь, что за проект и что сейчас не работает. Без анкет и брифов на десять страниц.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-circle">2</div>
+        <h3>Бесплатный разбор</h3>
+        <p>Смотрю аккаунт и ситуацию, говорю, что можно сделать и с чего начинать. Это ни к чему не обязывает.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-circle">3</div>
+        <h3>Формат и смета</h3>
+        <p>Предлагаю решение: пакет «СИСТЕМА» целиком или одна точечная услуга. Ты решаешь, что берём.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-circle">4</div>
+        <h3>Работа и сопровождение</h3>
+        <p>Первые результаты видны за неделю. Отслеживаем по статистике аккаунта и CRM: сколько людей заходит в воронку и какая доходимость.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ОТЗЫВЫ И КЕЙСЫ -->
+<section id="proof">
+  <div class="container">
+    <div class="case-header">
+      <div class="section-label" style="justify-content:center;">Доказательства</div>
+      <h2>Отзывы и <span class="accent">кейсы клиентов</span></h2>
+      <p style="color:var(--muted);font-size:16px;margin-top:12px;">Живые переписки, скриншоты статистики и разборы работ — всё в Telegram</p>
+    </div>
+    <div class="proof-grid">
+      <a class="proof-card" href="https://t.me/bahramreviews/24" target="_blank" rel="noopener noreferrer">
+        <div class="proof-icon">💬</div>
+        <div class="proof-name">Разбаны</div>
+        <div class="proof-desc">Канал с отзывами и кейсами по восстановлению заблокированных аккаунтов.</div>
+        <div class="proof-link">Смотреть отзывы &rarr;</div>
+      </a>
+      <a class="proof-card" href="https://t.me/+_lPPCY5t-1EyMGFl" target="_blank" rel="noopener noreferrer">
+        <div class="proof-icon">📈</div>
+        <div class="proof-name">Кейсы</div>
+        <div class="proof-desc">Закрытый канал с разборами проектов: что делали и какой получился результат.</div>
+        <div class="proof-link">Открыть кейсы &rarr;</div>
+      </a>
+      <a class="proof-card" href="https://t.me/bahramovartem" target="_blank" rel="noopener noreferrer">
+        <div class="proof-icon">🗂</div>
+        <div class="proof-name">Портфолио</div>
+        <div class="proof-desc">Канал с работами: аккаунты клиентов, воронки, чат-боты и результаты по ним.</div>
+        <div class="proof-link">Смотреть портфолио &rarr;</div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- КТО Я -->
+<section class="about-me" id="about-me">
+  <div class="about-inner">
+    <picture>
+      <source srcset="me.webp" type="image/webp" />
+      <img src="me.jpg" alt="Артём Бахрам — AI-стратег" class="about-photo" width="220" height="220" loading="lazy" decoding="async" />
+    </picture>
+    <div>
+      <div class="about-name">Артём Бахрам</div>
+      <div class="about-role">AI-стратег · Нячанг, Вьетнам</div>
+      <p class="about-text">Работаю дистанционно с предпринимателями и небольшими командами из России, Беларуси, Казахстана и других стран СНГ. Настраиваю чат-ботов и AI-агентов, которые отвечают вместо менеджеров и ведут клиента по воронке. Строю контент-стратегии, чтобы соцсети работали системно, а не «когда есть вдохновение».</p>
+      <p class="about-legal">Самозанятый, Республика Беларусь · УНП KB3551682</p>
+      <div class="about-links">
+        <a href="/about.html" class="btn btn-outline">Подробнее обо мне</a>
+        <a href="https://t.me/bahramovartsiom" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Написать в Telegram &rarr;</a>
       </div>
     </div>
   </div>
@@ -1806,6 +2234,20 @@
     </details>
 
     <details>
+      <summary>Есть ли гарантии результата?</summary>
+      <div class="faq-answer">
+        На пакете «СИСТЕМА» минимальная гарантия такая: охваты вырастут минимум на 15 000, а посещения профиля увеличатся примерно втрое — за счёт AI-инструментов, которые внедряются в рамках пакета. Это работает, даже если ты сам не ведёшь страницу. Границы ответственности исполнителя описаны в <a href="/blog/usloviya-okazaniya-uslug.html">условиях оказания услуг</a>.
+      </div>
+    </details>
+
+    <details>
+      <summary>Через сколько будут первые результаты?</summary>
+      <div class="faq-answer">
+        Первые результаты видно уже за первую неделю. Мы отслеживаем их по двум источникам: статистика самого аккаунта (охваты, посещения профиля) и внутренняя CRM сервиса — сколько людей заходит в воронку и какая по ней доходимость. То есть эффект виден в цифрах, а не на ощущениях.
+      </div>
+    </details>
+
+    <details>
       <summary>Где можно прочитать кейсы и статьи?</summary>
       <div class="faq-answer">
         Блог на bahramovai.com/blog содержит 20+ статей про AI-агентов, автоматизацию Instagram, защиту от блокировок и стратегии роста. Также публикуются материалы на vc.ru в разделе Маркетинг и в LinkedIn. На YouTube канале @bahramovai — короткие видео и скринкасты по теме.
@@ -1825,11 +2267,20 @@
       <a href="https://t.me/bahramovartsiom" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
         Получить бесплатный аудит →
       </a>
+      <p class="cta-bonus">Пока думаешь — забери бесплатно:<br>
+        <a href="https://t.me/bahramovartem_bot" target="_blank" rel="noopener noreferrer">мини-курс по созданию воронок и закрытый канал с уроками по разгону Reels через AI &rarr;</a>
+      </p>
     </div>
   </div>
 </section>
 
 <!-- FOOTER -->
+
+<!-- MOBILE STICKY CTA -->
+<div class="mobile-cta" id="mobileCta">
+  <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer">Получить бесплатный аудит &rarr;</a>
+  <p class="mobile-cta-note">Отвечаю лично. Без ботов и рассылок.</p>
+</div>
 
 <script>
   function switchTab(id, el) {
@@ -1847,29 +2298,63 @@
         e.target.style.transform = 'translateY(0)';
       }
     });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.service-card').forEach(card => {
-    const btns = document.createElement('div');
-    btns.className = 'service-card-btns';
-    btns.innerHTML =
-      '<a href="https://t.me/bahramovartsiom" class="svc-btn" target="_blank" rel="noopener noreferrer">Telegram →</a>' +
-      '<a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">MAX →</a>';
-    card.appendChild(btns);
-  });
-
-  const unbanCard = Array.from(document.querySelectorAll('.service-card')).find(c => c.querySelector('h3')?.textContent.includes('Разблокировка'));
-  if (unbanCard) {
-    const btnsDiv = unbanCard.querySelector('.service-card-btns');
-    if (btnsDiv) btnsDiv.insertAdjacentHTML('beforeend', '<a href="https://t.me/bahramreviews/24" class="svc-btn" target="_blank" rel="noopener noreferrer">Кейсы разбанов →</a>');
-  }
+  }, { threshold: 0.01, rootMargin: '0px 0px 18% 0px' });
 
   document.querySelectorAll('.service-card, .case-stat, .pkg-item').forEach(el => {
     el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity .5s ease, transform .5s ease, border-color .2s';
+    el.style.transform = 'translateY(12px)';
+    el.style.transition = 'opacity .32s ease, transform .32s ease, border-color .2s';
     observer.observe(el);
   });
+
+  // Липкая кнопка на мобиле: показываем, как только hero ушёл за экран
+  (function () {
+    var bar = document.getElementById('mobileCta');
+    var hero = document.getElementById('hero');
+    if (!bar || !hero) return;
+    var finalCta = document.getElementById('cta');
+    function updateBar() {
+      var pastHero = hero.getBoundingClientRect().bottom <= 0;
+      // не дублируем финальную кнопку, когда она сама на экране
+      var finalOnScreen = finalCta
+        ? finalCta.getBoundingClientRect().top < window.innerHeight - 60
+        : false;
+      bar.classList.toggle('visible', pastHero && !finalOnScreen);
+    }
+    window.addEventListener('scroll', updateBar, { passive: true });
+    window.addEventListener('resize', updateBar);
+    updateBar();
+  })();
+
+  // Цели Яндекс.Метрики: какая кнопка и в каком блоке принесла обращение
+  (function () {
+    var COUNTER = 110081984;
+    function place(a) {
+      if (a.closest('.mobile-cta'))  return 'sticky';
+      if (a.closest('nav'))          return 'nav';
+      if (a.closest('#hero'))        return 'hero';
+      if (a.closest('#case'))        return 'case';
+      if (a.closest('#package'))     return 'package';
+      if (a.closest('#proof'))       return 'proof';
+      if (a.closest('.about-me'))    return 'about';
+      if (a.closest('#cta'))         return 'final';
+      var card = a.closest('.service-card');
+      if (card) return 'service_' + (card.getAttribute('data-svc') || 'other');
+      return 'other';
+    }
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      var isTg = href.indexOf('t.me/') !== -1;
+      var isMax = href.indexOf('max.ru/') !== -1;
+      if (!isTg && !isMax) return;
+      var name = href.indexOf('bahramovartem_bot') !== -1
+        ? 'bonus_click'
+        : (isMax ? 'max_' : 'tg_') + place(a);
+      if (typeof window.ym === 'function') window.ym(COUNTER, 'reachGoal', name);
+    }, true);
+  })();
 </script>
 
 <footer style="
