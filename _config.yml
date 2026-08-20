@@ -1,0 +1,22 @@
+# GitHub Pages (Jekyll) — что НЕ выкладывать на сайт.
+# Эти файлы нужны в репозитории для работы, но не должны отдаваться по HTTP:
+# в них внутренняя кухня — цены, имена клиентов, ID каналов, ClientID приложений.
+# robots.txt тут не помощник: он лишь просит не индексировать, а файл всё равно
+# доступен любому, кто знает адрес.
+exclude:
+  - CLAUDE.md
+  - PROJECT-BLUEPRINT.md
+  - STATUS.md
+  - SESSION-END.md
+  - NEXT-SESSION.md
+  - DISTRIBUTION-PLAN.md
+  - README.md
+  - publish-article.sh
+  - link_plan.py
+  - telegram-post.txt
+  - scripts/
+  - drafts/
+  - files/
+  - .githooks/
+  - .claude/
+  - .env
