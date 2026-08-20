@@ -170,8 +170,11 @@
     }
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .related-card {
       background: #0a0a0a;
@@ -428,6 +431,11 @@
       <a href="/blog/telegram-sales-funnel.html" class="related-card">
         <h3>Воронка продаж в Telegram</h3>
         <p>Как выстроить путь клиента от первого сообщения до оплаты в мессенджере.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html" class="related-card">
+        <h3>Блокировка Instagram в 2026: что делать</h3>
+        <p>Разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта.</p>
         <span>Читать →</span>
       </a>
     </div>

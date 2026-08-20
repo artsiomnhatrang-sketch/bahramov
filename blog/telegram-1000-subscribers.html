@@ -161,8 +161,11 @@
     }
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .related-card {
       background: #0a0a0a;
@@ -506,6 +509,11 @@
       <a href="/blog/personal-brand-ai-strategy.html" class="related-card">
         <h3>Личный бренд + AI-стратегия</h3>
         <p>Как использовать нейросети для роста аудитории, не теряя живого авторского голоса.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html" class="related-card">
+        <h3>Пакет «СИСТЕМА»: что входит</h3>
+        <p>13 блоков работы, условия оплаты и возврата, к какому ориентиру ведём.</p>
         <span>Читать →</span>
       </a>
     </div>

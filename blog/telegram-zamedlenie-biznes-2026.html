@@ -170,8 +170,11 @@
     }
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .related-card {
       background: #0a0a0a;
@@ -426,6 +429,11 @@
       <a href="/blog/train-ai-agent-like-manager.html" class="related-card">
         <h3>Обучение AI-агента</h3>
         <p>Как научить бота отвечать как живой менеджер — пошаговый гайд.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/telegram-akkaunt-ugon-fishing-2026.html" class="related-card">
+        <h3>Как угоняют аккаунты в Telegram</h3>
+        <p>Схемы фишинга 2026 и что реально защищает от потери канала.</p>
         <span>Читать →</span>
       </a>
     </div>

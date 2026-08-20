@@ -170,8 +170,11 @@
     }
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .related-card {
       background: #0a0a0a;
@@ -480,6 +483,11 @@
       <a href="/blog/ai-agents-2026.html" class="related-card">
         <h3>AI-агенты в 2026</h3>
         <p>Что это, зачем бизнесу и как внедрить — без хайпа и лишней теории.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/telegram-ai-agenty-konstruktor-2026.html" class="related-card">
+        <h3>Нативные AI-агенты в Telegram</h3>
+        <p>Когда хватает встроенного конструктора, а когда нужна внешняя платформа.</p>
         <span>Читать →</span>
       </a>
     </div>

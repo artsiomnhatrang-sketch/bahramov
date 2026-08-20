@@ -180,8 +180,11 @@
     }
     .related-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, 1fr);
       gap: 20px;
+    }
+    @media (max-width: 1100px) {
+      .related-grid { grid-template-columns: repeat(2, 1fr); }
     }
     .related-card {
       background: #0a0a0a;
@@ -504,6 +507,11 @@
       <a href="/blog/whatsapp-blokirovka-biznes-2026.html" class="related-card">
         <h3>Блокировка WhatsApp</h3>
         <p>Как перенести клиентов из WhatsApp в Telegram или MAX без потерь.</p>
+        <span>Читать →</span>
+      </a>
+      <a href="/blog/chatbot-cost-2026.html" class="related-card">
+        <h3>Сколько стоит чат-бот для бизнеса</h3>
+        <p>Уровни решений, из чего складывается цена и когда бот окупается.</p>
         <span>Читать →</span>
       </a>
     </div>
