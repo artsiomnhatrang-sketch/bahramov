@@ -98,6 +98,13 @@ if os.path.isfile("sitemap.xml"):
     smpaths={local(l) for l in locs}
     for f in files:
         if f=="blog/index.html" or "/" not in f: continue
+        # страницы-редиректы (переехавшие адреса) намеренно вне sitemap:
+        # у них noindex + canonical на новый адрес
+        try:
+            head = Path(f).read_text(encoding="utf-8", errors="replace")[:2000]
+        except OSError:
+            head = ""
+        if 'name="robots"' in head and "noindex" in head: continue
         if f not in smpaths: sm.append(f"НЕ в sitemap: {f}")
     for l in locs:
         r=local(l)

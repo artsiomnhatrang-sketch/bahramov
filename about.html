@@ -311,6 +311,19 @@
       .faq summary { font-size: 0.82rem; padding: 16px 0; }
       .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
     }
+  
+    /* Шапка на узких экранах: после добавления пункта «Услуги» пунктам стало тесно */
+    @media (max-width: 620px) {
+      nav { padding: 14px 16px; gap: 10px; }
+      .nav-logo { font-size: 13px; }
+      .nav-links { gap: 14px; }
+      nav a.nav-link { font-size: 12px; }
+    }
+    @media (max-width: 430px) {
+      .nav-links { gap: 11px; }
+      nav a.nav-link { font-size: 11.5px; }
+      nav a.nav-bonus { padding: 6px 10px; font-size: 11.5px; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -385,6 +398,7 @@
 <nav>
   <a href="/" class="nav-logo">А<span>.</span>Бахрам</a>
   <div class="nav-links">
+    <a href="/uslugi/" class="nav-link">Услуги</a>
     <a href="/blog/" class="nav-link">Блог</a>
     <a href="/about.html" class="nav-link active">Обо мне</a>
     <a href="https://t.me/bahramovartem_bot" class="nav-bonus" target="_blank" rel="noopener noreferrer">🎁 Бонусы</a>
@@ -547,6 +561,20 @@
         <span class="link-card-icon">🔓</span>
         <div class="link-card-title">Блокировка Instagram</div>
         <div class="link-card-desc">Полный разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта</div>
+        <div class="link-card-arrow">Читать →</div>
+      </a>
+
+      <a href="/uslugi/razblokirovka-instagram.html" class="link-card">
+        <span class="link-card-icon">🔑</span>
+        <div class="link-card-title">Разблокировка аккаунта</div>
+        <div class="link-card-desc">Instagram и Telegram: что входит в работу, сколько стоит и чего я не обещаю</div>
+        <div class="link-card-arrow">Читать →</div>
+      </a>
+
+      <a href="/uslugi/ai-agent.html" class="link-card">
+        <span class="link-card-icon">🤖</span>
+        <div class="link-card-title">AI-агент под ключ</div>
+        <div class="link-card-desc">Кому агент нужен, а кому нет, как проходит работа и из чего складывается цена</div>
         <div class="link-card-arrow">Читать →</div>
       </a>
 
@@ -718,6 +746,7 @@
     <a href="/">Главная</a><span class="dot">·</span>
     <a href="/blog/">Блог</a><span class="dot">·</span>
     <a href="/about.html">Обо мне</a><span class="dot">·</span>
+    <a href="/uslugi/">Услуги</a><span class="dot">·</span>
     <a href="/offer.html">Публичная оферта</a><span class="dot">·</span>
     <a href="/privacy.html">Политика конфиденциальности</a>
   </p>

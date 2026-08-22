@@ -1495,6 +1495,22 @@
       margin: -8px 0 20px;
     }
     @media (max-width: 600px) { .hero-cta-note { margin: -4px auto 18px; text-align: center; } }
+  
+    /* nav-mobile-fix: после появления пункта «Услуги» шапка на узких экранах
+       налезала сама на себя. Сжимаем, а на самых узких прячем «Обо мне»
+       (ссылка остаётся в подвале) и укорачиваем бонусную кнопку. */
+    @media (max-width: 700px) {
+      nav { padding: 14px 16px; gap: 10px; }
+      .nav-logo { font-size: 13px; white-space: nowrap; }
+      nav a.nav-blog { font-size: 12px; white-space: nowrap; }
+      nav a.nav-bonus { font-size: 12px; padding: 7px 12px; white-space: nowrap; }
+    }
+    @media (max-width: 480px) {
+      nav { gap: 8px; padding: 12px 14px; }
+      nav a.nav-blog { font-size: 11.5px; }
+      nav a.nav-blog[href="/about.html"] { display: none; }
+      nav a.nav-bonus { font-size: 11.5px; padding: 6px 10px; }
+    }
   </style>
 
   <script type="application/ld+json">
@@ -1609,6 +1625,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">А<span>.</span>Бахрам</div>
+  <a href="/uslugi/" class="nav-blog">Услуги</a>
   <a href="/blog/" class="nav-blog">Блог</a>
   <a href="/about.html" class="nav-blog">Обо мне</a>
   <a href="https://t.me/bahramovartem_bot" class="nav-bonus" target="_blank" rel="noopener noreferrer">🎁 Мини-курс</a>
@@ -1889,9 +1906,9 @@
           <p class="package-includes-label">Как проходит оплата</p>
           <ul class="package-card-list">
             <li>Работаем по <a href="offer.html" style="color:var(--orange);text-decoration:none;">публичной оферте</a>, чек самозанятого</li>
-            <li>Оплата до начала работ</li>
+            <li>Оплата до начала работ, по разблокировке — 50% до и 50% после</li>
             <li><strong style="color:#fff;">Передумал до старта — возвращаю 100%</strong></li>
-            <li>После старта — возврат за невыполненную часть</li>
+            <li>После старта — возврат за невыполненную часть за вычетом расходов</li>
           </ul>
           <div class="package-divider"></div>
           <p class="package-includes-label">В пакет входит</p>
@@ -1918,11 +1935,12 @@
       <div class="section-label">Услуги</div>
       <h2>Или решить <span class="accent">одну задачу</span></h2>
       <p style="color:var(--muted);font-size:16px;margin-top:12px;">Если вся система пока не нужна — берём точечно то, что горит</p>
+      <p style="margin-top:10px;"><a href="/uslugi/" style="color:var(--orange);text-decoration:none;font-weight:600;">Все услуги одной страницей &rarr;</a></p>
     </div>
     <div class="services-grid">
       <div class="service-card" data-svc="unban">
         <div class="service-icon">🔓</div>
-        <h3>Разблокировка аккаунта</h3>
+        <h3><a href="/uslugi/razblokirovka-instagram.html" style="color:inherit;text-decoration:none;">Разблокировка аккаунта</a></h3>
         <div class="service-price">
           <span class="service-price-value">от 10 000 ₽</span>
         </div>
@@ -1938,11 +1956,12 @@
           <a href="https://t.me/bahramreviews/24" class="svc-btn" target="_blank" rel="noopener noreferrer">Кейсы разбанов</a>
           <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
         </div>
+        <p class="svc-more"><a href="/uslugi/razblokirovka-instagram.html">Подробнее об услуге и цене &rarr;</a></p>
         <p class="svc-more"><a href="/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html">Что делать при блокировке — полный разбор по ситуациям &rarr;</a></p>
       </div>
       <div class="service-card" data-svc="bots">
         <div class="service-icon">🧹</div>
-        <h3>Чистка от ботов</h3>
+        <h3><a href="/blog/instagram-chistka-ot-botov-2026.html" style="color:inherit;text-decoration:none;">Чистка от ботов</a></h3>
         <div class="service-price">
           <span class="service-price-value">16 000 ₽</span>
         </div>
@@ -1957,11 +1976,12 @@
           <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Проверить мой аккаунт &rarr;</a>
           <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
         </div>
+        <p class="svc-more"><a href="/blog/instagram-chistka-ot-botov-2026.html">Подробнее об услуге и цене &rarr;</a></p>
         <p class="svc-more"><a href="/blog/instagram-chistka-ot-botov-2026.html">Как считается доля накрутки и что меняется после чистки &rarr;</a></p>
       </div>
       <div class="service-card" data-svc="traffic">
         <div class="service-icon">🚀</div>
-        <h3>Трафик + Воронка</h3>
+        <h3><a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html" style="color:inherit;text-decoration:none;">Трафик + Воронка</a></h3>
         <div class="service-price">
           <span class="service-price-value">17 000 ₽/мес</span>
         </div>
@@ -1979,11 +1999,12 @@
           <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Подключить трафик &rarr;</a>
           <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
         </div>
+        <p class="svc-more"><a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html">Подробнее об услуге и цене &rarr;</a></p>
         <p class="svc-more"><a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html">Что входит в продвижение и как устроена механика &rarr;</a></p>
       </div>
       <div class="service-card" data-svc="agent">
         <div class="service-icon">🤖</div>
-        <h3>AI-агент под ключ</h3>
+        <h3><a href="/uslugi/ai-agent.html" style="color:inherit;text-decoration:none;">AI-агент под ключ</a></h3>
         <div class="service-price">
           <span class="service-price-value">от 30 000 ₽</span>
         </div>
@@ -1998,6 +2019,7 @@
           <a href="https://t.me/bahramovartsiom" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
           <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
         </div>
+        <p class="svc-more"><a href="/uslugi/ai-agent.html">Подробнее об услуге и цене &rarr;</a></p>
         <p class="svc-more"><a href="/blog/chatbot-cost-2026.html">Из чего складывается цена чат-бота и когда он окупается &rarr;</a></p>
       </div>
       <div class="service-card" data-svc="apps">
@@ -2163,7 +2185,7 @@
     <details>
       <summary>Что делать, если Instagram заблокировал аккаунт?</summary>
       <div class="faq-answer">
-        В зависимости от типа блокировки используется один из подходов: апелляция через официальные каналы Meta, восстановление через альтернативные методы, защита нового аккаунта от повторной блокировки. Стоимость разблокировки — от 10 000 ₽, срок работы 1–7 дней. После восстановления настраивается 2FA и резервная система на случай повтора.
+        В зависимости от типа блокировки используется один из подходов: апелляция через официальные каналы Meta, восстановление через альтернативные методы, защита нового аккаунта от повторной блокировки. Стоимость разблокировки — от 10 000 ₽, срок работы 1–7 дней в зависимости от сложности блокировки. Оплата по этой услуге делится: 50% до начала работ и 50% после восстановления доступа. После восстановления настраивается 2FA и резервная система на случай повтора.
       </div>
     </details>
 

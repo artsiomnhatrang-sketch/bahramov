@@ -524,6 +524,19 @@
     @media (max-width: 768px) {
       .related-grid { grid-template-columns: 1fr; }
     }
+  
+    /* Шапка на узких экранах: после добавления пункта «Услуги» пунктам стало тесно */
+    @media (max-width: 620px) {
+      nav { padding: 14px 16px; gap: 10px; }
+      .nav-logo { font-size: 13px; }
+      .nav-links { gap: 14px; }
+      nav a.nav-link { font-size: 12px; }
+    }
+    @media (max-width: 430px) {
+      .nav-links { gap: 11px; }
+      nav a.nav-link { font-size: 11.5px; }
+      nav a.nav-bonus { padding: 6px 10px; font-size: 11.5px; }
+    }
   </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
@@ -549,6 +562,7 @@
 <nav>
   <a href="/" class="nav-logo">А<span>.</span>Бахрам</a>
   <div class="nav-links">
+    <a href="/uslugi/" class="nav-link">Услуги</a>
     <a href="/blog/" class="nav-link">Блог</a>
     <a href="/about.html" class="nav-link">Обо мне</a>
     <a href="https://t.me/bahramovartem_bot" class="nav-link" target="_blank" rel="noopener noreferrer">🎁 Бонусы</a>
@@ -703,6 +717,9 @@
     <p>Если вы строите легальную коммерческую воронку в Instagram и хотите автоматизировать часть коммуникации — напишите мне в Telegram, разберём вашу ситуацию.</p>
 
     <!-- FAQ -->
+    <div data-svc-link style="border-left:3px solid #f4672a;background:rgba(244,103,42,0.07);padding:14px 18px;margin:32px 0 8px;border-radius:0 8px 8px 0">
+      <p style="margin:0;font-size:15px;line-height:1.65;color:#d8d8d8"><strong style="color:#e8e8e8">Аккаунт уже заблокировали?</strong> Если профиль уже отключили или ограничили действия, статья про профилактику уже не поможет — там другой порядок действий. Смотрите, что входит в работу и сколько стоит: <a href="/uslugi/razblokirovka-instagram.html" style="color:#f4672a">разблокировка Instagram и Telegram</a>.</p>
+    </div>
     <section class="faq">
       <h2>Частые вопросы</h2>
 
@@ -740,6 +757,7 @@
   <div style="font-family:'Unbounded',sans-serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:6px;">Трафик + Воронка — 17 000 ₽/мес</div>
   <p style="font-size:14.5px;line-height:1.6;color:#a5a5a5;margin:0 0 16px;">Вывод профиля в поиск и рекомендованное, работа с аудиторией конкурентов, автоприветствие новым подписчикам.</p>
   <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f4672a;color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:12px 24px;border-radius:100px;">Подключить трафик →</a>
+  <a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html" style="display:inline-block;margin-left:16px;font-size:14px;font-weight:600;color:#f4672a;text-decoration:none;">Подробнее об услуге &rarr;</a>
   <div style="font-size:12px;color:#7a7a7a;margin-top:12px;">Сначала бесплатный разбор — посмотрю ситуацию и скажу, что делать. Ни к чему не обязывает.</div>
 </div>
 
