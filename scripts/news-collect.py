@@ -50,8 +50,14 @@ FEEDS = [
     # Русскоязычные IT-медиа
     ("ru", "Habr / ИИ", "https://habr.com/ru/rss/hubs/artificial_intelligence/articles/?fl=ru"),
     ("ru", "vc.ru", "https://vc.ru/rss/all"),
-    # Платформы: политики, блокировки, API
+    ("ru", "РБК", "https://rssexport.rbc.ru/rbcnews/news/30/full.rss"),
+    # Платформы: политики, блокировки, суды, регуляторка.
+    # Эта ветка кормит кластер разбанов — самые «денежные» новости приходят сюда.
     ("platform", "Meta Newsroom", "https://about.fb.com/news/feed/"),
+    ("platform", "The Verge Meta", "https://www.theverge.com/rss/meta/index.xml"),
+    ("platform", "The Verge Policy", "https://www.theverge.com/rss/policy/index.xml"),
+    ("platform", "TechCrunch Social", "https://techcrunch.com/category/social/feed/"),
+    ("platform", "Social Media Today", "https://www.socialmediatoday.com/feeds/news/"),
 ]
 
 # Русские Telegram-каналы (читаются через веб-зеркало t.me/s/<name> — публичное,
@@ -62,22 +68,32 @@ TG_CHANNELS = [
     ("tg", "@seeallochnaya", "seeallochnaya"),
     ("tg", "@denissexy", "denissexy"),
     ("platform", "@telegram", "telegram"),
+    ("platform", "@durov", "durov"),
 ]
 
 # У Anthropic публичного RSS нет (проверено: /rss.xml и /news/rss.xml отдают 404),
 # их анонсы приходят через TechCrunch, The Verge и каналы выше.
+# У блогов Telegram и Instagram рабочего RSS тоже нет (telegram.org/blog/rss
+# отдаёт HTML, about.instagram.com/blog/rss.xml — пустой), поэтому обе площадки
+# читаются через веб-зеркала каналов @telegram и @durov.
 
 # ------------------------------------------------------- фильтры релевантности
 
 # Широкие ленты (vc.ru, отчасти каналы) тащат всё подряд — прогоняем через
 # ключевые слова ниши. Профильные ИИ-ленты фильтровать не нужно.
-BROAD_SOURCES = {"vc.ru", "@telegram"}
+BROAD_SOURCES = {"vc.ru", "@telegram", "РБК", "The Verge Policy"}
 
+# Только НИШЕВЫЕ ключи: платформы и ИИ. Юридические слова («суд», «штраф»,
+# «иск») сюда не добавлять — в широких лентах они ловят спорт и криминал
+# («Месси оштрафовали»), а в узких платформенных лентах фильтр не применяется
+# вовсе, так что пользы от них нет.
 KEYWORDS = [
     "нейросет", "нейронк", "chatgpt", "openai", "anthropic", "claude",
     "gemini", "агент", "автоматизац", "instagram", "инстаграм", "telegram",
     "телеграм", "whatsapp", "блокиров", "аккаунт", "модерац", "алгоритм",
     "рилс", "midjourney", "deepseek", "нейро",
+    "tiktok", "тикток", "youtube", "ютуб", "соцсет", "социальных сет",
+    "роскомнадзор", "шедоубан", "теневой бан", "shadowban", "moderat",
 ]
 
 # Короткие и многозначные ключи — только как отдельные слова, иначе «ai» ловится
@@ -85,6 +101,7 @@ KEYWORDS = [
 KEYWORDS_EXACT = [
     "ии", "ai", "gpt", "llm", "agent", "бот", "боты", "bot", "meta", "мета",
     "бан", "баны", "reels", "sora", "veo", "grok", "llama", "mistral", "qwen",
+    "ban", "bans", "banned",
 ]
 EXACT_RE = re.compile(
     r"(?<![a-zа-яё0-9])(" + "|".join(KEYWORDS_EXACT) + r")(?![a-zа-яё0-9])"
