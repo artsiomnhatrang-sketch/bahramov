@@ -72,7 +72,9 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 - Ветка: main
 - Локальная папка: ~/Developer/bahramov/
 - DNS: 4 A-записи на GitHub Pages IP (185.199.108-111.153) + CNAME www → artsiomnhatrang-sketch.github.io
-- HTTPS: включён
+- HTTPS: включён. **Enforce HTTPS включён 22.08.2026** через API GitHub Pages
+  (до этого сайт отдавался и по http:// с кодом 200 — дубли всех URL и минус в ранжировании).
+  Проверять так: `curl -sI http://bahramovai.com/` должен вернуть 301 на https.
 
 ## Дизайн (соблюдать во всех статьях)
 - Фон: #000000 (чёрный)
@@ -104,8 +106,9 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 ├── privacy.html
 ├── photo.jpg               — портрет-робот (188 КБ, ТОЛЬКО og:image/twitter/JSON-LD превью на всех страницах — не менять формат, не удалять!)
 ├── photo.webp              — портрет-робот WebP (134 КБ, больше НЕ в hero about.html — заменён на me.webp; оставлен как запасной)
-├── me.jpg                  — видимое фото в hero about.html (живое фото Артёма, 1200×1200, 264 КБ, src в <img class="hero-photo">)
-├── me.webp                 — то же WebP (196 КБ, <source> в <picture> на about.html); photo.jpg остаётся только как og:image превью
+├── me.jpg                  — видимое фото в hero about.html (живое фото Артёма, 520×520, 72 КБ, src в <img class="hero-photo">)
+├── me.webp                 — то же WebP (54 КБ, <source> в <picture> на about.html); photo.jpg остаётся только как og:image превью
+│                             ⚠ пережаты 22.08.2026 с 1200×1200 (было 264/196 КБ): слот на странице 260 px, запаса 2× DPR хватает
 ├── robot.jpg               — декор hero (149 КБ, fallback в <picture> на index.html)
 ├── robot.webp              — декор hero WebP (104 КБ, <source> в <picture> на index.html)
 ├── hero-cyborg.jpg         — декор hero (102 КБ, fallback в <picture> на index.html)
@@ -119,7 +122,11 @@ JSON-LD, внутренняя перелинковка, регулярный п�
 │   ├── seo-sync.py         — генерит feed.xml из статей + сверяет sitemap (--check = только отчёт)
 │   ├── overlap-audit.py    — повторы между статьями: дубли тем, копипаст, одинаковые заголовки
 │   └── content-audit.py    — честность текста: цифры без атрибуции, обещания результата (--changed)
-├── unblock/index.html      — короткая редирект-ссылка для Instagram bio → /blog/instagram-telegram-unblock.html (noindex)
+├── uslugi/                 — коммерческий раздел (создан 22.08.2026): index.html (витрина услуг),
+│                             razblokirovka-instagram.html, ai-agent.html. priority 0.9 в sitemap
+├── favicon.svg             — иконка сайта (буква «Б» оранжевым на чёрном), + favicon.ico и apple-touch-icon.png
+├── unblock/index.html      — короткая редирект-ссылка для Instagram bio → /blog/instagram-telegram-unblock.html
+│                             (noindex, с UTM instagram/bio/unblock — метки добавлены 22.08.2026)
 ├── ig/index.html           — короткая редирект-ссылка для Instagram bio → главная с UTM (noindex)
 └── blog/
     ├── index.html          — список статей (ОБНОВЛЯТЬ при новой статье)
