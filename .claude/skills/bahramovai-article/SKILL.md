@@ -1,5 +1,5 @@
 ---
-name: bahramovai-article-writer
+name: bahramovai-article
 description: Используется когда пользователь просит написать новую статью для блога bahramovai.com
 triggers:
   - создай статью
