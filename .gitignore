@@ -1,5 +1,13 @@
 *.bak
-.claude/
+.claude/*
+# Конфигурация проекта хранится в репозитории: без неё на новой машине
+# теряются скиллы, агенты и автозагрузка контекста в новом чате.
+!.claude/skills/
+!.claude/agents/
+!.claude/settings.json
+!.claude/launch.json
+# settings.local.json НЕ коммитим: там локальные пути и личные разрешения
+.claude/settings.local.json
 .env
 .DS_Store
 
