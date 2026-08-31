@@ -18,6 +18,7 @@
 Часть срабатываний всегда ложные: статьи, которые сами развенчивают миф
 («никто не даст 100% гарантии») или предупреждают против обхода правил.
 """
+import json
 import re
 import sys
 from collections import defaultdict
@@ -97,10 +98,44 @@ CHECKS = [
 ]
 
 
+def jsonld_text(html):
+    """Человекочитаемые строки из JSON-LD.
+
+    Разметку читают Google и нейросети, поэтому врать в ней нельзя так же,
+    как в тексте. Раньше проверки её не видели: text_of вырезал <script>
+    целиком, и выдуманное название системы Meta внутри FAQPage проходило
+    мимо гейта честности.
+    """
+    out = []
+    fields = ("name", "text", "description", "headline", "articleBody", "about")
+    blocks = re.findall(
+        r'<script[^>]*type="application/ld\+json"[^>]*>(.*?)</script>', html, flags=re.S
+    )
+
+    def walk(node):
+        if isinstance(node, dict):
+            for k, v in node.items():
+                if k in fields and isinstance(v, str):
+                    out.append(v)
+                else:
+                    walk(v)
+        elif isinstance(node, list):
+            for v in node:
+                walk(v)
+
+    for block in blocks:
+        try:
+            walk(json.loads(block))
+        except json.JSONDecodeError:
+            continue  # битую разметку ловит preflight, здесь она не наша забота
+    return " ".join(out)
+
+
 def text_of(html):
-    """Видимый текст без script/style."""
+    """Видимый текст плюс строки из JSON-LD, без script/style."""
+    ld = jsonld_text(html)
     html = re.sub(r"<(script|style)\b.*?</\1>", " ", html, flags=re.S)
-    return re.sub(r"<[^>]+>", " ", html)
+    return re.sub(r"<[^>]+>", " ", html) + " " + ld
 
 
 def context(text, match, width=90):

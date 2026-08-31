@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DOMAIN = "https://bahramovai.com"
 FEED_PATH = ROOT / "feed.xml"
 SITEMAP_PATH = ROOT / "sitemap.xml"
-FEED_LIMIT = 25
+FEED_LIMIT = 50
 
 # Страницы блога, которые не являются статьями и в фид не идут
 NOT_ARTICLES = {"index.html", "usloviya-okazaniya-uslug.html"}

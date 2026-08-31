@@ -5,13 +5,27 @@
     <link>https://bahramovai.com/blog/</link>
     <description>AI-агенты, автоматизация Instagram и Telegram, восстановление заблокированных аккаунтов, воронки продаж в мессенджерах.</description>
     <language>ru</language>
-    <lastBuildDate>Sun, 23 Aug 2026 15:48:28 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 31 Aug 2026 07:28:51 +0000</lastBuildDate>
     <atom:link href="https://bahramovai.com/feed.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://bahramovai.com/photo.jpg</url>
       <title>Блог Артёма Бахрама</title>
       <link>https://bahramovai.com/blog/</link>
     </image>
+    <item>
+      <title>Как смена IP и страны входа влияет на риск блокировки Instagram в 2026</title>
+      <link>https://bahramovai.com/blog/instagram-smena-ip-strany-vhoda-risk-blokirovki-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-smena-ip-strany-vhoda-risk-blokirovki-2026.html</guid>
+      <description>Как резкая смена IP, страны и часового пояса выглядит для Instagram и почему повышает риск ограничений. Таблица сценариев и что снижает риск.</description>
+      <pubDate>Mon, 31 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Что означают формулировки Instagram и Telegram при блокировке: справочник</title>
+      <link>https://bahramovai.com/blog/instagram-telegram-formulirovki-uvedomleniy-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-telegram-formulirovki-uvedomleniy-2026.html</guid>
+      <description>Что означают уведомления Instagram и Telegram при блокировке: таблица точных формулировок, что значит каждая и что делать первым шагом.</description>
+      <pubDate>Mon, 31 Aug 2026 09:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Почему Instagram блокирует аккаунты в 2026: суд над Meta, ИИ-модерация и сокращённые модераторы</title>
       <link>https://bahramovai.com/blog/meta-sud-ii-moderaciya-blokirovki-2026.html</link>
@@ -186,6 +200,111 @@
       <guid isPermaLink="true">https://bahramovai.com/blog/instagram-blokirovki-may-2026.html</guid>
       <description>С 1 мая 2026 Meta запустила волну массовых блокировок Instagram. Когда волна спадёт, кто в зоне риска и что делать прямо сейчас, чтобы сохранить аккаунт.</description>
       <pubDate>Sun, 10 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Instagram не даёт создать новый аккаунт: почему не получается зарегистрироваться и что делать в 2026</title>
+      <link>https://bahramovai.com/blog/instagram-novyy-akkaunt-blokirovka-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-novyy-akkaunt-blokirovka-2026.html</guid>
+      <description>Не получается зарегистрироваться в Instagram или новый аккаунт блокируют через час? Разбираем 6 причин, почему «создание учётной записи заблокировано», и что делать.</description>
+      <pubDate>Sun, 10 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Почему Instagram блокирует аккаунты в 2026 и как восстановить доступ легально</title>
+      <link>https://bahramovai.com/blog/instagram-account-recovery-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-account-recovery-2026.html</guid>
+      <description>Причины блокировок Instagram в 2026 и пошаговый протокол легального восстановления: апелляция, верификация, шаблоны обращений. Только официальные каналы Meta.</description>
+      <pubDate>Mon, 04 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Массовые блокировки Instagram в 2026: почему банят даже новые аккаунты</title>
+      <link>https://bahramovai.com/blog/instagram-mass-ban-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-mass-ban-2026.html</guid>
+      <description>С марта 2026 года Meta запустила волну массовых блокировок Instagram. Банят старые аккаунты, новые и даже только что созданные. Разбираем причины, кто в зоне риска и что делать прямо сейчас.</description>
+      <pubDate>Mon, 04 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Как обучить AI-агента отвечать как менеджер: пошаговый гайд с примерами</title>
+      <link>https://bahramovai.com/blog/train-ai-agent-like-manager.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/train-ai-agent-like-manager.html</guid>
+      <description>Пошаговый гайд по обучению AI-агента: системный промпт, база знаний, few-shot примеры, передача оператору. Как сделать чат-бота, который продаёт как живой менеджер.</description>
+      <pubDate>Mon, 04 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>7 признаков, что вам нужен AI-агент прямо сейчас</title>
+      <link>https://bahramovai.com/blog/7-signs-you-need-ai-agent.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/7-signs-you-need-ai-agent.html</guid>
+      <description>Как понять, что пора запустить AI-агента? 7 конкретных признаков с цифрами и примерами.</description>
+      <pubDate>Sun, 03 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>AI-стратегия для малого бизнеса: с чего начать и как внедрить в 2026</title>
+      <link>https://bahramovai.com/blog/ai-strategy-small-business.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/ai-strategy-small-business.html</guid>
+      <description>Как малому бизнесу выстроить AI-стратегию с нуля: 6 шагов, реальные инструменты, расстановка приоритетов и кейсы.</description>
+      <pubDate>Sun, 03 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Личный бренд эксперта с помощью AI: стратегия за 30 дней</title>
+      <link>https://bahramovai.com/blog/personal-brand-ai-strategy.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/personal-brand-ai-strategy.html</guid>
+      <description>Как построить личный бренд эксперта с помощью AI за 30 дней: контент-система, позиционирование, инструменты и пошаговый план.</description>
+      <pubDate>Sun, 03 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Как набрать первую 1000 подписчиков в Telegram в 2026</title>
+      <link>https://bahramovai.com/blog/telegram-1000-subscribers.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/telegram-1000-subscribers.html</guid>
+      <description>Как набрать 1000 подписчиков в Telegram с нуля в 2026: 7 рабочих методов, пошаговый план на 30 дней и типичные ошибки.</description>
+      <pubDate>Sun, 03 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Виртуальный ассистент: сколько стоит и когда окупается в 2026</title>
+      <link>https://bahramovai.com/blog/virtual-assistant-cost-roi.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/virtual-assistant-cost-roi.html</guid>
+      <description>Виртуальный ассистент для бизнеса: стоимость AI-агента, сравнение с штатным сотрудником, расчёт окупаемости и 3 кейса с реальными цифрами.</description>
+      <pubDate>Sun, 03 May 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Воронка продаж в Telegram: как настроить и автоматизировать в 2026 году</title>
+      <link>https://bahramovai.com/blog/telegram-sales-funnel.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/telegram-sales-funnel.html</guid>
+      <description>Как настроить воронку продаж в Telegram с нуля: 5 этапов, инструменты, AI-агент внутри воронки и 3 кейса с реальными цифрами.</description>
+      <pubDate>Thu, 30 Apr 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Нейросети для создания контента без выгорания: гайд для предпринимателей 2026</title>
+      <link>https://bahramovai.com/blog/ai-content-without-burnout.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/ai-content-without-burnout.html</guid>
+      <description>Как использовать нейросети для создания контента в соцсетях и не выгорать? Разбираем рабочие инструменты, связки и систему.</description>
+      <pubDate>Wed, 29 Apr 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>5 задач, которые AI-ассистент закрывает за предпринимателя в 2026 году</title>
+      <link>https://bahramovai.com/blog/ai-assistant-5-tasks.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/ai-assistant-5-tasks.html</guid>
+      <description>Какие задачи делегировать AI-ассистенту уже сегодня? Разбираем 5 направлений — от ответов клиентам до аналитики — с цифрами, кейсами и инструментами.</description>
+      <pubDate>Tue, 28 Apr 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Как восстановить заблокированный Instagram и Telegram: пошаговая инструкция 2026</title>
+      <link>https://bahramovai.com/blog/instagram-telegram-unblock.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/instagram-telegram-unblock.html</guid>
+      <description>Заблокировали Instagram или Telegram? Разбираем все причины блокировок в 2026 году и даём пошаговые инструкции по восстановлению аккаунтов.</description>
+      <pubDate>Tue, 28 Apr 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>AI-агенты и автоматизация бизнеса в 2026: полный разбор по ситуациям</title>
+      <link>https://bahramovai.com/blog/ai-agents-2026.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/ai-agents-2026.html</guid>
+      <description>AI-агент, чат-бот или ассистент — что нужно вашему бизнесу. Разбор по ситуациям: теряются заявки, бот не продаёт, нет времени на контент, сколько стоит.</description>
+      <pubDate>Mon, 27 Apr 2026 09:00:00 +0000</pubDate>
+    </item>
+    <item>
+      <title>Как автоматизировать Instagram с помощью ChatPlace: пошаговый гайд</title>
+      <link>https://bahramovai.com/blog/chatplace-instagram-automation.html</link>
+      <guid isPermaLink="true">https://bahramovai.com/blog/chatplace-instagram-automation.html</guid>
+      <description>ChatPlace — платформа автоматизации Instagram и Telegram через официальный API. Что умеет, чем отличается от AI-агента, где граница безопасной автоматизации и как настроить первого бота.</description>
+      <pubDate>Mon, 27 Apr 2026 09:00:00 +0000</pubDate>
     </item>
   </channel>
 </rss>
