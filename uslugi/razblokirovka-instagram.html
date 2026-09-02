@@ -27,42 +27,58 @@
   <meta name="twitter:image" content="https://bahramovai.com/photo.jpg" />
 
   <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Разблокировка Instagram и Telegram",
-    "serviceType": "Восстановление доступа к аккаунту",
-    "description": "Восстановление доступа к заблокированному, отключённому или угнанному аккаунту Instagram и Telegram через официальные каналы платформы. От 10 000 ₽.",
+{
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Разблокировка Instagram и Telegram",
+  "serviceType": "Восстановление доступа к аккаунту",
+  "description": "Восстановление доступа к заблокированному, отключённому или угнанному аккаунту Instagram и Telegram через официальные каналы платформы. От 10 000 ₽.",
+  "url": "https://bahramovai.com/uslugi/razblokirovka-instagram.html",
+  "image": "https://bahramovai.com/photo.jpg",
+  "areaServed": {
+    "@type": "Place",
+    "name": "Русскоязычные рынки (онлайн)"
+  },
+  "availableChannel": {
+    "@type": "ServiceChannel",
+    "serviceUrl": "https://t.me/bahramovartsiom"
+  },
+  "provider": {
+    "@type": "Person",
+    "@id": "https://bahramovai.com/#person",
+    "name": "Артём Бахрамов",
+    "url": "https://bahramovai.com"
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": "RUB",
     "url": "https://bahramovai.com/uslugi/razblokirovka-instagram.html",
-    "image": "https://bahramovai.com/photo.jpg",
-    "areaServed": {
-      "@type": "Place",
-      "name": "Русскоязычные рынки (онлайн)"
-    },
-    "availableChannel": {
-      "@type": "ServiceChannel",
-      "serviceUrl": "https://t.me/bahramovartsiom"
-    },
-    "provider": {
-      "@type": "Person",
-      "@id": "https://bahramovai.com/#person",
-      "name": "Артём Бахрамов",
-      "url": "https://bahramovai.com"
-    },
-    "offers": {
-      "@type": "Offer",
+    "availability": "https://schema.org/InStock",
+    "price": "10000",
+    "priceSpecification": {
+      "@type": "PriceSpecification",
       "priceCurrency": "RUB",
-      "url": "https://bahramovai.com/uslugi/razblokirovka-instagram.html",
-      "availability": "https://schema.org/InStock",
-      "price": "10000",
-      "priceSpecification": {
-        "@type": "PriceSpecification",
-        "priceCurrency": "RUB",
-        "minPrice": "10000"
+      "minPrice": "10000"
+    }
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Янина",
+        "url": "https://www.instagram.com/yanina.kim_"
+      },
+      "datePublished": "2022-03-20",
+      "reviewBody": "Мало того, что он помогает мне с развитием Instagram, он ещё последние двое суток был со мной на связи, помогал мне его разблокировать. Полезный контакт сохраняйте не только для развития вашего аккаунта, но и с такими проблемами, с которыми может столкнуться каждый, — Тёма всё решит.",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Разблокировка Instagram и Telegram"
       }
     }
-  }
-  </script>
+  ]
+}
+</script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -560,6 +576,36 @@
       .mobile-cta-note { margin: 6px 0 0; text-align: center; font-size: 11px; color: #7a7a7a; }
     }
     @media (prefers-reduced-motion: reduce) { .mobile-cta { transition: none; } }
+
+    .reviews { margin: 56px 0 0; }
+    .review-card {
+      background: #0a0a0a;
+      border: 1px solid #1a1a1a;
+      border-left: 3px solid var(--orange);
+      border-radius: 12px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 240px) 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .review-video {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #000;
+    }
+    .review-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .review-body blockquote { margin: 0 0 16px; font-size: 17px; line-height: 1.6; }
+    .review-author { font-size: 15px; color: #999; }
+    .review-author a { color: var(--orange); text-decoration: none; }
+    .review-author a:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      .review-card { grid-template-columns: 1fr; }
+      .review-video { max-width: 260px; margin: 0 auto; }
+    }
   </style>
 
   <style>
@@ -594,6 +640,24 @@
     .case-block p { margin: 0 0 10px; color: #c9c9c9; font-size: 15px; line-height: 1.7; }
     .case-block p:last-child { margin-bottom: 0; }
   </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Как вернуть заблокированный Instagram — реальный кейс",
+  "description": "Видеоотзыв клиентки о восстановлении доступа к заблокированному аккаунту Instagram. Разбор ситуации и работа через официальные каналы платформы.",
+  "thumbnailUrl": "https://i.ytimg.com/vi/cps_KbQsybk/maxresdefault.jpg",
+  "uploadDate": "2026-09-02T07:13:16-07:00",
+  "duration": "PT37S",
+  "contentUrl": "https://www.youtube.com/shorts/cps_KbQsybk",
+  "embedUrl": "https://www.youtube.com/embed/cps_KbQsybk",
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://bahramovai.com/#person",
+    "name": "Артём Бахрамов"
+  }
+}
+</script>
 </head>
 <body>
 
@@ -735,6 +799,23 @@
     <p>Поэтому в работу входит настройка защиты: двухфакторная аутентификация, резервные коды, разведение связанных аккаунтов. Что делать в первые дни самому — расписано в <a href="/blog/instagram-posle-razblokirovki-cheklist-2026.html">чек-листе после разблокировки</a>.</p>
 
     <p>Если после возврата хочется не просто «чтобы работало», а чтобы аккаунт рос и продавал, — это уже <a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html">пакет «СИСТЕМА»</a> или <a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html">продвижение по подписке</a>. Отдельная история и отдельный разговор.</p>
+
+    <section class="reviews">
+      <h2>Отзывы <span class="accent">клиентов</span></h2>
+
+      <div class="review-card">
+        <div class="review-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/cps_KbQsybk"
+                  title="Отзыв клиентки о разблокировке Instagram"
+                  loading="lazy" allowfullscreen
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="review-body">
+          <blockquote>&laquo;Мало того, что он помогает мне с развитием Instagram, он ещё последние двое суток был со мной на связи, помогал мне его разблокировать. Полезный контакт сохраняйте не только для развития вашего аккаунта, но и с такими проблемами, с которыми может столкнуться каждый, — Тёма всё решит.&raquo;</blockquote>
+          <p class="review-author">Янина, <a href="https://www.instagram.com/yanina.kim_" target="_blank" rel="noopener noreferrer nofollow">@yanina.kim_</a> &mdash; разблокировка Instagram, март 2022</p>
+        </div>
+      </div>
+    </section>
 
     <div class="cta-block">
       <h3>Заблокировали аккаунт?</h3>
