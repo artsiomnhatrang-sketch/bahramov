@@ -102,6 +102,20 @@
         "@type": "Service",
         "name": "Разблокировка Instagram и Telegram"
       }
+    },
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Элла",
+        "url": "https://www.instagram.com/ella_boyko_travel"
+      },
+      "datePublished": "2026-07-16",
+      "reviewBody": "Хочу поблагодарить Артёма, который спас меня и мой рабочий аккаунт в Instagram. Несколько дней назад я проснулась и не смогла попасть в свой аккаунт: пришло сообщение от Meta, что мой Instagram пытались взломать, и он его заблокировал. Попросил пройти аутентификацию, которую я благополучно провалила, потому что Instagram мне не подтвердил ни друзей, ни телефон. Артём за несколько дней вытащил мой Instagram из блока, сейчас он работает — и дал много полезной информации для дальнейшей работы.",
+      "itemReviewed": {
+        "@type": "Service",
+        "name": "Разблокировка Instagram и Telegram"
+      }
     }
   ]
 }
@@ -646,6 +660,39 @@
     .review-author a { color: var(--orange); text-decoration: none; }
     .review-author a:hover { text-decoration: underline; }
     .review-card + .review-card { margin-top: 20px; }
+    .reviews-more { margin-top: 20px; }
+    .reviews-more > summary {
+      cursor: pointer;
+      list-style: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--orange);
+      padding: 6px 0;
+    }
+    .reviews-more > summary::-webkit-details-marker { display: none; }
+    .reviews-more > summary::after { content: '+'; font-size: 18px; line-height: 1; }
+    .reviews-more[open] > summary::after { content: '\2212'; }
+    .reviews-more > .review-card { margin-top: 20px; }
+    .reviews-cta { margin: 24px 0 0; }
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 8px;
+      border: 1px solid rgba(244,103,42,0.45);
+      background: transparent;
+      color: var(--orange);
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+    }
+    .btn-ghost:hover { background: rgba(244,103,42,0.08); transform: translateY(-2px); }
     @media (max-width: 640px) {
       .review-card { grid-template-columns: 1fr; }
       .review-video { max-width: 260px; margin: 0 auto; }
@@ -731,6 +778,24 @@
   "duration": "PT28S",
   "contentUrl": "https://www.youtube.com/shorts/XD-9_LXH2rs",
   "embedUrl": "https://www.youtube.com/embed/XD-9_LXH2rs",
+  "publisher": {
+    "@type": "Person",
+    "@id": "https://bahramovai.com/#person",
+    "name": "Артём Бахрамов"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "Instagram заблокировал вход, проверку личности не прошла",
+  "description": "Видеоотзыв клиентки: Meta заблокировала вход после попытки взлома, проверка личности не прошла — доступ к рабочему аккаунту Instagram восстановлен.",
+  "thumbnailUrl": "https://i.ytimg.com/vi/-l7J1hmHRpU/maxresdefault.jpg",
+  "uploadDate": "2026-09-02T23:53:01-07:00",
+  "duration": "PT57S",
+  "contentUrl": "https://www.youtube.com/shorts/-l7J1hmHRpU",
+  "embedUrl": "https://www.youtube.com/embed/-l7J1hmHRpU",
   "publisher": {
     "@type": "Person",
     "@id": "https://bahramovai.com/#person",
@@ -929,6 +994,9 @@
         </div>
       </div>
 
+      <details class="reviews-more">
+        <summary>Ещё два отзыва</summary>
+
       <div class="review-card">
         <div class="review-video">
           <iframe src="https://www.youtube-nocookie.com/embed/XD-9_LXH2rs"
@@ -941,6 +1009,22 @@
           <p class="review-author">Стэфан &mdash; разблокировка Instagram (108 000 подписчиков), июль 2025</p>
         </div>
       </div>
+
+      <div class="review-card">
+        <div class="review-video">
+          <iframe src="https://www.youtube-nocookie.com/embed/-l7J1hmHRpU"
+                  title="Отзыв клиентки о разблокировке Instagram после проваленной проверки личности"
+                  loading="lazy" allowfullscreen
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+        </div>
+        <div class="review-body">
+          <blockquote>&laquo;Хочу поблагодарить Артёма, который спас меня и мой рабочий аккаунт в Instagram. Несколько дней назад я проснулась и не смогла попасть в свой аккаунт: пришло сообщение от Meta, что мой Instagram пытались взломать, и он его заблокировал. Попросил пройти аутентификацию, которую я благополучно провалила, потому что Instagram мне не подтвердил ни друзей, ни телефон. Артём за несколько дней вытащил мой Instagram из блока, сейчас он работает &mdash; и дал много полезной информации для дальнейшей работы.&raquo;</blockquote>
+          <p class="review-author">Элла, <a href="https://www.instagram.com/ella_boyko_travel" target="_blank" rel="noopener noreferrer nofollow">@ella_boyko_travel</a> &mdash; разблокировка Instagram после проваленной проверки личности, июль 2026</p>
+        </div>
+      </div>
+      </details>
+
+      <p class="reviews-cta"><a href="https://t.me/bahramreviews" class="btn-ghost" target="_blank" rel="noopener noreferrer">Свежие кейсы и отзывы в Telegram &rarr;</a></p>
     </section>
 
     <div class="cta-block">
