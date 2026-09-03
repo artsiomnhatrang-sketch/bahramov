@@ -1050,7 +1050,7 @@
       .hero-bg-left, .hero-bg-right { max-width: 32%; height: 85%; }
       .hero-content { max-width: 540px; }
       .cases-grid, .problems-grid, .services-grid { grid-template-columns: 1fr; }
-      .package-wrap { grid-template-columns: 1fr; }
+      .package-wrap { grid-template-columns: minmax(0, 1fr); }
       .package-card { position: static; }
       .steps-grid { grid-template-columns: repeat(2, 1fr); }
       .steps-grid::before { display: none; }
@@ -1078,7 +1078,7 @@
       .hero-bg-left, .hero-bg-right {
         display: block;
         position: absolute;
-        top: 0; bottom: auto;
+        top: 68px; bottom: auto;
         width: 50%;
         max-width: none;
         height: 380px;
@@ -1094,7 +1094,7 @@
       #hero::before {
         content: '';
         position: absolute;
-        top: 0; left: 0; right: 0;
+        top: 68px; left: 0; right: 0;
         height: 400px;
         z-index: 1;
         pointer-events: none;
@@ -1112,7 +1112,7 @@
         z-index: 3;
         top: auto; left: auto;
         transform: none;
-        padding: 340px 14px 50px;
+        padding: 408px 14px 50px;
       }
       .hero-content h1,
       .hero-content p,
@@ -1129,6 +1129,18 @@
       .steps-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
       .cases-grid { grid-template-columns: 1fr; }
+      /* Узкие экраны: блоки должны сжиматься, а не распирать страницу */
+      .package-wrap, .package-left, .package-items, .pkg-item,
+      .package-card, .service-card, .case-card, .step-item { min-width: 0; }
+      .pkg-item { flex-wrap: wrap; }
+      .pkg-item, .pkg-item > *, .package-left * { min-width: 0; overflow-wrap: anywhere; }
+    }
+    @media (max-width: 360px) {
+      nav .nav-bonus { font-size: 11px; padding: 7px 9px; }
+      nav { gap: 8px; padding-left: 10px; padding-right: 10px; }
+      .latest-grid { grid-template-columns: minmax(0, 1fr); }
+      .latest-card, .latest-grid, .latest-inner { min-width: 0; }
+      .latest-card * { min-width: 0; overflow-wrap: anywhere; }
     }
 
     /* Свежее в блоге */
@@ -1150,7 +1162,7 @@
     }
     .latest-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
       gap: 16px;
     }
     .latest-card {
