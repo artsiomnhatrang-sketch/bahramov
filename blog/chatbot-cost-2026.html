@@ -230,7 +230,36 @@
     .client-case .cc-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #f4672a; margin-bottom: 10px; }
     .client-case p { margin: 0 0 10px; color: #c9c9c9; font-size: 15px; line-height: 1.7; }
     .client-case p:last-child { margin-bottom: 0; }
-  </style>
+  
+        /* Мобильная шапка: не даём CTA переноситься и наезжать на крошки */
+        @media (max-width: 640px) {
+            .header { padding: 10px 0; }
+            .header-inner { padding: 0 16px; gap: 10px; flex-wrap: nowrap; }
+            .nav-logo { font-size: 13px; white-space: nowrap; }
+            .header-nav { gap: 14px; }
+            .header-nav a { font-size: 13.5px; white-space: nowrap; }
+            .btn-cta { padding: 8px 12px; font-size: 12.5px; white-space: nowrap; }
+            .breadcrumbs { padding-top: 92px; }
+        }
+        @media (max-width: 400px) {
+            .header-nav { gap: 10px; }
+            .header-nav a { font-size: 12.5px; }
+            .btn-cta { padding: 7px 10px; font-size: 11.5px; }
+        }
+    
+        /* Таблицы на мобиле: горизонтальная прокрутка вместо обрезки */
+        @media (max-width: 700px) {
+            .compare-table, .cmp, .cmp-table {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .compare-table thead, .cmp thead, .cmp-table thead,
+            .compare-table tbody, .cmp tbody, .cmp-table tbody { display: table; width: max-content; min-width: 100%; }
+        }
+    </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

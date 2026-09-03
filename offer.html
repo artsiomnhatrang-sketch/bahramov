@@ -58,7 +58,20 @@
   footer { background:var(--card); border-top:1px solid var(--border); padding:24px 40px; text-align:center; color:var(--muted); font-size:12px; line-height:2.2; }
   footer a { color:var(--accent); text-decoration:none; margin:0 8px; }
   footer a:hover { text-decoration:underline; }
-</style>
+
+        /* Таблицы на мобиле: горизонтальная прокрутка вместо обрезки */
+        @media (max-width: 700px) {
+            .compare-table, .cmp, .cmp-table {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .compare-table thead, .cmp thead, .cmp-table thead,
+            .compare-table tbody, .cmp tbody, .cmp-table tbody { display: table; width: max-content; min-width: 100%; }
+        }
+    </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

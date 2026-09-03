@@ -546,7 +546,20 @@
     .case-block .case-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #f4672a; margin-bottom: 10px; }
     .case-block p { margin: 0 0 10px; color: #c9c9c9; font-size: 15px; line-height: 1.7; }
     .case-block p:last-child { margin-bottom: 0; }
-  </style>
+  
+        /* Таблицы на мобиле: горизонтальная прокрутка вместо обрезки */
+        @media (max-width: 700px) {
+            .compare-table, .cmp, .cmp-table {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .compare-table thead, .cmp thead, .cmp-table thead,
+            .compare-table tbody, .cmp tbody, .cmp-table tbody { display: table; width: max-content; min-width: 100%; }
+        }
+    </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};

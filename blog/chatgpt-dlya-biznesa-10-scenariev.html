@@ -228,7 +228,20 @@
     .cmp td { color: #b9b9b9; line-height: 1.6; }
     .cmp tbody tr:last-child th, .cmp tbody tr:last-child td { border-bottom: none; }
     .cmp-note { font-size: 13px; color: #7a7a7a; margin: -18px 0 32px; }
-  </style>
+  
+        /* Таблицы на мобиле: горизонтальная прокрутка вместо обрезки */
+        @media (max-width: 700px) {
+            .compare-table, .cmp, .cmp-table {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .compare-table thead, .cmp thead, .cmp-table thead,
+            .compare-table tbody, .cmp tbody, .cmp-table tbody { display: table; width: max-content; min-width: 100%; }
+        }
+    </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
    (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
