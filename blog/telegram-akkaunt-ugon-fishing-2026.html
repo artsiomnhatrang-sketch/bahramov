@@ -166,6 +166,17 @@
         .warning-block p { margin-bottom: 0; color: #ddd; }
         .warning-block strong { color: #ff3b30; }
 
+        .case-video-row { display: grid; grid-template-columns: minmax(0, 220px) 1fr; gap: 22px; align-items: start; margin: 0 0 14px; }
+        .case-video { position: relative; width: 100%; aspect-ratio: 9 / 16; border-radius: 10px; overflow: hidden; background: #000; }
+        .case-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+        .case-video-text p { margin: 0 0 12px; }
+        .case-video-author { font-size: 14px; color: #8f8f8f; }
+        .case-video-author a { color: #f4672a; text-decoration: none; }
+        .case-video-author a:hover { text-decoration: underline; }
+        @media (max-width: 640px) {
+          .case-video-row { grid-template-columns: 1fr; }
+          .case-video { max-width: 240px; margin: 0 auto; }
+        }
         .case-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px 32px; margin: 32px 0; }
         .case-block h4 { font-family: 'Unbounded', sans-serif; font-size: 16px; color: #f4672a; margin-bottom: 12px; }
         .case-block p { margin-bottom: 8px; font-size: 15px; }
@@ -411,8 +422,19 @@
 
     <div class="case-block">
         <h4>Случай из практики</h4>
-        <p>Клиенту увели Telegram через фишинговую ссылку — вместе с аккаунтом ушёл и основной канал, а бот платформы сообщил, что аккаунт заблокирован навсегда. Доступ удалось восстановить, клиент записал <a href="/uslugi/razblokirovka-instagram.html">видеоотзыв об этом</a>.</p>
-        <p>Сам метод я не публикую: подробно описанная процедура быстро становится полезной не пострадавшим, а тем, кто уводит аккаунты. Работа идёт только в рамках официальных механизмов площадки, и гарантий возврата я не даю — решение всегда остаётся за платформой.</p>
+        <div class="case-video-row">
+          <div class="case-video">
+            <iframe src="https://www.youtube-nocookie.com/embed/L1dg-xEyG74"
+                    title="Отзыв клиента о восстановлении доступа к Telegram после взлома"
+                    loading="lazy" allowfullscreen
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+          </div>
+          <div class="case-video-text">
+            <p>Клиенту увели Telegram через фишинговую ссылку — вместе с аккаунтом ушёл и основной канал, а бот платформы сообщил, что аккаунт заблокирован навсегда. Поддержка на обращения не отвечала. Доступ удалось восстановить; вот что рассказывает сам клиент.</p>
+            <p class="case-video-author">Марк Еремин, <a href="https://t.me/ereminmark" target="_blank" rel="noopener noreferrer nofollow">@ereminmark</a> — восстановление доступа к Telegram после взлома, июль 2025</p>
+          </div>
+        </div>
+        <p>Сам метод я не публикую: подробно описанная процедура быстро становится полезной не пострадавшим, а тем, кто уводит аккаунты. Работа идёт только в рамках официальных механизмов площадки, и гарантий возврата я не даю — решение всегда остаётся за платформой. Разбор ситуации и условия — на странице <a href="/uslugi/razblokirovka-instagram.html">возврата угнанного аккаунта</a>.</p>
     </div>
 
     <h2>Почему за Telegram-аккаунтами охотятся</h2>
