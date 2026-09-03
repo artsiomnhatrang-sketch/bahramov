@@ -565,7 +565,12 @@
     .svc-index a.card p { font-size:14px; color:#a5a5a5; line-height:1.6; margin:0 0 12px; }
     .svc-index .go { font-size:13px; color:#f4672a; font-weight:600; }
     @media (max-width:760px){ .case-grid, .svc-index { grid-template-columns:1fr; } .svc-price { font-size:25px; } .svc-hero { padding:20px; } }
-  </style>
+  
+        /* Длинные слова не вылезают за край на узких экранах */
+        @media (max-width: 700px) {
+            h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: anywhere; }
+        }
+    </style>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",

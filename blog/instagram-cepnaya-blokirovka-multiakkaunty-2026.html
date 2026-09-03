@@ -468,7 +468,12 @@
       .faq summary { font-size: 0.82rem; padding: 16px 0; }
       .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
     }
-  </style>
+  
+        /* Длинные слова не вылезают за край на узких экранах */
+        @media (max-width: 700px) {
+            h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: anywhere; }
+        }
+    </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",

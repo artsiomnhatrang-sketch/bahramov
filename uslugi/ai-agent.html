@@ -577,7 +577,12 @@
     .case-block .case-tag { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: #f4672a; margin-bottom: 10px; }
     .case-block p { margin: 0 0 10px; color: #c9c9c9; font-size: 15px; line-height: 1.7; }
     .case-block p:last-child { margin-bottom: 0; }
-  </style>
+  
+        /* Длинные слова не вылезают за край на узких экранах */
+        @media (max-width: 700px) {
+            h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: anywhere; }
+        }
+    </style>
 </head>
 <body>
 

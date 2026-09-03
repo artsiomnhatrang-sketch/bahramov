@@ -550,6 +550,11 @@
             .compare-table thead, .cmp thead, .cmp-table thead,
             .compare-table tbody, .cmp tbody, .cmp-table tbody { display: table; width: max-content; min-width: 100%; }
         }
+    
+        /* Длинные слова не вылезают за край на узких экранах */
+        @media (max-width: 700px) {
+            h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: anywhere; }
+        }
     </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >

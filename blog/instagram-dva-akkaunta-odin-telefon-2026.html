@@ -548,7 +548,12 @@
     }
 
     /* Related posts */
-  </style>
+  
+        /* Длинные слова не вылезают за край на узких экранах */
+        @media (max-width: 700px) {
+            h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: anywhere; }
+        }
+    </style>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
