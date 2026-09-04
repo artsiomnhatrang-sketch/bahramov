@@ -109,11 +109,21 @@ def cmd_list(env, show_all, posts_limit, only_ours):
             "reverse": "false", "access_token": token,
         }).get("data", [])
 
+        # На что мы уже ответили — определяем ПО САМОЙ ВЕТКЕ, а не по журналу:
+        # локальный агент и облако ведут разные журналы, и на один комментарий
+        # прилетело бы два ответа.
+        answered_ids = set()
+        for r in convo:
+            if r.get("username") == me.get("username"):
+                parent = (r.get("replied_to") or {}).get("id")
+                if parent:
+                    answered_ids.add(parent)
+
         mine = []
         for r in convo:
             if r.get("username") == me.get("username"):
                 continue           # свои же ответы
-            if not show_all and r["id"] in replied:
+            if not show_all and (r["id"] in answered_ids or r["id"] in replied):
                 continue           # уже отвечали
             mine.append(r)
 

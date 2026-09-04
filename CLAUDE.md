@@ -391,6 +391,27 @@ editor, writer, reviewer, publisher, scriptwriter, scout. Единый свод 
 
 Рабочий цикл — скилл `/bahramovai-threads`.
 
+**Комментарии отвечаются сами, в два слоя (настроено 05.09.2026):**
+- локально: фоновый агент `com.bahramovai.threads-watcher` раз в 3 минуты
+  (`scripts/threads-watcher.py --once`), работает пока MacBook включён;
+- в облаке: routine `trig_01AhPDGSaLkFqR8z5NK9R9tS` («Threads: ответы
+  на комментарии») каждый час — работает при выключенном ноутбуке.
+  Минимальный интервал routine — 1 час, чаще система не примет.
+
+Отвеченное определяется **по самой ветке** (в `/conversation` ищем наш ответ
+с `replied_to` на этот комментарий), а не по журналу — иначе локальный агент
+и облако дали бы два ответа на один комментарий.
+
+⚠️ **Сеть облака починена 05.09.2026.** В настройках окружения
+`env_01PfQ3cxmUjM6mZJykd3VVXv` (claude.ai/code → кнопка «Default» у поля ввода →
+Cloud → шестерёнка) Network access переведён с «Trusted» на **Custom** со списком
+`graph.threads.net` и `api.telegram.org`. Проверено практически: оба домена
+отвечают из облака. Прежняя запись «облако режет весь исходящий HTTPS» больше
+не верна — **Telegram из облака работает**, дайджест не обязан уходить пушем.
+Токены лежат в Environment variables того же окружения (THREADS_ACCESS_TOKEN,
+THREADS_USER_ID, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID) — в облаке `.env` нет,
+скрипты берут значения из окружения.
+
 ## Услуги (для контента и CTA)
 - Автоматизация Instagram и Telegram
 - Настройка AI-агентов и чат-ботов (ChatPlace)

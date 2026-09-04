@@ -113,11 +113,15 @@ def pass_once(env, dry_run):
         # сколько раз мы уже отвечали каждому в этой ветке —
         # чтобы не уйти в бесконечную переписку с одним человеком
         mine_to = {}
+        answered_ids = set()
         by_id = {c["id"]: c for c in convo}
         for c in convo:
             if c.get("username") != me.get("username"):
                 continue
-            parent = by_id.get((c.get("replied_to") or {}).get("id"))
+            pid = (c.get("replied_to") or {}).get("id")
+            if pid:
+                answered_ids.add(pid)
+            parent = by_id.get(pid)
             if parent:
                 u = parent.get("username")
                 mine_to[u] = mine_to.get(u, 0) + 1
@@ -125,6 +129,8 @@ def pass_once(env, dry_run):
         for c in convo:
             if c.get("username") == me.get("username") or c["id"] in replied:
                 continue
+            if c["id"] in answered_ids:
+                continue           # ответ уже есть в ветке (мог дать облачный агент)
             comment = c.get("text") or ""
             if not comment.strip():
                 continue
