@@ -28,3 +28,8 @@ _to_delete/
 
 # папка с исходниками картинок; имя в NFD-нормализации macOS
 САЙТ /
+
+# Threads: логи автоответчика (журналы posted/replied — коммитим)
+threads/watcher.log
+threads/watcher-out.log
+threads/watcher-err.log
