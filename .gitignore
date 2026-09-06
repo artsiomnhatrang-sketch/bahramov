@@ -33,6 +33,9 @@ _to_delete/
 threads/watcher.log
 threads/watcher-out.log
 threads/watcher-err.log
+threads/.watch-state.json
+threads/.me.json
+threads/.api-pause
 
 # Сырьё для скилла /human: личная переписка, в публичный репозиторий не уходит
 .tone/

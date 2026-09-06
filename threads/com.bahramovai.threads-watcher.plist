@@ -17,8 +17,12 @@
         <key>PATH</key>
         <string>/Users/artem/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
     </dict>
+    <!-- Тик таймера, а не частота обращений к API: скрипт сам решает,
+         есть ли повод идти в сеть (см. CHECK_SCHEDULE в threads-watcher.py).
+         Ниже 1800 не опускать - 06.09.2026 Meta заблокировала аккаунт
+         разработчика за слишком частые запросы. -->
     <key>StartInterval</key>
-    <integer>180</integer>
+    <integer>1800</integer>
     <key>RunAtLoad</key>
     <true/>
     <key>StandardOutPath</key>
