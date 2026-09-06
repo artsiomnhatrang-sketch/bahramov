@@ -15,6 +15,7 @@
 
 import argparse
 import datetime
+import random
 import json
 import os
 import subprocess
@@ -33,6 +34,88 @@ spec.loader.exec_module(tr)
 LOG = os.path.join(ROOT, "threads", "watcher.log")
 MAX_LEN = 500
 MAX_IN_THREAD = 3   # предел ответов машины одному человеку в одной ветке
+
+# ---------------------------------------------------------------------------
+# Бережный режим. 06.09.2026 Meta заблокировала аккаунт разработчика
+# с формулировкой «обнаружены необычные действия»: агент опрашивал API
+# каждые 3 минуты и делал 7 запросов за проход — около 3360 запросов в сутки.
+# Ниже — всё, что снижает это число и делает трафик похожим на человека.
+# ---------------------------------------------------------------------------
+FRESH_HOURS = 72        # опрашиваем только посты моложе трёх суток:
+                        # комментарии приходят в первые дни, дальше ветка мертва
+POSTS_LIMIT = 10        # было 25 — столько за раз всё равно не нужно
+QUIET_FROM, QUIET_TO = 0, 7   # ночью по Нячангу не ходим в API вовсе
+JITTER_MAX = 90         # случайная пауза перед стартом: не бить ровно по таймеру
+PAUSE_FILE = os.path.join(ROOT, "threads", ".api-pause")
+PAUSE_AFTER_ERROR_H = 2  # после ошибки API молчим два часа, а не долбим дальше
+ME_CACHE = os.path.join(ROOT, "threads", ".me.json")
+
+
+def in_quiet_hours():
+    h = datetime.datetime.now().hour
+    return QUIET_FROM <= h < QUIET_TO
+
+
+def paused_until():
+    """Сколько ещё молчать после ошибки API. 0 — можно работать."""
+    if not os.path.exists(PAUSE_FILE):
+        return 0
+    try:
+        until = float(open(PAUSE_FILE, encoding="utf-8").read().strip())
+    except (ValueError, OSError):
+        return 0
+    left = until - time.time()
+    return left if left > 0 else 0
+
+
+def set_pause(hours=PAUSE_AFTER_ERROR_H):
+    os.makedirs(os.path.dirname(PAUSE_FILE), exist_ok=True)
+    with open(PAUSE_FILE, "w", encoding="utf-8") as f:
+        f.write(str(time.time() + hours * 3600))
+
+
+def clear_pause():
+    if os.path.exists(PAUSE_FILE):
+        os.remove(PAUSE_FILE)
+
+
+def safe_call(method, path, params):
+    """Обёртка над API: ошибка не роняет процесс, а включает паузу.
+
+    Иначе launchd перезапускает скрипт по расписанию, и при блокировке
+    получается сотня безответных запросов в сутки — ровно то, из-за чего
+    аккаунт разработчика и заблокировали."""
+    try:
+        return tr.call(method, path, params)
+    except SystemExit:
+        set_pause()
+        log("Ошибка API — пауза %d ч, чтобы не усугублять." % PAUSE_AFTER_ERROR_H)
+        return None
+
+
+def cached_me(token):
+    """Профиль не меняется — незачем спрашивать его каждые полчаса."""
+    if os.path.exists(ME_CACHE):
+        try:
+            return json.load(open(ME_CACHE, encoding="utf-8"))
+        except ValueError:
+            pass
+    me = safe_call("GET", "me", {"fields": "id,username", "access_token": token})
+    if me:
+        os.makedirs(os.path.dirname(ME_CACHE), exist_ok=True)
+        json.dump(me, open(ME_CACHE, "w", encoding="utf-8"), ensure_ascii=False)
+    return me
+
+
+def is_fresh(post):
+    """Пост моложе FRESH_HOURS. Старые ветки не опрашиваем вовсе."""
+    ts = post.get("timestamp") or ""
+    try:
+        t = datetime.datetime.strptime(ts[:19], "%Y-%m-%dT%H:%M:%S")
+    except ValueError:
+        return True     # не смогли разобрать дату — лучше проверить
+    age = (datetime.datetime.utcnow() - t).total_seconds() / 3600
+    return age <= FRESH_HOURS
 
 PROMPT = """Ты пишешь ответ на комментарий в Threads от имени Артёма Бахрамова —
 специалиста по восстановлению заблокированных аккаунтов Instagram и Telegram
@@ -90,25 +173,38 @@ def ask_agent(post_text, username, comment):
 
 def pass_once(env, dry_run):
     token = env["THREADS_ACCESS_TOKEN"]
-    me = tr.call("GET", "me", {"fields": "id,username", "access_token": token})
+    me = cached_me(token)
+    if me is None:
+        return 0
     ours = tr.our_post_urls()
     if not ours:
         log("В threads/posted.json нет наших постов — нечего проверять.")
         return 0
 
     replied = tr.load_replied()
-    posts = tr.call("GET", "me/threads", {
-        "fields": "id,text,permalink,timestamp", "limit": 25, "access_token": token,
-    }).get("data", [])
+    resp = safe_call("GET", "me/threads", {
+        "fields": "id,text,permalink,timestamp",
+        "limit": POSTS_LIMIT, "access_token": token,
+    })
+    if resp is None:
+        return 0
+    posts = resp.get("data", [])
 
     answered = 0
+    checked = 0
     for p in posts:
         if p.get("permalink", "").rstrip("/") not in ours:
             continue
+        if not is_fresh(p):
+            continue          # ветка старше трёх суток — комментариев там уже нет
+        checked += 1
         # вся ветка, включая ответы на наши ответы
-        convo = tr.call("GET", "%s/conversation" % p["id"], {
+        convo_resp = safe_call("GET", "%s/conversation" % p["id"], {
             "fields": "id,text,username,timestamp,replied_to", "access_token": token,
-        }).get("data", [])
+        })
+        if convo_resp is None:
+            return answered
+        convo = convo_resp.get("data", [])
 
         # сколько раз мы уже отвечали каждому в этой ветке —
         # чтобы не уйти в бесконечную переписку с одним человеком
@@ -152,7 +248,8 @@ def pass_once(env, dry_run):
             answered += 1
             time.sleep(5)
     if answered == 0 and not dry_run:
-        log("Новых комментариев нет.")
+        log("Новых комментариев нет (проверено веток: %d)." % checked)
+    clear_pause()      # прошли без ошибок — снимаем паузу, если она была
     return answered
 
 
@@ -169,6 +266,18 @@ def main():
         sys.exit(1)
 
     if args.once:
+        # Три предохранителя перед единственным походом в API.
+        if not args.dry_run:
+            left = paused_until()
+            if left:
+                log("Пауза после ошибки API: ещё %d мин, в сеть не идём." % (left / 60))
+                return
+            if in_quiet_hours():
+                log("Ночь по Нячангу (%02d:00–%02d:00) — API не трогаем."
+                    % (QUIET_FROM, QUIET_TO))
+                return
+            # разброс во времени: ровный такт по таймеру выглядит машинно
+            time.sleep(random.randint(0, JITTER_MAX))
         pass_once(env, args.dry_run)
         return
 
