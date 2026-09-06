@@ -33,3 +33,6 @@ _to_delete/
 threads/watcher.log
 threads/watcher-out.log
 threads/watcher-err.log
+
+# Сырьё для скилла /human: личная переписка, в публичный репозиторий не уходит
+.tone/
