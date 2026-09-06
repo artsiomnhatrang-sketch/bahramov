@@ -203,16 +203,6 @@ def cached_me(token):
     return me
 
 
-def is_fresh(post):
-    """Пост моложе FRESH_HOURS. Старые ветки не опрашиваем вовсе."""
-    ts = post.get("timestamp") or ""
-    try:
-        t = datetime.datetime.strptime(ts[:19], "%Y-%m-%dT%H:%M:%S")
-    except ValueError:
-        return True     # не смогли разобрать дату — лучше проверить
-    age = (datetime.datetime.utcnow() - t).total_seconds() / 3600
-    return age <= FRESH_HOURS
-
 PROMPT = """Ты пишешь ответ на комментарий в Threads от имени Артёма Бахрамова —
 специалиста по восстановлению заблокированных аккаунтов Instagram и Telegram
 и автоматизации соцсетей. Живёт в Нячанге.
