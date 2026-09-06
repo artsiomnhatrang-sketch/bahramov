@@ -2354,7 +2354,9 @@
       var name = href.indexOf('bahramovartem_bot') !== -1
         ? 'bonus_click'
         : (isMax ? 'max_' : 'tg_') + place(a);
-      if (typeof window.ym === 'function') window.ym(COUNTER, 'reachGoal', name);
+      if (typeof window.ym !== 'function') return;
+      window.ym(COUNTER, 'reachGoal', name);
+      if (name !== 'bonus_click') window.ym(COUNTER, 'reachGoal', 'lead');
     }, true);
   })();
 </script>

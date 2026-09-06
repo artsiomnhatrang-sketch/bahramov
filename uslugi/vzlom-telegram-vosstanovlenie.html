@@ -885,7 +885,9 @@
       else if (href.indexOf('mailto:') === 0)          name = 'lead_mail_' + PAGE;
       else if (href.indexOf('t.me/') !== -1)           name = 'proof_click_' + PAGE;
       else return;
-      if (typeof window.ym === 'function') window.ym(COUNTER, 'reachGoal', name);
+      if (typeof window.ym !== 'function') return;
+      window.ym(COUNTER, 'reachGoal', name);
+      if (name.indexOf('lead_') === 0) window.ym(COUNTER, 'reachGoal', 'lead');
     }, true);
   })();
 </script>
