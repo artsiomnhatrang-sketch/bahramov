@@ -23,6 +23,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -73,7 +76,7 @@
     nav a.nav-link:hover { color: #fff; }
     nav a.nav-cta {
       background: var(--orange);
-      color: #fff;
+      color: #000;
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
@@ -150,7 +153,7 @@
       text-decoration: none;
       transition: opacity .2s;
     }
-    .btn-primary { background: var(--orange); color: #fff; }
+    .btn-primary { background: var(--orange); color: #000; }
     .btn-secondary { border: 1px solid var(--border); color: var(--text); }
     .btn:hover { opacity: .85; }
 

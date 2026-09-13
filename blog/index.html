@@ -306,6 +306,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -361,7 +364,7 @@
     nav a.nav-link.active { color: var(--orange); }
     nav a.nav-cta {
       background: var(--orange);
-      color: #fff;
+      color: #000;
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
@@ -529,7 +532,7 @@
       transition: color .2s, border-color .2s, background .2s;
     }
     .cat-nav a:hover {
-      color: #fff;
+      color: #000;
       border-color: var(--orange-border);
       background: var(--orange-dim);
     }
@@ -826,7 +829,7 @@
 
         <a href="/blog/instagram-blokirovki-may-2026.html" class="post-card">
         <div class="post-meta">
-          <span class="post-tag" style="color:#fff;background:var(--orange);border-color:var(--orange);">Актуально</span>
+          <span class="post-tag" style="color:#000;background:var(--orange);border-color:var(--orange);">Актуально</span>
           <span class="post-tag">Instagram</span>
           <span class="post-date">10 мая 2026</span>
         </div>
@@ -1153,9 +1156,9 @@
   </p>
   <p style="font-size:12px; margin-bottom:8px;">
     <a href="/about.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Обо мне</a>
-    <span style="color:#333;">·</span>
+    <span style="color:#888;">·</span>
     <a href="/privacy.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Политика конфиденциальности</a>
-    <span style="color:#333;">·</span>
+    <span style="color:#888;">·</span>
     <a href="/consent.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Согласие на обработку ПД</a>
   </p>
   <p style="font-size:11px; color:#888888;">

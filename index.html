@@ -202,6 +202,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Unbounded:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -250,7 +253,7 @@
     .nav-logo span { color: var(--orange); }
     nav a.nav-cta {
       background: var(--orange);
-      color: #fff;
+      color: #000;
       text-decoration: none;
       font-family: 'Inter', sans-serif;
       font-size: 13px;
@@ -271,7 +274,7 @@
       border: 1.5px solid var(--orange);
       transition: background .2s, color .2s;
     }
-    nav a.nav-bonus:hover { background: var(--orange); color: #fff; }
+    nav a.nav-bonus:hover { background: var(--orange); color: #000; }
     nav a.nav-blog {
       color: var(--muted);
       text-decoration: none;
@@ -328,7 +331,7 @@
     }
     .btn-primary {
       background: var(--orange);
-      color: #fff;
+      color: #000;
     }
     .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
     .btn-outline {
@@ -502,7 +505,7 @@
       transition: background .2s, color .2s;
       white-space: nowrap;
     }
-    a.case-all-btn:hover { background: var(--orange); color: #fff; }
+    a.case-all-btn:hover { background: var(--orange); color: #000; }
     .cases-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -537,7 +540,7 @@
       font-family: 'Unbounded', sans-serif;
       font-size: 16px;
       font-weight: 700;
-      color: #fff;
+      color: #000;
       flex-shrink: 0;
       overflow: hidden;
     }
@@ -788,8 +791,8 @@
       transition: background .2s, color .2s;
       white-space: nowrap;
     }
-    a.svc-btn:hover { background: var(--orange); color: #fff; }
-    a.svc-btn.svc-btn-main { background: var(--orange); color: #fff; }
+    a.svc-btn:hover { background: var(--orange); color: #000; }
+    a.svc-btn.svc-btn-main { background: var(--orange); color: #000; }
     a.svc-btn.svc-btn-main:hover { opacity: .88; }
     /* Price tag inside service card */
     .service-price {
@@ -843,7 +846,7 @@
       align-items: center;
       gap: 8px;
       background: var(--orange);
-      color: #fff;
+      color: #000;
       font-family: 'Unbounded', sans-serif;
       font-size: 10px;
       font-weight: 700;
@@ -1288,7 +1291,7 @@
         box-sizing: border-box;
         padding: 15px 18px;
         background: var(--orange);
-        color: #fff;
+        color: #000;
         font-family: 'Inter', sans-serif;
         font-size: 15px;
         font-weight: 600;
@@ -2383,11 +2386,11 @@
   </p>
   <p style="font-size:12px; margin-bottom:8px;">
     <a href="/about.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Обо мне</a>
-    <span style="color:#333;">·</span>
+    <span style="color:#888;">·</span>
     <a href="offer.html"   style="color:#f4672a;text-decoration:none;margin:0 8px;">Публичная оферта</a>
-    <span style="color:#333;">·</span>
+    <span style="color:#888;">·</span>
     <a href="privacy.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Политика конфиденциальности</a>
-    <span style="color:#333;">·</span>
+    <span style="color:#888;">·</span>
     <a href="consent.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Согласие на обработку ПД</a>
   </p>
   <p style="font-size:11px; color:#888888;">

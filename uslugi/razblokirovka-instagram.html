@@ -203,6 +203,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
@@ -258,7 +261,7 @@
     nav a.nav-link:hover { color: #fff; }
     nav a.nav-cta {
       background: var(--orange);
-      color: #fff;
+      color: #000;
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
@@ -374,7 +377,7 @@
       font-size: 14px;
     }
     .article-body a { color: var(--orange); }
-    .article-body .btn-primary { color: #fff; text-decoration: none; }
+    .article-body .btn-primary { color: #000; text-decoration: none; }
 
     .highlight-box {
       background: var(--orange-dim);
@@ -497,7 +500,7 @@
       font-weight: 600;
       text-decoration: none;
       background: var(--orange);
-      color: #fff;
+      color: #000;
       transition: all .2s;
     }
     .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
@@ -599,7 +602,7 @@
       .mobile-cta a {
         display: flex; align-items: center; justify-content: center;
         width: 100%; padding: 15px 18px;
-        background: var(--orange); color: #fff;
+        background: var(--orange); color: #000;
         font-size: 15px; font-weight: 600; text-decoration: none; border-radius: 100px;
       }
       .mobile-cta-note { margin: 6px 0 0; text-align: center; font-size: 11px; color: #7a7a7a; }
@@ -679,8 +682,8 @@
     .svc-price small { display:block; font-family:'Inter',sans-serif; font-size:13px; font-weight:400; color:#8f8f8f; margin-top:6px; }
     .svc-btns { display:flex; flex-wrap:wrap; gap:10px; }
     .svc-btns a { display:inline-block; text-decoration:none; font-size:14px; font-weight:600; padding:12px 22px; border-radius:100px; border:1px solid rgba(244,103,42,0.45); color:#f4672a; transition:background .2s,color .2s; }
-    .svc-btns a.main { background:#f4672a; color:#fff; border-color:#f4672a; }
-    .svc-btns a:hover { background:#f4672a; color:#fff; }
+    .svc-btns a.main { background:#f4672a; color: #000; border-color:#f4672a; }
+    .svc-btns a:hover { background:#f4672a; color: #000; }
     .svc-note { font-size:13px; color:#7a7a7a; margin:12px 0 32px; }
     .case-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin:26px 0 20px; }
     .case-grid > div { border:1px solid rgba(255,255,255,0.09); border-radius:12px; padding:16px 18px; background:rgba(255,255,255,0.02); }

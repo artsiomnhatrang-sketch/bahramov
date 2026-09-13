@@ -77,6 +77,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
   <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
       --bg: #000000;
@@ -116,9 +119,9 @@
       border: 1.5px solid var(--orange);
       transition: background .2s, color .2s;
     }
-    .nav-bonus:hover { background: var(--orange); color: #fff; }
+    .nav-bonus:hover { background: var(--orange); color: #000; }
     .nav-cta {
-      background: var(--orange); color: #fff;
+      background: var(--orange); color: #000;
       font-size: 13px; font-weight: 600;
       padding: 10px 22px; border-radius: 6px;
       transition: opacity .2s;
@@ -157,7 +160,7 @@
     .hero-desc { font-size: 17px; color: var(--text); line-height: 1.8; margin-bottom: 36px; max-width: 520px; }
     .btn-primary {
       display: inline-block;
-      background: var(--orange); color: #fff;
+      background: var(--orange); color: #000;
       font-family: 'Unbounded', sans-serif;
       font-size: 13px; font-weight: 700;
       padding: 14px 28px; border-radius: 8px;
@@ -225,7 +228,7 @@
     .contact-btns { display: flex; flex-direction: column; gap: 12px; min-width: 240px; }
     .btn-tg {
       display: block; text-align: center;
-      background: var(--orange); color: #fff;
+      background: var(--orange); color: #000;
       font-family: 'Unbounded', sans-serif;
       font-size: 13px; font-weight: 700;
       padding: 14px 24px; border-radius: 8px;
@@ -249,7 +252,7 @@
     }
     footer p { font-size: 12px; margin-bottom: 6px; }
     footer a { color: #f4672a; text-decoration: none; margin: 0 8px; }
-    footer .dot { color: #333; }
+    footer .dot { color: #888; }
 
     /* ── Responsive ── */
     @media (max-width: 960px) {

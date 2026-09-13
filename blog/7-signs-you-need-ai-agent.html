@@ -72,6 +72,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: #000000; color: #e0e0e0; font-family: 'Inter', sans-serif; font-size: 17px; line-height: 1.75; -webkit-font-smoothing: antialiased; }
         a { color: #f4672a; text-decoration: none; transition: opacity 0.2s; }
@@ -84,7 +87,7 @@
         .header-nav { display: flex; gap: 28px; align-items: center; }
         .header-nav a { color: #999; font-size: 15px; font-weight: 500; }
         .header-nav a:hover { color: #fff; }
-        .btn-cta { background: #f4672a; color: #fff !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 14px; }
+        .btn-cta { background: #f4672a; color: #000 !important; padding: 10px 22px; border-radius: 8px; font-weight: 600; font-size: 14px; }
 
         .breadcrumbs { max-width: 760px; margin: 0 auto; padding: 100px 24px 0; font-size: 14px; color: #7a7a7a; }
         .breadcrumbs a { color: #888; }
@@ -137,7 +140,7 @@
         .cta-block { background: linear-gradient(135deg, rgba(244,103,42,0.12), rgba(244,103,42,0.04)); border: 1px solid rgba(244,103,42,0.2); border-radius: 20px; padding: 40px; text-align: center; margin: 56px 0 0; }
         .cta-block h3 { font-family: 'Unbounded', sans-serif; font-size: clamp(20px,3vw,26px); color: #ffffff; margin-bottom: 16px; line-height: 1.3; }
         .cta-block p { color: #aaa; margin-bottom: 28px; max-width: 500px; margin-left: auto; margin-right: auto; }
-        .cta-button { display: inline-block; background: #f4672a; color: #fff; padding: 16px 36px; border-radius: 12px; font-weight: 600; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; }
+        .cta-button { display: inline-block; background: #f4672a; color: #000; padding: 16px 36px; border-radius: 12px; font-weight: 600; font-size: 16px; transition: transform 0.2s, box-shadow 0.2s; }
         .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(244,103,42,0.3); opacity: 1; }
 
         .footer { border-top: 1px solid rgba(255,255,255,0.06); padding: 32px 24px; text-align: center; font-size: 14px; color: #808080; }
@@ -453,7 +456,7 @@
   <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#f4672a;margin-bottom:10px;">Нужна помощь с этим?</div>
   <div style="font-family:'Unbounded',sans-serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:6px;">AI-агент под ключ — от 30 000 ₽</div>
   <p style="font-size:14.5px;line-height:1.6;color:#a5a5a5;margin:0 0 16px;">Агент отвечает вместо менеджера 24/7, ведёт клиента по воронке и передаёт готовую заявку вам.</p>
-  <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f4672a;color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:12px 24px;border-radius:100px;">Рассчитать стоимость →</a>
+  <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f4672a;color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:12px 24px;border-radius:100px;">Рассчитать стоимость →</a>
   <a href="/uslugi/ai-agent.html" style="display:inline-block;margin-left:16px;font-size:14px;font-weight:600;color:#f4672a;text-decoration:none;">AI-агент под ключ: что входит &rarr;</a>
   <div style="font-size:12px;color:#7a7a7a;margin-top:12px;">Сначала бесплатный разбор — посмотрю ситуацию и скажу, что делать. Ни к чему не обязывает.</div>
   <div data-proof style="margin:14px 0 0;padding-top:14px;border-top:1px solid rgba(244,103,42,0.22);font-size:12.5px;line-height:1.7;color:#8f8f8f;">Кейсы и публикации: <a href="https://secrets.tbank.ru/blogi-kompanij/gejmifikaciya-v-premium-nishe/" target="_blank" rel="noopener noreferrer" style="color:#f4672a;text-decoration:none;">геймификация в премиум-нише — Т&#8209;Бизнес секреты</a> · <a href="https://vc.ru/marketing/2888231-kak-ai-agent-avtomatiziroval-instagram" target="_blank" rel="noopener noreferrer" style="color:#f4672a;text-decoration:none;">AI&#8209;агент для Instagram — vc.ru</a> · <a href="/about.html#publikacii" style="color:#f4672a;text-decoration:none;">все публикации</a></div>
