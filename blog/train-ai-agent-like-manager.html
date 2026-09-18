@@ -72,6 +72,10 @@
   <style>
     /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
     a { color: var(--orange, var(--accent, #f4672a)); }
+    /* Переносы: у заголовка не остаётся одинокого слова на последней строке,
+       у абзаца — тоже. Старые браузеры свойство игнорируют, вреда нет. */
+    h1, h2, h3 { text-wrap: balance; }
+    p, li, figcaption, summary { text-wrap: pretty; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -160,12 +164,15 @@
     .post-meta {
       display: flex;
       align-items: center;
-      gap: 12px;
+      /* Без переноса четыре элемента не влезали в 375 px и страница
+         ехала вбок — теги уходят на вторую строку */
+      flex-wrap: wrap;
+      gap: 8px 12px;
       margin-bottom: 20px;
     }
     .post-tag {
       font-family: 'Unbounded', sans-serif;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -271,7 +278,7 @@
     }
     .example-block .example-label {
       font-family: 'Unbounded', sans-serif;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -303,7 +310,7 @@
     }
     .dialog-block .dialog-label {
       font-family: 'Unbounded', sans-serif;
-      font-size: 9px;
+      font-size: 10px;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;

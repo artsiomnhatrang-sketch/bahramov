@@ -30,6 +30,10 @@
   <style>
     /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
     a { color: var(--orange, var(--accent, #f4672a)); }
+    /* Переносы: у заголовка не остаётся одинокого слова на последней строке,
+       у абзаца — тоже. Старые браузеры свойство игнорируют, вреда нет. */
+    h1, h2, h3 { text-wrap: balance; }
+    p, li, figcaption, summary { text-wrap: pretty; }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -171,6 +175,11 @@
     }
     footer a { color: var(--muted); }
 
+    /* Как на остальных страницах: на узком экране кнопка из шапки уходит,
+       иначе она вылезает за правый край (на 375 px — на 11 px) */
+    @media (max-width: 768px) {
+      nav a.nav-cta { display: none; }
+    }
     @media (max-width: 720px) {
       nav { padding: 14px 20px; }
       .nav-links { gap: 16px; }
