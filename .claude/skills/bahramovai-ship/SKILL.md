@@ -40,7 +40,7 @@ git status --short && git diff --stat
 - `feed.xml` руками не править — он генерится `python3 scripts/seo-sync.py`.
 - Новая статья? Тогда нужны: карточка в `blog/index.html` (сверху нужного
   раздела + счётчик в `.cat-title`), запись в `sitemap.xml`, `seo-sync.py`,
-  блок `data-hub-link` для кластера блокировок, запись в CLAUDE.md.
+  блок `data-hub-link` для кластера блокировок, запись в ARTICLES.md.
 
 ## 3. Запушить и показать, что изменилось
 
