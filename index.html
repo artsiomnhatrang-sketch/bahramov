@@ -1268,7 +1268,8 @@
     /* ─── MOBILE STICKY CTA ─── */
     .mobile-cta { display: none; }
     @media (max-width: 768px) {
-      body { padding-bottom: 104px; }
+      /* Липкая кнопка прячется у финального CTA, у самого низа страницы её нет.
+         Поэтому место под неё не резервируем — иначе под футером пустая полоса. */
       .mobile-cta {
         display: block;
         position: fixed;
@@ -1432,12 +1433,6 @@
       font-size: 15px;
       line-height: 1.65;
       color: #9a9a9a;
-      margin-bottom: 12px;
-    }
-    .about-legal {
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      color: #7a7a7a;
       margin-bottom: 20px;
     }
     .about-links { display: flex; gap: 12px; flex-wrap: wrap; }
@@ -1503,8 +1498,11 @@
     .proof-link { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--orange); }
     @media (max-width: 900px) { .proof-grid { grid-template-columns: 1fr; } }
 
-    .cta-bonus {
+    /* .cta-inner p задаёт margin-bottom:40px и по специфичности сильнее,
+       поэтому у последнего абзаца обнуляем отступ через .cta-inner */
+    .cta-inner .cta-bonus {
       margin-top: 22px;
+      margin-bottom: 0;
       font-family: 'Inter', sans-serif;
       font-size: 14px;
       line-height: 1.6;

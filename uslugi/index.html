@@ -520,7 +520,8 @@
     /* Липкая кнопка обращения — на десктопе не нужна, там есть кнопка в шапке */
     .mobile-cta { display: none; }
     @media (max-width: 768px) {
-      body { padding-bottom: 104px; }
+      /* Липкая кнопка прячется у финального CTA, у самого низа страницы её нет.
+         Поэтому место под неё не резервируем — иначе под футером пустая полоса. */
       .mobile-cta {
         display: block; position: fixed; left: 0; right: 0; bottom: 0; z-index: 200;
         padding: 10px 14px;
