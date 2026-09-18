@@ -219,7 +219,7 @@
       --orange-dim: rgba(244,103,42,0.12);
       --orange-border: rgba(244,103,42,0.35);
       --text: #e8e8e8;
-      --muted: #888;
+      --muted: #a3a3a3;
       --border: rgba(255,255,255,0.07);
     }
 
@@ -704,7 +704,7 @@
       margin-bottom: 12px;
       line-height: 1.35;
     }
-    .problem-card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
+    .problem-card p { font-size: 15px; color: var(--muted); line-height: 1.65; }
 
     /* ─── SERVICES ─── */
     #services { background: var(--bg2); }
@@ -830,8 +830,8 @@
     }
     .svc-more a:hover { color: var(--orange); border-color: var(--orange); }
     .service-tagline {
-      font-size: 13px;
-      color: rgba(232,232,232,0.55);
+      font-size: 14.5px;
+      color: rgba(232,232,232,0.72);
       font-style: italic;
       margin-bottom: 20px;
       line-height: 1.4;
@@ -1011,7 +1011,7 @@
       margin-bottom: 10px;
       line-height: 1.35;
     }
-    .step-card p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .step-card p { font-size: 14.5px; color: var(--muted); line-height: 1.6; }
 
     /* ─── CTA ─── */
     #cta {
@@ -1108,8 +1108,8 @@
     .site-footer .f-legal a { font-size: 12px; }
     .site-footer .f-copy { font-size: 12px; color: #8a8a8a; margin: 18px 0 12px; }
     .site-footer .f-note {
-      font-size: 11px;
-      color: #6f6f6f;
+      font-size: 12px;
+      color: #8a8a8a;
       max-width: 330px;
       margin: 16px auto 0;
       line-height: 1.55;
@@ -1122,7 +1122,7 @@
     /* На 375 px «Согласие на обработку ПД» рвалось так, что «ПД» уезжало
        на отдельную строку. Названия ссылок не переносим по словам,
        text-wrap: pretty убирает одинокое слово в последней строке. */
-    footer p { font-size: 13px; color: var(--muted); text-wrap: pretty; }
+    footer p { font-size: 14px; color: var(--muted); text-wrap: pretty; }
     footer a { color: var(--orange); text-decoration: none; white-space: nowrap; }
 
     /* ─── RESPONSIVE ─── */
@@ -1167,7 +1167,7 @@
         top: 68px; bottom: auto;
         width: 50%;
         max-width: none;
-        height: 380px;
+        height: 250px;
         transform: none;
         object-fit: cover;
         opacity: 0.95;
@@ -1181,7 +1181,7 @@
         content: '';
         position: absolute;
         top: 68px; left: 0; right: 0;
-        height: 400px;
+        height: 268px;
         z-index: 1;
         pointer-events: none;
         background:
@@ -1190,7 +1190,7 @@
       }
       /* Имя дублирует бейдж выше - на мобиле убираем, кнопка поднимается */
       .hero-name { display: none; }
-      .hero-subtitle { font-size: 13.5px; line-height: 1.5; margin-bottom: 16px; }
+      .hero-subtitle { font-size: 15px; line-height: 1.55; margin-bottom: 16px; }
       .hero-content {
         width: 100%;
         max-width: 100%;
@@ -1198,7 +1198,7 @@
         z-index: 3;
         top: auto; left: auto;
         transform: none;
-        padding: 408px 14px 50px;
+        padding: 286px 14px 50px;
       }
       .hero-content h1,
       .hero-content p,
@@ -1332,6 +1332,7 @@
     .faq details[open] summary { color: var(--orange); }
     .faq details[open] summary::after { content: '−'; }
     .faq-answer {
+      max-width: 62ch;
       font-family: 'Inter', sans-serif;
       font-size: 0.95rem;
       line-height: 1.75;
@@ -1341,8 +1342,8 @@
     @media (max-width: 768px) {
       .faq { padding: 48px 0; }
       .faq h2 { margin-bottom: 32px; }
-      .faq summary { font-size: 0.82rem; padding: 16px 0; }
-      .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
+      .faq summary { font-size: 0.95rem; padding: 16px 0; }
+      .faq-answer { font-size: 0.95rem; padding-bottom: 16px; }
     }
 
     /* ─── MOBILE STICKY CTA ─── */
@@ -1442,8 +1443,8 @@
     }
     .trust-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      color: #7e7e7e;
+      font-size: 12.5px;
+      color: #9a9a9a;
       line-height: 1.4;
     }
     .trust-kind {
@@ -1472,7 +1473,7 @@
       .trust-items { flex-direction: column; gap: 6px; }
       .trust-item { flex: none; padding: 9px 13px; }
       .trust-name { font-size: 13px; margin-bottom: 1px; }
-      .trust-desc { font-size: 11.5px; line-height: 1.35; }
+      .trust-desc { font-size: 12.5px; line-height: 1.4; }
     }
 
     /* ─── КТО Я ─── */
@@ -1570,7 +1571,7 @@
     }
     .proof-desc {
       font-family: 'Inter', sans-serif;
-      font-size: 13.5px;
+      font-size: 14.5px;
       color: var(--muted);
       line-height: 1.55;
       margin-bottom: 12px;
@@ -1593,7 +1594,7 @@
 
     .hero-cta-note {
       font-family: 'Inter', sans-serif;
-      font-size: 12.5px;
+      font-size: 13.5px;
       line-height: 1.5;
       color: #8a8a8a;
       max-width: 400px;

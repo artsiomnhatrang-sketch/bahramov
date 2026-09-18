@@ -12,7 +12,15 @@
  * Возвращает только находки: страницы без проблем в отчёт не попадают.
  */
 
-const BLUE = /^rgba?\(\s*(0|[1-9]\d?|1\d\d)\s*,\s*(0|[1-9]\d?|1\d\d)\s*,\s*(2[0-9]\d|1[6-9]\d)\s*[,)]/;
+// Синий = синий канал заметно выше красного и зелёного. Голая регулярка по
+// диапазонам ловила и нейтральный серый вроде rgb(163,163,163): 19.09.2026 из-за
+// этого главная трижды отчиталась несуществующими синими ссылками.
+function isBlue(c) {
+  const m = c.match(/^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
+  if (!m) return false;
+  const [r, g, b] = [+m[1], +m[2], +m[3]];
+  return b > 120 && b - r > 40 && b - g > 25;
+}
 
 function lineBoxes(doc, el) {
   const rg = doc.createRange();
@@ -115,7 +123,7 @@ export function audit(doc, win, W) {
   doc.querySelectorAll('a').forEach(a => {
     if (!a.textContent.trim()) return;
     const c = win.getComputedStyle(a).color;
-    if (BLUE.test(c)) push('blueLink', name(a) + '|' + c);
+    if (isBlue(c)) push('blueLink', name(a) + '|' + c);
   });
 
   // 6. Слишком мелкий текст
