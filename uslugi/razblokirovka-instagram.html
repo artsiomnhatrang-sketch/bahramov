@@ -510,8 +510,10 @@
       padding: 32px 0;
       text-align: center;
     }
-    footer p { font-size: 13px; color: var(--muted); }
-    footer a { color: var(--orange); text-decoration: none; }
+    /* Названия ссылок не рвём по словам, одинокое слово в последней строке
+       убирает text-wrap: pretty */
+    footer p { font-size: 13px; color: var(--muted); text-wrap: pretty; }
+    footer a { color: var(--orange); text-decoration: none; white-space: nowrap; }
 
     @media (max-width: 768px) {
       nav { padding: 16px 24px; }
