@@ -83,6 +83,14 @@ for check in "Битые внутренние ссылки" "Битые карт
   if [ "${n:-0}" = "0" ]; then ok "$check: чисто"; else bad "$check: $n"; fi
 done
 
+# Ссылка живая, но подписана не тем, куда ведёт — site-audit такое не ловит
+if python3 scripts/check-links-text.py > /tmp/linktext.log 2>&1; then
+  ok "$(tail -1 /tmp/linktext.log | sed 's/^ *✓ *//')"
+else
+  bad "$(head -1 /tmp/linktext.log | sed 's/^ *✗ *//')"
+  sed -n '2,8p' /tmp/linktext.log
+fi
+
 section "2. Статистические карточки"
 if python3 scripts/check-stat-cards.py > /tmp/statcards.log 2>&1; then
   ok "$(tail -1 /tmp/statcards.log)"
