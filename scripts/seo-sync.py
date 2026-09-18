@@ -90,7 +90,7 @@ def build_feed(items):
         '<?xml version="1.0" encoding="UTF-8"?>',
         '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
         "  <channel>",
-        "    <title>Блог Артёма Бахрама — AI-агенты и автоматизация соцсетей</title>",
+        "    <title>Блог Артёма Бахрамова - AI-агенты и автоматизация соцсетей</title>",
         f"    <link>{DOMAIN}/blog/</link>",
         "    <description>AI-агенты, автоматизация Instagram и Telegram, "
         "восстановление заблокированных аккаунтов, воронки продаж в мессенджерах.</description>",
@@ -99,7 +99,7 @@ def build_feed(items):
         f'    <atom:link href="{DOMAIN}/feed.xml" rel="self" type="application/rss+xml" />',
         f"    <image>",
         f"      <url>{DOMAIN}/photo.jpg</url>",
-        "      <title>Блог Артёма Бахрама</title>",
+        "      <title>Блог Артёма Бахрамова</title>",
         f"      <link>{DOMAIN}/blog/</link>",
         "    </image>",
     ]

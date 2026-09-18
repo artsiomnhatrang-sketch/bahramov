@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-# Внутренние рабочие документы — не индексировать в поиске
+# Внутренние рабочие документы - не индексировать в поиске
 Disallow: /CLAUDE.md
 Disallow: /PROJECT-BLUEPRINT.md
 Disallow: /STATUS.md

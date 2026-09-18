@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Блог Артёма Бахрама — AI-агенты и автоматизация соцсетей</title>
+    <title>Блог Артёма Бахрамова - AI-агенты и автоматизация соцсетей</title>
     <link>https://bahramovai.com/blog/</link>
     <description>AI-агенты, автоматизация Instagram и Telegram, восстановление заблокированных аккаунтов, воронки продаж в мессенджерах.</description>
     <language>ru</language>
-    <lastBuildDate>Tue, 08 Sep 2026 11:18:17 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 18 Sep 2026 16:59:50 +0000</lastBuildDate>
     <atom:link href="https://bahramovai.com/feed.xml" rel="self" type="application/rss+xml" />
     <image>
       <url>https://bahramovai.com/photo.jpg</url>
-      <title>Блог Артёма Бахрама</title>
+      <title>Блог Артёма Бахрамова</title>
       <link>https://bahramovai.com/blog/</link>
     </image>
     <item>
@@ -62,7 +62,7 @@
       <pubDate>Wed, 19 Aug 2026 09:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Блокировка Instagram в 2026: что делать — полный разбор по ситуациям</title>
+      <title>Блокировка Instagram в 2026: что делать - полный разбор по ситуациям</title>
       <link>https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html</link>
       <guid isPermaLink="true">https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html</guid>
       <description>Заблокировали Instagram или выскакивает «Действие заблокировано»? Разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта, взлом, просадка охватов.</description>
@@ -139,7 +139,7 @@
       <pubDate>Tue, 23 Jun 2026 09:00:00 +0000</pubDate>
     </item>
     <item>
-      <title>Почему Instagram блокирует аккаунты снова и снова в 2026 году — и как завести новый, чтобы он выжил</title>
+      <title>Почему Instagram блокирует аккаунты снова и снова в 2026 году - и как завести новый, чтобы он выжил</title>
       <link>https://bahramovai.com/blog/instagram-povtornaya-blokirovka-2026.html</link>
       <guid isPermaLink="true">https://bahramovai.com/blog/instagram-povtornaya-blokirovka-2026.html</guid>
       <description>Instagram блокирует аккаунт за аккаунтом? Разбираем, как Meta связывает учётки по IP и устройству, и как завести новый аккаунт, чтобы он выжил.</description>
@@ -156,7 +156,7 @@
       <title>Коммерческий контент в Instagram без бана: как работать с партнёрками и магазинами легально</title>
       <link>https://bahramovai.com/blog/instagram-kommercheskiy-kontent-bez-bana.html</link>
       <guid isPermaLink="true">https://bahramovai.com/blog/instagram-kommercheskiy-kontent-bez-bana.html</guid>
-      <description>Как вести коммерческий аккаунт в Instagram и не получить бан. Правила платформы, маркировка, партнёрский маркетинг — разбираем легальные схемы работы.</description>
+      <description>Как вести коммерческий аккаунт в Instagram и не получить бан. Правила платформы, маркировка, партнёрский маркетинг - разбираем легальные схемы работы.</description>
       <pubDate>Fri, 29 May 2026 09:00:00 +0000</pubDate>
     </item>
     <item>
@@ -296,7 +296,7 @@
       <title>5 задач, которые AI-ассистент закрывает за предпринимателя в 2026 году</title>
       <link>https://bahramovai.com/blog/ai-assistant-5-tasks.html</link>
       <guid isPermaLink="true">https://bahramovai.com/blog/ai-assistant-5-tasks.html</guid>
-      <description>Какие задачи делегировать AI-ассистенту уже сегодня? Разбираем 5 направлений — от ответов клиентам до аналитики — с цифрами, кейсами и инструментами.</description>
+      <description>Какие задачи делегировать AI-ассистенту уже сегодня? Разбираем 5 направлений - от ответов клиентам до аналитики - с цифрами, кейсами и инструментами.</description>
       <pubDate>Tue, 28 Apr 2026 09:00:00 +0000</pubDate>
     </item>
     <item>
@@ -310,14 +310,14 @@
       <title>AI-агенты и автоматизация бизнеса в 2026: полный разбор по ситуациям</title>
       <link>https://bahramovai.com/blog/ai-agents-2026.html</link>
       <guid isPermaLink="true">https://bahramovai.com/blog/ai-agents-2026.html</guid>
-      <description>AI-агент, чат-бот или ассистент — что нужно вашему бизнесу. Разбор по ситуациям: теряются заявки, бот не продаёт, нет времени на контент, сколько стоит.</description>
+      <description>AI-агент, чат-бот или ассистент - что нужно вашему бизнесу. Разбор по ситуациям: теряются заявки, бот не продаёт, нет времени на контент, сколько стоит.</description>
       <pubDate>Mon, 27 Apr 2026 09:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Как автоматизировать Instagram с помощью ChatPlace: пошаговый гайд</title>
       <link>https://bahramovai.com/blog/chatplace-instagram-automation.html</link>
       <guid isPermaLink="true">https://bahramovai.com/blog/chatplace-instagram-automation.html</guid>
-      <description>ChatPlace — платформа автоматизации Instagram и Telegram через официальный API. Что умеет, чем отличается от AI-агента, где граница безопасной автоматизации и как настроить первого бота.</description>
+      <description>ChatPlace - платформа автоматизации Instagram и Telegram через официальный API. Что умеет, чем отличается от AI-агента, где граница безопасной автоматизации и как настроить первого бота.</description>
       <pubDate>Mon, 27 Apr 2026 09:00:00 +0000</pubDate>
     </item>
   </channel>
