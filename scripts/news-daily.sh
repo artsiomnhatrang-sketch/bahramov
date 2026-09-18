@@ -24,7 +24,11 @@ python3 scripts/news-collect.py --hours 36
 
 echo
 echo "▶ 2/3 Редактор отбирает темы"
-if ! echo "Собери дайджест за сегодня ($DATE) из файла .news/$DATE.json по правилам своей роли. Запиши оба выходных файла: .news/digest-$DATE.json и .news/digest-$DATE.txt" \
+# Статическая часть задания идёт первой, дата и пути — в хвосте:
+# правило префикс-кэша, .claude/rules/prompt-caching.md
+if ! printf '%s\n\n%s\n' \
+  "Собери дайджест по правилам своей роли: прочитай сырьё за указанный день и запиши оба выходных файла — json и txt. Пути даны ниже." \
+  "Дата: $DATE. Сырьё: .news/$DATE.json. Выход: .news/digest-$DATE.json и .news/digest-$DATE.txt" \
   | claude -p --agent news-editor --permission-mode acceptEdits \
       --allowedTools "Read Write WebSearch WebFetch" 2>&1 | tee /tmp/news-editor.log
 then
