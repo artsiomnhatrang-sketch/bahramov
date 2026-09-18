@@ -838,7 +838,6 @@
     }
 
     /* ─── PACKAGE ─── */
-    #package { position: relative; }
     .package-wrap {
       display: grid;
       grid-template-columns: 1fr 400px;
@@ -1042,6 +1041,40 @@
       line-height: 1.7;
     }
     .cta-inner .btn { font-size: 16px; padding: 18px 44px; }
+
+
+    /* ── Полоса пакета СИСТЕМА (вместо секции на четыре экрана) ── */
+    #system .system-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      padding: 32px 36px;
+      border: 1px solid var(--orange-border, rgba(244,103,42,0.28));
+      border-radius: 20px;
+      background: linear-gradient(135deg, rgba(244,103,42,0.10), rgba(244,103,42,0.02));
+    }
+    #system .system-main h2 { font-size: clamp(24px, 3.4vw, 34px); margin: 6px 0 12px; }
+    #system .system-main p { color: var(--muted); font-size: 15px; line-height: 1.7; max-width: 520px; }
+    #system .system-side { text-align: center; flex-shrink: 0; }
+    #system .system-price {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 30px; font-weight: 700; color: #fff; margin-bottom: 14px;
+    }
+    @media (max-width: 760px) {
+      #system .system-strip { flex-direction: column; align-items: flex-start; padding: 26px 22px; gap: 22px; }
+      #system .system-side { text-align: left; width: 100%; }
+      #system .system-side .btn { width: 100%; box-sizing: border-box; text-align: center; }
+    }
+
+    /* Услуги: две главные карточки крупно, остальное строкой */
+    #services .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    #services .service-card h3 a { color: inherit; text-decoration: none; }
+    .services-rest {
+      margin-top: 28px; text-align: center;
+      color: var(--muted); font-size: 15px; line-height: 1.7;
+    }
+    @media (max-width: 900px) { #services .services-grid { grid-template-columns: 1fr; } }
 
     /* ─── FOOTER ─── */
 
@@ -1733,7 +1766,7 @@
       <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
         Получить бесплатный аудит →
       </a>
-      <a href="#package" class="btn btn-outline">
+      <a href="#services" class="btn btn-outline">
         Услуги и цены
       </a>
     </div>
@@ -1901,103 +1934,18 @@
 </section>
 
 <!-- PACKAGE -->
-<section id="package">
+<section id="system">
   <div class="container">
-    <div class="package-wrap">
-      <div class="package-left">
-        <div class="section-label">Флагманский продукт</div>
-        <div class="package-badge">🔥 Хит продаж</div>
+    <div class="system-strip">
+      <div class="system-main">
+        <div class="section-label">Флагманский пакет</div>
         <h2>Пакет <span class="accent">СИСТЕМА</span></h2>
-        <p class="package-subtitle">Всё необходимое для построения работающих соцсетей с нуля до стабильных продаж. В одном пакете</p>
-        <div class="package-items">
-          <div class="pkg-item">
-            <span class="pkg-item-num">01</span>
-            <span>Полный аудит текущего аккаунта и стратегическая сессия 2 часа</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">02</span>
-            <span>Настройка защиты аккаунта и создание страховочной системы</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">03</span>
-            <span>Разработка контент-стратегии на 3 месяца с контент-планом</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">04</span>
-            <span>Настройка персонального AI-ассистента для генерации контента</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">05</span>
-            <span>Разработка чат-бота с воронкой продаж под твою нишу</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">06</span>
-            <span>Упаковка профиля и оформление под целевую аудиторию</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">07</span>
-            <span>Настройка автоматизации ответов и рассылок</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">08</span>
-            <span>Сопровождение 30 дней: вопросы, корректировки, отчёты</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">09</span>
-            <span>Вывод профиля в поиск и рекомендованное: шапка и дескриптор под ключевые запросы ниши</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">10</span>
-            <span>Алгоритмизация постов и Reels в Интересное и Рекомендованное</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">11</span>
-            <span>Активность в сторис у аудитории конкурентов</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">12</span>
-            <span>Добавление подписчиков в Близкие друзья</span>
-          </div>
-          <div class="pkg-item">
-            <span class="pkg-item-num">13</span>
-            <span>Автоприветствие новым подписчикам в директ</span>
-          </div>
-        </div>
-        <p style="font-size:12.5px;color:var(--muted);line-height:1.55;margin-top:14px;">Блоки 09–13 — это AI-инструменты продвижения, они работают на период сопровождения (30 дней). Дальше их можно продлить отдельной подпиской «Трафик + Воронка».</p>
+        <p>Соцсети под ключ: защита аккаунта, контент-стратегия на три месяца,
+           AI-ассистент для контента и чат-бот с воронкой продаж.</p>
       </div>
-      <div>
-        <div class="package-card">
-          <p class="price-label">Стоимость пакета</p>
-          <div class="price-value"><span>39 900</span> ₽</div>
-          <p class="price-sub">Единоразовый платёж · без скрытых комиссий</p>
-          <p class="package-guarantee">Планка, к которой ведём: ориентир ~+15 000 охватов в месяц и рост посещений профиля в 2–3 раза за счёт AI-инструментов пакета. Это нижняя планка — она рассчитана на случай, когда ты вообще не ведёшь страницу сам. Если ведёшь, выходит выше. Фиксируем по твоей же статистике: цифры до старта и через 30 дней</p>
-          <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            Получить бесплатный аудит →
-          </a>
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
-            Задать вопрос
-          </a>
-          <div class="package-divider"></div>
-          <p class="package-includes-label">Как проходит оплата</p>
-          <ul class="package-card-list">
-            <li>Оплата официально, с чеком</li>
-            <li>Оплата до начала работ, по разблокировке — 50% до и 50% после</li>
-            <li><strong style="color:#fff;">Передумал до старта — возвращаю 100%</strong></li>
-            <li>После старта — возврат за невыполненную часть за вычетом расходов</li>
-          </ul>
-          <div class="package-divider"></div>
-          <p class="package-includes-label">В пакет входит</p>
-          <ul class="package-card-list">
-            <li>13 блоков работы</li>
-            <li>30 дней сопровождения</li>
-            <li>Чат-бот под ключ</li>
-            <li>AI-инструменты и шаблоны</li>
-            <li>Контент-план на 3 месяца</li>
-          </ul>
-          <div class="package-divider"></div>
-          <p class="package-card-note"><a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html" style="color:var(--orange);text-decoration:none;">Разбор всех 13 блоков пакета &rarr;</a></p>
-          <p class="package-card-note">Также доступны отдельные услуги.<br>Обсудим задачи и подберём формат под тебя.</p>
-        </div>
+      <div class="system-side">
+        <div class="system-price">39 900 ₽</div>
+        <a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html" class="btn btn-outline">Что входит &rarr;</a>
       </div>
     </div>
   </div>
@@ -2008,115 +1956,37 @@
   <div class="container">
     <div class="services-header">
       <div class="section-label">Услуги</div>
-      <h2>Или решить <span class="accent">одну задачу</span></h2>
-      <p style="color:var(--muted);font-size:16px;margin-top:12px;">Если вся система пока не нужна — берём точечно то, что горит</p>
-      <p style="margin-top:10px;"><a href="/uslugi/" style="color:var(--orange);text-decoration:none;font-weight:600;">Все услуги одной страницей &rarr;</a></p>
+      <h2>С чем приходят <span class="accent">чаще всего</span></h2>
     </div>
     <div class="services-grid">
+
       <div class="service-card" data-svc="unban">
-        <div class="service-icon">🔓</div>
-        <h3><a href="/uslugi/razblokirovka-instagram.html" style="color:inherit;text-decoration:none;">Разблокировка аккаунта</a></h3>
-        <div class="service-price">
-          <span class="service-price-value">от 10 000 ₽</span>
-        </div>
-        <p class="service-tagline">Instagram и Telegram. Возврат взломанных аккаунтов</p>
-        <ul>
-          <li>Разблокировка забаненных аккаунтов</li>
-          <li>Возврат взломанного профиля</li>
-          <li>Защита и настройка 2FA после восстановления</li>
-          <li>Резервная система на случай повтора</li>
-        </ul>
+        <div class="service-icon">&#128273;</div>
+        <h3><a href="/uslugi/razblokirovka-instagram.html">Разблокировка Instagram</a></h3>
+        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
+        <p class="service-tagline">Аккаунт заблокировали, отключили или увели. Разбираю, что именно
+          произошло, и работаю над возвратом доступа через официальные каналы платформы.</p>
         <div class="service-card-btns">
           <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
-          <a href="https://t.me/bahramreviews/24" class="svc-btn" target="_blank" rel="noopener noreferrer">Кейсы разбанов</a>
-          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
         </div>
-        <p class="svc-more"><a href="/uslugi/razblokirovka-instagram.html">Подробнее об услуге и цене &rarr;</a></p>
-        <p class="svc-more"><a href="/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html">Что делать при блокировке — полный разбор по ситуациям &rarr;</a></p>
+        <p class="svc-more"><a href="/uslugi/razblokirovka-instagram.html">Подробнее и цена &rarr;</a></p>
       </div>
-      <div class="service-card" data-svc="bots">
-        <div class="service-icon">🧹</div>
-        <h3><a href="/blog/instagram-chistka-ot-botov-2026.html" style="color:inherit;text-decoration:none;">Чистка от ботов</a></h3>
-        <div class="service-price">
-          <span class="service-price-value">16 000 ₽</span>
-        </div>
-        <p class="service-tagline">Безопасная очистка. Статистика начинает показывать правду</p>
-        <ul>
-          <li>Аудит подписчиков и выявление ботов</li>
-          <li>Поэтапная безопасная очистка</li>
-          <li>Повышение показателя вовлечённости</li>
-          <li>Статистика по живой аудитории: видно, что реально работает</li>
-        </ul>
+
+      <div class="service-card" data-svc="tg">
+        <div class="service-icon">&#128737;</div>
+        <h3><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Взломали Telegram</a></h3>
+        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
+        <p class="service-tagline">Аккаунт увели, номер сменили, от вашего имени пишут клиентам.
+          Возвращаю доступ через официальные каналы платформы.</p>
         <div class="service-card-btns">
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Проверить мой аккаунт &rarr;</a>
-          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
+          <a href="https://t.me/m/xD6mGebXYmZi" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
         </div>
-        <p class="svc-more"><a href="/blog/instagram-chistka-ot-botov-2026.html">Подробнее об услуге и цене &rarr;</a></p>
-        <p class="svc-more"><a href="/blog/instagram-chistka-ot-botov-2026.html">Как считается доля накрутки и что меняется после чистки &rarr;</a></p>
+        <p class="svc-more"><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Подробнее и цена &rarr;</a></p>
       </div>
-      <div class="service-card" data-svc="traffic">
-        <div class="service-icon">🚀</div>
-        <h3><a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html" style="color:inherit;text-decoration:none;">Трафик + Воронка</a></h3>
-        <div class="service-price">
-          <span class="service-price-value">17 000 ₽/мес</span>
-        </div>
-        <p class="service-tagline">Автоматизированный трафик без рекламного бюджета</p>
-        <ul>
-          <li>Вывод профиля в поиск и рекомендованное: шапка и дескриптор под ключевые запросы ниши</li>
-          <li>Алгоритмизация постов и Reels в Интересное и Рекомендованное</li>
-          <li>Активность в сторис у аудитории конкурентов</li>
-          <li>Добавление всех подписчиков в Близкие друзья</li>
-          <li>Автоприветствие новым подписчикам в директ</li>
-          <li>Доступ к обучающим материалам по контенту</li>
-        </ul>
-        <p style="font-size:11px;color:var(--muted);margin-top:14px;letter-spacing:0.03em;">Ежемесячная подписка · Результат с первой недели</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Подключить трафик &rarr;</a>
-          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
-        </div>
-        <p class="svc-more"><a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html">Подробнее об услуге и цене &rarr;</a></p>
-        <p class="svc-more"><a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html">Что входит в продвижение и как устроена механика &rarr;</a></p>
-      </div>
-      <div class="service-card" data-svc="agent">
-        <div class="service-icon">🤖</div>
-        <h3><a href="/uslugi/ai-agent.html" style="color:inherit;text-decoration:none;">AI-агент под ключ</a></h3>
-        <div class="service-price">
-          <span class="service-price-value">от 30 000 ₽</span>
-        </div>
-        <p class="service-tagline">Чат-бот который продаёт 24/7 пока ты спишь</p>
-        <ul>
-          <li>Разработка AI-агента под твою нишу</li>
-          <li>Автоворонка с квалификацией лидов</li>
-          <li>Интеграция с Telegram, Instagram</li>
-          <li>Подключение к CRM и оплатам</li>
-        </ul>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
-          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/ai-agent.html">Подробнее об услуге и цене &rarr;</a></p>
-        <p class="svc-more"><a href="/blog/chatbot-cost-2026.html">Из чего складывается цена чат-бота и когда он окупается &rarr;</a></p>
-      </div>
-      <div class="service-card" data-svc="apps">
-        <div class="service-icon">📱</div>
-        <h3>Разработка приложений</h3>
-        <div class="service-price">
-          <span class="service-price-value">Индивидуально</span>
-        </div>
-        <p class="service-tagline">От идеи до готового продукта. Простой MVP — от 2 дней</p>
-        <ul>
-          <li>Telegram Mini Apps под ключ</li>
-          <li>Чат-боты для Instagram, Telegram, TikTok</li>
-          <li>Сайты и лендинги</li>
-          <li>Срок и цена зависят от сложности задачи</li>
-        </ul>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить проект &rarr;</a>
-          <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" class="svc-btn" target="_blank" rel="noopener">Написать в MAX</a>
-        </div>
-        <p class="svc-more"><a href="/blog/telegram-ai-agenty-konstruktor-2026.html">Нативные AI-агенты Telegram или внешняя платформа — разбор &rarr;</a></p>
-      </div>
+
     </div>
+    <p class="services-rest">Ещё беру AI-агента под ключ, чистку от ботов, трафик и воронки,
+      разработку приложений. <a href="/uslugi/">Все услуги и цены &rarr;</a></p>
   </div>
 </section>
 
@@ -2196,46 +2066,14 @@
       <p class="about-text">Работаю дистанционно с предпринимателями и небольшими командами из России, Беларуси, Казахстана и других стран СНГ. Настраиваю чат-ботов и AI-агентов, которые отвечают вместо менеджеров и ведут клиента по воронке. Строю контент-стратегии, чтобы соцсети работали системно, а не «когда есть вдохновение».</p>
       <div class="about-links">
         <a href="/about.html" class="btn btn-outline">Подробнее обо мне</a>
-        <a href="https://t.me/m/rrSvG_DVYTQy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Написать в Telegram &rarr;</a>
+        
       </div>
     </div>
   </div>
 </section>
 
 <!-- Свежее в блоге -->
-<section class="latest" id="latest">
-  <div class="latest-inner">
-    <h2>Читайте в блоге</h2>
-    <p class="latest-sub">Разборы из практики: что реально работает в 2026 году</p>
 
-    <div class="latest-grid">
-      <a href="/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html" class="latest-card">
-        <span class="latest-tag">Блокировки</span>
-        <h3>Блокировка Instagram в 2026: что делать</h3>
-        <p>Полный разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта, просадка охватов.</p>
-      </a>
-      <a href="/blog/telegram-1000-subscribers.html" class="latest-card">
-        <span class="latest-tag">Telegram</span>
-        <h3>Первая 1000 подписчиков в Telegram</h3>
-        <p>С чего начать канал в 2026 году и как набрать первую тысячу без бюджета на рекламу.</p>
-      </a>
-      <a href="/blog/ai-assistant-5-tasks.html" class="latest-card">
-        <span class="latest-tag">AI-ассистент</span>
-        <h3>5 задач для AI-ассистента предпринимателя</h3>
-        <p>Что можно снять с себя уже сегодня — с конкретными сценариями и примерами.</p>
-      </a>
-      <a href="/blog/max-messenger-biznes-2026.html" class="latest-card">
-        <span class="latest-tag">Мессенджеры</span>
-        <h3>Мессенджер MAX для бизнеса</h3>
-        <p>Стоит ли заводить чат-бота в MAX в 2026 году и кому это действительно нужно.</p>
-      </a>
-    </div>
-
-    <div class="latest-more">
-      <a href="/blog/">Все статьи блога →</a>
-    </div>
-  </div>
-</section>
 
 <!-- FAQ -->
 <section class="faq" id="faq">
@@ -2386,7 +2224,7 @@
       if (a.closest('nav'))          return 'nav';
       if (a.closest('#hero'))        return 'hero';
       if (a.closest('#case'))        return 'case';
-      if (a.closest('#package'))     return 'package';
+      if (a.closest('#system'))      return 'package';
       if (a.closest('#proof'))       return 'proof';
       if (a.closest('.about-me'))    return 'about';
       if (a.closest('#cta'))         return 'final';
