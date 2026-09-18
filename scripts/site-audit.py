@@ -6,7 +6,9 @@ from html.parser import HTMLParser
 
 ROOT = Path(__file__).resolve().parent.parent
 os.chdir(ROOT)
-files = sorted(glob.glob("*.html") + glob.glob("blog/*.html"))
+# Страницы услуг раньше в аудит не попадали вовсе: битые ссылки и картинки
+# на четырёх коммерческих страницах никогда не проверялись
+files = sorted(glob.glob("*.html") + glob.glob("blog/*.html") + glob.glob("uslugi/*.html"))
 
 class P(HTMLParser):
     def __init__(s):
@@ -49,13 +51,25 @@ for f in files:
     raw=Path(f).read_text(encoding="utf-8",errors="replace")
     if "t.me/bahramovai" in raw and "t.me/bahramovai/" not in raw:
         for m in re.finditer(r"t\.me/bahramovai(?![a-z])", raw): deadtg.append(f)
+    # Квадратные скобки внутри промптов — это шаблон, который статья учит
+    # подставлять, а не забытая рыба вёрстки. Вырезаем блоки кода, блоки
+    # промптов и предложения, начинающиеся со слова «Промпт»
+    prose = re.sub(r"<(code|pre)\b.*?</\1>", " ", raw, flags=re.S | re.I)
+    prose = re.sub(r'<div[^>]*class="[^"]*prompt-block[^"]*".*?</div>', " ", prose, flags=re.S | re.I)
+    prose = re.sub(r"Промпт.{0,600}?(?:»|</p>)", " ", prose, flags=re.I | re.S)
     for pat in PLACE:
-        if re.search(pat, raw, re.I): placeholders.append(f"{f}: {pat}")
+        if re.search(pat, prose, re.I): placeholders.append(f"{f}: {pat}")
     for m in MOJI:
         if m in raw: mojibake.append(f"{f}: '{m}'")
     p=P()
     try: p.feed(raw)
     except Exception as e: structure.append(f"{f}: parse error {e}"); continue
+    # Файлы подтверждения владения и страница 404 — служебные, требования
+    # к заголовкам и canonical к ним не применяются. Раньше они давали
+    # 21 красную строку в каждом отчёте, и отчёт переставали читать
+    base = os.path.basename(f)
+    if re.match(r"^(google[0-9a-f]+|yandex_[0-9a-f]+|zen_[\w-]+)\.html$", base) or base == "404.html":
+        continue
     if p.h1!=1: structure.append(f"{f}: H1={p.h1} (должен быть 1)")
     if not p.title.strip(): structure.append(f"{f}: пустой <title>")
     if not p.canon: structure.append(f"{f}: нет canonical")
@@ -97,7 +111,11 @@ if os.path.isfile("sitemap.xml"):
     locs=re.findall(r"<loc>(.*?)</loc>", smraw)
     smpaths={local(l) for l in locs}
     for f in files:
-        if f=="blog/index.html" or "/" not in f: continue
+        # Файлы подтверждения владения для поисковиков вне sitemap намеренно.
+        # Раньше здесь пропускались ВСЕ корневые страницы ("/" not in f) —
+        # из-за этого consent.html, стоящий в футере всех страниц, полгода
+        # не попадал в sitemap и проверка молчала.
+        if re.match(r"^(google[0-9a-f]+|yandex_[0-9a-f]+|zen_[\w-]+)\.html$", os.path.basename(f)): continue
         # страницы-редиректы (переехавшие адреса) намеренно вне sitemap:
         # у них noindex + canonical на новый адрес
         try:
