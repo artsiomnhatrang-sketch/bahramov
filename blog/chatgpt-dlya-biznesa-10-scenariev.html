@@ -162,6 +162,9 @@
     .article-header .lead { font-size: 18px; color: var(--muted); line-height: 1.7; }
 
     .article-body { padding: 16px 0 72px; }
+    /* На телефоне 72 px перед футером читались пустой полосой — у футера
+       своя заливка и рамка, граница и так видна */
+    @media (max-width: 768px) { .article-body { padding-bottom: 32px; } }
     .article-body h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: #fff; margin: 52px 0 18px; line-height: 1.3; }
     .article-body h2 .accent { color: var(--orange); }
     .article-body h3 { font-family: 'Unbounded', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin: 32px 0 12px; }

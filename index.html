@@ -1044,6 +1044,43 @@
     .cta-inner .btn { font-size: 16px; padding: 18px 44px; }
 
     /* ─── FOOTER ─── */
+
+    /* ── ФУТЕР ──
+       Ссылки выложены строкой через flex, БЕЗ точек-разделителей: при переносе
+       точка больше не висит в начале или в конце строки. line-height 1.6
+       вместо 2 — блок перестал расползаться на пол-экрана телефона. */
+    .site-footer {
+      background: #0d0d0d;
+      border-top: 1px solid #1e1e1e;
+      padding: 30px 20px 28px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      color: #808080;
+      line-height: 1.6;
+    }
+    .site-footer .f-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin: 0;
+    }
+    .site-footer .f-row a {
+      color: var(--orange, #f4672a);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-footer .f-row a:hover { text-decoration: underline; }
+    .site-footer .f-contacts a { font-size: 14px; font-weight: 600; }
+    .site-footer .f-legal a { font-size: 12px; }
+    .site-footer .f-copy { font-size: 12px; color: #8a8a8a; margin: 18px 0 12px; }
+    .site-footer .f-note {
+      font-size: 11px;
+      color: #6f6f6f;
+      max-width: 330px;
+      margin: 16px auto 0;
+      line-height: 1.55;
+    }
     footer {
       border-top: 1px solid var(--border);
       padding: 32px 0;
@@ -1086,6 +1123,9 @@
     @media (max-width: 600px) {
       #hero { min-height: auto; }
       section { padding: 60px 0; }
+      /* Под последней секцией у футера своя заливка и рамка, поэтому 60 px
+         пустоты перед ней читались дырой. Хватает 28 px. */
+      #cta { padding-bottom: 28px; }
       /* Обе картинки видны: робот слева, портрет справа — полосой сверху,
          текст идёт под ними и ничего не перекрывает */
       .hero-bg-left, .hero-bg-right {
@@ -2371,36 +2411,20 @@
   })();
 </script>
 
-<footer style="
-  background: #0d0d0d;
-  border-top: 1px solid #1e1e1e;
-  padding: 28px 30px 24px;
-  text-align: center;
-  font-family: 'Inter', sans-serif;
-  color: #808080;
-  line-height: 2;
-">
-  <p style="font-size:13px; margin-bottom:14px; color:#9a9a9a;">
-    Написать: <a href="https://t.me/m/rrSvG_DVYTQy" target="_blank" rel="noopener noreferrer" style="color:#f4672a;text-decoration:none;">Telegram</a>
-    &nbsp;·&nbsp; <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener" style="color:#f4672a;text-decoration:none;">MAX</a>
-    &nbsp;·&nbsp; <a href="mailto:artsiomnhatrang@gmail.com" style="color:#f4672a;text-decoration:none;">artsiomnhatrang@gmail.com</a><br>
-    <span style="font-size:12px;color:#7a7a7a;">Не пользуешься Telegram — пиши в MAX или на почту, отвечаю везде</span>
-  </p>
-  <p style="font-size:12px; margin-bottom:6px;">
-    © 2026 Артём Бахрамов &nbsp;·&nbsp; bahramovai.com
-  </p>
-  <p style="font-size:12px; margin-bottom:8px;">
-    <a href="/about.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Обо мне</a>
-    <span style="color:#888;">·</span>
-    <a href="offer.html"   style="color:#f4672a;text-decoration:none;margin:0 8px;">Публичная оферта</a>
-    <span style="color:#888;">·</span>
-    <a href="privacy.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Политика конфиденциальности</a>
-    <span style="color:#888;">·</span>
-    <a href="consent.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Согласие на обработку ПД</a>
-  </p>
-  <p style="font-size:11px; color:#888888;">
-    Используя сайт и сервисы, вы принимаете условия оферты и соглашаетесь с обработкой персональных данных
-  </p>
+<footer class="site-footer">
+  <div class="f-row f-contacts">
+    <a href="https://t.me/m/rrSvG_DVYTQy" target="_blank" rel="noopener noreferrer">Telegram</a>
+    <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a>
+    <a href="mailto:artsiomnhatrang@gmail.com">Почта</a>
+  </div>
+  <p class="f-copy">© 2026 Артём Бахрамов · bahramovai.com</p>
+  <div class="f-row f-legal">
+    <a href="/about.html">Обо мне</a>
+    <a href="offer.html">Оферта</a>
+    <a href="privacy.html">Конфиденциальность</a>
+    <a href="consent.html">Согласие на обработку ПД</a>
+  </div>
+  <p class="f-note">Пользуясь сайтом, вы принимаете условия оферты и обработку персональных данных</p>
 </footer>
 
 </body>

@@ -582,7 +582,7 @@
       .container { padding: 0 24px; }
       .post-card { padding: 24px; }
       /* 100px под последней карточкой на телефоне читаются как пустая дыра */
-      .blog-section { padding: 48px 0 60px; }
+      .blog-section { padding: 48px 0 32px; }
     }
   
     /* Шапка на узких экранах: после добавления пункта «Услуги» пунктам стало тесно */
@@ -602,6 +602,43 @@
         @media (max-width: 700px) {
             h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: anywhere; }
         }
+
+    /* ── ФУТЕР ──
+       Ссылки выложены строкой через flex, БЕЗ точек-разделителей: при переносе
+       точка больше не висит в начале или в конце строки. line-height 1.6
+       вместо 2 — блок перестал расползаться на пол-экрана телефона. */
+    .site-footer {
+      background: #0d0d0d;
+      border-top: 1px solid #1e1e1e;
+      padding: 30px 20px 28px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      color: #808080;
+      line-height: 1.6;
+    }
+    .site-footer .f-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin: 0;
+    }
+    .site-footer .f-row a {
+      color: var(--orange, #f4672a);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-footer .f-row a:hover { text-decoration: underline; }
+    .site-footer .f-contacts a { font-size: 14px; font-weight: 600; }
+    .site-footer .f-legal a { font-size: 12px; }
+    .site-footer .f-copy { font-size: 12px; color: #8a8a8a; margin: 18px 0 12px; }
+    .site-footer .f-note {
+      font-size: 11px;
+      color: #6f6f6f;
+      max-width: 330px;
+      margin: 16px auto 0;
+      line-height: 1.55;
+    }
     </style>
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript" >
@@ -1156,20 +1193,14 @@
   </div>
 </section>
 
-<footer style="background:#0d0d0d; border-top:1px solid #1e1e1e; padding:28px 30px 24px; text-align:center; font-family:'Inter',sans-serif; color:#808080; line-height:2;">
-  <p style="font-size:12px; margin-bottom:6px;">
-    © 2026 Артём Бахрамов &nbsp;·&nbsp; bahramovai.com
-  </p>
-  <p style="font-size:12px; margin-bottom:8px;">
-    <a href="/about.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Обо мне</a>
-    <span style="color:#888;">·</span>
-    <a href="/privacy.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Политика конфиденциальности</a>
-    <span style="color:#888;">·</span>
-    <a href="/consent.html" style="color:#f4672a;text-decoration:none;margin:0 8px;">Согласие на обработку ПД</a>
-  </p>
-  <p style="font-size:11px; color:#888888;">
-    Используя сайт, вы соглашаетесь с обработкой персональных данных
-  </p>
+<footer class="site-footer">
+  <p class="f-copy">© 2026 Артём Бахрамов · bahramovai.com</p>
+  <div class="f-row f-legal">
+    <a href="/about.html">Обо мне</a>
+    <a href="/privacy.html">Конфиденциальность</a>
+    <a href="/consent.html">Согласие на обработку ПД</a>
+  </div>
+  <p class="f-note">Пользуясь сайтом, вы соглашаетесь с обработкой персональных данных</p>
 </footer>
 
 </body>

@@ -260,6 +260,9 @@
     }
 
     .article-body { padding: 16px 0 72px; }
+    /* На телефоне 72 px перед футером читались пустой полосой — у футера
+       своя заливка и рамка, граница и так видна */
+    @media (max-width: 768px) { .article-body { padding-bottom: 32px; } }
 
     .article-body h2 {
       font-family: 'Unbounded', sans-serif;
@@ -445,6 +448,42 @@
       border-top: 1px solid var(--border);
       padding: 32px 0;
       text-align: center;
+    }
+
+    /* ── ФУТЕР ──
+       Ссылки строкой через flex, БЕЗ точек-разделителей: при переносе точка
+       не висит в начале или в конце строки. */
+    .site-footer {
+      background: #0d0d0d;
+      border-top: 1px solid #1e1e1e;
+      padding: 30px 20px 28px;
+      text-align: center;
+      font-family: 'Inter', sans-serif;
+      color: #808080;
+      line-height: 1.6;
+    }
+    .site-footer .f-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 20px;
+      margin: 0;
+    }
+    .site-footer .f-row a {
+      color: var(--orange, #f4672a);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .site-footer .f-row a:hover { text-decoration: underline; }
+    .site-footer .f-contacts a { font-size: 14px; font-weight: 600; }
+    .site-footer .f-legal a { font-size: 12px; }
+    .site-footer .f-copy { font-size: 12px; color: #8a8a8a; margin: 18px 0 12px; }
+    .site-footer .f-note {
+      font-size: 11px;
+      color: #6f6f6f;
+      max-width: 330px;
+      margin: 16px auto 0;
+      line-height: 1.55;
     }
     /* Названия ссылок не рвём по словам, одинокое слово в последней строке
        убирает text-wrap: pretty */
@@ -806,12 +845,19 @@
   <p class="mobile-cta-note">Отвечаю лично. Разбор бесплатный.</p>
 </div>
 
-<footer>
-  <div class="container">
-    <p>Написать: <a href="https://t.me/m/adSS4dRGNTFi" target="_blank" rel="noopener noreferrer">Telegram</a> &middot; <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a> &middot; <a href="mailto:artsiomnhatrang@gmail.com">artsiomnhatrang@gmail.com</a><br />
-    <span style="color:#7a7a7a;font-size:13px;">Не пользуешься Telegram — пиши в MAX или на почту, отвечаю везде</span></p>
-    <p style="margin-top:14px;">&copy; 2026 Артём Бахрамов</p>
-    <p><a href="/">bahramovai.com</a> &middot; <a href="/uslugi/">Услуги</a> &middot; <a href="/blog/">Блог</a> &middot; <a href="/privacy.html">Политика конфиденциальности</a> &middot; <a href="/consent.html">Согласие на обработку ПД</a></p>
+<footer class="site-footer">
+  <div class="f-row f-contacts">
+    <a href="https://t.me/m/adSS4dRGNTFi" target="_blank" rel="noopener noreferrer">Telegram</a>
+    <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a>
+    <a href="mailto:artsiomnhatrang@gmail.com">Почта</a>
+  </div>
+  <p class="f-copy">© 2026 Артём Бахрамов · bahramovai.com</p>
+  <div class="f-row f-legal">
+    <a href="/">Главная</a>
+    <a href="/uslugi/">Услуги</a>
+    <a href="/blog/">Блог</a>
+    <a href="/privacy.html">Конфиденциальность</a>
+    <a href="/consent.html">Согласие на обработку ПД</a>
   </div>
 </footer>
 

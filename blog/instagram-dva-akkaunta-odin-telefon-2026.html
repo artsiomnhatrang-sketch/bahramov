@@ -196,6 +196,9 @@
     }
 
     .article-body { padding: 16px 0 72px; }
+    /* На телефоне 72 px перед футером читались пустой полосой — у футера
+       своя заливка и рамка, граница и так видна */
+    @media (max-width: 768px) { .article-body { padding-bottom: 32px; } }
 
     .article-body h2 {
       font-family: 'Unbounded', sans-serif;
