@@ -128,9 +128,20 @@
         .case-block h4 { font-family: 'Unbounded', sans-serif; font-size: 16px; color: #f4672a; margin-bottom: 12px; }
         .case-block p { margin-bottom: 8px; font-size: 15px; }
 
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 40px 0; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 40px 0; }
         .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; text-align: center; }
-        .stat-number { font-family: 'Unbounded', sans-serif; font-size: clamp(20px, 4vw, 32px); font-weight: 700; color: #f4672a; display: block; margin-bottom: 8px; word-break: break-word; overflow-wrap: anywhere; hyphens: auto; line-height: 1.1; max-width: 100%; }
+        .stat-number { font-family: 'Unbounded', sans-serif; font-size: clamp(18px, 3vw, 30px); font-weight: 700; color: #f4672a; display: block; margin-bottom: 8px; word-break: normal; overflow-wrap: break-word; hyphens: manual; line-height: 1.15; max-width: 100%; text-wrap: balance; }
+    /* Размер считается от ширины карточки, а не экрана: при 4vw «39 900 ₽»
+       не влезал в карточку 175 px и рвался на три строки. */
+    .stat-card, .stat-item { container-type: inline-size; }
+    @supports (font-size: 1cqi) { .stat-number { font-size: clamp(18px, 21cqi, 30px); } }
+    /* Чем длиннее значение, тем мельче кегль: иначе «большинство» и
+       «3 сценария» не влезают в карточку и рвутся посреди слова. */
+    @supports (font-size: 1cqi) {
+      .stat-number.len-m { font-size: clamp(17px, 17cqi, 25px); }
+      .stat-number.len-l { font-size: clamp(15px, 13cqi, 18px); }
+    }
+
         .stat-label { font-size: 14px; color: #888; line-height: 1.4; }
 
         /* Price comparison cards */
@@ -333,7 +344,7 @@
 
     <div class="stats-grid">
         <div class="stat-card">
-            <span class="stat-number">~85 млн</span>
+            <span class="stat-number len-m">~85 млн</span>
             <div class="stat-label">пользователей MAX к началу 2026 (по открытым источникам)</div>
         </div>
         <div class="stat-card">

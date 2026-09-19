@@ -355,15 +355,29 @@
     }
     .stat-number {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(20px, 4vw, 32px);
+      font-size: clamp(18px, 3vw, 30px);
       font-weight: 700;
       color: var(--orange);
       line-height: 1.1;
-      word-break: break-word;
-      overflow-wrap: anywhere;
+      word-break: normal;
+      overflow-wrap: break-word;
       display: block;
       margin-bottom: 8px;
+            hyphens: manual;
+            text-wrap: balance;
+        }
+    /* Размер считается от ширины карточки, а не экрана: при 4vw «39 900 ₽»
+       не влезал в карточку 175 px и рвался на три строки. */
+    .stat-card, .stat-item { container-type: inline-size; }
+    @supports (font-size: 1cqi) { .stat-number { font-size: clamp(18px, 21cqi, 30px); } }
+    /* Чем длиннее значение, тем мельче кегль: иначе «большинство» и
+       «3 сценария» не влезают в карточку и рвутся посреди слова. */
+    @supports (font-size: 1cqi) {
+      .stat-number.len-m { font-size: clamp(17px, 17cqi, 25px); }
+      .stat-number.len-l { font-size: clamp(15px, 13cqi, 18px); }
     }
+
+
     .stat-label {
       font-size: 12px;
       color: var(--muted);
@@ -731,11 +745,11 @@
 
     <div class="stats-row">
       <div class="stat-card">
-        <span class="stat-number">1 канал</span>
+        <span class="stat-number len-m">1 канал</span>
         <span class="stat-label">потолок нативного агента</span>
       </div>
       <div class="stat-card">
-        <span class="stat-number">×0 кода</span>
+        <span class="stat-number len-m">×0 кода</span>
         <span class="stat-label">ниже порог входа</span>
       </div>
       <div class="stat-card">
@@ -743,7 +757,7 @@
         <span class="stat-label">ответы внутри Telegram</span>
       </div>
       <div class="stat-card">
-        <span class="stat-number">3 сценария</span>
+        <span class="stat-number len-l">3 сценария</span>
         <span class="stat-label">кому что подойдёт</span>
       </div>
     </div>

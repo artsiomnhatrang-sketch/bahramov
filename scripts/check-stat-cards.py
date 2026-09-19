@@ -9,7 +9,9 @@ from pathlib import Path
 BLOG = Path(__file__).parent.parent / "blog"
 
 BIG_CLS = re.compile(
-    r'<(?:span|div|p)\s+class="(stat-number|metric-value)"[^>]*>(.*?)</(?:span|div|p)>',
+    # Класс может идти с модификатором (len-m/len-l — кегль по длине значения),
+    # поэтому совпадение по слову в списке классов, а не по всей строке целиком.
+    r'<(?:span|div|p)\s+class="[^"]*\b(stat-number|metric-value)\b[^"]*"[^>]*>(.*?)</(?:span|div|p)>',
     re.DOTALL | re.I
 )
 

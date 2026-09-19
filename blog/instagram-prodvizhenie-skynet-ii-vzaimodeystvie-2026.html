@@ -282,7 +282,7 @@
     /* Stat cards */
     .stat-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 16px;
       margin: 32px 0;
     }
@@ -295,20 +295,36 @@
     }
     .stat-number {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(20px, 4vw, 32px);
+      font-size: clamp(18px, 3vw, 30px);
       font-weight: 700;
       color: var(--orange);
       line-height: 1.1;
       margin-bottom: 8px;
-      word-break: break-word;
-      overflow-wrap: anywhere;
+      word-break: normal;
+      overflow-wrap: break-word;
+            hyphens: manual;
+            text-wrap: balance;
+        }
+    /* Размер считается от ширины карточки, а не экрана: при 4vw «39 900 ₽»
+       не влезал в карточку 175 px и рвался на три строки. */
+    .stat-card, .stat-item { container-type: inline-size; }
+    @supports (font-size: 1cqi) { .stat-number { font-size: clamp(18px, 21cqi, 30px); } }
+    /* Чем длиннее значение, тем мельче кегль: иначе «большинство» и
+       «3 сценария» не влезают в карточку и рвутся посреди слова. */
+    @supports (font-size: 1cqi) {
+      .stat-number.len-m { font-size: clamp(17px, 17cqi, 25px); }
+      .stat-number.len-l { font-size: clamp(15px, 13cqi, 18px); }
     }
+
+
     .stat-label {
       font-size: 12px;
       color: var(--muted);
       line-height: 1.4;
     }
     @media (max-width: 768px) {
+      /* На узком экране две колонки дают карточку 156 px, и значения вроде
+         «39 900 ₽» и «3 месяца» рвутся на три строки. Ниже 560 px — одна колонка. */
       .stat-grid { grid-template-columns: repeat(2, 1fr); }
     }
 
@@ -319,6 +335,10 @@
       padding: 24px 28px;
       margin: 28px 0;
     }
+    @media (max-width: 560px) {
+      .stat-grid { grid-template-columns: 1fr; }
+    }
+
     .checklist .checklist-title {
       font-family: 'Unbounded', sans-serif;
       font-size: 11px;
@@ -729,11 +749,11 @@
 
     <div class="stat-grid">
       <div class="stat-card">
-        <div class="stat-number">17 000 ₽</div>
+        <div class="stat-number len-m">17&nbsp;000&nbsp;₽</div>
         <div class="stat-label">в месяц</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">~+15 000</div>
+        <div class="stat-number len-m">~+15&nbsp;000</div>
         <div class="stat-label">охвата/мес - ориентир</div>
       </div>
       <div class="stat-card">
