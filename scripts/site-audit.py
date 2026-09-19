@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Диагностика сайта bahramovai.com. Только чтение. Ничего не меняет.
-import os, re, glob, urllib.request, urllib.error
+import os, re, glob, ssl, urllib.request, urllib.error
 from pathlib import Path
 from html.parser import HTMLParser
 
@@ -106,6 +106,24 @@ for u in ([] if FAST else sorted(ext)):
             if e.code in (403,405,429): continue
             break
         except Exception as e:
+            # Сертификат, которому не доверяют браузеры, — отдельный случай:
+            # сервер жив и отдаёт 200, но у человека вместо страницы красный
+            # экран «Подключение не защищено». Так ведёт себя secrets.tbank.ru
+            # с сертификатом от УЦ Минцифры. Прецедент 19.09.2026: ссылка
+            # в разделе «Публикации» не открывалась, а проверка молчала.
+            reason = getattr(e, "reason", e)
+            if isinstance(reason, ssl.SSLError) or "CERTIFICATE_VERIFY" in str(reason):
+                alive = False
+                try:
+                    lax = ssl.create_default_context()
+                    lax.check_hostname = False
+                    lax.verify_mode = ssl.CERT_NONE
+                    req = urllib.request.Request(u, method="GET", headers={"User-Agent": "Mozilla/5.0"})
+                    alive = urllib.request.urlopen(req, timeout=10, context=lax).status == 200
+                except Exception:
+                    pass
+                st = "CERT-ALIVE" if alive else "CERT-DEAD"
+                break
             st=f"ERR:{type(e).__name__}"; continue
     extres.append((u,st))
 
@@ -151,6 +169,15 @@ sec("Sitemap рассинхрон", sm)
 print(f"\n=== Внешние ссылки ({len(extres)}) ===")
 if FAST: print("  пропущено (--fast)")
 for u,st in extres:
-    mark = "✅" if st==200 else ("⚠️ проверить вручную" if (isinstance(st,str) or st in (403,405,429,999)) else "❌")
+    if st == "CERT-ALIVE":
+        mark = "❌ сертификат не признан браузерами (страница жива, но у людей красный экран)"
+    elif st == "CERT-DEAD":
+        mark = "❌ сертификат не признан браузерами и страница не отвечает"
+    elif st == 200:
+        mark = "✅"
+    elif isinstance(st, str) or st in (403, 405, 429, 999):
+        mark = "⚠️ проверить вручную"
+    else:
+        mark = "❌"
     print(f"  {mark} [{st}] {u}")
 print("\n--- stat-card проверка ---")
