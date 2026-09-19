@@ -70,6 +70,11 @@ for f in files:
     base = os.path.basename(f)
     if re.match(r"^(google[0-9a-f]+|yandex_[0-9a-f]+|zen_[\w-]+)\.html$", base) or base == "404.html":
         continue
+    # Страницы-заглушки редиректов (noindex + canonical на новый адрес) — у них
+    # намеренно нет H1 и og:title: их задача передать вес и увести пользователя,
+    # а не ранжироваться. Тот же признак уже пропускает их в проверке sitemap.
+    if 'name="robots"' in raw[:2000] and "noindex" in raw[:2000] and "http-equiv=\"refresh\"" in raw[:2000]:
+        continue
     if p.h1!=1: structure.append(f"{f}: H1={p.h1} (должен быть 1)")
     if not p.title.strip(): structure.append(f"{f}: пустой <title>")
     if not p.canon: structure.append(f"{f}: нет canonical")
