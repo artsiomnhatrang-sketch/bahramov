@@ -127,7 +127,7 @@
           "@type": "Offer",
           "priceCurrency": "RUB",
           "price": "39900",
-          "url": "https://bahramovai.com/offer.html",
+          "url": "https://bahramovai.com/uslugi/",
           "itemOffered": {
             "@type": "Service",
             "name": "Пакет «СИСТЕМА» - AI-стратегия для соцсетей",
@@ -139,7 +139,7 @@
           "@type": "Offer",
           "priceCurrency": "RUB",
           "price": "17000",
-          "url": "https://bahramovai.com/offer.html",
+          "url": "https://bahramovai.com/uslugi/",
           "itemOffered": {
             "@type": "Service",
             "name": "ТРАФИК + ВОРОНКА - ведение трафика",
@@ -156,7 +156,7 @@
             "priceCurrency": "RUB",
             "minPrice": "30000"
           },
-          "url": "https://bahramovai.com/offer.html",
+          "url": "https://bahramovai.com/uslugi/",
           "itemOffered": {
             "@type": "Service",
             "name": "AI-агент под ключ",
@@ -173,7 +173,7 @@
             "priceCurrency": "RUB",
             "minPrice": "10000"
           },
-          "url": "https://bahramovai.com/offer.html",
+          "url": "https://bahramovai.com/uslugi/",
           "itemOffered": {
             "@type": "Service",
             "name": "Разблокировка аккаунта",
@@ -185,7 +185,7 @@
           "@type": "Offer",
           "priceCurrency": "RUB",
           "price": "16000",
-          "url": "https://bahramovai.com/offer.html",
+          "url": "https://bahramovai.com/uslugi/",
           "itemOffered": {
             "@type": "Service",
             "name": "Чистка от ботов",
@@ -704,6 +704,15 @@
       line-height: 1.35;
     }
     .problem-card p { font-size: 15px; color: var(--muted); line-height: 1.65; }
+    .problem-card p.problem-cta { margin: 14px 0 0; font-size: 14px; }
+    .problem-card p.problem-cta a {
+      color: var(--orange);
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(244,103,42,0.35);
+      padding-bottom: 2px;
+    }
+    .problem-card p.problem-cta a:hover { border-bottom-color: var(--orange); }
 
     /* ─── SERVICES ─── */
     #services { background: var(--bg2); }
@@ -1070,8 +1079,29 @@
     #services .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     #services .service-card h3 a { color: inherit; text-decoration: none; }
     .services-rest {
-      margin-top: 28px; text-align: center;
-      color: var(--muted); font-size: 15px; line-height: 1.7;
+      margin-top: 44px;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 36px;
+    }
+    .services-rest-label {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--orange); margin: 0 0 12px;
+    }
+    .services-rest-text {
+      color: var(--muted); font-size: 16px; line-height: 1.7;
+      max-width: 620px; margin: 0 auto 26px;
+    }
+    a.services-rest-btn {
+      display: inline-block;
+      font-size: 17px;
+      padding: 17px 42px;
+    }
+    @media (max-width: 600px) {
+      .services-rest { margin-top: 34px; padding-top: 28px; }
+      .services-rest-text { font-size: 15px; }
+      a.services-rest-btn { display: block; width: 100%; font-size: 16px; padding: 16px 20px; }
     }
     @media (max-width: 900px) { #services .services-grid { grid-template-columns: 1fr; } }
 
@@ -1221,7 +1251,7 @@
       .pkg-item, .pkg-item > *, .package-left * { min-width: 0; overflow-wrap: anywhere; }
     }
     @media (max-width: 360px) {
-      nav .nav-bonus { font-size: 11px; padding: 7px 9px; }
+      nav .nav-bonus { font-size: 11px; padding: 7px 9px; border-color: rgba(244,103,42,0.38); font-weight: 500; }
       nav { gap: 8px; padding-left: 10px; padding-right: 10px; }
       .latest-grid { grid-template-columns: minmax(0, 1fr); }
       .latest-card, .latest-grid, .latest-inner { min-width: 0; }
@@ -1689,7 +1719,7 @@
         "name": "Какой результат вы обещаете?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "На пакете «СИСТЕМА» есть планка, к которой мы ведём: ориентир ~+15 000 охватов в месяц и рост посещений профиля в 2–3 раза за счёт AI-инструментов, которые внедряются в рамках пакета. Это нижняя планка: она рассчитана на случай, когда клиент вообще не ведёт страницу сам - если ведёшь, результат выходит выше. Точная цифра зависит от ниши, контента и стартового состояния аккаунта. Проверяется просто: снимаем твою статистику до старта и через 30 дней и сравниваем. Границы ответственности исполнителя описаны в условиях оказания услуг на bahramovai.com/blog/usloviya-okazaniya-uslug.html."
+          "text": "Перед стартом фиксируем точку А по вашей статистике: охваты, посещения профиля, заявки. Дальше внедряем AI-инструменты пакета и выстраиваем системный приток охватов и переходов в профиль. Через 30 дней снимаем те же цифры и сравниваем. По моим клиентам ключевые метрики обычно вырастают в 2–3 раза, но итоговый прирост зависит от ниши, контента и стартового состояния аккаунта - это ориентир по практике, а не гарантированный результат. Границы ответственности исполнителя описаны в условиях оказания услуг на bahramovai.com/blog/usloviya-okazaniya-uslug.html."
         }
       },
       {
@@ -1812,21 +1842,25 @@
         <div class="problem-num">01</div>
         <h3>Аккаунт заблокировали - доступа нет</h3>
         <p>Профиль отключён или ограничен, переписка с клиентами оборвалась, а поддержка отвечает шаблонами. Каждый день простоя - упущенные заявки.</p>
+        <p class="problem-cta"><a href="/uslugi/razblokirovka-instagram.html">Восстановить доступ &rarr;</a></p>
       </div>
       <div class="problem-card">
         <div class="problem-num">02</div>
         <h3>Подписчики есть, а заявок нет</h3>
         <p>Аудитория набрана, охваты идут, но в директ никто не пишет. Между просмотром и покупкой нет ничего, что доводило бы человека до разговора.</p>
+        <p class="problem-cta"><a href="/uslugi/ai-agent.html">Выстроить воронку &rarr;</a></p>
       </div>
       <div class="problem-card">
         <div class="problem-num">03</div>
         <h3>На контент не хватает времени</h3>
         <p>Публикации выходят по вдохновению, а не по плану. Стоит выпасть на неделю - охваты падают, и всё приходится разгонять заново.</p>
+        <p class="problem-cta"><a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html">Посмотреть пакет СИСТЕМА &rarr;</a></p>
       </div>
       <div class="problem-card">
         <div class="problem-num">04</div>
         <h3>Заявки теряются в переписке</h3>
         <p>Вопросы приходят круглосуточно, отвечать некому и некогда. Пока человек ждёт ответа, он уходит к тому, кто ответил быстрее.</p>
+        <p class="problem-cta"><a href="/uslugi/ai-agent.html">Поставить AI-агента &rarr;</a></p>
       </div>
     </div>
   </div>
@@ -1983,9 +2017,25 @@
         <p class="svc-more"><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Подробнее и цена &rarr;</a></p>
       </div>
 
+      <div class="service-card" data-svc="agent">
+        <div class="service-icon">&#129302;</div>
+        <h3><a href="/uslugi/ai-agent.html">AI-агент под ключ</a></h3>
+        <div class="service-price"><span class="service-price-value">от 30 000 ₽</span></div>
+        <p class="service-tagline">Агент отвечает в директе круглосуточно, квалифицирует заявки
+          и передаёт вам готовый диалог. Подключается к Telegram, Instagram, CRM и оплатам.</p>
+        <div class="service-card-btns">
+          <a href="https://t.me/m/DzUYi5LlZTUy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
+        </div>
+        <p class="svc-more"><a href="/uslugi/ai-agent.html">Подробнее и цена &rarr;</a></p>
+      </div>
+
     </div>
-    <p class="services-rest">Ещё беру AI-агента под ключ, чистку от ботов, трафик и воронки,
-      разработку приложений. <a href="/uslugi/">Все услуги и цены &rarr;</a></p>
+    <div class="services-rest">
+      <p class="services-rest-label">Дополнительно</p>
+      <p class="services-rest-text">Автоматизация воронок продаж, защита аудитории от ботов,
+        продвижение и трафик, разработка кастомных приложений и Telegram Mini Apps.</p>
+      <a href="/uslugi/" class="btn btn-primary services-rest-btn">Все услуги и цены &rarr;</a>
+    </div>
   </div>
 </section>
 
@@ -2131,7 +2181,7 @@
     <details>
       <summary>Какой результат вы обещаете?</summary>
       <div class="faq-answer">
-        На пакете «СИСТЕМА» есть планка, к которой мы ведём: ориентир ~+15 000 охватов в месяц и рост посещений профиля в 2–3 раза за счёт AI-инструментов, которые внедряются в рамках пакета. Это нижняя планка: она рассчитана на случай, когда клиент вообще не ведёт страницу сам - если ведёшь, результат выходит выше. Точная цифра зависит от ниши, контента и стартового состояния аккаунта. Проверяется просто: снимаем твою статистику до старта и через 30 дней и сравниваем. Границы ответственности исполнителя описаны в <a href="/blog/usloviya-okazaniya-uslug.html">условиях оказания услуг</a>.
+        Перед стартом фиксируем точку А по вашей статистике: охваты, посещения профиля, заявки. Дальше внедряем AI-инструменты пакета и выстраиваем системный приток охватов и переходов в профиль. Через 30 дней снимаем те же цифры и сравниваем. По моим клиентам ключевые метрики обычно вырастают в 2–3 раза, но итоговый прирост зависит от ниши, контента и стартового состояния аккаунта - это ориентир по практике, а не гарантированный результат. Границы ответственности исполнителя описаны в условиях оказания услуг в <a href="/blog/usloviya-okazaniya-uslug.html">условиях оказания услуг</a>.
       </div>
     </details>
 
@@ -2257,11 +2307,10 @@
   <p class="f-copy">© 2026 Артём Бахрамов · bahramovai.com</p>
   <div class="f-row f-legal">
     <a href="/about.html">Обо мне</a>
-    <a href="offer.html">Оферта</a>
     <a href="privacy.html">Конфиденциальность</a>
     <a href="consent.html">Согласие на обработку ПД</a>
   </div>
-  <p class="f-note">Пользуясь сайтом, вы принимаете условия оферты и обработку персональных данных</p>
+  <p class="f-note">Пользуясь сайтом, вы соглашаетесь с обработкой персональных данных</p>
 </footer>
 
 </body>
