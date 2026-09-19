@@ -20,3 +20,13 @@ exclude:
   - .githooks/
   - .claude/
   - .env
+  # Закрыто 19.09.2026: эти файлы отдавались по HTTP с кодом 200 —
+  # внутренние заметки, имена клиентов, цены, планы, логи блокировок.
+  - ARTICLES.md
+  - CONTEXT-NOW.md
+  - TODO.md
+  - instagram-blokirovki-log.md
+  - docs/
+  - threads/
+  - youtube/
+  - _to_delete/
