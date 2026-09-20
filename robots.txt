@@ -37,6 +37,11 @@ Disallow: /telegram-post.txt
 Disallow: /unblock/
 Disallow: /ig/
 
+# Склейка дублей с GET-параметрами: 19.09 в индексе висели
+# /blog/instagram-registraciya-progrev-2026.html?fix=1 и ?r=2 —
+# те же страницы, что и без параметра, но конкурируют с оригиналом.
+Clean-param: fix&r&utm_source&utm_medium&utm_campaign&utm_term&utm_content&yclid&gclid&from&_openstat
+
 User-agent: Googlebot
 Allow: /
 Disallow: /CLAUDE.md
