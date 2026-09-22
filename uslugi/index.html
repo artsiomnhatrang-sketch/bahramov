@@ -797,7 +797,7 @@
       <h3>С чего начать</h3>
       <p>Напишите в Telegram, что у вас происходит. Разберу ситуацию и скажу, какой формат подойдёт - или что он вам пока не нужен.</p>
       <a href="https://t.me/m/adSS4dRGNTFi" class="btn-primary" target="_blank" rel="noopener noreferrer">Получить бесплатный разбор &rarr;</a>
-      <p style="margin-top:14px;font-size:13px;color:#8a8a8a;">Не пользуетесь Telegram - <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener" style="color:#f4672a;">напишите в MAX</a> или <a href="mailto:artsiomnhatrang@gmail.com" style="color:#f4672a;">на почту</a>.</p>
+      <p style="margin-top:14px;font-size:13px;color:#8a8a8a;">Не пользуетесь Telegram - <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener" style="color:#f4672a;">напишите в MAX</a> или <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener" style="color:#f4672a;">в WhatsApp</a>.</p>
     </div>
 
   </div>
@@ -888,7 +888,7 @@
   <div class="f-row f-contacts">
     <a href="https://t.me/m/adSS4dRGNTFi" target="_blank" rel="noopener noreferrer">Telegram</a>
     <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a>
-    <a href="mailto:artsiomnhatrang@gmail.com">Почта</a>
+    <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener">WhatsApp</a>
   </div>
   <p class="f-copy">© 2026 Артём Бахрамов · bahramovai.com</p>
   <div class="f-row f-legal">
@@ -936,7 +936,7 @@
       if (href.indexOf('bahramovartem_bot') !== -1)    name = 'bonus_click';
       else if (href.indexOf('bahramovartsiom') !== -1 || href.indexOf('t.me/m/') !== -1) name = 'lead_tg_' + PAGE + '_' + place(a);
       else if (href.indexOf('max.ru/') !== -1)         name = 'lead_max_' + PAGE + '_' + place(a);
-      else if (href.indexOf('mailto:') === 0)          name = 'lead_mail_' + PAGE;
+      else if (href.indexOf('wa.me/') !== -1)          name = 'lead_wa_' + PAGE + '_' + place(a);
       else if (href.indexOf('t.me/') !== -1)           name = 'proof_click_' + PAGE;
       else return;
       if (typeof window.ym !== 'function') return;

@@ -386,7 +386,7 @@
         "name": "Как со мной связаться?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Telegram: @bahramovartsiom - пишите напрямую, отвечаю лично. Email: artsiomnhatrang@gmail.com. Бесплатный аудит соцсетей - по запросу в Telegram."
+          "text": "Telegram: @bahramovartsiom - пишите напрямую, отвечаю лично. WhatsApp: wa.me/message/HC4NI47MWLTDL1. Бесплатный аудит соцсетей - по запросу в Telegram."
         }
       },
       {
@@ -734,7 +734,7 @@
     <details>
       <summary>Как со мной связаться?</summary>
       <div class="faq-answer">
-        Telegram: <a href="https://t.me/m/PiPzpjEKMDFi" target="_blank" rel="noopener noreferrer">@bahramovartsiom</a> - пишите напрямую, отвечаю лично. Email: <a href="mailto:artsiomnhatrang@gmail.com">artsiomnhatrang@gmail.com</a>. Бесплатный аудит соцсетей - по запросу в Telegram.
+        Telegram: <a href="https://t.me/m/PiPzpjEKMDFi" target="_blank" rel="noopener noreferrer">@bahramovartsiom</a> - пишите напрямую, отвечаю лично. WhatsApp: <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener">написать сообщение</a>. Бесплатный аудит соцсетей - по запросу в Telegram.
       </div>
     </details>
 
@@ -763,12 +763,12 @@
         <h2 class="contact-title">Обсудим вашу задачу?</h2>
         <p class="contact-sub">
           Пишите в Telegram - отвечаю в течение нескольких часов.<br>
-          Или на почту: <a href="mailto:artsiomnhatrang@gmail.com">artsiomnhatrang@gmail.com</a>
+          Или в WhatsApp - <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener">написать сообщение</a>
         </p>
       </div>
       <div class="contact-btns">
         <a href="https://t.me/m/PiPzpjEKMDFi" class="btn-tg" target="_blank" rel="noopener noreferrer">Написать в Telegram →</a>
-        <a href="mailto:artsiomnhatrang@gmail.com" class="btn-email">artsiomnhatrang@gmail.com</a>
+        <a href="https://wa.me/message/HC4NI47MWLTDL1" class="btn-email" target="_blank" rel="noopener">Написать в WhatsApp</a>
       </div>
     </div>
   </div>
@@ -828,8 +828,10 @@
       var a = e.target && e.target.closest ? e.target.closest('a') : null;
       if (!a) return;
       var href = a.getAttribute('href') || '';
-      if (href.indexOf('t.me/') === -1 && href.indexOf('max.ru/') === -1) return;
-      var name = href.indexOf('bahramovartem_bot') !== -1 ? 'bonus_click' : 'tg_about_page';
+      var isWa = href.indexOf('wa.me/') !== -1;
+      if (href.indexOf('t.me/') === -1 && href.indexOf('max.ru/') === -1 && !isWa) return;
+      var name = href.indexOf('bahramovartem_bot') !== -1 ? 'bonus_click'
+               : (isWa ? 'wa_about_page' : 'tg_about_page');
       if (typeof window.ym !== 'function') return;
       window.ym(110081984, 'reachGoal', name);
       if (name !== 'bonus_click') window.ym(110081984, 'reachGoal', 'lead');

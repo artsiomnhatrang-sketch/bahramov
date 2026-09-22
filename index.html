@@ -2286,10 +2286,11 @@
       var href = a.getAttribute('href') || '';
       var isTg = href.indexOf('t.me/') !== -1;
       var isMax = href.indexOf('max.ru/') !== -1;
-      if (!isTg && !isMax) return;
+      var isWa = href.indexOf('wa.me/') !== -1;
+      if (!isTg && !isMax && !isWa) return;
       var name = href.indexOf('bahramovartem_bot') !== -1
         ? 'bonus_click'
-        : (isMax ? 'max_' : 'tg_') + place(a);
+        : (isWa ? 'wa_' : isMax ? 'max_' : 'tg_') + place(a);
       if (typeof window.ym !== 'function') return;
       window.ym(COUNTER, 'reachGoal', name);
       if (name !== 'bonus_click') window.ym(COUNTER, 'reachGoal', 'lead');
@@ -2338,7 +2339,7 @@
   <div class="f-row f-contacts">
     <a href="https://t.me/m/rrSvG_DVYTQy" target="_blank" rel="noopener noreferrer">Telegram</a>
     <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a>
-    <a href="mailto:artsiomnhatrang@gmail.com">Почта</a>
+    <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener">WhatsApp</a>
   </div>
   <p class="f-copy">© 2026 Артём Бахрамов · bahramovai.com</p>
   <div class="f-row f-legal">
