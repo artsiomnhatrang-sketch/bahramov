@@ -20,13 +20,22 @@
               Лечится усилением существующей страницы.
   НЕТ СТРАНИЦЫ - показы есть, позиция ниже 30. Тема не раскрыта.
 
-Для каждого запроса ищет страницу, где фраза стоит в title или H1 -
-видно, закрыт запрос конкретной страницей или размазан по сайту.
+Страница к запросу берётся из API (query-analytics, сопутствующий URL) -
+это та страница, которую Яндекс реально показывал. Угадывание по словам
+title/H1 осталось запасным вариантом и помечено «угадано»: 23.09 оно
+вешало «instagram как зарегистрироваться» на страницу СКАЙНЕТ.
+
+Первым блоком идёт CTR по СТРАНИЦАМ против нормы. Решение о правке title
+принимать по нему: если страница в целом выше нормы, сниппет работает,
+даже когда отдельный запрос из неё проседает.
 
 Запуск:
     python3 scripts/keyword-gaps.py              # 30 дней, все корзины
     python3 scripts/keyword-gaps.py --days 90
     python3 scripts/keyword-gaps.py --min-shows 30
+
+API query-analytics отдаёт только последние ~14 дней, блок по страницам
+считается за них, а не за --days.
 """
 
 import json
@@ -96,6 +105,46 @@ def fetch_queries(uid, hid, tok, days):
     return out
 
 
+def analytics(uid, hid, tok, indicator, max_rows=1500):
+    """query-analytics/list: реальная статистика по запросам или страницам.
+
+    Возвращает строки (значение, сопутствующее значение, показы, клики,
+    позиция, взвешенная по показам). Для QUERY сопутствующее - URL, который
+    Яндекс показывал по этому запросу; для URL - самый частый запрос.
+    """
+    url = API + "/user/%s/hosts/%s/query-analytics/list" % (uid, hid)
+    out, offset = [], 0
+    while offset < max_rows:
+        body = {"offset": offset, "limit": 500, "device_type_indicator": "ALL",
+                "text_indicator": indicator}
+        req = urllib.request.Request(
+            url, data=json.dumps(body).encode(),
+            headers={"Authorization": "OAuth " + tok, "Content-Type": "application/json"})
+        try:
+            data = json.load(urllib.request.urlopen(req))
+        except urllib.error.HTTPError as e:
+            print("query-analytics недоступен: " + e.read().decode()[:200])
+            return out
+        batch = data.get("text_indicator_to_statistics", [])
+        for t in batch:
+            imp = clicks = pos_w = 0.0
+            by_date = {}
+            for x in t.get("statistics", []):
+                by_date.setdefault(x["date"], {})[x["field"]] = x["value"]
+            for v in by_date.values():
+                i = v.get("IMPRESSIONS", 0) or 0
+                imp += i
+                clicks += v.get("CLICKS", 0) or 0
+                pos_w += (v.get("POSITION", 0) or 0) * i
+            comp = (t.get("popular_complementary_indicator") or {}).get("value")
+            out.append((t["text_indicator"]["value"], comp, imp, clicks,
+                        pos_w / imp if imp else 0))
+        if len(batch) < 500:
+            break
+        offset += 500
+    return out
+
+
 def site_index():
     """Карта «страница -> title + h1 + description» по sitemap."""
     sm = os.path.join(ROOT, "sitemap.xml")
@@ -157,6 +206,8 @@ def main():
 
     raw = fetch_queries(uid, hid, tok, days)
     pages = site_index()
+    landing = {q.lower(): u for q, u, _, _, _ in analytics(uid, hid, tok, "QUERY")}
+    by_page = analytics(uid, hid, tok, "URL", max_rows=500)
 
     squeeze, pull, missing = [], [], []
     for q in raw:
@@ -168,7 +219,14 @@ def main():
             continue
         ctr = clicks / shows if shows else 0
         text = q["query_text"]
-        page, score = match_page(text, pages)
+        real = landing.get(text.lower())
+        if real:
+            page = real
+            title = pages.get(real, {}).get("title", "")
+            score = 1.0 if text.lower() in title else 0.0
+        else:
+            page, score = match_page(text, pages)
+            page = "%s (угадано)" % page
         row = {
             "q": text, "shows": shows, "clicks": clicks,
             "pos": pos, "ctr": ctr, "page": page, "score": score,
@@ -190,6 +248,19 @@ def main():
 
     print("Запросов за %d дней: %d, с показами от %d: %d"
           % (days, len(raw), min_shows, len(squeeze) + len(pull) + len(missing)))
+
+    print("\n" + "=" * 100)
+    print("СТРАНИЦЫ — CTR против нормы (за ~14 дней). Выше нормы = сниппет работает, title не трогать")
+    print("=" * 100)
+    for u, top_q, imp, cl, wpos in sorted(by_page, key=lambda r: -r[2])[:20]:
+        if imp < 50:
+            continue
+        expect = CTR_NORM.get(int(round(wpos)), 0.015) if wpos else 0.015
+        ctr = cl / imp
+        verdict = "работает" if ctr >= expect else ("ПРАВИТЬ" if ctr < expect * 0.7 else "ниже нормы")
+        print("%6.0f %5.0f %5.1f%% норма %4.1f%% поз %4.1f  %-11s %s"
+              % (imp, cl, ctr * 100, expect * 100, wpos, verdict, u))
+        print("      частый запрос: %s" % top_q)
 
     print("\n" + "=" * 100)
     print("ДОЖАТЬ — позиция в топ-10, но кликают меньше нормы. Правится title и description")
