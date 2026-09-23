@@ -1463,6 +1463,7 @@
       transition: border-color .2s, transform .2s;
     }
     .trust-item:hover { border-color: rgba(244,103,42,0.5); transform: translateY(-2px); }
+    div.trust-item:hover { border-color: var(--border); transform: none; }
     .trust-name {
       font-family: 'Unbounded', sans-serif;
       font-size: 14px;
@@ -1822,10 +1823,10 @@
         <div class="trust-name">vc.ru</div>
         <div class="trust-desc">Массовые блокировки Instagram в мае 2026</div>
       </a>
-      <a class="trust-item" href="https://secrets.tbank.ru/blogi-kompanij/gejmifikaciya-v-premium-nishe/" target="_blank" rel="noopener noreferrer">
+      <div class="trust-item" style="cursor:default;">
         <div class="trust-name">Т-Бизнес секреты</div>
         <div class="trust-desc">Геймификация в премиум-нише: кейс архитектора</div>
-      </a>
+      </div>
     </div>
   </div>
 </section>
