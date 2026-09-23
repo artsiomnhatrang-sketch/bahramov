@@ -655,7 +655,6 @@
     .case-link:hover { opacity: .75; }
 
     /* ─── PROBLEMS ─── */
-    #problems { background: var(--bg2); }
     .problems-intro {
       text-align: center;
       max-width: 640px;
@@ -1831,36 +1830,56 @@
 </section>
 
 <!-- ЗНАКОМАЯ СИТУАЦИЯ -->
-<section id="problems">
+<section id="services">
   <div class="container">
-    <div class="case-header">
+    <div class="services-header">
+      <div class="section-label" style="text-align:center;">Услуги</div>
       <h2>С чем ко мне <span class="accent">приходят чаще всего</span></h2>
     </div>
-    <div class="problems-grid">
-      <div class="problem-card">
-        <div class="problem-num">01</div>
-        <h3>Аккаунт заблокировали - доступа нет</h3>
-        <p>Профиль отключён или ограничен, переписка с клиентами оборвалась, а поддержка отвечает шаблонами. Каждый день простоя - упущенные заявки.</p>
-        <p class="problem-cta"><a href="/uslugi/razblokirovka-instagram.html">Восстановить доступ &rarr;</a></p>
+    <div class="services-grid">
+
+      <div class="service-card" data-svc="unban">
+        <div class="service-icon">&#128273;</div>
+        <h3><a href="/uslugi/razblokirovka-instagram.html">Разблокировка Instagram</a></h3>
+        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
+        <p class="service-tagline">Аккаунт заблокировали, отключили или увели. Разбираю, что именно
+          произошло, и работаю над возвратом доступа через официальные каналы платформы.</p>
+        <div class="service-card-btns">
+          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
+        </div>
+        <p class="svc-more"><a href="/uslugi/razblokirovka-instagram.html">Подробнее и цена &rarr;</a></p>
       </div>
-      <div class="problem-card">
-        <div class="problem-num">02</div>
-        <h3>Подписчики есть, а заявок нет</h3>
-        <p>Аудитория набрана, охваты идут, но в директ никто не пишет. Между просмотром и покупкой нет ничего, что доводило бы человека до разговора.</p>
-        <p class="problem-cta"><a href="/uslugi/ai-agent.html">Выстроить воронку &rarr;</a></p>
+
+      <div class="service-card" data-svc="tg">
+        <div class="service-icon">&#128737;</div>
+        <h3><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Взломали Telegram</a></h3>
+        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
+        <p class="service-tagline">Аккаунт увели, номер сменили, от вашего имени пишут клиентам.
+          Возвращаю доступ через официальные каналы платформы.</p>
+        <div class="service-card-btns">
+          <a href="https://t.me/m/xD6mGebXYmZi" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
+        </div>
+        <p class="svc-more"><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Подробнее и цена &rarr;</a></p>
       </div>
-      <div class="problem-card">
-        <div class="problem-num">03</div>
-        <h3>На контент не хватает времени</h3>
-        <p>Публикации выходят по вдохновению, а не по плану. Стоит выпасть на неделю - охваты падают, и всё приходится разгонять заново.</p>
-        <p class="problem-cta"><a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html">Посмотреть пакет СИСТЕМА &rarr;</a></p>
+
+      <div class="service-card" data-svc="agent">
+        <div class="service-icon">&#129302;</div>
+        <h3><a href="/uslugi/ai-agent.html">AI-агент под ключ</a></h3>
+        <div class="service-price"><span class="service-price-value">от 30 000 ₽</span></div>
+        <p class="service-tagline">Агент отвечает в директе круглосуточно, квалифицирует заявки
+          и передаёт вам готовый диалог. Подключается к Telegram, Instagram, CRM и оплатам.</p>
+        <div class="service-card-btns">
+          <a href="https://t.me/m/DzUYi5LlZTUy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
+        </div>
+        <p class="svc-more"><a href="/uslugi/ai-agent.html">Подробнее и цена &rarr;</a></p>
       </div>
-      <div class="problem-card">
-        <div class="problem-num">04</div>
-        <h3>Заявки теряются в переписке</h3>
-        <p>Вопросы приходят круглосуточно, отвечать некому и некогда. Пока человек ждёт ответа, он уходит к тому, кто ответил быстрее.</p>
-        <p class="problem-cta"><a href="/uslugi/ai-agent.html">Поставить AI-агента &rarr;</a></p>
-      </div>
+
+    </div>
+    <div class="services-rest">
+      <p class="services-rest-label">Дополнительно</p>
+      <p class="services-rest-text">Автоматизация воронок продаж, защита аудитории от ботов,
+        продвижение и трафик, разработка кастомных приложений и Telegram Mini Apps.</p>
+      <a href="/uslugi/" class="btn btn-primary services-rest-btn">Все услуги и цены &rarr;</a>
     </div>
   </div>
 </section>
@@ -1984,59 +2003,7 @@
 </section>
 
 <!-- SERVICES -->
-<section id="services">
-  <div class="container">
-    <div class="services-header">
-      <div class="section-label" style="text-align:center;">Услуги</div>
-      <h2>С чем приходят <span class="accent">чаще всего</span></h2>
-    </div>
-    <div class="services-grid">
 
-      <div class="service-card" data-svc="unban">
-        <div class="service-icon">&#128273;</div>
-        <h3><a href="/uslugi/razblokirovka-instagram.html">Разблокировка Instagram</a></h3>
-        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
-        <p class="service-tagline">Аккаунт заблокировали, отключили или увели. Разбираю, что именно
-          произошло, и работаю над возвратом доступа через официальные каналы платформы.</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/razblokirovka-instagram.html">Подробнее и цена &rarr;</a></p>
-      </div>
-
-      <div class="service-card" data-svc="tg">
-        <div class="service-icon">&#128737;</div>
-        <h3><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Взломали Telegram</a></h3>
-        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
-        <p class="service-tagline">Аккаунт увели, номер сменили, от вашего имени пишут клиентам.
-          Возвращаю доступ через официальные каналы платформы.</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/xD6mGebXYmZi" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Подробнее и цена &rarr;</a></p>
-      </div>
-
-      <div class="service-card" data-svc="agent">
-        <div class="service-icon">&#129302;</div>
-        <h3><a href="/uslugi/ai-agent.html">AI-агент под ключ</a></h3>
-        <div class="service-price"><span class="service-price-value">от 30 000 ₽</span></div>
-        <p class="service-tagline">Агент отвечает в директе круглосуточно, квалифицирует заявки
-          и передаёт вам готовый диалог. Подключается к Telegram, Instagram, CRM и оплатам.</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/DzUYi5LlZTUy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/ai-agent.html">Подробнее и цена &rarr;</a></p>
-      </div>
-
-    </div>
-    <div class="services-rest">
-      <p class="services-rest-label">Дополнительно</p>
-      <p class="services-rest-text">Автоматизация воронок продаж, защита аудитории от ботов,
-        продвижение и трафик, разработка кастомных приложений и Telegram Mini Apps.</p>
-      <a href="/uslugi/" class="btn btn-primary services-rest-btn">Все услуги и цены &rarr;</a>
-    </div>
-  </div>
-</section>
 
 <!-- КАК ПРОХОДИТ РАБОТА -->
 <section id="steps">
