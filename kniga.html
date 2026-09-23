@@ -85,6 +85,9 @@
     .btn-buy { display: inline-block; background: var(--orange); color: #000; font-family: 'Unbounded', sans-serif; font-size: 15px; font-weight: 700; padding: 18px 34px; border-radius: 10px; transition: opacity .2s; }
     .btn-buy:hover { opacity: .85; }
     .price { font-family: 'Unbounded', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
+    .buy-alt { margin-top: 18px; font-size: 15px; line-height: 1.6; }
+    .buy-alt a { color: var(--orange); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+    .buy-alt span { font-size: 13px; color: var(--muted); }
     .buy-note { font-size: 14px; color: var(--muted); line-height: 1.6; }
     .facts { list-style: none; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 22px; }
     .facts li { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
@@ -164,10 +167,11 @@
           <p>Советов, как стать миллионером, здесь нет. Есть реальная история: как выглядит манипуляция изнутри, почему её не замечаешь годами и что остаётся, когда теряешь почти всё. Имена изменены, всё остальное было на самом деле</p>
         </div>
         <div class="buy">
-          <a href="https://web.tribute.tg/p/F9m" class="btn-buy" id="buyBook" target="_blank" rel="noopener">Купить книгу</a>
+          <a href="https://web.tribute.tg/p/F9m" class="btn-buy" id="buyBook" target="_blank" rel="noopener">Купить картой</a>
           <span class="price">299 ₽</span>
         </div>
-        <p class="buy-note">Оплата картой любой страны или звёздами Telegram. PDF придёт в Telegram сразу после оплаты</p>
+        <p class="buy-note">Карта любой страны, в том числе российская. Telegram один раз попросит нажать Войти: так бот поймёт, кому прислать книгу. PDF придёт в Telegram сразу после оплаты</p>
+        <p class="buy-alt"><a href="https://t.me/tribute/app?startapp=pF9m" id="buyBookStars" target="_blank" rel="noopener">Купить в приложении Telegram за звёзды</a><br><span>Откроется сразу в Telegram, без входа. Оплата только звёздами Telegram</span></p>
         <ul class="facts">
           <li><b>Формат:</b> PDF с обложкой, 21 глава, читается с телефона и компьютера</li>
           <li><b>Возраст:</b> 18+</li>
@@ -228,8 +232,10 @@
 </footer>
 
 <script>
-  document.getElementById('buyBook').addEventListener('click', function () {
-    if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', 'book_buy_click');
+  ['buyBook','buyBookStars'].forEach(function (id) {
+    document.getElementById(id).addEventListener('click', function () {
+      if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', 'book_buy_click');
+    });
   });
 </script>
 </body>
