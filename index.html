@@ -275,6 +275,8 @@
       transition: opacity .2s;
     }
     nav a.nav-cta:hover { opacity: .85; }
+    /* Пока видна большая кнопка, дубль «Написать» в шапке не нужен */
+    @media (min-width: 769px) { nav .nav-bonus { display: none; } }
     nav a.nav-bonus {
       color: var(--orange);
       text-decoration: none;
@@ -422,13 +424,13 @@
 
     .hero-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.6rem, 2.8vw, 2.6rem);
+      font-size: clamp(1.35rem, 2.3vw, 2.1rem);
       font-weight: 700;
-      line-height: 1.15;
+      line-height: 1.2;
       color: #fff;
       letter-spacing: -0.01em;
       margin-bottom: 14px;
-      max-width: 460px;
+      max-width: 560px;
     }
     .hero-title .accent { color: var(--orange); }
 
@@ -1195,7 +1197,7 @@
         top: 68px; bottom: auto;
         width: 50%;
         max-width: none;
-        height: 250px;
+        height: 190px;
         transform: none;
         object-fit: cover;
         opacity: 0.95;
@@ -1209,7 +1211,7 @@
         content: '';
         position: absolute;
         top: 68px; left: 0; right: 0;
-        height: 268px;
+        height: 208px;
         z-index: 1;
         pointer-events: none;
         background:
@@ -1226,7 +1228,7 @@
         z-index: 3;
         top: auto; left: auto;
         transform: none;
-        padding: 286px 14px 50px;
+        padding: 222px 14px 40px;
       }
       .hero-content h1,
       .hero-content p,
@@ -1239,7 +1241,7 @@
         z-index: 3;
       }
       .hero-btns { flex-direction: column; align-items: center; gap: 10px; }
-      .hero-btns .btn { width: auto; max-width: 75%; padding: 12px 22px; font-size: 14px; justify-content: center; }
+      .hero-btns .btn { width: 100%; max-width: 300px; padding: 13px 22px; font-size: 14px; justify-content: center; white-space: nowrap; }
       .steps-grid { grid-template-columns: 1fr; }
       .services-grid { grid-template-columns: 1fr; }
       .cases-grid { grid-template-columns: 1fr; }
@@ -1571,41 +1573,74 @@
       margin: 0 0 18px;
     }
 
-    /* ─── ОТЗЫВЫ И КЕЙСЫ ─── */
-    .proof-grid {
+    /* ─── ВИДЕООТЗЫВЫ ───
+       Превью вместо четырёх iframe: плеер YouTube грузится только по клику.
+       У hqdefault для Shorts вертикальное видео стоит по центру с полями,
+       object-fit: cover вырезает ровно его. На телефоне - лента с прокруткой. */
+    .vrev-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 16px;
-      max-width: 900px;
-      margin: 0 auto;
+      margin: 0 0 40px;
     }
-    .proof-card {
-      display: block;
-      padding: 24px 22px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--bg3);
-      text-decoration: none;
-      transition: border-color .2s, transform .2s;
+    .vrev { margin: 0; display: flex; flex-direction: column; min-width: 0; }
+    .vrev-play {
+      position: relative; display: block; width: 100%;
+      aspect-ratio: 9 / 16; padding: 0; border: 1px solid var(--border);
+      border-radius: 12px; overflow: hidden; background: #0b0b0b; cursor: pointer;
     }
-    .proof-card:hover { border-color: var(--orange-border); transform: translateY(-3px); }
-    .proof-icon { font-size: 22px; margin-bottom: 12px; }
-    .proof-name {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 8px;
+    .vrev-play img, .vrev-play iframe {
+      position: absolute; inset: 0; width: 100%; height: 100%; border: 0; object-fit: cover;
     }
-    .proof-desc {
-      font-family: 'Inter', sans-serif;
-      font-size: 14.5px;
-      color: var(--muted);
-      line-height: 1.55;
-      margin-bottom: 12px;
+    .vrev-icon {
+      position: absolute; left: 50%; top: 50%; width: 56px; height: 56px;
+      margin: -28px 0 0 -28px; border-radius: 50%; background: var(--orange);
+      box-shadow: 0 6px 24px rgba(0,0,0,.5);
     }
-    .proof-link { font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600; color: var(--orange); }
-    @media (max-width: 900px) { .proof-grid { grid-template-columns: 1fr; } }
+    .vrev-icon::after {
+      content: ''; position: absolute; left: 22px; top: 17px;
+      border-style: solid; border-width: 11px 0 11px 17px;
+      border-color: transparent transparent transparent #000;
+    }
+    .vrev-play:hover { border-color: var(--orange-border); }
+    .vrev figcaption { padding: 12px 2px 0; }
+    .vrev-kind {
+      display: block; font-size: 11px; font-weight: 600; letter-spacing: .08em;
+      text-transform: uppercase; color: var(--orange); margin-bottom: 6px;
+    }
+    .vrev blockquote { margin: 0 0 8px; font-size: 14px; line-height: 1.5; color: #d6d6d6; }
+    .vrev-name { font-size: 13px; color: #8a8a8a; }
+    @media (max-width: 900px) {
+      .vrev-row {
+        display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+        margin: 0 calc(-1 * var(--vrev-bleed, 16px)) 36px; padding: 0 var(--vrev-bleed, 16px) 6px; gap: 14px;
+        max-width: none; width: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      .vrev { flex: 0 0 200px; scroll-snap-align: start; }
+    }
+    .proof-links {
+      text-align: center; margin: 28px 0 0; font-size: 14px; color: #8a8a8a;
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 6px 14px;
+    }
+    .proof-links a { color: var(--orange); font-weight: 600; text-decoration: none; }
+    .proof-links a:hover { text-decoration: underline; }
+
+    /* Три шага вместо четырёх */
+    #steps .steps-grid { grid-template-columns: repeat(3, 1fr); }
+    #steps .steps-grid::before { left: 16.6%; right: 16.6%; }
+    @media (max-width: 900px) {
+      #steps .steps-grid { grid-template-columns: 1fr; max-width: 560px; margin: 0 auto; }
+      #steps .steps-grid::before { display: none; }
+    }
+    @media (max-width: 600px) {
+      #steps .step-card { padding: 18px 18px 18px 70px; text-align: left; }
+      #steps .step-circle { position: absolute; left: 16px; top: 18px; width: 40px; height: 40px; font-size: 16px; margin: 0; }
+      #steps .step-card h3 { margin-top: 0; }
+      #steps .steps-grid { gap: 12px; }
+    }
+    .cta-inner .cta-alt { margin: 16px 0 0; font-size: 14px; color: #8a8a8a; }
+    .cta-alt a { color: var(--orange); font-weight: 600; text-decoration: none; }
 
     /* .cta-inner p задаёт margin-bottom:40px и по специфичности сильнее,
        поэтому у последнего абзаца обнуляем отступ через .cta-inner */
@@ -1659,82 +1694,50 @@
     "mainEntity": [
       {
         "@type": "Question",
-        "name": "Что такое AI-агент и чем он отличается от обычного чат-бота?",
+        "name": "Сколько стоит разблокировка Instagram или возврат Telegram?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Чат-бот работает по жёсткому сценарию: если пользователь написал X - бот отвечает Y. AI-агент понимает смысл сообщения и сам решает, что делать дальше: ответить нестандартно, задать уточняющий вопрос, квалифицировать лида или передать менеджеру. AI-агент учится на базе знаний бизнеса и общается естественным языком. Стоимость разработки - от 30 000 ₽."
+          "text": "От 10 000 ₽, срок 1–7 дней в зависимости от типа блокировки и от того, сохранился ли у вас доступ к почте и номеру. Точную цену называю после бесплатного разбора. Оплата пополам: 50% до начала работ и 50% после восстановления доступа. Передумали до старта - возвращаю 100%. Подробно по разблокировке Instagram и возврату Telegram после взлома."
         }
       },
       {
         "@type": "Question",
-        "name": "Сколько стоит автоматизация Instagram под ключ?",
+        "name": "Что если доступ вернуть не получится?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Комплексный пакет СИСТЕМА стоит 39 900 ₽ единоразово - это цена 2–3 клиентов в большинстве ниш, с которыми я работаю. В пакет входит аудит аккаунта, контент-стратегия на 3 месяца, AI-ассистент под голос бренда, чат-бот с воронкой продаж, упаковка профиля и 30 дней сопровождения. Отдельные услуги доступны от 10 000 ₽."
+          "text": "Стопроцентного возврата не гарантирует никто: часть аккаунтов не восстанавливается в принципе, например когда решение платформы окончательное и срок на обжалование прошёл. Если по вашему случаю шансов нет, я скажу это на разборе и денег не возьму."
         }
       },
       {
         "@type": "Question",
-        "name": "Что делать, если Instagram заблокировал аккаунт?",
+        "name": "Нужно ли давать пароль от аккаунта?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "В зависимости от типа блокировки используется один из подходов: апелляция через официальные каналы Meta, восстановление через альтернативные методы, защита нового аккаунта от повторной блокировки. Стоимость разблокировки - от 10 000 ₽, срок работы 1-7 дней. После восстановления настраивается 2FA и резервная система на случай повтора."
+          "text": "Нет. Пароль от аккаунта я не прошу никогда. Восстановление идёт через официальные формы платформы, они привязаны к вашей почте и номеру. И я не пишу первым: если вам в директ написал специалист по разбану, это не я."
         }
       },
       {
         "@type": "Question",
-        "name": "Через сколько окупается AI-агент для бизнеса?",
+        "name": "Сколько стоит AI-агент и через сколько он окупается?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Мой кейс, разобранный на vc.ru: экономия 150 000 ₽ в месяц при замене 3 менеджеров одним AI-агентом. Агент работает 24/7, не уходит в отпуск, отвечает за секунды и квалифицирует лидов перед передачей менеджеру. Окупаемость считается индивидуально. Конкретные цифры зависят от объёма входящих сообщений и текущего ФОТ."
+          "text": "Разработка AI-агента - от 30 000 ₽. Агент отвечает в директе круглосуточно, квалифицирует заявки и передаёт готовый диалог менеджеру. Мой кейс, разобранный на vc.ru: экономия 150 000 ₽ в месяц при замене 3 менеджеров одним агентом. Окупаемость зависит от объёма входящих сообщений и текущего ФОТ, считаю её на разборе."
         }
       },
       {
         "@type": "Question",
-        "name": "Чем ChatPlace отличается от других платформ автоматизации?",
+        "name": "Сколько стоит автоматизация соцсетей под ключ?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "ChatPlace работает с Instagram, Telegram и TikTok одновременно, поддерживает AI-агентов из коробки и имеет встроенные инструменты для рассылок и воронок. Интерфейс на русском, есть бесплатный тариф для тестирования. Подходит малому и среднему бизнесу без необходимости разработки."
+          "text": "Пакет СИСТЕМА - 39 900 ₽ единоразово. В него входит аудит аккаунта, контент-стратегия на 3 месяца, AI-ассистент под голос бренда, чат-бот с воронкой продаж, упаковка профиля и 30 дней сопровождения."
         }
       },
       {
         "@type": "Question",
-        "name": "Можно ли вести несколько аккаунтов Instagram без бана в 2026?",
+        "name": "Какой результат вы обещаете по росту?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Да, при соблюдении правил изоляции инфраструктуры. Это значит: разные устройства или прокси для разных аккаунтов, отказ от дублирования контента, осторожная работа с Accounts Center и Facebook. Массфолловинг и накрутка сторонними сервисами в 2026 ведут к цепным блокировкам - в отличие от работы через официальные интеграции вроде ChatPlace (партнёр Meta), где действия идут по API и в рамках лимитов. Подробный гайд по защите мультиаккаунтов есть в блоге."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "С чего начать автоматизацию бизнеса с нуля?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "С аудита процессов: где теряется время и клиенты, какие задачи повторяются, какие вопросы задают чаще всего. Затем - одна точка автоматизации: например, автоответ в директ или приветственная воронка. После того как первая точка работает стабильно, добавляются следующие. Бесплатный аудит - в Telegram @bahramovartsiom."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Какой результат вы обещаете?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Перед стартом фиксируем точку А по вашей статистике: охваты, посещения профиля, заявки. Дальше внедряем AI-инструменты пакета и выстраиваем системный приток охватов и переходов в профиль. Через 30 дней снимаем те же цифры и сравниваем. По моим клиентам ключевые метрики обычно вырастают в 2–3 раза, но итоговый прирост зависит от ниши, контента и стартового состояния аккаунта - это ориентир по практике, а не гарантированный результат. Границы ответственности исполнителя описаны в условиях оказания услуг на bahramovai.com/blog/usloviya-okazaniya-uslug.html."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Через сколько будут первые результаты?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Первые сдвиги по статистике обычно видно на первой–второй неделе. Они отслеживаются по двум источникам: статистика аккаунта (охваты, посещения профиля) и внутренняя CRM сервиса - сколько людей заходит в воронку и какая по ней доходимость. То есть эффект виден в цифрах, а не на ощущениях."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Где можно прочитать кейсы и статьи?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Блог на bahramovai.com/blog содержит 37 статей про AI-агентов, автоматизацию Instagram, защиту от блокировок и стратегии роста. Также публикуются материалы на vc.ru в разделе Маркетинг и в LinkedIn. На YouTube канале @bahramovai - короткие видео и скринкасты по теме."
+          "text": "Перед стартом фиксируем точку А по вашей статистике: охваты, посещения профиля, заявки. Через 30 дней снимаем те же цифры и сравниваем. По моим клиентам ключевые метрики обычно вырастают в 2–3 раза, но прирост зависит от ниши, контента и стартового состояния аккаунта - это ориентир по практике, а не гарантия. Первые сдвиги обычно видны на первой–второй неделе. Границы ответственности описаны в условиях оказания услуг."
         }
       }
     ]
@@ -1766,8 +1769,8 @@
   <a href="/uslugi/" class="nav-blog">Услуги</a>
   <a href="/blog/" class="nav-blog">Блог</a>
   <a href="/about.html" class="nav-blog">Обо мне</a>
-  <a href="https://t.me/bahramovartem_bot" class="nav-bonus" target="_blank" rel="noopener noreferrer">🎁 Мини-курс</a>
-  <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-cta" target="_blank" rel="noopener noreferrer">Получить бесплатный аудит →</a>
+  <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-bonus" target="_blank" rel="noopener noreferrer">Написать</a>
+  <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-cta" target="_blank" rel="noopener noreferrer">Написать в Telegram →</a>
 </nav>
 
 <!-- HERO -->
@@ -1787,23 +1790,23 @@
     </div>
     <p class="hero-name">Артём Бахрамов</p>
     <h1 class="hero-title">
-      Поток клиентов из соцсетей на <span class="accent">автопилоте</span>
+      Верну доступ к Instagram и Telegram, а потом настрою, чтобы соцсети приводили <span class="accent">клиентов</span>
     </h1>
-    <p class="hero-subtitle">Выстраиваю системы роста в соцсетях с помощью AI-инструментов, чат-ботов и контент-стратегий. Без воды, только измеримые результаты.</p>
+    <p class="hero-subtitle">Заблокировали, взломали или отключили аккаунт в инстаграм или телеграм - разбор случая бесплатный. Оплата пополам: половина до начала работ, половина после возврата доступа.</p>
     <div class="hero-btns">
-      <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-        Получить бесплатный аудит →
+      <a href="https://t.me/m/rrSvG_DVYTQy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+        Аккаунт заблокирован →
       </a>
-      <a href="#services" class="btn btn-outline">
-        Услуги и цены
+      <a href="https://t.me/m/DzUYi5LlZTUy" class="btn btn-outline" target="_blank" rel="noopener noreferrer">
+        Нужен AI-агент →
       </a>
     </div>
-    <p class="hero-cta-note">Посмотрю аккаунт и скажу, с чего начинать. Ни к чему не обязывает - достаточно написать одно слово, например «аудит».</p>
+    <p class="hero-cta-note">Отвечаю лично в Telegram. Разбор ни к чему не обязывает.</p>
     <ul class="hero-bullets">
-      <li>Аудитория, которая покупает, а не просто смотрит</li>
-      <li>Контент быстро и без выгорания</li>
-      <li>Чат-боты и автоматизация</li>
-      <li>Защита аккаунта и стратегия</li>
+      <li>Разбан Instagram на 108 000 подписчиков</li>
+      <li>Угнанный Telegram вернул за полдня</li>
+      <li>AI-агент заменил 3 менеджеров</li>
+      <li>+7 000 подписчиков за неделю без таргета</li>
     </ul>
   </div>
 </section>
@@ -1841,7 +1844,7 @@
       <div class="service-card" data-svc="unban">
         <div class="service-icon">&#128273;</div>
         <h3><a href="/uslugi/razblokirovka-instagram.html">Разблокировка Instagram</a></h3>
-        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
+        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span><span class="service-price-note">50% до начала, 50% после возврата доступа</span></div>
         <p class="service-tagline">Аккаунт заблокировали, отключили или увели. Разбираю, что именно
           произошло, и работаю над возвратом доступа через официальные каналы платформы.</p>
         <div class="service-card-btns">
@@ -1853,7 +1856,7 @@
       <div class="service-card" data-svc="tg">
         <div class="service-icon">&#128737;</div>
         <h3><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Взломали Telegram</a></h3>
-        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span></div>
+        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span><span class="service-price-note">50% до начала, 50% после возврата доступа</span></div>
         <p class="service-tagline">Аккаунт увели, номер сменили, от вашего имени пишут клиентам.
           Возвращаю доступ через официальные каналы платформы.</p>
         <div class="service-card-btns">
@@ -1888,8 +1891,54 @@
 <section id="case">
   <div class="container">
     <div class="case-header">
-      <div class="section-label" style="text-align:center;">Кейсы</div>
-      <h2>Реальные результаты <span class="accent">реальных клиентов</span></h2>
+      <div class="section-label" style="text-align:center;">Отзывы и кейсы</div>
+      <h2>Что говорят <span class="accent">клиенты</span></h2>
+    </div>
+    <div class="vrev-row">
+      <figure class="vrev">
+        <button class="vrev-play" type="button" data-yt="cps_KbQsybk" aria-label="Смотреть видеоотзыв: Янина">
+          <img src="https://i.ytimg.com/vi/cps_KbQsybk/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+          <span class="vrev-icon" aria-hidden="true"></span>
+        </button>
+        <figcaption>
+          <span class="vrev-kind">Разблокировка Instagram</span>
+          <blockquote>…последние двое суток был со мной на связи, помогал мне его разблокировать. …Тёма всё решит.</blockquote>
+          <span class="vrev-name">Янина, @yanina.kim_</span>
+        </figcaption>
+      </figure>
+      <figure class="vrev">
+        <button class="vrev-play" type="button" data-yt="XD-9_LXH2rs" aria-label="Смотреть видеоотзыв: Стэфан">
+          <img src="https://i.ytimg.com/vi/XD-9_LXH2rs/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+          <span class="vrev-icon" aria-hidden="true"></span>
+        </button>
+        <figcaption>
+          <span class="vrev-kind">Разблокировка Instagram</span>
+          <blockquote>…он помог мне разблокировать Instagram. У меня 108 тысяч подписчиков, и этот Instagram у меня как визитная карточка.</blockquote>
+          <span class="vrev-name">Стэфан, 108 000 подписчиков</span>
+        </figcaption>
+      </figure>
+      <figure class="vrev">
+        <button class="vrev-play" type="button" data-yt="-l7J1hmHRpU" aria-label="Смотреть видеоотзыв: Элла">
+          <img src="https://i.ytimg.com/vi/-l7J1hmHRpU/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+          <span class="vrev-icon" aria-hidden="true"></span>
+        </button>
+        <figcaption>
+          <span class="vrev-kind">Разблокировка после проверки личности</span>
+          <blockquote>Попросил пройти аутентификацию, которую я благополучно провалила… Артём за несколько дней вытащил мой Instagram из блока.</blockquote>
+          <span class="vrev-name">Элла, @ella_boyko_travel</span>
+        </figcaption>
+      </figure>
+      <figure class="vrev">
+        <button class="vrev-play" type="button" data-yt="L1dg-xEyG74" aria-label="Смотреть видеоотзыв: Марк Еремин">
+          <img src="https://i.ytimg.com/vi/L1dg-xEyG74/hqdefault.jpg" alt="" width="480" height="360" loading="lazy" decoding="async" />
+          <span class="vrev-icon" aria-hidden="true"></span>
+        </button>
+        <figcaption>
+          <span class="vrev-kind">Взлом Telegram</span>
+          <blockquote>…даже бот по моему телеграму написал, что страница заблокирована навсегда. Но Артём вытащил буквально за полдня.</blockquote>
+          <span class="vrev-name">Марк Еремин, @ereminmark</span>
+        </figcaption>
+      </figure>
     </div>
     <div class="cases-grid">
 
@@ -1978,9 +2027,11 @@
       </div>
 
     </div>
-    <div style="text-align:center; margin-top: 2rem;">
-      <a href="https://t.me/bahramovartem/216" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Все кейсы клиентов →</a>
-    </div>
+    <p class="proof-links">Ещё отзывы и переписки в Telegram:
+      <a href="https://t.me/bahramreviews/24" target="_blank" rel="noopener noreferrer">разбаны</a>
+      <a href="https://t.me/sistemabahram" target="_blank" rel="noopener noreferrer">кейсы</a>
+      <a href="https://t.me/bahramovartem" target="_blank" rel="noopener noreferrer">портфолио</a>
+    </p>
   </div>
 </section>
 
@@ -2009,61 +2060,24 @@
 <section id="steps">
   <div class="container">
     <div class="case-header">
-      <div class="section-label" style="text-align:center;">Как это устроено</div>
       <h2>Как проходит <span class="accent">работа</span></h2>
     </div>
     <div class="steps-grid">
       <div class="step-card">
         <div class="step-circle">1</div>
-        <h3>Пишешь в Telegram</h3>
-        <p>Рассказываешь, что за проект и что сейчас не работает. Без анкет и брифов на десять страниц.</p>
+        <h3>Пишете в Telegram</h3>
+        <p>Что случилось с аккаунтом или что нужно автоматизировать. Без анкет и брифов.</p>
       </div>
       <div class="step-card">
         <div class="step-circle">2</div>
         <h3>Бесплатный разбор</h3>
-        <p>Смотрю аккаунт и ситуацию, говорю, что можно сделать и с чего начинать. Это ни к чему не обязывает.</p>
+        <p>Смотрю ситуацию и называю срок и цену. Если шансов нет, говорю сразу и денег не беру.</p>
       </div>
       <div class="step-card">
         <div class="step-circle">3</div>
-        <h3>Формат и смета</h3>
-        <p>Предлагаю решение: пакет «СИСТЕМА» целиком или одна точечная услуга. Ты решаешь, что берём.</p>
+        <h3>Работа</h3>
+        <p>По разблокировке оплата пополам: до начала и после возврата доступа. Передумали до старта - возвращаю всё.</p>
       </div>
-      <div class="step-card">
-        <div class="step-circle">4</div>
-        <h3>Работа и сопровождение</h3>
-        <p>Первые сдвиги по статистике обычно видны на первой–второй неделе. Отслеживаем по статистике аккаунта и CRM: сколько людей заходит в воронку и какая доходимость.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ОТЗЫВЫ И КЕЙСЫ -->
-<section id="proof">
-  <div class="container">
-    <div class="case-header">
-      <div class="section-label" style="text-align:center;">Доказательства</div>
-      <h2>Отзывы и <span class="accent">кейсы клиентов</span></h2>
-      <p style="color:var(--muted);font-size:16px;margin-top:12px;">Живые переписки, скриншоты статистики и разборы работ - всё в Telegram</p>
-    </div>
-    <div class="proof-grid">
-      <a class="proof-card" href="https://t.me/bahramreviews/24" target="_blank" rel="noopener noreferrer">
-        <div class="proof-icon">💬</div>
-        <div class="proof-name">Разбаны</div>
-        <div class="proof-desc">Канал с отзывами и кейсами по восстановлению заблокированных аккаунтов.</div>
-        <div class="proof-link">Смотреть отзывы &rarr;</div>
-      </a>
-      <a class="proof-card" href="https://t.me/sistemabahram" target="_blank" rel="noopener noreferrer">
-        <div class="proof-icon">📈</div>
-        <div class="proof-name">Кейсы</div>
-        <div class="proof-desc">Кейсы и отзывы клиентов: что делали, какой получился результат и что говорят сами клиенты.</div>
-        <div class="proof-link">Открыть кейсы &rarr;</div>
-      </a>
-      <a class="proof-card" href="https://t.me/bahramovartem" target="_blank" rel="noopener noreferrer">
-        <div class="proof-icon">🗂</div>
-        <div class="proof-name">Портфолио</div>
-        <div class="proof-desc">Канал с работами: аккаунты клиентов, воронки, чат-боты и результаты по ним.</div>
-        <div class="proof-link">Смотреть портфолио &rarr;</div>
-      </a>
     </div>
   </div>
 </section>
@@ -2097,75 +2111,41 @@
     <h2>Часто задаваемые вопросы</h2>
 
     <details>
-      <summary>Что такое AI-агент и чем он отличается от обычного чат-бота?</summary>
+      <summary>Сколько стоит разблокировка Instagram или возврат Telegram?</summary>
       <div class="faq-answer">
-        Чат-бот работает по жёсткому сценарию: если пользователь написал X - бот отвечает Y. AI-агент понимает смысл сообщения и сам решает, что делать дальше: ответить нестандартно, задать уточняющий вопрос, квалифицировать лида или передать менеджеру. AI-агент учится на базе знаний бизнеса и общается естественным языком. Стоимость разработки - от 30 000 ₽.
+        От 10 000 ₽, срок 1–7 дней в зависимости от типа блокировки и от того, сохранился ли у вас доступ к почте и номеру. Точную цену называю после бесплатного разбора. Оплата пополам: 50% до начала работ и 50% после восстановления доступа. Передумали до старта - возвращаю 100%. Подробно по <a href="/uslugi/razblokirovka-instagram.html">разблокировке Instagram</a> и <a href="/uslugi/vzlom-telegram-vosstanovlenie.html">возврату Telegram после взлома</a>.
       </div>
     </details>
-
     <details>
-      <summary>Сколько стоит автоматизация Instagram под ключ?</summary>
+      <summary>Что если доступ вернуть не получится?</summary>
       <div class="faq-answer">
-        Комплексный пакет СИСТЕМА стоит 39 900 ₽ единоразово - это цена 2–3 клиентов в большинстве ниш, с которыми я работаю. В пакет входит аудит аккаунта, контент-стратегия на 3 месяца, AI-ассистент под голос бренда, чат-бот с воронкой продаж, упаковка профиля и 30 дней сопровождения. Отдельные услуги доступны от 10 000 ₽.
+        Стопроцентного возврата не гарантирует никто: часть аккаунтов не восстанавливается в принципе, например когда решение платформы окончательное и срок на обжалование прошёл. Если по вашему случаю шансов нет, я скажу это на разборе и денег не возьму.
       </div>
     </details>
-
     <details>
-      <summary>Что делать, если Instagram заблокировал аккаунт?</summary>
+      <summary>Нужно ли давать пароль от аккаунта?</summary>
       <div class="faq-answer">
-        В зависимости от типа блокировки используется один из подходов: апелляция через официальные каналы Meta, восстановление через альтернативные методы, защита нового аккаунта от повторной блокировки. Стоимость разблокировки - от 10 000 ₽, срок работы 1–7 дней в зависимости от сложности блокировки. Оплата по этой услуге делится: 50% до начала работ и 50% после восстановления доступа. После восстановления настраивается 2FA и резервная система на случай повтора.
+        Нет. Пароль от аккаунта я не прошу никогда. Восстановление идёт через официальные формы платформы, они привязаны к вашей почте и номеру. И я не пишу первым: если вам в директ написал специалист по разбану, это не я.
       </div>
     </details>
-
     <details>
-      <summary>Через сколько окупается AI-агент для бизнеса?</summary>
+      <summary>Сколько стоит AI-агент и через сколько он окупается?</summary>
       <div class="faq-answer">
-        Мой кейс, разобранный на vc.ru: экономия 150 000 ₽ в месяц при замене 3 менеджеров одним AI-агентом. Агент работает 24/7, не уходит в отпуск, отвечает за секунды и квалифицирует лидов перед передачей менеджеру. Окупаемость считается индивидуально. Конкретные цифры зависят от объёма входящих сообщений и текущего ФОТ.
+        Разработка AI-агента - от 30 000 ₽. Агент отвечает в директе круглосуточно, квалифицирует заявки и передаёт готовый диалог менеджеру. Мой кейс, разобранный на vc.ru: экономия 150 000 ₽ в месяц при замене 3 менеджеров одним агентом. Окупаемость зависит от объёма входящих сообщений и текущего ФОТ, считаю её на разборе.
       </div>
     </details>
-
     <details>
-      <summary>Чем ChatPlace отличается от других платформ автоматизации?</summary>
+      <summary>Сколько стоит автоматизация соцсетей под ключ?</summary>
       <div class="faq-answer">
-        ChatPlace работает с Instagram, Telegram и TikTok одновременно, поддерживает AI-агентов из коробки и имеет встроенные инструменты для рассылок и воронок. Интерфейс на русском, есть бесплатный тариф для тестирования. Подходит малому и среднему бизнесу без необходимости разработки.
+        Пакет СИСТЕМА - 39 900 ₽ единоразово. В него входит аудит аккаунта, контент-стратегия на 3 месяца, AI-ассистент под голос бренда, чат-бот с воронкой продаж, упаковка профиля и 30 дней сопровождения.
       </div>
     </details>
-
     <details>
-      <summary>Можно ли вести несколько аккаунтов Instagram без бана в 2026?</summary>
+      <summary>Какой результат вы обещаете по росту?</summary>
       <div class="faq-answer">
-        Да, при соблюдении правил изоляции инфраструктуры. Это значит: разные устройства или прокси для разных аккаунтов, отказ от дублирования контента, осторожная работа с Accounts Center и Facebook. Массфолловинг и накрутка сторонними сервисами в 2026 ведут к цепным блокировкам - в отличие от работы через официальные интеграции вроде ChatPlace (партнёр Meta), где действия идут по API и в рамках лимитов. Подробный гайд по защите мультиаккаунтов есть в блоге.
+        Перед стартом фиксируем точку А по вашей статистике: охваты, посещения профиля, заявки. Через 30 дней снимаем те же цифры и сравниваем. По моим клиентам ключевые метрики обычно вырастают в 2–3 раза, но прирост зависит от ниши, контента и стартового состояния аккаунта - это ориентир по практике, а не гарантия. Первые сдвиги обычно видны на первой–второй неделе. Границы ответственности описаны в <a href="/blog/usloviya-okazaniya-uslug.html">условиях оказания услуг</a>.
       </div>
     </details>
-
-    <details>
-      <summary>С чего начать автоматизацию бизнеса с нуля?</summary>
-      <div class="faq-answer">
-        С аудита процессов: где теряется время и клиенты, какие задачи повторяются, какие вопросы задают чаще всего. Затем - одна точка автоматизации: например, автоответ в директ или приветственная воронка. После того как первая точка работает стабильно, добавляются следующие. Бесплатный аудит - в Telegram @bahramovartsiom.
-      </div>
-    </details>
-
-    <details>
-      <summary>Какой результат вы обещаете?</summary>
-      <div class="faq-answer">
-        Перед стартом фиксируем точку А по вашей статистике: охваты, посещения профиля, заявки. Дальше внедряем AI-инструменты пакета и выстраиваем системный приток охватов и переходов в профиль. Через 30 дней снимаем те же цифры и сравниваем. По моим клиентам ключевые метрики обычно вырастают в 2–3 раза, но итоговый прирост зависит от ниши, контента и стартового состояния аккаунта - это ориентир по практике, а не гарантированный результат. Границы ответственности исполнителя описаны в <a href="/blog/usloviya-okazaniya-uslug.html">условиях оказания услуг</a>.
-      </div>
-    </details>
-
-    <details>
-      <summary>Через сколько будут первые результаты?</summary>
-      <div class="faq-answer">
-        Первые сдвиги по статистике обычно видно на первой–второй неделе. Мы отслеживаем их по двум источникам: статистика самого аккаунта (охваты, посещения профиля) и внутренняя CRM сервиса - сколько людей заходит в воронку и какая по ней доходимость. То есть эффект виден в цифрах, а не на ощущениях.
-      </div>
-    </details>
-
-    <details>
-      <summary>Где можно прочитать кейсы и статьи?</summary>
-      <div class="faq-answer">
-        Блог на bahramovai.com/blog содержит 37 статей про AI-агентов, автоматизацию Instagram, защиту от блокировок и стратегии роста. Также публикуются материалы на vc.ru в разделе Маркетинг и в LinkedIn. На YouTube канале @bahramovai - короткие видео и скринкасты по теме.
-      </div>
-    </details>
-
   </div>
 </section>
 
@@ -2173,15 +2153,13 @@
 <section id="cta">
   <div class="container">
     <div class="cta-inner">
-      <div class="section-label" style="text-align:center;">Начать</div>
-      <h2>Готов превратить соцсети<br>в <span class="accent">источник дохода?</span></h2>
-      <p>Разберём твою ситуацию и составим план. Первая консультация бесплатно.</p>
+      <h2>Расскажите, что случилось<br>с <span class="accent">аккаунтом</span></h2>
+      <p>Разберу ситуацию бесплатно и скажу, что делать. Отвечаю лично.</p>
       <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-        Получить бесплатный аудит →
+        Написать в Telegram →
       </a>
-      <p class="cta-bonus">Пока думаешь - забери бесплатно:<br>
-        <a href="https://t.me/bahramovartem_bot" target="_blank" rel="noopener noreferrer">мини-курс по созданию воронок и закрытый канал с уроками по разгону Reels через AI &rarr;</a>
-      </p>
+      <p class="cta-alt">Нет Telegram? <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener">WhatsApp</a> или <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a></p>
+      <p class="cta-bonus"><a href="https://t.me/bahramovartem_bot" target="_blank" rel="noopener noreferrer">Бесплатный мини-курс по воронкам &rarr;</a></p>
     </div>
   </div>
 </section>
@@ -2190,7 +2168,7 @@
 
 <!-- MOBILE STICKY CTA -->
 <div class="mobile-cta" id="mobileCta">
-  <a href="https://t.me/m/BdVBlVvYZDEy" target="_blank" rel="noopener noreferrer">Получить бесплатный аудит &rarr;</a>
+  <a href="https://t.me/m/BdVBlVvYZDEy" target="_blank" rel="noopener noreferrer">Разобрать мой случай бесплатно &rarr;</a>
   <p class="mobile-cta-note">Отвечаю лично. Без ботов и рассылок.</p>
 </div>
 
@@ -2213,6 +2191,18 @@
     observer.observe(el);
   });
 
+  // Видеоотзывы: iframe YouTube подставляется только по клику
+  document.querySelectorAll('.vrev-play').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + b.getAttribute('data-yt') + '?autoplay=1';
+      f.title = b.getAttribute('aria-label');
+      f.allow = 'autoplay; encrypted-media; picture-in-picture';
+      f.allowFullscreen = true;
+      b.innerHTML = ''; b.appendChild(f); b.style.cursor = 'default';
+      if (window.ym) ym(110081984, 'reachGoal', 'review_video_play');
+    }, { once: true });
+  });
   // Липкая кнопка на мобиле: показываем, как только hero ушёл за экран
   (function () {
     var bar = document.getElementById('mobileCta');
@@ -2241,7 +2231,6 @@
       if (a.closest('#hero'))        return 'hero';
       if (a.closest('#case'))        return 'case';
       if (a.closest('#system'))      return 'package';
-      if (a.closest('#proof'))       return 'proof';
       if (a.closest('.about-me'))    return 'about';
       if (a.closest('#cta'))         return 'final';
       var card = a.closest('.service-card');
