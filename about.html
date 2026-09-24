@@ -839,6 +839,7 @@
       var href = a.getAttribute('href') || '';
       var isWa = href.indexOf('wa.me/') !== -1;
       if (href.indexOf('t.me/') === -1 && href.indexOf('max.ru/') === -1 && !isWa) return;
+      if (href.indexOf('t.me/tribute') !== -1) return; // покупка, а не заявка — своя цель
       var name = href.indexOf('bahramovartem_bot') !== -1 ? 'bonus_click'
                : (isWa ? 'wa_about_page' : 'tg_about_page');
       if (typeof window.ym !== 'function') return;
