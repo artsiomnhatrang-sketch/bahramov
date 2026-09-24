@@ -228,10 +228,8 @@
 </footer>
 
 <script>
-  ['buyBook','buyBookWeb'].forEach(function (id) {
-    document.getElementById(id).addEventListener('click', function () {
-      if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', 'book_buy_click');
-    });
+  document.getElementById('buyBook').addEventListener('click', function () {
+    if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', 'book_buy_click');
   });
 </script>
 </body>
