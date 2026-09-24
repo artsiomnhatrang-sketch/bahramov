@@ -311,6 +311,19 @@
       font-weight: 500;
       transition: color .2s; padding: 9px 2px; }
     nav a.nav-blog:hover { color: #fff; }
+    /* Пункты шапки главной - оранжевые кнопки, как «Услуги и цены» */
+    nav a.nav-blog.nav-services { color: var(--orange); font-size: 13px; font-weight: 600; }
+    nav a.nav-blog.nav-services:hover { color: #000; }
+    @media (max-width: 768px) { nav a.nav-blog.nav-services:hover { color: var(--orange); } }
+    @media (max-width: 700px) { nav a.nav-blog.nav-services { font-size: 12px; } }
+    @media (max-width: 480px) { nav a.nav-blog.nav-services { font-size: 11.5px; } }
+    /* Самые узкие телефоны (320-359 px): стрелки прячем, чтобы шапка влезла */
+    @media (max-width: 359px) {
+      nav { gap: 6px !important; padding-left: 10px !important; padding-right: 10px !important; }
+      .nav-logo { font-size: 12px !important; }
+      nav a.nav-services span[aria-hidden], nav a.nav-bonus span[aria-hidden] { display: none; }
+      nav a.nav-bonus { padding: 6px 9px !important; }
+    }
 
     /* ─── SHARED ─── */
     .container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
@@ -1921,9 +1934,9 @@
 <nav>
   <div class="nav-logo">А<span>.</span>Бахрамов</div>
   <a href="#services" class="nav-services">Услуги<span class="nav-services-long"> и цены</span> <span aria-hidden="true">&darr;</span></a>
-  <a href="/blog/" class="nav-blog">Блог</a>
-  <a href="/about.html" class="nav-blog">Обо мне</a>
-  <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-bonus" target="_blank" rel="noopener noreferrer">Написать</a>
+  <a href="/blog/" class="nav-blog nav-services">Блог <span aria-hidden="true">&rarr;</span></a>
+  <a href="/about.html" class="nav-blog nav-services">Обо мне <span aria-hidden="true">&rarr;</span></a>
+  <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-bonus" target="_blank" rel="noopener noreferrer">Написать <span aria-hidden="true">&rarr;</span></a>
   <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-cta" target="_blank" rel="noopener noreferrer">Написать в Telegram →</a>
 </nav>
 
