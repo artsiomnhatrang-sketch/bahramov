@@ -600,6 +600,47 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/110081984" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
+<!-- nav-orange:start -->
+<style>
+/* Пункты шапки - оранжевые кнопки со стрелкой, как на главной.
+   Стрелка добавляется стилем, разметку шапки на страницах не трогаем. */
+nav a.nav-link, nav a.nav-bonus, nav.header-nav > a:not(.btn-cta) {
+  color: #f4672a !important; font-weight: 600 !important; text-decoration: none !important;
+  border: 1.5px solid #f4672a !important; border-radius: 100px !important;
+  padding: 8px 16px !important; background: transparent !important;
+  white-space: nowrap; transition: background .2s, color .2s;
+}
+nav a.nav-link::after, nav a.nav-bonus::after, nav.header-nav > a:not(.btn-cta)::after { content: " \2192"; }
+nav a.nav-link:hover, nav a.nav-bonus:hover, nav.header-nav > a:not(.btn-cta):hover,
+nav a.nav-link.active { background: #f4672a !important; color: #000 !important; }
+@media (max-width: 768px) {
+  nav a.nav-link, nav a.nav-bonus, nav.header-nav > a:not(.btn-cta) {
+    border: 0 !important; padding: 6px 2px !important; background: transparent !important;
+  }
+  nav a.nav-link:hover, nav a.nav-bonus:hover, nav.header-nav > a:not(.btn-cta):hover,
+  nav a.nav-link.active { background: transparent !important; color: #f4672a !important; }
+}
+/* Телефоны: без стрелок и рамок, иначе пункты не влезают в строку.
+   «Обо мне» прячем, ссылка есть в подвале. */
+@media (max-width: 480px) {
+  nav a.nav-link::after, nav a.nav-bonus::after, nav.header-nav > a:not(.btn-cta)::after { content: ""; }
+  nav a.nav-link, nav a.nav-bonus { font-size: 12.5px !important; padding: 4px 0 !important; }
+  nav.header-nav > a:not(.btn-cta) { padding: 4px 0 !important; }
+  nav .nav-links { gap: 12px !important; }
+  nav.header-nav { gap: 8px !important; }
+  nav a.nav-link[href="/about.html"] { display: none !important; }
+}
+@media (max-width: 359px) {
+  nav .nav-links { gap: 9px !important; }
+  nav a.nav-link, nav a.nav-bonus { font-size: 11.5px !important; }
+  nav .nav-logo { font-size: 12px !important; }
+  nav.header-nav { gap: 6px !important; }
+  nav.header-nav .btn-cta { padding: 6px 8px !important; font-size: 11px !important; }
+  nav.header-nav > a[href$="/blog/"] { display: none !important; }
+  .header-inner .nav-logo { font-size: 12px !important; }
+}
+</style>
+<!-- nav-orange:end -->
 </head>
 <body>
 
