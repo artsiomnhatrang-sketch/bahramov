@@ -289,6 +289,20 @@
       transition: background .2s, color .2s;
     }
     nav a.nav-bonus:hover { background: var(--orange); color: #000; }
+    /* Кнопка услуг: оранжевый контур, вторая по силе после «Написать».
+       На главной ведёт к витрине услуг, а не на отдельную страницу. */
+    nav a.nav-services {
+      color: var(--orange); text-decoration: none;
+      font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 600;
+      padding: 9px 18px; border-radius: 100px; border: 1.5px solid var(--orange);
+      white-space: nowrap; transition: background .2s, color .2s;
+    }
+    nav a.nav-services:hover { background: var(--orange); color: #000; }
+    @media (max-width: 768px) {
+      nav a.nav-services { border: 0; padding: 6px 2px; font-size: 12.5px; }
+      nav a.nav-services:hover { background: none; color: var(--orange); }
+      .nav-services-long { display: none; }
+    }
     nav a.nav-blog {
       color: var(--muted);
       text-decoration: none;
@@ -1906,7 +1920,7 @@
 <!-- NAV -->
 <nav>
   <div class="nav-logo">А<span>.</span>Бахрамов</div>
-  <a href="/uslugi/" class="nav-blog">Услуги</a>
+  <a href="#services" class="nav-services">Услуги<span class="nav-services-long"> и цены</span> <span aria-hidden="true">&darr;</span></a>
   <a href="/blog/" class="nav-blog">Блог</a>
   <a href="/about.html" class="nav-blog">Обо мне</a>
   <a href="https://t.me/m/BdVBlVvYZDEy" class="nav-bonus" target="_blank" rel="noopener noreferrer">Написать</a>
