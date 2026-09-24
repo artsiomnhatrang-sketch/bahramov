@@ -86,6 +86,10 @@
     .btn-buy:hover { opacity: .85; }
     .price { font-family: 'Unbounded', sans-serif; font-size: 22px; font-weight: 700; color: #fff; }
     .buy-note { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .buy-card { margin: 12px 0 0; font-size: 14px; line-height: 1.6; }
+    .buy-card a { color: var(--orange, #f4672a); font-weight: 600; text-decoration: none; }
+    .buy-card a:hover { text-decoration: underline; }
+    .buy-card span { display: block; color: var(--muted); font-size: 13px; }
     .facts { list-style: none; margin-top: 30px; border-top: 1px solid var(--border); padding-top: 22px; }
     .facts li { font-size: 15px; color: var(--muted); margin-bottom: 8px; }
     .facts b { color: var(--text); font-weight: 500; }
@@ -208,7 +212,8 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
           <a href="https://t.me/tribute/app?startapp=pF9m" class="btn-buy" id="buyBook" target="_blank" rel="noopener">Купить в Telegram</a>
           <span class="price">298&nbsp;₽</span>
         </div>
-        <p class="buy-note">Откроется сразу в приложении, без входа. Оплата по СБП или звёздами. PDF придёт в Telegram сразу после оплаты</p>
+        <p class="buy-note">Кнопка откроет Tribute в приложении Telegram, без входа: оплата по СБП или звёздами. PDF придёт в Telegram сразу после оплаты</p>
+        <p class="buy-card"><a href="https://web.tribute.tg/p/F9m" id="buyBookCard" target="_blank" rel="noopener">Оплатить картой в любой валюте &rarr;</a><span>Visa, Mastercard, Мир. Перед оплатой Tribute попросит войти через Telegram или по коду на почту</span></p>
         <ul class="facts">
           <li><b>Формат:</b> PDF с обложкой, 21 глава, читается с телефона и компьютера</li>
           <li><b>Возраст:</b> 18+</li>
@@ -271,6 +276,12 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
 <script>
   document.getElementById('buyBook').addEventListener('click', function () {
     if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', 'book_buy_click');
+  });
+  document.getElementById('buyBookCard').addEventListener('click', function () {
+    if (typeof window.ym === 'function') {
+      window.ym(110081984, 'reachGoal', 'book_buy_click');
+      window.ym(110081984, 'reachGoal', 'book_buy_card_click');
+    }
   });
 </script>
 </body>
