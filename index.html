@@ -1573,6 +1573,123 @@
       margin: 0 0 18px;
     }
 
+    /* ─── ВИТРИНА УСЛУГ ───
+       Карточка - кнопка, по нажатию открывается <dialog> с составом и ценой.
+       На телефоне окно выезжает снизу, как лист в приложении. */
+    .svx-lead { color: var(--muted); font-size: 15px; margin-top: 12px; }
+    .svx-name, .svd h3 { -webkit-hyphens: manual; hyphens: manual; overflow-wrap: normal; }
+    .svx-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .svx-card {
+      all: unset; box-sizing: border-box; cursor: pointer;
+      display: flex; flex-direction: column; gap: 10px;
+      background: var(--bg); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 22px 22px 18px; min-width: 0;
+      transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .svx-card:hover, .svx-card:focus-visible {
+      border-color: var(--orange-border); transform: translateY(-3px);
+      box-shadow: 0 18px 50px rgba(244,103,42,0.08);
+    }
+    .svx-card:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
+    .svx-top { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .svx-icon {
+      width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+      background: var(--orange-dim); border: 1px solid var(--orange-border);
+      display: flex; align-items: center; justify-content: center; font-size: 19px;
+    }
+    .svx-tag {
+      font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase; color: #8a8a8a;
+    }
+    .svx-name { font-family: 'Unbounded', sans-serif; font-size: 16px; font-weight: 700; color: #fff; line-height: 1.3; }
+    .svx-pain { font-family: 'Inter', sans-serif; font-size: 14px; color: var(--muted); line-height: 1.5; flex: 1; }
+    .svx-bottom {
+      display: flex; align-items: baseline; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      border-top: 1px solid var(--border); padding-top: 14px; margin-top: 4px;
+    }
+    .svx-price { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--orange); letter-spacing: .02em; line-height: 1; white-space: nowrap; }
+    .svx-pnote { font-family: 'Inter', sans-serif; font-size: 12px; color: #8a8a8a; margin-left: 6px; letter-spacing: 0; }
+    .svx-more { font-family: 'Inter', sans-serif; font-size: 13.5px; font-weight: 600; color: #fff; white-space: nowrap; }
+    .svx-card:hover .svx-more { color: var(--orange); }
+    .svx-card--main {
+      border-color: var(--orange-border);
+      background: linear-gradient(135deg, rgba(244,103,42,0.10), rgba(244,103,42,0.02) 60%), var(--bg);
+    }
+    .svx-card--main .svx-tag { color: var(--orange); }
+    .svx-extra { text-align: center; margin: 28px 0 0; font-size: 14px; color: #8a8a8a; line-height: 1.8; }
+    .svx-extra a { color: var(--orange); font-weight: 600; text-decoration: none; }
+    .svx-extra a:hover { text-decoration: underline; }
+    .svx-extra span { margin: 0 6px; }
+    @media (max-width: 900px) { .svx-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 600px) {
+      .svx-grid { grid-template-columns: 1fr; gap: 12px; }
+      .svx-card { padding: 18px 18px 14px; gap: 8px; }
+      .svx-extra span { display: none; }
+      .svx-extra a { display: block; }
+    }
+
+    /* Окно услуги */
+    .svd {
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 20px; padding: 0;
+      background: #0b0b0b; color: #fff; width: min(600px, calc(100% - 32px));
+      max-height: min(86vh, 860px); overflow: auto; overscroll-behavior: contain;
+      position: fixed; inset: 0; margin: auto; height: fit-content;
+    }
+    .svd::backdrop { background: rgba(0,0,0,0.72); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); }
+    .svd[open] { animation: svd-in .22s ease; }
+    @keyframes svd-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+    .svd-in { position: relative; padding: 30px 30px 26px; font-family: 'Inter', sans-serif; }
+    .svd-x {
+      position: absolute; top: 14px; right: 14px; width: 38px; height: 38px;
+      border-radius: 50%; border: 1px solid rgba(255,255,255,0.14); background: #151515;
+      color: #fff; font-size: 22px; line-height: 1; cursor: pointer;
+    }
+    .svd-x:hover { border-color: var(--orange); color: var(--orange); }
+    .svd h3 { font-family: 'Unbounded', sans-serif; font-size: 21px; line-height: 1.25; margin: 8px 48px 10px 0; color: #fff; }
+    .svd-price { font-family: 'Bebas Neue', sans-serif; font-size: 36px; color: var(--orange); line-height: 1; margin-bottom: 16px; }
+    .svd-who { font-size: 14.5px; color: #cfcfcf; line-height: 1.55; margin: 0 0 18px; }
+    .svd-who b { color: #fff; font-weight: 600; }
+    .svd-h, .svd-group {
+      font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+      color: #8a8a8a; margin: 0 0 10px;
+    }
+    .svd-group { color: var(--orange); margin-top: 14px; }
+    .svd ul { list-style: none; margin: 0 0 18px; padding: 0; display: flex; flex-direction: column; gap: 9px; }
+    .svd li { position: relative; padding-left: 20px; font-size: 14.5px; color: #e4e4e4; line-height: 1.5; }
+    .svd li::before {
+      content: ''; position: absolute; left: 2px; top: 8px; width: 7px; height: 7px;
+      border-radius: 50%; background: var(--orange);
+    }
+    .svd-row { border-top: 1px solid rgba(255,255,255,0.08); padding: 12px 0; }
+    .svd-row span { display: block; font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: #8a8a8a; margin-bottom: 4px; }
+    .svd-row p { margin: 0; font-size: 14px; color: #cfcfcf; line-height: 1.55; }
+    .svd-btns {
+      display: flex; align-items: center; gap: 18px; flex-wrap: wrap; margin-top: 10px;
+      position: sticky; bottom: 0; z-index: 2; background: #0b0b0b;
+      padding: 14px 0 16px; border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .svd-btns .btn { border-radius: 100px; }
+    .svd-link { color: var(--orange); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .svd-link:hover { text-decoration: underline; }
+    .svd-note { margin: 14px 0 0; font-size: 13px; color: #8a8a8a; }
+    html.svd-lock { overflow: hidden; }
+    @media (max-width: 600px) {
+      .svd {
+        width: 100%; max-width: 100%; margin: auto 0 0; max-height: 90vh;
+        border-radius: 20px 20px 0 0; border-bottom: 0;
+      }
+      .svd[open] { animation: svd-up .25s ease; }
+      @keyframes svd-up { from { transform: translateY(40px); opacity: .4; } to { transform: none; opacity: 1; } }
+      .svd-in { padding: 24px 18px 22px; }
+      .svd h3 { font-size: 18px; }
+      .svd-btns { flex-direction: column; align-items: stretch; text-align: center; gap: 12px; }
+      .svd-btns .btn { justify-content: center; }
+    }
+
     /* ─── ВИДЕООТЗЫВЫ ───
        Превью вместо четырёх iframe: плеер YouTube грузится только по клику.
        У hqdefault для Shorts вертикальное видео стоит по центру с полями,
@@ -1832,60 +1949,157 @@
   </div>
 </section>
 
-<!-- ЗНАКОМАЯ СИТУАЦИЯ -->
+<!-- УСЛУГИ: витрина + окна с деталями -->
 <section id="services">
   <div class="container">
     <div class="services-header">
-      <div class="section-label" style="text-align:center;">Услуги</div>
-      <h2>С чем ко мне <span class="accent">приходят чаще всего</span></h2>
+      <div class="section-label" style="text-align:center;">Услуги и цены</div>
+      <h2>Чем могу <span class="accent">помочь</span></h2>
+      <p class="svx-lead">Нажмите на услугу - откроется, что входит, сроки и сколько стоит.</p>
     </div>
-    <div class="services-grid">
-
-      <div class="service-card" data-svc="unban">
-        <div class="service-icon">&#128273;</div>
-        <h3><a href="/uslugi/razblokirovka-instagram.html">Разблокировка Instagram</a></h3>
-        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span><span class="service-price-note">50% до начала, 50% после возврата доступа</span></div>
-        <p class="service-tagline">Аккаунт заблокировали, отключили или увели. Разбираю, что именно
-          произошло, и работаю над возвратом доступа через официальные каналы платформы.</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/rrSvG_DVYTQy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/razblokirovka-instagram.html">Подробнее и цена &rarr;</a></p>
-      </div>
-
-      <div class="service-card" data-svc="tg">
-        <div class="service-icon">&#128737;</div>
-        <h3><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Взломали Telegram</a></h3>
-        <div class="service-price"><span class="service-price-value">от 10 000 ₽</span><span class="service-price-note">50% до начала, 50% после возврата доступа</span></div>
-        <p class="service-tagline">Аккаунт увели, номер сменили, от вашего имени пишут клиентам.
-          Возвращаю доступ через официальные каналы платформы.</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/xD6mGebXYmZi" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Подробнее и цена &rarr;</a></p>
-      </div>
-
-      <div class="service-card" data-svc="agent">
-        <div class="service-icon">&#129302;</div>
-        <h3><a href="/uslugi/ai-agent.html">AI-агент под ключ</a></h3>
-        <div class="service-price"><span class="service-price-value">от 30 000 ₽</span></div>
-        <p class="service-tagline">Агент отвечает в директе круглосуточно, квалифицирует заявки
-          и передаёт вам готовый диалог. Подключается к Telegram, Instagram, CRM и оплатам.</p>
-        <div class="service-card-btns">
-          <a href="https://t.me/m/DzUYi5LlZTUy" class="svc-btn svc-btn-main" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
-        </div>
-        <p class="svc-more"><a href="/uslugi/ai-agent.html">Подробнее и цена &rarr;</a></p>
-      </div>
-
+    <div class="svx-grid">
+      <button type="button" class="svx-card" data-svc="unban" data-open="svx-unban">
+        <span class="svx-top"><span class="svx-icon" aria-hidden="true">&#128273;</span><span class="svx-tag">Вернуть аккаунт</span></span>
+        <span class="svx-name">Разблокировка Instagram</span>
+        <span class="svx-pain">Заблокировали, отключили или требуют проверку личности</span>
+        <span class="svx-bottom"><span class="svx-price">от 10&nbsp;000&nbsp;₽</span><span class="svx-more">Что входит &rarr;</span></span>
+      </button>
+      <button type="button" class="svx-card" data-svc="tg" data-open="svx-tg">
+        <span class="svx-top"><span class="svx-icon" aria-hidden="true">&#128737;</span><span class="svx-tag">Вернуть аккаунт</span></span>
+        <span class="svx-name">Взломали Telegram</span>
+        <span class="svx-pain">Увели аккаунт, сменили номер, пишут от вашего имени</span>
+        <span class="svx-bottom"><span class="svx-price">от 10&nbsp;000&nbsp;₽</span><span class="svx-more">Что входит &rarr;</span></span>
+      </button>
+      <button type="button" class="svx-card" data-svc="agent" data-open="svx-agent">
+        <span class="svx-top"><span class="svx-icon" aria-hidden="true">&#129302;</span><span class="svx-tag">Автоматизация</span></span>
+        <span class="svx-name">AI-агент и чат-бот</span>
+        <span class="svx-pain">Отвечает в директе круглосуточно и передаёт вам готовых клиентов</span>
+        <span class="svx-bottom"><span class="svx-price">от 30&nbsp;000&nbsp;₽</span><span class="svx-more">Что входит &rarr;</span></span>
+      </button>
+      <button type="button" class="svx-card" data-svc="traffic" data-open="svx-traffic">
+        <span class="svx-top"><span class="svx-icon" aria-hidden="true">&#128200;</span><span class="svx-tag">Рост</span></span>
+        <span class="svx-name">Трафик + воронка</span>
+        <span class="svx-pain">Новые целевые подписчики и автоприветствие в директ</span>
+        <span class="svx-bottom"><span class="svx-price">17&nbsp;000&nbsp;₽<span class="svx-pnote">в месяц</span></span><span class="svx-more">Что входит &rarr;</span></span>
+      </button>
+      <button type="button" class="svx-card" data-svc="clean" data-open="svx-clean">
+        <span class="svx-top"><span class="svx-icon" aria-hidden="true">&#129529;</span><span class="svx-tag">Рост</span></span>
+        <span class="svx-name">Чистка от ботов</span>
+        <span class="svx-pain">Убрать ботов и массфолловеров, чтобы статистика показывала правду</span>
+        <span class="svx-bottom"><span class="svx-price">16&nbsp;000&nbsp;₽</span><span class="svx-more">Что входит &rarr;</span></span>
+      </button>
+      <button type="button" class="svx-card svx-card--main" data-svc="system" data-open="svx-system">
+        <span class="svx-top"><span class="svx-icon" aria-hidden="true">&#11088;</span><span class="svx-tag">Всё под ключ</span></span>
+        <span class="svx-name">Пакет СИСТЕМА</span>
+        <span class="svx-pain">Защита, контент, AI-ассистент, чат-бот и продвижение в одном пакете</span>
+        <span class="svx-bottom"><span class="svx-price">39&nbsp;900&nbsp;₽<span class="svx-pnote">разово</span></span><span class="svx-more">Что входит &rarr;</span></span>
+      </button>
     </div>
-    <div class="services-rest">
-      <p class="services-rest-label">Дополнительно</p>
-      <p class="services-rest-text">Автоматизация воронок продаж, защита аудитории от ботов,
-        продвижение и трафик, разработка кастомных приложений и Telegram Mini Apps.</p>
-      <a href="/uslugi/" class="btn btn-primary services-rest-btn">Все услуги и цены &rarr;</a>
-    </div>
+    <p class="svx-extra">Нужен Telegram Mini App, бот или лендинг? <a href="https://t.me/m/BdVBlVvYZDEy" target="_blank" rel="noopener noreferrer">Обсудить проект &rarr;</a> <span>·</span> <a href="/uslugi/">Все услуги на одной странице &rarr;</a></p>
   </div>
 </section>
+<dialog class="svd" id="svx-unban" data-svc="unban" aria-labelledby="svx-unban-t">
+  <div class="svd-in">
+    <button type="button" class="svd-x" data-close aria-label="Закрыть">&times;</button>
+    <span class="svx-tag">Вернуть аккаунт</span>
+    <h3 id="svx-unban-t">Разблокировка Instagram</h3>
+    <div class="svd-price">от 10&nbsp;000&nbsp;₽</div>
+    <p class="svd-who"><b>Кому:</b> Аккаунт заблокирован, отключён, не проходит проверка личности или его увели.</p>
+    <p class="svd-h">Что входит</p>
+    <ul><li>Бесплатный разбор: что случилось и есть ли шансы</li><li>Возврат доступа через официальные каналы платформы</li><li>После возврата - двухфакторная защита и резервный доступ на случай повтора</li><li>Пароль от аккаунта не нужен, я его не прошу</li></ul>
+    <div class="svd-row"><span>Срок</span><p>1–7 дней, зависит от типа блокировки</p></div><div class="svd-row"><span>Оплата</span><p>50% до начала работ, 50% после возврата доступа. Передумали до старта - возвращаю 100%</p></div>
+    <div class="svd-btns">
+      <a href="https://t.me/m/rrSvG_DVYTQy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
+      <a href="/uslugi/razblokirovka-instagram.html" class="svd-link">Подробнее, отзывы и частые вопросы &rarr;</a>
+    </div>
+    <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
+  </div>
+</dialog>
+<dialog class="svd" id="svx-tg" data-svc="tg" aria-labelledby="svx-tg-t">
+  <div class="svd-in">
+    <button type="button" class="svd-x" data-close aria-label="Закрыть">&times;</button>
+    <span class="svx-tag">Вернуть аккаунт</span>
+    <h3 id="svx-tg-t">Взломали Telegram</h3>
+    <div class="svd-price">от 10&nbsp;000&nbsp;₽</div>
+    <p class="svd-who"><b>Кому:</b> Аккаунт, канал или бот угнали, сменили номер или почту, от вашего имени пишут клиентам.</p>
+    <p class="svd-h">Что входит</p>
+    <ul><li>Бесплатный разбор: что успели сделать с аккаунтом</li><li>Возврат доступа через официальные каналы платформы</li><li>Закрытие дыры: облачный пароль, резервная почта, чужие сеансы, проверка привязок</li></ul>
+    <div class="svd-row"><span>Срок</span><p>1–7 дней, зависит от того, что успели сделать с аккаунтом</p></div><div class="svd-row"><span>Оплата</span><p>50% до начала работ, 50% после возврата доступа. Передумали до старта - возвращаю 100%</p></div>
+    <div class="svd-btns">
+      <a href="https://t.me/m/xD6mGebXYmZi" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Обсудить мой случай &rarr;</a>
+      <a href="/uslugi/vzlom-telegram-vosstanovlenie.html" class="svd-link">Подробнее и видеоотзыв &rarr;</a>
+    </div>
+    <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
+  </div>
+</dialog>
+<dialog class="svd" id="svx-agent" data-svc="agent" aria-labelledby="svx-agent-t">
+  <div class="svd-in">
+    <button type="button" class="svd-x" data-close aria-label="Закрыть">&times;</button>
+    <span class="svx-tag">Автоматизация</span>
+    <h3 id="svx-agent-t">AI-агент и чат-бот</h3>
+    <div class="svd-price">от 30&nbsp;000&nbsp;₽</div>
+    <p class="svd-who"><b>Кому:</b> В директе и чатах копятся одинаковые вопросы про цены и сроки, заявки теряются, потому что не успеваете ответить.</p>
+    <p class="svd-h">Что входит</p>
+    <ul><li>AI-агент под вашу нишу - на ваших материалах и вашим тоном</li><li>Автоворонка с квалификацией: нецелевых отсеивает, готовых передаёт вам</li><li>Подключение к Telegram и Instagram</li><li>Связка с CRM и приёмом оплат</li></ul>
+    <div class="svd-row"><span>Как идёт работа</span><p>Разбор задач, база знаний, сборка и проверка на реальных вопросах, запуск и доработка по статистике</p></div><div class="svd-row"><span>Цена</span><p>Разработка от 30 000 ₽ разово. Платформа ChatPlace - 25 $ в месяц, платите ей напрямую, агент остаётся вашим</p></div>
+    <div class="svd-btns">
+      <a href="https://t.me/m/DzUYi5LlZTUy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
+      <a href="/uslugi/ai-agent.html" class="svd-link">Подробнее и кейс &rarr;</a>
+    </div>
+    <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
+  </div>
+</dialog>
+<dialog class="svd" id="svx-traffic" data-svc="traffic" aria-labelledby="svx-traffic-t">
+  <div class="svd-in">
+    <button type="button" class="svd-x" data-close aria-label="Закрыть">&times;</button>
+    <span class="svx-tag">Рост</span>
+    <h3 id="svx-traffic-t">Трафик + воронка</h3>
+    <div class="svd-price">17&nbsp;000&nbsp;₽ <span class="svx-pnote">в месяц</span></div>
+    <p class="svd-who"><b>Кому:</b> Аккаунт живой, но стоит на месте: новых людей нет, охваты не растут.</p>
+    <p class="svd-h">Что входит</p>
+    <ul><li>Вывод профиля в поиск и рекомендованное</li><li>Продвижение постов и Reels через работу с алгоритмами</li><li>AI-взаимодействие с аудиторией конкурентов</li><li>Автопривет новым подписчикам и вход в автоворонку</li><li>Работа с Близкими друзьями</li><li>Продающая шапка профиля</li><li>Обучающие материалы и уроки</li><li>Сопровождение каждую неделю: статистика до и после, ответы в Telegram</li></ul>
+    <div class="svd-row"><span>Формат</span><p>Подписка по месяцам. Начинаем с разбора аккаунта, потом подключение и запуск</p></div>
+    <div class="svd-btns">
+      <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Обсудить продвижение &rarr;</a>
+      <a href="/blog/instagram-prodvizhenie-skynet-ii-vzaimodeystvie-2026.html" class="svd-link">Как это работает &rarr;</a>
+    </div>
+    <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
+  </div>
+</dialog>
+<dialog class="svd" id="svx-clean" data-svc="clean" aria-labelledby="svx-clean-t">
+  <div class="svd-in">
+    <button type="button" class="svd-x" data-close aria-label="Закрыть">&times;</button>
+    <span class="svx-tag">Рост</span>
+    <h3 id="svx-clean-t">Чистка от ботов</h3>
+    <div class="svd-price">16&nbsp;000&nbsp;₽</div>
+    <p class="svd-who"><b>Кому:</b> Охваты намного ниже числа подписчиков, в аккаунте была накрутка или много мёртвых профилей.</p>
+    <p class="svd-h">Что входит</p>
+    <ul><li>Разбор: сколько ботов, нецелевой аудитории по гео и языку и массфолловеров с тысячами подписок</li><li>Чистка своим софтом с соблюдением дневных лимитов</li><li>Порциями по графику, без массовых действий за один день</li><li>Отчёт по работе</li></ul>
+    <div class="svd-row"><span>Важно</span><p>Чистка не заменяет контент: она наводит порядок в цифрах, а не разгоняет охваты. Если она вам не нужна, скажу на разборе</p></div>
+    <div class="svd-btns">
+      <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Обсудить чистку &rarr;</a>
+      <a href="/blog/instagram-chistka-ot-botov-2026.html" class="svd-link">Как проходит чистка &rarr;</a>
+    </div>
+    <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
+  </div>
+</dialog>
+<dialog class="svd" id="svx-system" data-svc="system" aria-labelledby="svx-system-t">
+  <div class="svd-in">
+    <button type="button" class="svd-x" data-close aria-label="Закрыть">&times;</button>
+    <span class="svx-tag">Всё под ключ</span>
+    <h3 id="svx-system-t">Пакет СИСТЕМА</h3>
+    <div class="svd-price">39&nbsp;900&nbsp;₽ <span class="svx-pnote">разово</span></div>
+    <p class="svd-who"><b>Кому:</b> Нужно собрать соцсети целиком и в одном контуре, а не закрывать задачи по одной.</p>
+    <p class="svd-h">Что входит</p>
+    <p class="svd-group">Фундамент</p><ul><li>Аудит аккаунта и стратегия продвижения</li><li>Защита аккаунта и страховочная система</li><li>Контент-стратегия на 3 месяца с контент-планом</li></ul><p class="svd-group">AI и автоматизация</p><ul><li>Персональный AI-ассистент для контента</li><li>Чат-бот с воронкой продаж под вашу нишу</li><li>Упаковка профиля</li><li>Автоматизация ответов и рассылок</li></ul><p class="svd-group">Продвижение</p><ul><li>Вывод профиля в поиск и рекомендованное</li><li>Посты и Reels в рекомендации</li><li>Активность в сторис у аудитории конкурентов</li><li>Близкие друзья и автоприветствие в директ</li></ul><p class="svd-group">Сопровождение</p><ul><li>30 дней: вопросы, корректировки, отчёты</li></ul>
+    <div class="svd-row"><span>Оплата</span><p>Единоразово, до начала работ. Передумали до старта - возвращаю 100%</p></div>
+    <div class="svd-btns">
+      <a href="https://t.me/m/BdVBlVvYZDEy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Обсудить пакет &rarr;</a>
+      <a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html" class="svd-link">Все 13 блоков подробно &rarr;</a>
+    </div>
+    <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
+  </div>
+</dialog>
 
 <!-- CASE -->
 <section id="case">
@@ -2035,23 +2249,6 @@
   </div>
 </section>
 
-<!-- PACKAGE -->
-<section id="system">
-  <div class="container">
-    <div class="system-strip">
-      <div class="system-main">
-        <div class="section-label">Флагманский пакет</div>
-        <h2>Пакет <span class="accent">СИСТЕМА</span></h2>
-        <p>Соцсети под ключ: защита аккаунта, контент-стратегия на три месяца,
-           AI-ассистент для контента и чат-бот с воронкой продаж.</p>
-      </div>
-      <div class="system-side">
-        <div class="system-price">39 900 ₽</div>
-        <a href="/blog/paket-sistema-avtomatizaciya-socsetey-2026.html" class="btn btn-outline">Что входит &rarr;</a>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- SERVICES -->
 
@@ -2191,6 +2388,26 @@
     observer.observe(el);
   });
 
+  // Витрина услуг: карточка открывает окно с составом и ценой
+  (function () {
+    var root = document.documentElement;
+    function closeAll(d) { d.close(); }
+    document.querySelectorAll('.svx-card[data-open]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var d = document.getElementById(btn.getAttribute('data-open'));
+        if (!d || !d.showModal) { location.href = '/uslugi/'; return; }
+        d.showModal();
+        root.classList.add('svd-lock');
+        if (window.ym) ym(110081984, 'reachGoal', 'service_open', { svc: btn.getAttribute('data-svc') });
+      });
+    });
+    document.querySelectorAll('dialog.svd').forEach(function (d) {
+      d.addEventListener('close', function () { root.classList.remove('svd-lock'); });
+      d.addEventListener('click', function (e) {
+        if (e.target === d || (e.target.closest && e.target.closest('[data-close]'))) closeAll(d);
+      });
+    });
+  })();
   // Видеоотзывы: iframe YouTube подставляется только по клику
   document.querySelectorAll('.vrev-play').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -2233,6 +2450,8 @@
       if (a.closest('#system'))      return 'package';
       if (a.closest('.about-me'))    return 'about';
       if (a.closest('#cta'))         return 'final';
+      var dlg = a.closest('dialog.svd');
+      if (dlg) return 'modal_' + (dlg.getAttribute('data-svc') || 'other');
       var card = a.closest('.service-card');
       if (card) return 'service_' + (card.getAttribute('data-svc') || 'other');
       return 'other';
