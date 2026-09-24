@@ -424,15 +424,29 @@
 
     .hero-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.35rem, 2.3vw, 2.1rem);
+      font-size: clamp(1.45rem, 2.4vw, 2.2rem);
       font-weight: 700;
-      line-height: 1.2;
+      line-height: 1.18;
       color: #fff;
       letter-spacing: -0.01em;
-      margin-bottom: 14px;
-      max-width: 560px;
+      margin-bottom: 16px;
+      max-width: 470px;
     }
     .hero-title .accent { color: var(--orange); }
+    /* Колонка текста уже свободного места между картинками: на 1000-1280 px
+       между роботом и портретом остаётся 240-400 px */
+    @media (min-width: 901px) {
+      .hero-title, .hero-title-sub { max-width: 440px; margin-left: auto; margin-right: auto; }
+      .hero-subtitle { max-width: 440px; }
+    }
+    @media (min-width: 901px) and (max-width: 1280px) {
+      .hero-bg-left, .hero-bg-right { max-width: 30%; height: 80%; opacity: .85; }
+    }
+    .hero-title-sub {
+      display: block; margin-top: 12px;
+      font-family: 'Inter', sans-serif; font-size: clamp(1rem, 1.25vw, 1.2rem);
+      font-weight: 600; line-height: 1.4; color: #d9d9d9; letter-spacing: 0;
+    }
 
     .hero-subtitle {
       font-family: 'Inter', sans-serif;
@@ -1676,6 +1690,15 @@
     .svd-link { color: var(--orange); font-size: 14px; font-weight: 600; text-decoration: none; }
     .svd-link:hover { text-decoration: underline; }
     .svd-note { margin: 14px 0 0; font-size: 13px; color: #8a8a8a; }
+    .svd-gift {
+      margin-top: 18px; padding: 16px 18px; border-radius: 14px;
+      border: 1px dashed var(--orange-border); background: rgba(244,103,42,0.06);
+    }
+    .svd-gift p { margin: 0 0 10px; font-size: 14px; line-height: 1.55; color: #cfcfcf; }
+    .svd-gift b { color: #fff; }
+    .svd-gift a { color: var(--orange); font-weight: 600; font-size: 14.5px; text-decoration: none; }
+    .svd-gift a:hover { text-decoration: underline; }
+    .svd-gift span { display: block; margin-top: 6px; font-size: 11.5px; color: #777; }
     html.svd-lock { overflow: hidden; }
     @media (max-width: 600px) {
       .svd {
@@ -1756,7 +1779,7 @@
       #steps .step-card h3 { margin-top: 0; }
       #steps .steps-grid { gap: 12px; }
     }
-    .cta-inner .cta-alt { margin: 16px 0 0; font-size: 14px; color: #8a8a8a; }
+    .cta-inner .cta-alt { margin: 18px auto 0; font-size: 14px; color: #8a8a8a; text-align: center; max-width: none; }
     .cta-alt a { color: var(--orange); font-weight: 600; text-decoration: none; }
 
     /* .cta-inner p задаёт margin-bottom:40px и по специфичности сильнее,
@@ -1907,7 +1930,8 @@
     </div>
     <p class="hero-name">Артём Бахрамов</p>
     <h1 class="hero-title">
-      Верну доступ к Instagram и Telegram, а потом настрою, чтобы соцсети приводили <span class="accent">клиентов</span>
+      Верну доступ к Instagram и&nbsp;Telegram
+      <span class="hero-title-sub">а потом настрою, чтобы соцсети приводили <span class="accent">клиентов</span></span>
     </h1>
     <p class="hero-subtitle">Заблокировали, взломали или отключили аккаунт в инстаграм или телеграм - разбор случая бесплатный. Оплата пополам: половина до начала работ, половина после возврата доступа.</p>
     <div class="hero-btns">
@@ -2045,6 +2069,11 @@
     <div class="svd-btns">
       <a href="https://t.me/m/DzUYi5LlZTUy" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Рассчитать стоимость &rarr;</a>
       <a href="/uslugi/ai-agent.html" class="svd-link">Подробнее и кейс &rarr;</a>
+    </div>
+    <div class="svd-gift">
+      <p><b>Хотите сначала разобраться сами?</b> Бесплатный мини-курс по AI-агентам и автоворонкам от ChatPlace - платформы, на которой я собираю агентов.</p>
+      <a href="https://chatplace.io/ru/mini-course?r=dfb0c074-f2b2-483c-a9e1-9d6475674c4d&amp;d=14" target="_blank" rel="sponsored noopener">Получить мини-курс бесплатно &rarr;</a>
+      <span>Партнёрская ссылка</span>
     </div>
     <p class="svd-note">Сначала бесплатный разбор. Ни к чему не обязывает.</p>
   </div>
@@ -2356,7 +2385,6 @@
         Написать в Telegram →
       </a>
       <p class="cta-alt">Нет Telegram? <a href="https://wa.me/message/HC4NI47MWLTDL1" target="_blank" rel="noopener">WhatsApp</a> или <a href="https://max.ru/u/f9LHodD0cOLCdCjDGiT5cFgHQVqkAa6KJVSwu9DA-JgUi6LO9If2oRS6La8" target="_blank" rel="noopener">MAX</a></p>
-      <p class="cta-bonus"><a href="https://t.me/bahramovartem_bot" target="_blank" rel="noopener noreferrer">Бесплатный мини-курс по воронкам &rarr;</a></p>
     </div>
   </div>
 </section>
@@ -2408,6 +2436,11 @@
       });
     });
   })();
+  // Реферальный мини-курс ChatPlace: отдельная цель, это не заявка
+  document.addEventListener('click', function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href*="chatplace.io/ru/mini-course"]') : null;
+    if (a && window.ym) ym(110081984, 'reachGoal', 'ref_chatplace_click');
+  }, true);
   // Видеоотзывы: iframe YouTube подставляется только по клику
   document.querySelectorAll('.vrev-play').forEach(function (b) {
     b.addEventListener('click', function () {
