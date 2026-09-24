@@ -36,7 +36,7 @@
     "description": "Пошаговый гайд по обучению AI-агента: системный промпт, база знаний, примеры, передача оператору. Как сделать бота, который продаёт как живой менеджер.",
     "image": "https://bahramovai.com/photo.jpg",
     "datePublished": "2026-05-04T09:00:00+07:00",
-    "dateModified": "2026-09-19T12:00:00+07:00",
+    "dateModified": "2026-09-24T12:00:00+07:00",
     "url": "https://bahramovai.com/blog/train-ai-agent-like-manager.html",
     "inLanguage": "ru",
     "author": {
@@ -568,6 +568,54 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
 }
 </style>
 <!-- nav-orange:end -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Почему AI-агент отвечает шаблонно и как робот?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Обычно его запустили с коротким промптом, без базы знаний и без примеров реальных диалогов. Агент учится на ваших данных: скриптах лучших менеджеров, переписках, прайсе и FAQ."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что собрать перед обучением AI-агента?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Минимум 30 реальных диалогов с клиентами, 10-15 успешных сделок с фразами менеджера, актуальный прайс, 20 частых вопросов с ответами, список возражений и описание тона общения."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что писать в системном промпте агента?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Роль, стиль общения, цель диалога, что агенту запрещено - например, называть цены, которых нет в базе знаний, - и когда передавать диалог человеку. Каждое правило формулируйте как поведение, а не пожелание."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда агент должен передавать диалог менеджеру?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "При жалобе или конфликте, когда клиент готов купить прямо сейчас, при нестандартном запросе, при вопросе вне базы знаний и если после трёх ответов клиент так и не получил, что искал."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько стоит обучить AI-агента?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Самостоятельно - стоимость платформы, у ChatPlace от 3 500 ₽ в месяц, и 2-3 недели вашего времени. С подрядчиком - от 30 000 ₽ за базовую настройку и 5-10 рабочих дней."
+      }
+    }
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -595,6 +643,7 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
       <span class="post-readtime">· 11 мин чтения</span>
     </div>
     <h1>Как обучить AI-агента отвечать как менеджер: пошаговый гайд с примерами</h1>
+    <p data-geo-answer style="margin:18px 0 24px;font-size:17px;line-height:1.65;color:#e8e8e8;max-width:760px;text-align:left"><strong style="color:#f4672a;font-weight:600">Коротко:</strong> AI-агент начинает отвечать как менеджер, когда его учат на ваших данных, а не на общей инструкции вроде будь вежливым. Метод из пяти шагов: база знаний по тематическим блокам, конкретный системный промпт с ролью, стилем и запретами, 10-15 примеров реальных диалогов с возражениями, правила передачи человеку и еженедельный разбор диалогов после запуска. Самостоятельно это занимает 2-3 недели, с подрядчиком - 5-10 рабочих дней.</p>
     <p class="lead">Бизнес подключает AI-агента - и разочаровывается. Бот отвечает сухо, шаблонно, сливает клиентов на «уточните у менеджера». Проблема не в технологии - проблема в том, что агента не обучили. Вот как это исправить.</p>
   </div>
 </header>
@@ -836,6 +885,57 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
   </div>
 </article>
 
+
+<!-- geo-faq:start -->
+<style>
+  .geo-faq { padding: 60px 0 20px; }
+  .geo-faq .geo-faq-in { max-width: 760px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
+  .geo-faq h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; color: var(--text, #e8e8e8); margin: 0 0 36px; text-align: left; }
+  .geo-faq details { border-bottom: 1px solid #222; }
+  .geo-faq details:first-of-type { border-top: 1px solid #222; }
+  .geo-faq summary { font-family: 'Unbounded', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--text, #e8e8e8); cursor: pointer; padding: 20px 0; list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; transition: color .2s; line-height: 1.5; text-align: left; }
+  .geo-faq summary::-webkit-details-marker { display: none; }
+  .geo-faq summary::after { content: '+'; color: var(--orange, #f4672a); font-size: 1.4rem; font-weight: 300; flex-shrink: 0; margin-top: -2px; }
+  .geo-faq details[open] summary { color: var(--orange, #f4672a); }
+  .geo-faq details[open] summary::after { content: '−'; }
+  .geo-faq .faq-answer { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.75; color: var(--muted, #a3a3a3); padding: 0 32px 20px 0; margin: 0; text-align: left; }
+  @media (max-width: 768px) {
+    .geo-faq { padding: 40px 0 20px; }
+    .geo-faq summary { font-size: 0.82rem; padding: 16px 0; }
+    .geo-faq .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
+  }
+</style>
+<section class="geo-faq">
+  <div class="geo-faq-in">
+    <h2>Частые вопросы</h2>
+
+    <details>
+      <summary>Почему AI-агент отвечает шаблонно и как робот?</summary>
+      <p class="faq-answer">Обычно его запустили с коротким промптом, без базы знаний и без примеров реальных диалогов. Агент учится на ваших данных: скриптах лучших менеджеров, переписках, прайсе и FAQ.</p>
+    </details>
+
+    <details>
+      <summary>Что собрать перед обучением AI-агента?</summary>
+      <p class="faq-answer">Минимум 30 реальных диалогов с клиентами, 10-15 успешных сделок с фразами менеджера, актуальный прайс, 20 частых вопросов с ответами, список возражений и описание тона общения.</p>
+    </details>
+
+    <details>
+      <summary>Что писать в системном промпте агента?</summary>
+      <p class="faq-answer">Роль, стиль общения, цель диалога, что агенту запрещено - например, называть цены, которых нет в базе знаний, - и когда передавать диалог человеку. Каждое правило формулируйте как поведение, а не пожелание.</p>
+    </details>
+
+    <details>
+      <summary>Когда агент должен передавать диалог менеджеру?</summary>
+      <p class="faq-answer">При жалобе или конфликте, когда клиент готов купить прямо сейчас, при нестандартном запросе, при вопросе вне базы знаний и если после трёх ответов клиент так и не получил, что искал.</p>
+    </details>
+
+    <details>
+      <summary>Сколько стоит обучить AI-агента?</summary>
+      <p class="faq-answer">Самостоятельно - стоимость платформы, у ChatPlace от 3 500 ₽ в месяц, и 2-3 недели вашего времени. С подрядчиком - от 30 000 ₽ за базовую настройку и 5-10 рабочих дней.</p>
+    </details>
+  </div>
+</section>
+<!-- geo-faq:end -->
 
 <!-- support-line:start -->
 <div data-support-line style="max-width:760px;margin:8px auto 48px;padding:0 24px;box-sizing:border-box;text-align:center;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;color:#8f8f8f;">Статья оказалась полезной? Поддержать автора можно, купив книгу Наставники за 298&nbsp;₽ – <a href="/kniga.html" style="color:#f4672a;font-weight:600;text-decoration:none;">посмотреть книгу&nbsp;→</a></div>
