@@ -36,6 +36,18 @@ Henry Purchase): мерить до изменений и сравнивать, �
 
 ~25.10.2026, те же 4 вопроса, плюс Алиса (ya.ru) и ChatGPT, если будет вход.
 
+## 25.09.2026 - Яндекс и Алиса AI (вход в Яндекс есть)
+
+| # | Результат |
+|---|---|
+| 1 | **Быстрый ответ Алисы AI над выдачей**: верное описание (AI-стратег, Нячанг, клиенты из РФ, РБ, КЗ, сайт, Telegram). Источники: bahramovai.com, sostav.ru, secrets.tbank.ru, instagram. В выдаче также: teletype @artem.bahram, vc.ru/id5883700, blog.chatplace.io (кейс 7000), **tenchat.ru/bahramov_av** - второй профиль TenChat, не тот, что оформлен 24.09 (5299966) |
+| 2 | Быстрого ответа нет. Выдача: antiban.pro, instagram.asvas.ru, **avito.ru**, razbaninst.ru, **uslugi.yandex.ru**, unban.net, insthelp24.ru, bothelp.io. Нашего сайта нет. Яндекс Услуги и Авито стоят в выдаче - профиль на Исполнителях бьёт прямо сюда |
+| 4 | Чат Алисы (режим Эксперт): источники blog.albato.ru, blog.chatplace.io, wexio.io, smartdialogue.ru, daap.ru. Нашего сайта нет |
+
+**Вывод:** по бренду Яндекс уже собрал правильную сущность из нескольких
+площадок - это работа sameAs и внешних публикаций. По коммерческим запросам
+- витрины (Яндекс Услуги, Авито) и нишевые сайты разбанов.
+
 ## 25.09.2026 - Bing Webmaster Tools (вход через Google artsiomnhatrang@gmail.com)
 
 - Главная: «Discovered but not crawled» с 12.05.2026. Живая проверка:
