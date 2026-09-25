@@ -13,6 +13,9 @@ Google Search Console: 26 в индексе, 29 нет (18 просканиро�
 Ожидания: Исполнители - ФИО принято, оба фото «на проверке»; Habr 305794 - «Ожидает модерации»; TenChat - поддержка 13:04 просит селфи с паспортом и оба номера.
 Дистрибуция: Артём одобрил Spark (Telegram). Аккаунта на spark.ru нет, регистрация - его шаг. Ошибка в вопросе: черновик vc.ru 3123689 назван «про AI-агента», а там текст про Telegram - заметил до публикации, переспросил.
 
+GSC, запрос индексации 25.09 вечер (10 принято): bezopasnyy-zapusk, posle-razblokirovki-cheklist, povtornaya-blokirovka, celostnost-akkaunta, smena-ip-strany-vhoda, recheck-prosadka-ohvatov, blokirovki-may, telegram-ai-agenty-konstruktor (Google писал «URL неизвестен», хотя в sitemap есть), podtverzhdenie-lichnosti, formulirovki-uvedomleniy. cepnaya-blokirovka уже в индексе - отчёт «Страницы» отстаёт, перед запросом смотреть «Проверку URL». Не отправлены (были в прошлых заходах или ждут квоты): регистрация-локомотив, dva-akkaunta, chistka-ot-botov, vzlom-akkaunta, telegram-unblock, хаб блокировок, обе /uslugi/ - повторить ~01.10, если не войдут.
+Ловушки GSC: прямая ссылка /inspect?id=<url> даёт 404 - вводить адрес в верхнюю строку через нативный сеттер value; JS с ожиданием дольше 45 с роняет инструмент - нажатие кнопки и проверку делать отдельными вызовами; диалог «Отправлен запрос» закрывать перед следующим адресом, иначе окна накладываются.
+
 ## 2026-09-25 — GEO по плану роликов: IndexNow, цены, свои данные, перелинковка
 
 **IndexNow.** Bing с 12.05 держал главную в «Discovered but not crawled», ручная
