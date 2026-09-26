@@ -32,6 +32,8 @@ API = "https://graph.threads.net/v1.0"
 MAX_LEN = 500          # лимит Threads на текстовый пост
 DAILY_LIMIT = 250      # лимит Meta: постов на профиль за 24 часа
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "scripts"))
+import threads_account as acct  # noqa: E402  --account ai -> @bahramovartem
 
 
 def load_env():
@@ -46,7 +48,7 @@ def load_env():
                 k, v = line.split("=", 1)
                 env[k.strip()] = v.strip().strip('"').strip("'")
     env.update({k: v for k, v in os.environ.items() if k.startswith("THREADS_")})
-    return env
+    return acct.remap(env)
 
 
 def call(method, path, params):
@@ -91,18 +93,18 @@ def save_token(token):
             lines = f.read().splitlines()
     out, seen, seen_date = [], False, False
     for line in lines:
-        if line.startswith("THREADS_ACCESS_TOKEN="):
-            out.append("THREADS_ACCESS_TOKEN=%s" % token)
+        if line.startswith(acct.PREFIX + "ACCESS_TOKEN="):
+            out.append(acct.PREFIX + "ACCESS_TOKEN=%s" % token)
             seen = True
-        elif line.startswith("THREADS_TOKEN_REFRESHED="):
-            out.append("THREADS_TOKEN_REFRESHED=%s" % today)
+        elif line.startswith(acct.PREFIX + "TOKEN_REFRESHED="):
+            out.append(acct.PREFIX + "TOKEN_REFRESHED=%s" % today)
             seen_date = True
         else:
             out.append(line)
     if not seen:
-        out.append("THREADS_ACCESS_TOKEN=%s" % token)
+        out.append(acct.PREFIX + "ACCESS_TOKEN=%s" % token)
     if not seen_date:
-        out.append("THREADS_TOKEN_REFRESHED=%s" % today)
+        out.append(acct.PREFIX + "TOKEN_REFRESHED=%s" % today)
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
     os.chmod(path, 0o600)
@@ -181,9 +183,9 @@ def publish(env, text, dry_run, assume_yes, path=None):
 
 
 
-QUEUE_DIR = os.path.join(ROOT, "threads", "queue")
-POSTED_DIR = os.path.join(ROOT, "threads", "posted")
-JOURNAL = os.path.join(ROOT, "threads", "posted.json")
+QUEUE_DIR = os.path.join(acct.DATA, "queue")
+POSTED_DIR = os.path.join(acct.DATA, "posted")
+JOURNAL = os.path.join(acct.DATA, "posted.json")
 
 
 def record(path, url, text):

@@ -24,6 +24,8 @@ import urllib.request
 
 API = "https://graph.threads.net/v1.0"
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.join(ROOT, "scripts"))
+import threads_account as acct  # noqa: E402  --account ai -> @bahramovartem
 POST_METRICS = "views,likes,replies,reposts,quotes,shares"
 PROFILE_METRICS = "views,likes,replies,reposts,quotes,followers_count,clicks"
 
@@ -40,7 +42,7 @@ def load_env():
     for k, v in os.environ.items():
         if k.startswith(("THREADS_", "TELEGRAM_")):
             env[k] = v          # в облаке .env нет — берём из переменных окружения
-    return env
+    return acct.remap(env)
 
 
 def get(path, params):

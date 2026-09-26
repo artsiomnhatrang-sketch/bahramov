@@ -31,7 +31,7 @@ spec = importlib.util.spec_from_file_location(
 tr = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(tr)
 
-LOG = os.path.join(ROOT, "threads", "watcher.log")
+LOG = os.path.join(tr.acct.DATA, "watcher.log")
 MAX_LEN = 500
 MAX_IN_THREAD = 3   # предел ответов машины одному человеку в одной ветке
 
@@ -46,10 +46,10 @@ FRESH_HOURS = 72        # опрашиваем только посты моло�
 POSTS_LIMIT = 10        # было 25 — столько за раз всё равно не нужно
 QUIET_FROM, QUIET_TO = 0, 7   # ночью по Нячангу не ходим в API вовсе
 JITTER_MAX = 90         # случайная пауза перед стартом: не бить ровно по таймеру
-PAUSE_FILE = os.path.join(ROOT, "threads", ".api-pause")
+PAUSE_FILE = os.path.join(tr.acct.DATA, ".api-pause")
 PAUSE_AFTER_ERROR_H = 2  # после ошибки API молчим два часа, а не долбим дальше
-ME_CACHE = os.path.join(ROOT, "threads", ".me.json")
-STATE_FILE = os.path.join(ROOT, "threads", ".watch-state.json")
+ME_CACHE = os.path.join(tr.acct.DATA, ".me.json")
+STATE_FILE = os.path.join(tr.acct.DATA, ".watch-state.json")
 
 # ---------------------------------------------------------------------------
 # Событийный режим (06.09.2026). Раньше скрипт ходил в API при КАЖДОМ запуске
