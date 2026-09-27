@@ -644,6 +644,68 @@
 
 ---
 
+## 13. Как снять спам блок в телеграмме
+
+Добавлено 27.09.2026. Заголовок взят из Вебмастера, а не из подсказок YouTube:
+«как снять спам блок в телеграмме 2026» - 39 показов, позиция 10,6, ведёт
+на `instagram-telegram-unblock.html` (693 показа за 30 дней). Перед публикацией
+сверить с подсказками: `python3 youtube/collect-suggest.py`.
+
+**Хронометраж:** 30 сек
+
+**Говорить:**
+
+> Не можете написать человеку в телеграме, которого нет у вас в контактах?
+> Это спам-блок, и снимается он бесплатно.
+>
+> Первое - откройте бота SpamBot и нажмите Start. Он покажет, есть ли
+> ограничение и до какого числа.
+>
+> Если считаете, что это ошибка, - там же кнопка оспорить.
+>
+> Не помогло - письмо в поддержку на abuse собака telegram точка org,
+> на английском, с номером телефона.
+>
+> И никому не платите за быструю разблокировку. Телеграм ни с кем
+> не сотрудничает, это почти всегда мошенники.
+>
+> Шаблон письма - в закрепе
+
+**В кадре:** говорящая голова, на подложке свой экран с чатом @SpamBot.
+Не чужой скриншот и не чужой номер
+
+**Заголовок:** `Как снять спам блок в телеграмме`
+
+**Описание:**
+```
+Спам-блок в Telegram снимается бесплатно: бот @SpamBot, кнопка оспорить,
+письмо на abuse@telegram.org. Платные сервисы быстрой разблокировки -
+почти всегда мошенники, Telegram с ними не сотрудничает.
+
+Инструкция по шагам и шаблон письма:
+→ Как снять спам-блок в телеграме: https://bahramovai.com/blog/instagram-telegram-unblock.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Взломали Telegram - возврат доступа: https://bahramovai.com/uslugi/vzlom-telegram-vosstanovlenie.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Написать мне: https://t.me/bahramovartsiom
+
+Артём Бахрамов, автоматизация соцсетей и восстановление доступа к аккаунтам.
+Сайт: https://bahramovai.com
+
+#спамблок #телеграм #telegram
+```
+
+**Закреп:**
+```
+Шаблон письма в поддержку, на английском:
+Dear Telegram Support, my account [номер] was restricted by mistake. I have not sent any unsolicited messages. Please review and remove the restriction. Thank you.
+
+Полная инструкция: https://bahramovai.com/blog/instagram-telegram-unblock.html?utm_source=youtube&utm_medium=pinned&utm_campaign=shorts
+```
+
+**После публикации:** в статью `instagram-telegram-unblock.html` перед FAQ -
+блок `yt-short` с этим роликом (см. docs/geo-ai-seo-playbook.md, раздел YouTube).
+
+---
+
 ## Порядок публикации
 
 По два ролика в неделю, начиная с первой пятёрки про Telegram - там
