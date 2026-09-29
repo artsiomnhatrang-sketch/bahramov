@@ -26,12 +26,19 @@ spec.loader.exec_module(tpost)
 LIMIT = 500
 
 
+
+import importlib.util as _ilu
+_vl = _ilu.spec_from_file_location("voice_lint", __import__("os").path.join(__import__("os").path.dirname(__import__("os").path.abspath(__file__)), "voice-lint.py"))
+voice_lint = _ilu.module_from_spec(_vl); _vl.loader.exec_module(voice_lint)
+
 def split_parts(text):
     parts = [p.strip() for p in text.split("\n---\n")]
     return [p for p in parts if p]
 
 
 def publish_chain(env, parts, dry_run=False, yes=False):
+    for p in parts:
+        voice_lint.guard(p)
     print("--- цепочка из %d частей ---" % len(parts))
     bad = False
     for i, p in enumerate(parts, 1):

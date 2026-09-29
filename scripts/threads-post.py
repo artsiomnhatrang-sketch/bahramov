@@ -36,6 +36,11 @@ sys.path.insert(0, os.path.join(ROOT, "scripts"))
 import threads_account as acct  # noqa: E402  --account ai -> @bahramovartem
 
 
+
+import importlib.util as _ilu
+_vl = _ilu.spec_from_file_location("voice_lint", __import__("os").path.join(__import__("os").path.dirname(__import__("os").path.abspath(__file__)), "voice-lint.py"))
+voice_lint = _ilu.module_from_spec(_vl); _vl.loader.exec_module(voice_lint)
+
 def load_env():
     path = os.path.join(ROOT, ".env")
     env = {}
@@ -141,6 +146,7 @@ def cmd_refresh(env):
 
 
 def publish(env, text, dry_run, assume_yes, path=None):
+    voice_lint.guard(text)
     n = text_len(text)
     print("--- текст поста (%d из %d символов) ---" % (n, MAX_LEN))
     print(text)

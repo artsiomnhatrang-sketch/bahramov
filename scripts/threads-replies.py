@@ -28,6 +28,11 @@ JOURNAL = os.path.join(acct.DATA, "posted.json")
 MAX_LEN = 500
 
 
+
+import importlib.util as _ilu
+_vl = _ilu.spec_from_file_location("voice_lint", __import__("os").path.join(__import__("os").path.dirname(__import__("os").path.abspath(__file__)), "voice-lint.py"))
+voice_lint = _ilu.module_from_spec(_vl); _vl.loader.exec_module(voice_lint)
+
 def load_env():
     env = {}
     path = os.path.join(ROOT, ".env")
@@ -149,6 +154,7 @@ def cmd_list(env, show_all, posts_limit, only_ours):
 
 
 def cmd_reply(env, reply_to, text):
+    voice_lint.guard(text)
     if len(text) > MAX_LEN:
         print("Ответ длиннее %d символов." % MAX_LEN, file=sys.stderr)
         sys.exit(1)
