@@ -25,7 +25,7 @@ description: Работа с Instagram @bahram.av — замер статист�
 python3 scripts/instagram-stats.py --posts 25
 ```
 
-Настройка описана в CLAUDE.md (приложение `bahramovai-analytics`).
+Настройка описана в `docs/platforms.md` (приложение `bahramovai-analytics`).
 Токен живёт 60 дней: `python3 scripts/instagram-stats.py --refresh-token`.
 
 ## Что показал замер 08.09.2026 (база для решений)
