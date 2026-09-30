@@ -3,7 +3,7 @@
 Какой аккаунт Threads обслуживает скрипт.
 
 По умолчанию — @bahram.av (разбаны): ключи THREADS_* в .env, журналы в threads/.
-Второй аккаунт @bahramovartem (AI-агенты и трафик) включается ключом
+Второй аккаунт @bahramovartem (с 30.09.2026 та же тема, что у первого) включается ключом
 `--account ai` или переменной THREADS_ACCOUNT=ai: ключи THREADS_AI_* в .env,
 журналы в threads/ai/. Скрипты внутри всё равно читают THREADS_ACCESS_TOKEN
 и THREADS_USER_ID — подмена делается здесь, в одном месте.
