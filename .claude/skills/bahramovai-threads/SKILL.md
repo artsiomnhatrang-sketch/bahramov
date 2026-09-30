@@ -20,7 +20,7 @@ description: Рабочий цикл Threads для ОБОИХ аккаунто�
 | маркер API в `.env` | `THREADS_*`, продлевается сам | `THREADS_AI_*`, до 25.11.2026 |
 | профиль Chrome | Artembelyj414@gmail.com | artsiomnhatrang@gmail.com |
 | журнал веток | `threads/stalker-log.md` | `threads/ai/stalker-log.md` |
-| промпт запуска | `threads/PROMPT-bahram-av.md` | `threads/ai/PROMPT.md` |
+| промпт запуска | `threads/PROMPT-oba.md` (оба подряд, пауза 3 ч) | он же |
 | почерк | мастер: вопрос по факту, коротко | разбор: сначала почему так вышло |
 
 Аккаунт определяется по фразе Артёма: «второй тредс», «bahramovartem»,

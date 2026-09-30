@@ -11,7 +11,7 @@ description: Второй Threads @bahramovartem. С 30.09.2026 работает
 
 - скрипты с `--account ai`, в `threads-uniq.py` - `--account ai`;
 - профиль Chrome artsiomnhatrang@gmail.com, ссылка Профиль = `/@bahramovartem`;
-- журнал `threads/ai/stalker-log.md`, промпт `threads/ai/PROMPT.md`;
+- журнал `threads/ai/stalker-log.md`, промпт `threads/PROMPT-oba.md`;
 - запросы - колонка @bahramovartem (взломы и доступ);
 - почерк - разбор: сначала почему так вышло (`threads/COMMENT-RULES.md`, раздел 7).
 
