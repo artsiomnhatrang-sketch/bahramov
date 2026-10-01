@@ -581,7 +581,11 @@
       .container { padding: 0 24px; }
       .post-card { padding: 24px; }
       /* 100px под последней карточкой на телефоне читаются как пустая дыра */
-      .blog-section { padding: 48px 0 32px; }
+      .blog-section { padding: 20px 0 32px; }
+      /* на телефоне отступы десктопа давали ~125px пустоты между текстом и разделами */
+      .page-hero { padding: 96px 0 28px; }
+      .cat-nav { margin-bottom: 24px; }
+      .cat-section + .cat-section { margin-top: 48px; }
     }
   
     /* Шапка на узких экранах: после добавления пункта «Услуги» пунктам стало тесно */
@@ -595,6 +599,8 @@
       .nav-links { gap: 11px; }
       nav a.nav-link { font-size: 11.5px; }
       nav a.nav-bonus { padding: 6px 10px; font-size: 11.5px; }
+      /* при 32px слова H1 рвались переносом: автоматиза-ция, разблоки-ровка */
+      .page-hero h1 { font-size: clamp(22px, 7vw, 26px); -webkit-hyphens: manual; hyphens: manual; }
     }
   
         /* Длинные слова не вылезают за край на узких экранах */
