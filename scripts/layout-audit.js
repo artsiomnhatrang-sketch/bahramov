@@ -197,3 +197,85 @@ export async function articles() {
     .map(m => m[1].replace('https://bahramovai.com', ''))
     .filter(u => u.startsWith('/blog/') && u.endsWith('.html'));
 }
+
+/**
+ * Пустые полосы на телефоне (01.10.2026). Порог audit() в 130 px пропускал
+ * полосы 100-160 px в конце статей: они складывались из отступов соседних
+ * блоков. Здесь краем считается текст, картинка, рамка или заливка блока,
+ * поэтому внутренние поля карточек дырой не считаются. Норма на 375 px - до 90.
+ *   const M = await import('/scripts/layout-audit.js?v='+Date.now());
+ *   await M.bands([...M.SITEMAP, ...(await M.articles())], 375, 90);
+ */
+export async function bands(urls, W = 375, TH = 90, settle = 300) {
+  const out = [];
+  for (const u of urls) {
+    const f = document.createElement('iframe');
+    f.style.cssText = `position:fixed;left:-9999px;top:0;width:${W}px;height:812px;border:0`;
+    document.body.appendChild(f);
+    await new Promise(r => { f.onload = r; f.onerror = r; f.src = u + '?_b=' + Date.now(); });
+    await new Promise(r => setTimeout(r, settle));
+    try {
+      const d = f.contentDocument, w = f.contentWindow, B = [];
+      const vis = e => { for (let x = e; x && x !== d.body; x = x.parentElement) { const c = w.getComputedStyle(x);
+        if (c.display === 'none' || c.visibility === 'hidden' || c.position === 'fixed' || c.position === 'sticky') return false; } return true; };
+      const tw = d.createTreeWalker(d.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) {
+        if (!n.nodeValue.trim()) continue;
+        const p = n.parentElement;
+        if (!p || p.closest('script,style,noscript,.mobile-cta') || !vis(p)) continue;
+        const rg = d.createRange(); rg.selectNodeContents(n);
+        for (const r of rg.getClientRects()) if (r.height > 0 && r.width > 0) B.push([r.top, r.bottom, p]);
+      }
+      d.body.querySelectorAll('*').forEach(e => {
+        if (e.closest('script,style,.mobile-cta')) return;
+        const r = e.getBoundingClientRect(); if (r.height < 2 || r.width < 2) return;
+        const c = w.getComputedStyle(e);
+        const media = /^(IMG|SVG|IFRAME|VIDEO|HR|CANVAS|PICTURE)$/i.test(e.tagName) || e.closest('figure,picture');
+        const bg = !/^(rgba\(0, 0, 0, 0\)|rgb\(0, 0, 0\)|transparent)$/.test(c.backgroundColor) || c.backgroundImage !== 'none';
+        const bt = parseFloat(c.borderTopWidth) > 0 && c.borderTopStyle !== 'none';
+        const bb = parseFloat(c.borderBottomWidth) > 0 && c.borderBottomStyle !== 'none';
+        if (!(media || bg || bt || bb) || !vis(e)) return;
+        if (media) { B.push([r.top, r.bottom, e]); return; }
+        if (bg || bt) B.push([r.top, r.top + 1, e]);
+        if (bg || bb) B.push([r.bottom - 1, r.bottom, e]);
+      });
+      B.sort((a, b) => a[0] - b[0]);
+      let cur = null;
+      for (const [t, b, e] of B) {
+        if (cur !== null && t - cur >= TH) out.push({ u, W, gap: Math.round(t - cur), y: Math.round(cur), before: (e.textContent || '').trim().slice(0, 30) });
+        if (cur === null || b > cur) cur = b;
+      }
+    } catch (e) { out.push({ u, err: String(e).slice(0, 80) }); }
+    f.remove();
+  }
+  return out;
+}
+
+/** Текст, прилипший к краю экрана (ближе 12 px) - проверка после правок полей. */
+export async function edges(urls, W = 375, settle = 300) {
+  const out = [];
+  for (const u of urls) {
+    const f = document.createElement('iframe');
+    f.style.cssText = `position:fixed;left:-9999px;top:0;width:${W}px;height:812px;border:0`;
+    document.body.appendChild(f);
+    await new Promise(r => { f.onload = r; f.onerror = r; f.src = u + '?_e=' + Date.now(); });
+    await new Promise(r => setTimeout(r, settle));
+    try {
+      const d = f.contentDocument, w = f.contentWindow; let bad = 0, ex = '';
+      const tw = d.createTreeWalker(d.body, NodeFilter.SHOW_TEXT); let n;
+      while ((n = tw.nextNode())) {
+        if (!n.nodeValue.trim()) continue;
+        const p = n.parentElement;
+        if (!p || p.closest('script,style,nav,.mobile-cta,table,pre')) continue;
+        const c = w.getComputedStyle(p);
+        if (c.display === 'none' || c.visibility === 'hidden' || c.position === 'fixed') continue;
+        const rg = d.createRange(); rg.selectNodeContents(n);
+        for (const r of rg.getClientRects()) if (r.width > 0 && (r.left < 12 || r.right > W - 12)) {
+          bad++; if (!ex) ex = `${Math.round(r.left)}-${Math.round(r.right)} ${n.nodeValue.trim().slice(0, 25)}`; }
+      }
+      if (bad) out.push({ u, W, n: bad, ex });
+    } catch (e) { out.push({ u, err: String(e).slice(0, 80) }); }
+    f.remove();
+  }
+  return out;
+}

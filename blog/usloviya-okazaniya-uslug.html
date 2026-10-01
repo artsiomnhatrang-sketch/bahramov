@@ -321,6 +321,24 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
 }
 </style>
 <!-- nav-orange:end -->
+<!-- mobile-gaps:start -->
+<style>
+/* Телефон: в конце статей складывались отступы соседних блоков (100-160px пустоты). 01.10.2026 */
+@media (max-width:768px){
+  main.article,article.article-body,article.article{padding-bottom:24px!important}
+  section.faq,section.geo-faq{padding-top:24px!important}
+  section.faq h2,section.geo-faq h2{margin-top:0!important}
+  .related-posts{padding-top:24px!important;padding-bottom:16px!important}
+  .related-posts h2{margin-top:0!important}
+  [data-support-line]{margin-bottom:24px!important}
+  [data-offer-box]{margin-top:24px!important;margin-bottom:24px!important}
+  [data-svc-link]{margin-top:24px!important}
+  p.author-note{margin-top:24px!important}
+  .container .container{padding-left:0!important;padding-right:0!important}
+}
+.related-card h3:first-child{margin-top:0!important}
+</style>
+<!-- mobile-gaps:end -->
 </head>
 <body>
 
