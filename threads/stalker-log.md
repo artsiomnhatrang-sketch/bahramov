@@ -2194,3 +2194,39 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 **Добор до 30 (по ответу Артёма «сейчас частными», 20:10-20:40):** 11 [B] с платной пометкой: @yakovleva.mr, @__vep.katerina__, @marina_sport2601 (под vii.baby Dd6ORTzjrtd), @eliisash, @mesac.mai, @aleksandrabubnova30, @youuuuki.i, @darkkzver (под limmaaamaliinnnaaaa Dd8BBCcjZeU), @lilbaby.sss, @italia.anikina (теневой бан), @muslimatblog (второй инстаграм заблокировали). Сняты до отправки: poni.poni.poni (ей уже подсказали статус аккаунта), juliya_injuly (пишет «ну и ладно»).
 
 **Итог подхода: 30 новых веток (14 [A], 16 [B]) + 1 повторный ответ formel_studio__. API 878 -> 909, 429 нет.** Запросы на переписку Артём принимает сам. Правило «платная пометка в каждом ответе, сначала все [A], просить текст вместо скрина» записано в скилл, COMMENT-RULES, rules-details, CLAUDE.md.
+
+## 02.10.2026 ночь (02:30-04:00), @bahram.av - 30 ответов, без фразы про платность
+
+Решение Артёма 02.10: про платность не пишем, консультации в директе бесплатные (переводит в Telegram, растут просмотры сторис). Хвост в директ просит описать экран текстом.
+
+**Входящие (Threads, директ):** за сутки писали koschmaaaa, _and_the_sun_rises, nataliasmirnova97, psy.kristinamakarova, yushina_art, mihadyuk_ph - всем уже ответил Артём (переводит в телеграм). Новых непрочитанных нет. Комментариев под своими постами за 3 дня нет (API, 60 постов).
+
+**Поиски: 12** (заблокировали тредс, удалили аккаунт, действие заблокировано, заблокировали инстаграм, заблокировали бизнес аккаунт, снесли аккаунт, ограничили аккаунт, проверка личности, теневой бан, заблокировали аккаунт, рабочий аккаунт заблокировали, обжалование инстаграм) + 5 веток-сборников (solea_astana_2, vii.baby Dd6ORTzjrtd, limmaaamaliinnnaaaa Dd8BBCcjZeU, koschmaaaa Dd8n5I4jEKP, vladafrance Dd8rAvjikw1).
+
+**Новые ветки (18):**
+- [A] @plasma_samara - косметолог, тредс @safiulina_energet заблокирован
+- [A] @solea_astana_2 - бренд косметичек, 3000 подписчиков, 500+ заказов, навсегда
+- [A] @nur_storeee04 - рабочий аккаунт byhafiza_nur заблокирован
+- [A] @slemgaliyeva - рабочий @sistilno заблокирован, продаёт товары
+- [A] @azerinterior - дизайнер интерьеров, профиль удалили (под vii.baby)
+- [A] @elen_goland - блогер, пост снесли по жалобам, теневой бан
+- [A] @nadezhda_design_bogacheva - дизайнер, тредс заблокирован без апелляции (под karpushenka_dusha)
+- [B] @limmaaamaliinnnaaaa - 340к просмотров за несколько дней, блок (автор нашей ветки-сборника)
+- [B] @soul_into_form - второй тредс заблокирован
+- [B] @pencil.orange - основной тредс удалили
+- [B] @karpushenka_dusha - блог 2 года, новый тредс заблокирован после проверки
+- [B] @galina_gs - новый Gmail заблокирован, выкинуло из соцсетей
+- [B] @beyond_memorys_horizon - Meta пишет, что разблокировали, а войти нельзя
+- [B] @anna.evta - инстаграм с 2012 года снесли
+- [B] @neatkeeper_24 - первый аккаунт снесли (под art99999999997)
+- [B] @okirikovich_newpage - репетитор, блок в телеграм-группах (SpamBot)
+- [B] @rmn.svdrck - новый после сноса набирает 15 показов (под limmaaamaliinnnaaaa)
+- [B] @diomedessobie - удалили за массовые подписки (под vii.baby)
+
+**Ответы тем, кто ответил нам (12, followup):** shpagin_alex (что могут сделать с доступом к кабинету МТС), __vep.katerina__, tasha_belar_tut, art99999999997, vladafrance, yakovleva.mr, italia.anikina, alena_mannn, dyakova_artist, gromovaaa.nails (коммерцию в тредсе не запрещают), anna.vizirova.mua, bedline.studio. Не отвечали: darkkzver, doje.pets.pr, trener.alena2.0, newtry_again_2, havinbarr (закрыли тему сами), koschmaaaa и formel_studio__ (уже в личке).
+
+**Пропущено:** vvvv13kkkk (реплика в шуточной ветке), le_russkaya (threads-uniq: человек второго аккаунта), gelya.bake (14 лет), kudo.visual (продажа фото ИИ-модели), sweetnessmari.nail.spb и sportzone.kgz1 (журнал второго), nuriyuwaa.nn (уже в журнале), erbol.bedline, grace_designer.taplink, lemi_arts_pets.
+
+**threads-uniq остановил: 4 раза** (slemgaliyeva, vladafrance, nadezhda - хвост похож на @bahramovartem, переписаны; le_russkaya - по нику, пропущен).
+
+**Итог: 30 ответов (18 новых веток: 7 [A], 11 [B]; 12 повторных). API 909 -> 939.** После подхода curl threads.com = 429 (без cookies), в браузере ошибок не было. Второй аккаунт сегодня не раньше чем через 3+ часа и после проверки 429.
