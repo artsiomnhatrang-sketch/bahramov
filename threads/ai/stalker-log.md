@@ -264,3 +264,12 @@ threads-uniq остановил 1 текст («по скрину видно» -
 - Лучшие источники вечером - наши же ветки-сборники второго аккаунта (_asya_archi_, grace, nastia_aleksandrenko): там новые люди пишут «у меня тоже». В них можно отвечать новым людям, ветка уже наша.
 - Отправка без координат: кнопка «Развернуть конструктор» + paste + «Опубликовать» по JS. В длинных ветках (pavelsiidelnikov) свой ответ после перезагрузки не виден, проверка по API sync.
 - Первые черновики вышли 380-430 знаков, ужаты до 305-357.
+
+## 02.10.2026 день: подбор 28 веток, черновики без отправки
+
+Артём попросил 30 свежих веток и тексты без публикации. Ночной 429 на гостиничном Wi-Fi держался в 13:27, Артём сменил сеть (IP 171.252.140.38), проверка ok. 14 поисков, 6 веток-сборников, 6 шапок. Черновики: threads/ai/drafts-2026-10-02.md. Ветки закреплены за @bahramovartem.
+
+- [A] @sprinto.kz, @fin.uyutik, @maslova.designer_reserv, @northwest_art.gallery, @noli_decor, @ely.on, @akari.sm, @ttruedasha.mult, @alberigo.gala2.0
+- [B] @harisha_ewa_product, @_lerchik2002_, @urazalinovagulsana, @aibibij, @aleksandra_karavaeva, @souldaria, @hora__cosmica, @peachavanasoon, @notnicepersona, @olya.kvaratskheliya, @tatyana_sunshines, @evil.mahaa, @kk_kirka, @yourangeldiaries, @taty.moore, @alina.visual.diary, @re9ui.iem, @katanawinn, @natzil_content
+- Сборники: maslova.designer_reserv (43 ответа), evil.mahaa (30), urazalinovagulsana, noli_decor
+- threads-uniq остановил 4 текста (noli_decor, akari.sm, peachavanasoon, notnicepersona: хвост как у @bahram.av), переписаны
