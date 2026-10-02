@@ -43,17 +43,17 @@ def plus_to_acute(t):
     # «+а» (формат ruaccent и словаря) → «а́»
     return re.sub(r'\+([' + VOWELS + '])', lambda m: m.group(1) + ACUTE, t)
 
-def accent(text, slovar, report):
-    """Знак ударения ставим ТОЛЬКО там, где голос сам может ошибиться:
-    1) ручная пометка «+» прямо в тексте сцены (сильнее всего, учитывает смысл фразы);
-    2) слово из slovar.txt (проверено вручную);
-    3) омограф (у слова два ударения: пл+атите / плат+ите) — берём выбор ruaccent, но слово
-       попадает в report['unsure'], и сборка остановится, пока ударение не подтвердят в slovar.txt
-       или пометкой «+» в тексте.
-    Остальные слова голос читает правильно сам, а лишний знак портит звук
-    (проверено 02.10: «уведомле́ние» → «у ведом линии», «пода́йте» → «подойте»)."""
+# служебные односложные слова — без ударения (предлоги, союзы, частицы)
+CLITICS = set('в во к ко с со у о об обо от ото из изо без до за на по под подо над про при для '
+              'не ни и а но да же ли бы б то ль уж что чтоб'.split())
+
+def accent(text, slovar, report, full=True):
+    """full=True (голос Silero, по умолчанию): ударение «+» в КАЖДОМ слове из 2+ слогов, Silero
+    выполняет его всегда. Источник: ручная «+» в тексте сцены → slovar.txt → словарь ruaccent
+    (3 млн слов). Омографы (два ударения) и слова, которых нет в словаре, попадают в report
+    и с --strict останавливают сборку, пока ударение не подтверждено вручную.
+    full=False (старый режим edge-tts): знак только на омографы и slovar, без знака перед «й»."""
     m = model()
-    # ruaccent не понимает наши «+», поэтому размечаем текст без них и возвращаем ручные пометки
     manual = {w.replace('+', '').lower(): w.lower() for w in re.findall(r'[\w+]+', text) if '+' in w}
     for w in manual.values():
         if not re.search(r'\+[' + VOWELS + ']', w):
@@ -61,34 +61,49 @@ def accent(text, slovar, report):
     out = m.process_all(text.replace('+', ''))
     def fix(mt):
         w = mt.group(0); plain = w.replace('+', ''); key = plain.lower()
-        if sum(c in VOWELS for c in plain) < 2:
-            return plain  # односложные без знака
+        nv = sum(c in VOWELS for c in plain)
+        if nv == 0:
+            return plain
+        if nv == 1:
+            # Silero без «+» читает гласную как безударную («шаг» → «шъг»): односложным ставим знак,
+            # кроме служебных слов, которые и в живой речи безударны
+            if not full or key in CLITICS or key in manual:
+                return manual.get(key, plain) if full else plain
+            if 'ё' in key:
+                return plain
+            i = next(j for j, c in enumerate(plain) if c.lower() in VOWELS)
+            return plain[:i] + '+' + plain[i:]
         if key in manual:
             r = manual[key]
         elif key in slovar:
             r = slovar[key]
         elif key in m.omographs:
-            report['unsure'].setdefault(key, (w.lower(), m.omographs[key]))
-            r = w.lower()
+            report['unsure'].setdefault(key, (w.lower(), m.omographs[key])); r = w.lower()
+        elif key.replace('ё', 'е') in m.accents or 'ё' in key:
+            if not full:
+                return plain
+            r = w.lower() if '+' in w or 'ё' in key else m.accents[key.replace('ё', 'е')]
         else:
-            return plain  # обычное слово — голос справится сам
-        if '+' in r and re.search(r'\+[' + VOWELS + r'][йЙ]', r):
-            report['noacc'].add(key)  # знак перед «й» ломает голос — оставляем без знака
-            r = r.replace('+', '')
+            report['unknown'].add(key); r = w.lower()
+        if not full and re.search(r'\+[' + VOWELS + r'][йЙ]', r):
+            report['noacc'].add(key); r = r.replace('+', '')
         r = r.replace('+ё', 'ё')
+        if full and '+' not in r and 'ё' not in r:
+            report['unknown'].add(key)
         return r[0].upper() + r[1:] if plain[:1].isupper() else r
     out = re.sub(r'[\w+]+', fix, out)
-    return plus_to_acute(out)
+    return out if full else plus_to_acute(out)
 
 if __name__ == '__main__':
     slovar = load_slovar()
-    report = {'unsure': {}, 'noacc': set()}
+    report = {'unsure': {}, 'noacc': set(), 'unknown': set()}
+    full = '--edge' not in sys.argv
     if sys.argv[1:2] == ['--json']:
         items = json.load(sys.stdin)['items']
-        res = [accent(t, slovar, report) for t in items]
+        res = [accent(t, slovar, report, full) for t in items]
         print(json.dumps({'items': res}, ensure_ascii=False))
     else:
-        print(accent(' '.join(a for a in sys.argv[1:] if a != '--strict'), slovar, report))
+        print(accent(' '.join(a for a in sys.argv[1:] if not a.startswith('--')), slovar, report, full))
     if report['noacc']:
         print('без знака (перед «й» нельзя), голос ставит сам: ' + ', '.join(sorted(report['noacc'])), file=sys.stderr)
     if report['unsure']:
@@ -96,5 +111,8 @@ if __name__ == '__main__':
               ' или пометьте «+» в тексте сцены:', file=sys.stderr)
         for k, (got, variants) in sorted(report['unsure'].items()):
             print(f'  {k}: модель выбрала {got}; варианты {", ".join(variants)}', file=sys.stderr)
-        if '--strict' in sys.argv:
-            sys.exit(3)
+    if report['unknown']:
+        print('\nНЕТ В СЛОВАРЕ — ударение неизвестно, впишите в slovar.txt: ' + ', '.join(sorted(report['unknown'])), file=sys.stderr)
+    code = 3 if '--strict' in sys.argv and (report['unsure'] or report['unknown']) else 0
+    # onnxruntime иногда падает при закрытии интерпретатора (recursive_mutex) — выходим сразу
+    sys.stdout.flush(); sys.stderr.flush(); os._exit(code)
