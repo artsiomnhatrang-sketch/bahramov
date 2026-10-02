@@ -1,6 +1,8 @@
 # Загрузка роликов в YouTube Studio через Chrome (памятка Claude, скопирована из таро-конвейера 2.10.2026)
 
-Канал: заполнить, когда Артём заведёт канал под нишу (адрес Studio, аккаунт, профиль Chrome).
+Канал: @bahramovai, studio.youtube.com/channel/UCXUiSEsUK9PI0odrmoe1Tjg — во ВТОРОМ профиле Chrome
+(2.10 это «Browser 2», deviceId 489c5c…; в профиле artsiomnhatrang этого канала нет). Проверять по
+адресу Studio: должен быть UCXUiSEsUK9PI0odrmoe1Tjg. Окно «Проверка ещё продолжается» — жать «Опубликовать».
 Часовой пояс Studio GMT+7: 18:00 МСК = 22:00.
 
 1. Файл ≤ 10 МБ (ограничение загрузки через расширение): `out/upload/*.mp4` — пережатые
