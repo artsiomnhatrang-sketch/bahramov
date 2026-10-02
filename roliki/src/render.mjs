@@ -115,3 +115,16 @@ console.log(`\nготово: ${out} · ${total.toFixed(1)} с · ${((Date.now() 
 // 4. Сверка голоса с текстом (Whisper). Расхождения — ролик не отдавать, пока не разобраны.
 try { execFileSync('python3', [join(ROOT, 'udarenia', 'sverka.py'), work], { stdio: 'inherit' }); }
 catch { console.log('ВНИМАНИЕ: голос расходится с текстом, см. выше'); process.exitCode = 4; }
+
+// 5. --export: готовый ролик (сверка чистая) + подпись кладём в ~/Downloads/Ролики bahramovai/
+//    Оттуда Артём берёт ролики для Instagram; в корень «Загрузок» ничего не класть.
+if (args.export && !process.exitCode) {
+  const { copyFileSync } = await import('node:fs');
+  const { homedir } = await import('node:os');
+  const dir = join(homedir(), 'Downloads', 'Ролики bahramovai');
+  mkdirSync(dir, { recursive: true });
+  const name = typeof args.export === 'string' ? args.export : V.slug;
+  copyFileSync(out, join(dir, `${name}.mp4`));
+  writeFileSync(join(dir, `${name}.txt`), `НАЗВАНИЕ:\n${V.title}\n\nОПИСАНИЕ / ПОДПИСЬ:\n${V.description}\n`);
+  console.log(`в папке «Ролики bahramovai»: ${name}.mp4 + ${name}.txt`);
+}

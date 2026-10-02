@@ -11,7 +11,9 @@ NUM = {w: d for d, ws in {'1': 'один первый первая', '2': 'дв�
 def words(t):
     t = t.lower().replace('ё', 'е').replace('+', '').replace('\u0301', '').replace('%', ' процентов')
     t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм')
-    return [NUM.get(w, w) for w in re.findall(r'[а-яa-z0-9]+', t)]
+    # звонкая/глухая на конце слова звучит одинаково («бот» = «бод»), Whisper пишет как придётся
+    dev = str.maketrans('дгбзвж', 'ткпсфш')
+    return [NUM.get(w, w[:-1] + w[-1].translate(dev)) for w in re.findall(r'[а-яa-z0-9]+', t)]
 
 work = sys.argv[1]
 src = json.load(open(os.path.join(work, 'scenes.json')))
