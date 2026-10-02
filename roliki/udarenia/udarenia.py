@@ -43,46 +43,58 @@ def plus_to_acute(t):
     # «+а» (формат ruaccent и словаря) → «а́»
     return re.sub(r'\+([' + VOWELS + '])', lambda m: m.group(1) + ACUTE, t)
 
-def accent(text, slovar):
-    out = model().process_all(text)
-    # словарь сильнее модели: заменяем слова целиком, сохраняя регистр первой буквы
-    def fix(m):
-        w = m.group(0); key = w.replace('+', '').lower()
-        if key in slovar:
+def accent(text, slovar, report):
+    """Знак ударения ставим ТОЛЬКО там, где голос сам может ошибиться:
+    1) ручная пометка «+» прямо в тексте сцены (сильнее всего, учитывает смысл фразы);
+    2) слово из slovar.txt (проверено вручную);
+    3) омограф (у слова два ударения: пл+атите / плат+ите) — берём выбор ruaccent, но слово
+       попадает в report['unsure'], и сборка остановится, пока ударение не подтвердят в slovar.txt
+       или пометкой «+» в тексте.
+    Остальные слова голос читает правильно сам, а лишний знак портит звук
+    (проверено 02.10: «уведомле́ние» → «у ведом линии», «пода́йте» → «подойте»)."""
+    m = model()
+    # ruaccent не понимает наши «+», поэтому размечаем текст без них и возвращаем ручные пометки
+    manual = {w.replace('+', '').lower(): w.lower() for w in re.findall(r'[\w+]+', text) if '+' in w}
+    for w in manual.values():
+        if not re.search(r'\+[' + VOWELS + ']', w):
+            sys.exit(f'Пометка «{w}»: «+» ставится ПЕРЕД ударной гласной, например плат+ите')
+    out = m.process_all(text.replace('+', ''))
+    def fix(mt):
+        w = mt.group(0); plain = w.replace('+', ''); key = plain.lower()
+        if sum(c in VOWELS for c in plain) < 2:
+            return plain  # односложные без знака
+        if key in manual:
+            r = manual[key]
+        elif key in slovar:
             r = slovar[key]
-            return r[0].upper() + r[1:] if w.replace('+', '')[:1].isupper() else r
-        return w
+        elif key in m.omographs:
+            report['unsure'].setdefault(key, (w.lower(), m.omographs[key]))
+            r = w.lower()
+        else:
+            return plain  # обычное слово — голос справится сам
+        if '+' in r and re.search(r'\+[' + VOWELS + r'][йЙ]', r):
+            report['noacc'].add(key)  # знак перед «й» ломает голос — оставляем без знака
+            r = r.replace('+', '')
+        r = r.replace('+ё', 'ё')
+        return r[0].upper() + r[1:] if plain[:1].isupper() else r
     out = re.sub(r'[\w+]+', fix, out)
-    # ё всегда ударная — знак не нужен
-    out = re.sub(r'\+ё', 'ё', out).replace('+Ё', 'Ё')
-    # в односложных словах ударение не ставим — голос от него спотыкается
-    out = re.sub(r'[\w+]+', lambda m: m.group(0).replace('+', '') if sum(c in VOWELS for c in m.group(0)) < 2 else m.group(0), out)
-    out = plus_to_acute(out)
-    # знак ударения перед «й» ломает голос: «второ́й» читается как «второ и краткое» — убираем
-    return re.sub(ACUTE + '(?=[йЙ])', '', out)
-
-def unsure(text_acc):
-    # слова из 2+ слогов без ударения — на ручную проверку
-    res = []
-    for w in re.findall(r'[\ẃ]+', text_acc):
-        if ACUTE in w or 'ё' in w.lower():
-            continue
-        if sum(c in VOWELS for c in w) >= 2:
-            res.append(w)
-    return res
+    return plus_to_acute(out)
 
 if __name__ == '__main__':
     slovar = load_slovar()
+    report = {'unsure': {}, 'noacc': set()}
     if sys.argv[1:2] == ['--json']:
         items = json.load(sys.stdin)['items']
-        res = [accent(t, slovar) for t in items]
-        bad = sorted({w for r in res for w in unsure(r)})
-        if bad:
-            print('на проверку (нет ударения): ' + ', '.join(bad), file=sys.stderr)
+        res = [accent(t, slovar, report) for t in items]
         print(json.dumps({'items': res}, ensure_ascii=False))
     else:
-        r = accent(' '.join(sys.argv[1:]), slovar)
-        print(r)
-        b = unsure(r)
-        if b:
-            print('на проверку: ' + ', '.join(b), file=sys.stderr)
+        print(accent(' '.join(a for a in sys.argv[1:] if a != '--strict'), slovar, report))
+    if report['noacc']:
+        print('без знака (перед «й» нельзя), голос ставит сам: ' + ', '.join(sorted(report['noacc'])), file=sys.stderr)
+    if report['unsure']:
+        print('\nОМОГРАФЫ — ударение не подтверждено. Проверьте по смыслу фразы и впишите в slovar.txt'
+              ' или пометьте «+» в тексте сцены:', file=sys.stderr)
+        for k, (got, variants) in sorted(report['unsure'].items()):
+            print(f'  {k}: модель выбрала {got}; варианты {", ".join(variants)}', file=sys.stderr)
+        if '--strict' in sys.argv:
+            sys.exit(3)

@@ -30,9 +30,10 @@ const duration = (f) => Number(execFileSync('ffprobe', ['-v', 'error', '-show_en
 
 // 0. Ударения: весь текст голоса — через udarenia/udarenia.py (свой словарь + ruaccent).
 //    Голос читает текст со знаками ударения, субтитры остаются без них.
-const acc = JSON.parse(execFileSync('python3', [join(ROOT, 'udarenia', 'udarenia.py'), '--json'],
+const acc = JSON.parse(execFileSync('python3', [join(ROOT, 'udarenia', 'udarenia.py'), '--json', '--strict'],
   { input: JSON.stringify({ items: V.scenes.map((s) => s.say) }), stdio: ['pipe', 'pipe', 'inherit'] }).toString()).items;
 writeFileSync(join(work, 'udarenia.txt'), acc.join('\n'));
+writeFileSync(join(work, 'scenes.json'), JSON.stringify(V.scenes.map((s) => s.say)));
 
 // edge-tts (особенно Дмитрий) на некоторых фразах молча не отдаёт звук. Тогда повторяем
 // с безобидными вариантами: пробел в начале, другая скорость на 1–2 %, без точки в конце.
@@ -101,3 +102,7 @@ await new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(new Error(`
 
 writeFileSync(join(ROOT, 'out', `${V.slug}.json`), JSON.stringify({ title: V.title, description: V.description, duration: total, voice: VOICE }, null, 2));
 console.log(`\nготово: ${out} · ${total.toFixed(1)} с · ${((Date.now() - t0) / 1000).toFixed(0)} с на кадры`);
+
+// 4. Сверка голоса с текстом (Whisper). Расхождения — ролик не отдавать, пока не разобраны.
+try { execFileSync('python3', [join(ROOT, 'udarenia', 'sverka.py'), work], { stdio: 'inherit' }); }
+catch { console.log('ВНИМАНИЕ: голос расходится с текстом, см. выше'); process.exitCode = 4; }

@@ -290,7 +290,7 @@ function build(V) {
     const box = el('div', 'vis'); node.appendChild(box);
     s.v = s.vis ? VIS[s.vis.type](s.vis, box, s) : null;
     // Субтитры: куски по предложениям и запятым, время пропорционально длине.
-    const parts = (s.sub ?? s.say).match(/[^.?!,:;]+[.?!,:;]?/g).map((x) => x.trim().replace(/[,:;]$/, '')).filter(Boolean);
+    const parts = (s.sub ?? s.say).replace(/\+/g, "").match(/[^.?!,:;]+[.?!,:;]?/g).map((x) => x.trim().replace(/[,:;]$/, '')).filter(Boolean);
     const total = parts.reduce((a, p) => a + p.length, 0);
     let acc = 0;
     s.subs = parts.map((p) => { const st = acc / total * s.voiceDur; acc += p.length; return { text: p, start: st, end: acc / total * s.voiceDur }; });
