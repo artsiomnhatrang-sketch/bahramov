@@ -2230,3 +2230,13 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 **threads-uniq остановил: 4 раза** (slemgaliyeva, vladafrance, nadezhda - хвост похож на @bahramovartem, переписаны; le_russkaya - по нику, пропущен).
 
 **Итог: 30 ответов (18 новых веток: 7 [A], 11 [B]; 12 повторных). API 909 -> 939.** После подхода curl threads.com = 429 (без cookies), в браузере ошибок не было. Второй аккаунт сегодня не раньше чем через 3+ часа и после проверки 429.
+
+## 02.10.2026 вечер (21:30-22:40), @bahram.av - подбор 30 веток, черновики без отправки
+
+Артём попросил 30 свежих веток и тексты, лимиты не учитывать. Третий проход на IP за сутки (ночь @bahram.av, день @bahramovartem). 23 поиска, 7 веток-сборников, threads-ip-check ok после каждых 3 поисков, 429 не было. Черновики: threads/drafts-2026-10-02.md. Ветки закреплены за @bahram.av.
+
+- [A] @yourfavorite.bakery, @kvartiry_almaty_nedorogo, @uuuuuuuuuu7777779999, @mia.kids_astana, @lilya_botox_studio, @broshki.school_obuchenie, @suvorkova_anastasia, @zhmykhoff_foto, @buyer.tyo, @an.ivshina, @by.petellka, @iop.cargo
+- [B] @kjkukkk, @_vaadll_, @_qu1e7em6er_, @blackorchid_19, @adel_zamieva, @m.ikhsanova, @neznamova679, @malinavibess, @annd.cr, @gipnohelper, @dasha.sakuraa, @oleg_pro_zdorovie, @lumenta, @naadine_design, @poerat_the_rat, @zoe__macht, @vip_alxndr, @oleg.dymshakov
+- Сборники: malinavibess (20 ответов), buyer.tyo (13), kjkukkk (11), m.ikhsanova, dasha.sakuraa, lilya_botox_studio
+- threads-uniq остановил 3 текста (m.ikhsanova, neznamova679, poerat_the_rat: хвост как у @bahramovartem), переписаны; ещё 4 переписаны из-за сходства внутри пачки
+- Под kjkukkk, m.ikhsanova, buyer.tyo уже пишут конкуренты (accrevive, vanta_recovery, aidynzia) - отвечать первыми из этих, пока люди не ушли в личку к ним
