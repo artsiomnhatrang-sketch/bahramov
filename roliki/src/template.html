@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<!-- Шаблон ролика 1080×1920 в стиле bahramovai.com. render.mjs кладёт данные в window.VIDEO
+     и для каждого кадра зовёт seek(t): всё на экране — функция от времени, живых анимаций нет.
+     Картинки сцен (vis) рисуются здесь же в HTML/SVG: макеты экранов без чужих логотипов,
+     крупные цифры, списки, графики, схемы. -->
+<style>
+@font-face { font-family: Unbounded; src: url(../fonts/Unbounded.ttf); font-weight: 200 900; }
+@font-face { font-family: Inter; src: url(../fonts/Inter.ttf); font-weight: 100 900; }
+:root {
+  --bg: #000; --bg3: #0a0a0a; --bg4: #141414; --orange: #f4672a;
+  --orange-dim: rgba(244,103,42,0.12); --orange-border: rgba(244,103,42,0.35);
+  --text: #e8e8e8; --muted: #a3a3a3; --dim: #5c5c5c; --border: rgba(255,255,255,0.09);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1920px; background: var(--bg); overflow: hidden; }
+body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
+
+/* Безопасная зона Reels/Shorts: сверху ~220px, снизу ~420px (до y=1500), справа ~120px.
+   Всё важное — в полосе x 110…960, y 230…1490. */
+.label { position: absolute; top: 236px; left: 110px; right: 120px; text-align: center; }
+.label span { display: inline-block; font: 600 28px/1 Unbounded; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--orange); background: var(--orange-dim); border: 1.5px solid var(--orange-border);
+  border-radius: 100px; padding: 15px 30px; }
+
+.scene { position: absolute; inset: 0; display: none; }
+.head { position: absolute; top: 312px; left: 110px; right: 120px; text-align: center;
+  font: 800 74px/1.12 Unbounded; text-transform: uppercase; letter-spacing: -1px; }
+.head .w { display: inline-block; margin: 0 9px; }
+.head.small { font-size: 60px; }
+.vis { position: absolute; left: 110px; right: 120px; top: 560px; height: 700px; }
+
+/* общие детали */
+.card { background: var(--bg3); border: 1.5px solid var(--border); border-radius: 16px; }
+.pill { display: inline-block; border-radius: 100px; padding: 14px 28px; font: 700 30px/1 Unbounded; }
+.pill.o { background: var(--orange); color: #000; }
+.pill.g { background: var(--bg4); color: var(--muted); border: 1.5px solid var(--border); }
+
+/* big: крупная цифра или слово */
+.big { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.big .n { font: 800 230px/1 Unbounded; color: var(--orange); letter-spacing: -6px; position: relative; white-space: nowrap; }
+.big .n.l { font-size: 170px; letter-spacing: -4px; }
+.big .n.xl { font-size: 120px; letter-spacing: -3px; }
+.big .n .x { position: absolute; left: -4%; right: -4%; top: 50%; height: 16px; background: var(--text); border-radius: 8px; transform-origin: left center; }
+.big .c { margin-top: 40px; font: 500 46px/1.3 Inter; color: var(--text); max-width: 820px; }
+
+/* phone: обобщённый экран соцсети с плашкой */
+.phone { position: absolute; left: 50%; top: 0; width: 470px; height: 700px; margin-left: -235px;
+  border-radius: 56px; border: 3px solid #2a2a2a; background: var(--bg3); overflow: hidden; }
+.phone .bar { position: absolute; top: 34px; left: 50%; width: 120px; height: 30px; margin-left: -60px; background: #000; border-radius: 100px; }
+.phone .prof { position: absolute; top: 96px; left: 36px; right: 36px; display: flex; gap: 22px; align-items: center; }
+.phone .ava { width: 104px; height: 104px; border-radius: 100px; background: #222; flex: none; }
+.phone .ln { height: 18px; background: #222; border-radius: 9px; margin: 12px 0; }
+.phone .grid { position: absolute; top: 250px; left: 36px; right: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.phone .grid i { display: block; aspect-ratio: 1; background: #1c1c1c; border-radius: 6px; }
+.phone .dim { position: absolute; inset: 0; background: rgba(0,0,0,0.72); }
+.phone .sheet { position: absolute; left: 0; right: 0; bottom: 0; background: #111; border-top: 1.5px solid var(--border);
+  border-radius: 32px 32px 0 0; padding: 40px 36px 50px; text-align: center; }
+.phone .sheet .ic { width: 88px; height: 88px; margin: 0 auto 22px; border-radius: 100px; border: 4px solid var(--orange);
+  color: var(--orange); font: 800 52px/80px Unbounded; }
+.phone .sheet .t { font: 700 36px/1.2 Unbounded; margin-bottom: 14px; }
+.phone .sheet .d { font: 400 26px/1.35 Inter; color: var(--muted); margin-bottom: 28px; }
+.phone .sheet .b { border: 1.5px solid #3a3a3a; border-radius: 100px; padding: 18px 0; font: 600 28px/1 Inter; }
+
+/* list: строки по очереди, одна подсвечена */
+.list { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+.row { display: flex; align-items: center; gap: 28px; padding: 30px 34px; border-radius: 16px; background: var(--bg3);
+  border: 2px solid var(--border); }
+.row .k { flex: none; width: 76px; height: 76px; border-radius: 100px; background: var(--bg4); color: var(--muted);
+  font: 800 38px/76px Unbounded; text-align: center; }
+.row .tx { font: 600 40px/1.2 Inter; }
+.row .tx small { display: block; font: 400 32px/1.3 Inter; color: var(--muted); margin-top: 8px; }
+.row.on { border-color: var(--orange); }
+.row.on .k { background: var(--orange); color: #000; }
+.row.off { opacity: 0.38; }
+
+/* chart: столбики охватов */
+.chart { position: absolute; inset: 0; }
+.chart .ttl { font: 500 34px/1 Inter; color: var(--muted); margin: 10px 0 0 6px; }
+.chart .plot { position: absolute; left: 0; right: 0; top: 80px; bottom: 90px; display: flex; align-items: flex-end; gap: 16px;
+  border-bottom: 2px solid var(--border); padding: 0 6px; }
+.chart .col { flex: 1; position: relative; height: 100%; display: flex; align-items: flex-end; }
+.chart .col i { display: block; width: 100%; background: #3a3a3a; border-radius: 10px 10px 0 0; transform-origin: bottom; }
+.chart .col.hi i { background: var(--orange); }
+.chart .col b { position: absolute; left: 0; right: 0; bottom: -62px; text-align: center; font: 500 28px/1 Inter; color: var(--muted); }
+.chart .note { position: absolute; right: 6px; top: 0; }
+
+/* flow: схема автоматизации сверху вниз */
+.flow { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.node { width: 640px; padding: 30px 36px; border-radius: 16px; background: var(--bg3); border: 2px solid var(--border);
+  display: flex; align-items: center; gap: 26px; }
+.node .ic { flex: none; width: 70px; height: 70px; border-radius: 100px; background: var(--bg4); font: 700 36px/70px Inter; text-align: center; }
+.node .tx { font: 600 38px/1.2 Inter; }
+.node.on { border-color: var(--orange); }
+.arrow { width: 4px; height: 56px; background: var(--dim); position: relative; }
+.arrow::after { content: ''; position: absolute; left: -12px; bottom: -4px; border: 14px solid transparent; border-top: 18px solid var(--dim); border-bottom: 0; }
+.arrow.on { background: var(--orange); }
+.arrow.on::after { border-top-color: var(--orange); }
+
+/* compare: было / стало */
+.cmp { position: absolute; inset: 0; display: flex; gap: 28px; align-items: center; }
+.cmp .side { flex: 1; padding: 44px 32px; border-radius: 16px; background: var(--bg3); border: 2px solid var(--border); text-align: center; }
+.cmp .side.on { border-color: var(--orange); }
+.cmp .h { font: 700 32px/1 Unbounded; color: var(--muted); text-transform: uppercase; letter-spacing: 2px; }
+.cmp .v { font: 800 104px/1 Unbounded; margin: 34px 0 20px; letter-spacing: -3px; }
+.cmp .side.on .v { color: var(--orange); }
+.cmp .d { font: 400 32px/1.3 Inter; color: var(--muted); }
+
+/* cta */
+.btn { position: absolute; left: 110px; right: 120px; text-align: center; }
+.btn span { display: inline-block; background: var(--orange); color: #000; font: 700 42px/1 Unbounded;
+  padding: 34px 54px; border-radius: 100px; white-space: nowrap; }
+/* step: шаг крупной цифрой + действие */
+.step { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.step .k { width: 300px; height: 300px; border-radius: 50%; background: var(--orange); color: #000; font: 800 190px/300px Unbounded; }
+.step .t { margin-top: 56px; font: 700 54px/1.18 Unbounded; max-width: 840px; }
+.step .d { margin-top: 22px; font: 500 40px/1.3 Inter; color: var(--muted); }
+.tg { position: absolute; left: 110px; right: 120px; text-align: center; font: 600 44px/1.2 Inter; color: var(--text); }
+
+.sub { position: absolute; top: 1282px; left: 110px; right: 120px; text-align: center;
+  font: 600 44px/1.28 Inter; color: var(--text); }
+.strip { position: absolute; top: 1418px; left: 110px; right: 120px; text-align: center;
+  font: 500 29px/1.3 Inter; color: var(--muted); padding-top: 20px; border-top: 1.5px solid var(--border); }
+.strip b { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="label"><span id="label"></span></div>
+<div id="scenes"></div>
+<div class="sub" id="sub"></div>
+<div class="strip" id="strip"></div>
+
+<script>
+const clamp = (x) => Math.max(0, Math.min(1, x));
+const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
+const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
+const nb = (s) => String(s).replace(/(^|\s)(\S{1,2})\s/g, '$1$2 '); // короткие слова не висят в конце строки
+
+function headEl(text, small) {
+  const h = el('div', 'head' + (small ? ' small' : ''));
+  for (const w of nb(text).split(' ')) h.appendChild(el('span', 'w', w));
+  return h;
+}
+
+// Каждая картинка: build(vis, box) → объект с anim(lt, s).
+const VIS = {
+  big(v, box) {
+    const w = el('div', 'big');
+    const len = String(v.n).length;
+    const n = el('div', 'n' + (len > 7 ? ' xl' : len > 4 ? ' l' : ''), v.n);
+    let x = null; if (v.strike) { x = el('i', 'x'); n.appendChild(x); }
+    w.appendChild(n);
+    const c = v.c ? el('div', 'c', nb(v.c)) : null; if (c) w.appendChild(c);
+    box.appendChild(w);
+    return { anim(lt) {
+      const k = ease(lt / 0.35);
+      n.style.transform = `scale(${0.6 + 0.4 * k})`; n.style.opacity = k;
+      if (c) { const k2 = ease((lt - 0.35) / 0.3); c.style.opacity = k2; c.style.transform = `translateY(${(1 - k2) * 20}px)`; }
+      if (x) x.style.transform = `rotate(-8deg) scaleX(${ease((lt - 0.6) / 0.25)})`;
+    } };
+  },
+
+  phone(v, box) {
+    const p = el('div', 'phone');
+    p.innerHTML = `<div class="bar"></div>
+      <div class="prof"><div class="ava"></div><div style="flex:1"><div class="ln" style="width:70%"></div><div class="ln" style="width:45%"></div></div></div>
+      <div class="grid">${'<i></i>'.repeat(9)}</div>`;
+    const dim = el('div', 'dim'); p.appendChild(dim);
+    const sh = el('div', 'sheet', `<div class="ic">!</div><div class="t">${v.t ?? 'Аккаунт отключён'}</div>
+      <div class="d">${v.d ?? 'Вы можете обжаловать это решение'}</div><div class="b">${v.b ?? 'Обжаловать'}</div>`);
+    p.appendChild(sh); box.appendChild(p);
+    return { anim(lt) {
+      const k = ease(lt / 0.3);
+      p.style.opacity = k; p.style.transform = `translateY(${(1 - k) * 80}px)`;
+      const k2 = ease((lt - (v.at ?? 0.35)) / 0.3);
+      dim.style.opacity = k2; sh.style.transform = `translateY(${(1 - k2) * 100}%)`;
+      // лёгкая тряска плашки, когда она встала, — глазу есть за что зацепиться
+      const sh2 = lt > 0.7 && lt < 1.0 ? Math.sin(lt * 70) * 6 : 0;
+      p.style.transform += ` translateX(${sh2}px)`;
+    } };
+  },
+
+  list(v, box) {
+    const L = el('div', 'list');
+    const rows = v.items.map((it, i) => {
+      const r = el('div', 'row', `<div class="k">${it.k ?? i + 1}</div><div class="tx">${nb(it.t)}${it.d ? `<small>${nb(it.d)}</small>` : ''}</div>`);
+      L.appendChild(r); return r;
+    });
+    box.appendChild(L);
+    return { anim(lt) {
+      rows.forEach((r, i) => {
+        // appear: строки выезжают по очереди; hl: подсвеченная, остальные приглушены
+        const k = v.appear ? ease((lt - i * (v.step ?? 0.45)) / 0.3) : 1;
+        r.style.opacity = k; r.style.transform = `translateX(${(1 - k) * 60}px)`;
+        r.classList.toggle('on', v.hl === i);
+        r.classList.toggle('off', v.hl != null && v.hl !== i && k >= 1);
+      });
+    } };
+  },
+
+  chart(v, box) {
+    const C = el('div', 'chart');
+    C.appendChild(el('div', 'ttl', v.title ?? 'Охваты по неделям'));
+    const plot = el('div', 'plot');
+    const max = Math.max(...v.data);
+    const cols = v.data.map((d, i) => {
+      const c = el('div', 'col' + ((v.hi ?? []).includes(i) ? ' hi' : ''));
+      const bar = el('i'); bar.style.height = `${(d / max) * 100}%`;
+      c.append(bar, el('b', '', v.labels?.[i] ?? ''));
+      plot.appendChild(c); return bar;
+    });
+    C.appendChild(plot);
+    let note = null; if (v.note) { note = el('div', 'note', `<span class="pill o">${v.note}</span>`); C.appendChild(note); }
+    box.appendChild(C);
+    return { anim(lt) {
+      cols.forEach((b, i) => { b.style.transform = `scaleY(${ease((lt - i * 0.08) / 0.35)})`; });
+      if (note) { const k = ease((lt - 0.2 - cols.length * 0.08) / 0.3); note.style.opacity = k; note.style.transform = `scale(${0.7 + 0.3 * k})`; }
+    } };
+  },
+
+  flow(v, box) {
+    const F = el('div', 'flow');
+    const parts = [];
+    v.items.forEach((it, i) => {
+      if (i) { const a = el('div', 'arrow'); F.appendChild(a); parts.push(a); }
+      const n = el('div', 'node', `<div class="ic">${it.i ?? '•'}</div><div class="tx">${nb(it.t)}</div>`);
+      F.appendChild(n); parts.push(n);
+    });
+    box.appendChild(F);
+    return { anim(lt) {
+      // узлы и стрелки загораются по очереди: как заявка бежит по схеме
+      const per = v.step ?? 0.3;
+      parts.forEach((p, i) => {
+        const k = ease((lt - i * per) / 0.25);
+        p.style.opacity = 0.15 + 0.85 * k;
+        p.classList.toggle('on', lt >= i * per && (v.keep || lt < (i + 2) * per || i === parts.length - 1));
+      });
+    } };
+  },
+
+  compare(v, box) {
+    const C = el('div', 'cmp');
+    const a = el('div', 'side', `<div class="h">${v.a.h}</div><div class="v">${v.a.v}</div><div class="d">${nb(v.a.d ?? '')}</div>`);
+    const b = el('div', 'side on', `<div class="h">${v.b.h}</div><div class="v">${v.b.v}</div><div class="d">${nb(v.b.d ?? '')}</div>`);
+    C.append(a, b); box.appendChild(C);
+    return { anim(lt) {
+      const k1 = ease(lt / 0.3), k2 = ease((lt - (v.at ?? 0.6)) / 0.3);
+      a.style.opacity = k1; a.style.transform = `translateY(${(1 - k1) * 50}px)`;
+      b.style.opacity = k2; b.style.transform = `translateY(${(1 - k2) * 50}px) scale(${0.9 + 0.1 * k2})`;
+    } };
+  },
+
+  step(v, box) {
+    const w = el('div', 'step');
+    const k = el('div', 'k', v.n), t = el('div', 't', nb(v.t)), d = v.d ? el('div', 'd', nb(v.d)) : null;
+    w.append(k, t); if (d) w.appendChild(d); box.appendChild(w);
+    return { anim(lt) {
+      const a = ease(lt / 0.3), b = ease((lt - 0.3) / 0.3), c = ease((lt - 0.6) / 0.3);
+      k.style.transform = `scale(${0.4 + 0.6 * a}) rotate(${(1 - a) * -30}deg)`; k.style.opacity = a;
+      t.style.opacity = b; t.style.transform = `translateY(${(1 - b) * 30}px)`;
+      if (d) d.style.opacity = c;
+    } };
+  },
+
+  cta(v, box, s) {
+    const btn = el('div', 'btn', `<span>${v.btn ?? 'Ссылка в профиле'}</span>`); btn.style.top = '180px';
+    const tg = el('div', 'tg', nb(v.t ?? 'Telegram @bahramovartsiom')); tg.style.top = '350px';
+    // темы, с которыми пишут, — загораются по очереди, чтобы финал не стоял на месте
+    const ch = el('div', 'tg'); ch.style.top = '470px';
+    const chips = (v.chips ?? ['Блокировка', 'Взлом', 'Восстановление']).map((c) => { const p = el('span', 'pill g', c); p.style.margin = '0 8px 16px'; ch.appendChild(p); return p; });
+    box.append(btn, tg, ch);
+    return { anim(lt) {
+      const k = ease(lt / 0.35), k2 = ease((lt - 0.3) / 0.35);
+      btn.style.opacity = k; btn.style.transform = `translateY(${(1 - k) * 40}px) scale(${1 + 0.03 * Math.sin(lt * 5) * (k >= 1 ? 1 : 0)})`;
+      tg.style.opacity = k2;
+      chips.forEach((p, i) => { const k3 = ease((lt - 0.7 - i * 0.45) / 0.3); p.style.opacity = k3; p.style.transform = `translateY(${(1 - k3) * 24}px)`; });
+    } };
+  },
+};
+
+function build(V) {
+  document.getElementById('label').textContent = V.label;
+  document.getElementById('strip').innerHTML = V.strip;
+  const root = document.getElementById('scenes');
+  for (const s of V.scenes) {
+    const node = el('div', 'scene'); s.node = node; root.appendChild(node);
+    s.headNode = headEl(s.head, s.small); node.appendChild(s.headNode);
+    const box = el('div', 'vis'); node.appendChild(box);
+    s.v = s.vis ? VIS[s.vis.type](s.vis, box, s) : null;
+    // Субтитры: куски по предложениям и запятым, время пропорционально длине.
+    const parts = (s.sub ?? s.say).match(/[^.?!,:;]+[.?!,:;]?/g).map((x) => x.trim().replace(/[,:;]$/, '')).filter(Boolean);
+    const total = parts.reduce((a, p) => a + p.length, 0);
+    let acc = 0;
+    s.subs = parts.map((p) => { const st = acc / total * s.voiceDur; acc += p.length; return { text: p, start: st, end: acc / total * s.voiceDur }; });
+  }
+}
+
+function animHead(s, lt) {
+  [...s.headNode.children].forEach((w, i) => {
+    const k = ease((lt - i * 0.06) / 0.25);
+    w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px)`;
+  });
+}
+
+window.seek = (t) => {
+  const V = window.VIDEO;
+  let cur = V.scenes[V.scenes.length - 1];
+  for (const s of V.scenes) if (t >= s.start && t < s.start + s.dur) { cur = s; break; }
+  for (const s of V.scenes) s.node.style.display = s === cur ? 'block' : 'none';
+  const lt = t - cur.start;
+  animHead(cur, lt);
+  if (cur.v) cur.v.anim(lt, cur);
+  const sub = cur.subs.find((x) => lt >= x.start && lt < x.end) || (lt >= cur.voiceDur ? cur.subs[cur.subs.length - 1] : null);
+  const isCta = cur.vis?.type === 'cta';
+  document.getElementById('sub').textContent = sub && !isCta ? sub.text : '';
+  document.getElementById('strip').style.opacity = isCta ? 0 : 1;
+};
+
+window.init = (V) => { window.VIDEO = V; build(V); seek(0); };
+</script>
+</body>
+</html>

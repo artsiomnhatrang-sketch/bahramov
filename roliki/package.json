@@ -1,0 +1,7 @@
+{
+  "name": "bahramov-roliki",
+  "private": true,
+  "type": "module",
+  "scripts": { "render": "node src/render.mjs" },
+  "dependencies": { "playwright": "^1.55.0" }
+}

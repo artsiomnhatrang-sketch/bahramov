@@ -29,4 +29,5 @@ exclude:
   - docs/
   - threads/
   - youtube/
+  - roliki/
   - _to_delete/
