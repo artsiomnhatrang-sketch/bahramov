@@ -27,7 +27,7 @@
 
 SEO-цикл - скилл `bahramovai-seo`, раздел 9 (порядок шагов, замер ChatGPT, грабли площадок).
 
-1. **02-03.10:** Workspace /personal/articles/ - прошла ли статья 3; если опубликована - robots и URL. Habr - статус (подан повторно 01.10). GSC: вошли ли /uslugi/razblokirovka-instagram и vzlom-telegram в индекс, затем Gemini тем же вопросом.
+1. **02-03.10:** Workspace /personal/articles/ - прошла ли статья 3; если опубликована - robots и URL. Habr - статус (подан повторно 01.10; 02.10 ждёт). Workspace статья 4 (агентства и цепные блокировки Instagram) отправлена 02.10, лимит 2/мес исчерпан до ~01.11. GSC: вошли ли /uslugi/razblokirovka-instagram и vzlom-telegram в индекс, затем Gemini тем же вопросом.
 2. **Каждую сессию:** `curl -s https://t.me/s/workspace_kitchen` - вопрос «Слово экспертам» по нашей теме ->
    комментарий + письмо karina@workspace.ru (память `workspace-slovo-ekspertam`, разрешение дано).
 3. **~04.10:** GSC Проверка URL - 8 URL от 27.09 (список в STATUS 28.09-30.09). TenChat пост 4 готов
