@@ -291,3 +291,19 @@ threads-uniq остановил 1 текст («по скрину видно» -
 **Пропущено:** akari.sm и alberigo.gala2.0 (посты удалены), zharikova_ai (МАКС), raimbekafk (Steam), fmip_off (продаёт решение), capitalfeed.info и the.silence.security (новости Microsoft), logancheg (AWS), faberje69toniskam, psylezneva, jeonw00, prilutskaiat (не про взлом), enriqueoptions, palata.6number, missis_malina, lugovs, fairsooou (советчики).
 
 **threads-uniq остановил: 6 раз** (mbagretsova, c.vasya3, study_to_dreams, lil_johnny88, yourangeldiaries - хвост похож на @bahram.av, переписаны; sibellekz - по нику, пропущена). Платности в текстах нет, тексты черновиков 02.10 подправлены по срокам.
+
+## 03.10.2026 вечер (15:55-16:40), @bahramovartem - 13 ответов
+
+Второй подход дня по просьбе Артёма. 4 поиска recent (взломали, заблокировали аккаунт, удалили аккаунт, заблокировали тредс), ошибок нет. API 160 -> 173.
+
+**Итог дневного подхода:** в директ написали 2 - @zhuludinova (ватсап, новый телефон) и @llnansy (телеграм, код на другое устройство); Артём перевёл обеих в Telegram. Ответили в ветках 7: maslova и ely.on (спасибо), olya, alex.redsan, ttruedasha.mult, sprinto.kz, zhuludinova (написала в личку).
+
+**Новые ветки: 9** ([A] 5, [B] 4)
+- [A] @olga_nhatrang (пирожки и чебуреки в Нячанге, основной снова заблокировали), @bomba_mens_shop_ast_ (магазин, личный тредс), @aisha_kids_optom_8099 (детская одежда оптом, старый снесли за жалобы на бренд), @polirominsk (полировка стекла, Минск), @schegolkova_pr (основной тредс навсегда)
+- [B] @irinasmetskaia (взломали телеграм, не может войти), @yanchikus555 (тредс удалили, Новосибирск), @nansssylike (тредс через 3 недели ведения), @zaya89598 (первый снесли за активность)
+
+**Повторные: 4** - olya.kvaratskheliya (кнопки нет), alex.redsan (год назад блок за фото, без обжалования), ttruedasha.mult (новый на другой почте, номере и телефоне - тоже снесли), sprinto.kz (кнопки нет - беречь бизнес-страницу и рекламный кабинет).
+
+**Пропущено:** lena.serdechko (рассказ о мошенниках), olga_avery (Делимобиль), kseniya_funt (Авито), kofuco, elephant.2372469 (жалоба на аптеку), makarovaa94, anya__an____, popykss, lanayimm, art_diana_amba, новости Microsoft.
+
+**threads-uniq остановил: 1** (yanchikus555 - хвост как у @bahram.av, переписан).
