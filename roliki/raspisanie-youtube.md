@@ -21,3 +21,21 @@
 | 17.10 | 09-zablokirovali-instagram-chto-delat | Заблокировали инстаграм что делать | https://youtube.com/shorts/0VxZKL6fLpM |
 
 Черновик «ЧЕРНОВИК старая версия, не публиковать» — старая сборка ролика 04, скрытый, не публиковать.
+
+## Ролик -> статья для блока yt-short (вставлять 17-18.10 одним заходом)
+
+Сначала статьи без ролика; где ролик уже есть, новый ставить рядом только если тема точнее.
+
+| Ролик | Статья |
+|---|---|
+| 02 охваты | instagram-recheck-prosadka-ohvatov-2026 |
+| 03 директ | chatplace-instagram-automation |
+| 13 взломали инстаграм | instagram-vzlom-akkaunta-vernut-dostup-2026 |
+| 14 ватсап | whatsapp-blokirovka-biznes-2026 |
+| 15 ватсап бизнес | whatsapp-blokirovka-biznes-2026 (второй, если 14 уже стоит - выбрать один) |
+| 10 навсегда | instagram-povtornaya-blokirovka-2026 |
+| 12 не приходит код | instagram-podtverzhdenie-lichnosti-vozrasta-2026 (есть ролик, сверить) |
+| 11 как восстановить | instagram-account-recovery-2026 (есть ролик, сверить) |
+| 09 заблокировали что делать | blokirovka-instagram-2026-polnoe-rukovodstvo (есть ролик, сверить) |
+| 04, 05, 06, 08 Telegram взлом | telegram-akkaunt-ugon-fishing-2026 (один, лучший по просмотрам) |
+| 07 канал, 16 спам-блок | отдельной статьи нет - не вставлять или instagram-telegram-unblock |
