@@ -326,7 +326,7 @@
 
 → Блокировка Instagram: разбор по ситуациям: https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 → Что означают формулировки уведомлений: https://bahramovai.com/blog/instagram-telegram-formulirovki-uvedomleniy-2026.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
-→ Разблокировка, от 10 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Разблокировка, от 15 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 
 Артём Бахрамов, автоматизация соцсетей и восстановление доступа к аккаунтам.
 Сайт: https://bahramovai.com
@@ -377,7 +377,7 @@
 
 → Повторная блокировка Instagram: почему банит снова: https://bahramovai.com/blog/instagram-povtornaya-blokirovka-2026.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 → Блокировка Instagram: разбор по ситуациям: https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
-→ Разблокировка, от 10 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Разблокировка, от 15 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 
 Артём Бахрамов, автоматизация соцсетей и восстановление доступа к аккаунтам.
 Сайт: https://bahramovai.com
@@ -424,7 +424,7 @@
 и только потом подавать апелляцию.
 
 → Почему Instagram блокирует аккаунты и как вернуть доступ: https://bahramovai.com/blog/instagram-account-recovery-2026.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
-→ Разблокировка Instagram и Telegram, от 10 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Разблокировка Instagram и Telegram, от 15 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 → Написать мне: https://t.me/bahramovartsiom
 
 Артём Бахрамов, автоматизация соцсетей и восстановление доступа к аккаунтам.
@@ -473,7 +473,7 @@
 есть ссылка для отмены изменения, и она действует ограниченное время.
 
 → Взломали Instagram: как вернуть доступ: https://bahramovai.com/blog/instagram-vzlom-akkaunta-vernut-dostup-2026.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
-→ Разблокировка Instagram и Telegram, от 10 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Разблокировка Instagram и Telegram, от 15 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 → Написать мне: https://t.me/bahramovartsiom
 
 Артём Бахрамов, автоматизация соцсетей и восстановление доступа к аккаунтам.
@@ -526,7 +526,7 @@
 восстановления доступа.
 
 → Взломали Instagram: как вернуть доступ: https://bahramovai.com/blog/instagram-vzlom-akkaunta-vernut-dostup-2026.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
-→ Разблокировка Instagram и Telegram, от 10 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
+→ Разблокировка Instagram и Telegram, от 15 000 ₽: https://bahramovai.com/uslugi/razblokirovka-instagram.html?utm_source=youtube&utm_medium=description&utm_campaign=shorts
 → Написать мне: https://t.me/bahramovartsiom
 
 Артём Бахрамов, автоматизация соцсетей и восстановление доступа к аккаунтам.
