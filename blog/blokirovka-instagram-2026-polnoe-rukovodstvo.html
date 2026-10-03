@@ -36,7 +36,7 @@
     "description": "Заблокировали Instagram или выскакивает «Действие заблокировано»? Разбор по ситуациям: ограничение действий, проверка личности, отключение аккаунта, взлом, просадка охватов.",
     "image": "https://bahramovai.com/photo.jpg",
     "datePublished": "2026-08-12T09:00:00+07:00",
-    "dateModified": "2026-09-24T12:00:00+07:00",
+    "dateModified": "2026-10-03T21:00:00+07:00",
     "url": "https://bahramovai.com/blog/blokirovka-instagram-2026-polnoe-rukovodstvo.html",
     "inLanguage": "ru",
     "author": {
@@ -693,7 +693,7 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
     <div class="post-meta">
       <span class="post-tag">Instagram</span>
       <span class="post-tag">Блокировки</span>
-      <span class="post-date">12 августа 2026 · обновлено 24 сентября 2026</span>
+      <span class="post-date">12 августа 2026 · обновлено 3 октября 2026</span>
       <span class="post-readtime">· 12 мин чтения</span>
     </div>
     <h1>Блокировка Instagram в 2026: что делать - полный разбор по ситуациям</h1>
@@ -711,6 +711,104 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
     <p>И третья: пока не опознан тип ограничения, любые действия - лотерея. По моему опыту работы с клиентами, аккаунты чаще теряют не потому, что случай был безнадёжный, а потому что человек лечил не тот диагноз. Если важно понимать, на чём эти выводы основаны, - <a href="/about.html">мой опыт работы с блокировками Instagram</a> описан на странице «Обо мне». Начнём с диагностики.</p>
 
     <h2 id="diagnoz">Шаг 1. Понять, что именно с вами произошло</h2>
+
+    <!-- block-quiz:start (03.10.2026) Тест: какой у вас случай. Ответы только из таблицы ниже -->
+    <div class="bq" id="test" hidden>
+      <style>
+        .bq { margin: 28px 0 32px; padding: 24px 22px; border: 1px solid var(--orange-border, rgba(244,103,42,.35)); border-radius: 16px; background: var(--orange-dim, rgba(244,103,42,.08)); }
+        .bq-kicker { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--orange, #f4672a); }
+        .bq-q { margin: 0 0 16px; font-family: 'Unbounded', sans-serif; font-size: clamp(17px, 4.4vw, 21px); line-height: 1.35; color: #fff; overflow-wrap: break-word; hyphens: manual; }
+        .bq-opts { display: flex; flex-direction: column; gap: 10px; }
+        .article-body .bq button.bq-opt { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 12px 18px; min-height: 44px; border: 1.5px solid var(--orange, #f4672a); border-radius: 22px; color: var(--text, #e8e8e8); font-size: 15px; line-height: 1.4; cursor: pointer; transition: background .2s, color .2s; }
+        .article-body .bq button.bq-opt:hover, .article-body .bq button.bq-opt:focus-visible { background: var(--orange, #f4672a); color: #000; }
+        .bq-res h3 { margin: 0 0 10px; font-family: 'Unbounded', sans-serif; font-size: clamp(17px, 4.4vw, 21px); line-height: 1.35; color: #fff; overflow-wrap: break-word; hyphens: manual; }
+        .bq-res p { margin: 0 0 12px; font-size: 15px; line-height: 1.6; color: var(--text, #e8e8e8); }
+        .bq-res p b { color: #fff; }
+        .bq-acts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+        .article-body .bq-acts a, .article-body .bq-acts button { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; min-height: 40px; padding: 9px 18px; border: 1.5px solid var(--orange, #f4672a); border-radius: 100px; color: var(--orange, #f4672a); font-size: 14px; font-weight: 600; line-height: 1.3; text-align: center; cursor: pointer; transition: background .2s, color .2s; }
+        .article-body .bq-acts a:hover, .article-body .bq-acts button:hover { background: var(--orange, #f4672a); color: #000; }
+        .article-body .bq-acts .bq-again { border-color: var(--border, rgba(255,255,255,.2)); color: var(--muted, #a3a3a3); }
+        .bq-step { margin: 14px 0 0; font-size: 13px; color: var(--muted, #a3a3a3); }
+        @media (max-width: 560px) { .bq { padding: 20px 16px; } .bq-acts a, .bq-acts button { width: 100%; } }
+      </style>
+      <p class="bq-kicker">Тест на 1 минуту</p>
+      <div class="bq-body" aria-live="polite"></div>
+    </div>
+    <script>
+    (function () {
+      var box = document.getElementById('test');
+      if (!box) return;
+      var body = box.querySelector('.bq-body');
+      var Q = {
+        start: { q: 'Вы можете зайти в аккаунт?', o: [
+          ['Да, лента открывается', 'open'],
+          ['Нет: пароль не подходит, сменились почта или номер', 'r_vzlom'],
+          ['Нет: вместо ленты экран про отключение или проверку', 'closed'] ] },
+        open: { q: 'Что происходит с аккаунтом?', o: [
+          ['Окно Действие заблокировано, попробуйте позже', 'r_action'],
+          ['Уведомлений нет, но просмотры рухнули', 'r_s7'],
+          ['Пришло письмо, что аккаунт вернули', 'r_s3'] ] },
+        closed: { q: 'Что на экране?', o: [
+          ['Аккаунт отключён, есть кнопка обжалования', 'history'],
+          ['Просят видео-селфи, документ или подтвердить возраст', 'r_s2'],
+          ['Апелляцию уже подавали, ответ: по-прежнему нарушает или повторная проверка недоступна', 'r_s2'] ] },
+        history: { q: 'Что ближе к вашей истории?', o: [
+          ['Аккаунт давний, блокировка впервые', 'r_s1'],
+          ['Блокируют не первый раз, новые аккаунты улетают следом', 'r_s4'],
+          ['Профиль создан на днях, постов ещё нет', 'r_s5'],
+          ['Ограничили сразу несколько моих профилей', 'r_s6'],
+          ['У знакомых в той же нише в те же дни то же самое', 'r_s8'] ] }
+      };
+      var R = {
+        r_vzlom: ['Похоже на взлом, а не на блокировку', 'Срочно возвращать доступ и отвязывать чужие почту и номер. Апелляция по нарушению тут не поможет.', '#s8', '/blog/instagram-vzlom-akkaunta-vernut-dostup-2026.html', 'Как вернуть взломанный Instagram'],
+        r_action: ['Аккаунт цел: временное ограничение действий', 'Остановить массовые подписки, лайки и рассылки и переждать. Обычно ограничение снимается само.', '#action-block'],
+        r_s7: ['Аккаунт цел: просадка охватов', 'Это не блокировка, апелляция бесполезна: обжаловать нечего. Работать нужно с контентом и поведением.', '#s7'],
+        r_s3: ['Первые две недели после разблокировки', 'Не менять аватар, имя и юзернейм и не догонять активность рывком. Это самое уязвимое время.', '#s3'],
+        r_s2: ['Претензия к праву на аккаунт, а не к контенту', 'Пройти проверку один раз и честно, не метаться между способами подтверждения. Если кнопки обжалования уже нет, стандартный путь исчерпан.', '#s2'],
+        r_s1: ['Аккаунт отключён: заблокировали только что', 'Прочитать формулировку уведомления и подать апелляцию ровно один раз. Не менять пароль и не входить с чужих сетей.', '#s1'],
+        r_s4: ['Повторные блокировки', 'Сначала понять по последнему отказу, восстанавливать старый аккаунт или запускаться заново.', '#s4'],
+        r_s5: ['Блокировка нового аккаунта без истории', 'Не форсировать: спокойный прогрев, без ссылок и массовых подписок на старте.', '#s5'],
+        r_s6: ['Связанные аккаунты, эффект домино', 'Развести профили по поведению: убрать синхронные действия и взаимные лайки по кругу.', '#s6'],
+        r_s8: ['Похоже на массовую волну', 'Подать апелляцию и не делать резких движений, пока фильтр не скорректируют. Причина, скорее всего, не в вашем аккаунте.', '#s8']
+      };
+      var step = 0;
+      function goal(n) { try { if (typeof window.ym === 'function') window.ym(110081984, 'reachGoal', n); } catch (e) {} }
+      function el(tag, cls, text) { var x = document.createElement(tag); if (cls) x.className = cls; if (text) x.textContent = text; return x; }
+      function ask(id) {
+        var n = Q[id]; step++;
+        body.innerHTML = '';
+        body.appendChild(el('p', 'bq-q', n.q));
+        var wrap = el('div', 'bq-opts');
+        n.o.forEach(function (o) {
+          var b = el('button', 'bq-opt', o[0]); b.type = 'button';
+          b.addEventListener('click', function () { if (step === 1) goal('quiz_start'); (R[o[1]] ? show : ask)(o[1]); });
+          wrap.appendChild(b);
+        });
+        body.appendChild(wrap);
+        body.appendChild(el('p', 'bq-step', 'Вопрос ' + step));
+      }
+      function show(id) {
+        var r = R[id]; goal('quiz_result');
+        body.innerHTML = '';
+        var res = el('div', 'bq-res');
+        res.appendChild(el('h3', '', r[0]));
+        var p1 = el('p'); p1.appendChild(el('b', '', 'Первое действие: ')); p1.appendChild(document.createTextNode(r[1])); res.appendChild(p1);
+        res.appendChild(el('p', '', 'Тест определяет тип ситуации, а не точную причину. Причину видно по истории аккаунта: её я разбираю, когда работаю с вашим случаем.'));
+        var acts = el('div', 'bq-acts');
+        var a1 = el('a', '', 'Читать разбор ситуации →'); a1.href = r[2]; acts.appendChild(a1);
+        if (r[3]) { var a2 = el('a', '', r[4] + ' →'); a2.href = r[3]; acts.appendChild(a2); }
+        var a3 = el('a', '', 'Разблокировка под ключ →'); a3.href = '/uslugi/razblokirovka-instagram.html'; acts.appendChild(a3);
+        var again = el('button', 'bq-again', 'Пройти заново'); again.type = 'button';
+        again.addEventListener('click', function () { step = 0; ask('start'); });
+        acts.appendChild(again);
+        res.appendChild(acts);
+        body.appendChild(res);
+      }
+      box.hidden = false;
+      ask('start');
+    })();
+    </script>
+    <!-- block-quiz:end -->
 
     <p>Сводная таблица: найдите строку, которая описывает ваш экран, - и сразу увидите, что это за случай и с чего начинать. Подробный разбор каждой ситуации - ниже по тексту.</p>
 
