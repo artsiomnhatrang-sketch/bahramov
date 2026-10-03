@@ -2264,3 +2264,21 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 **Пропущено:** art_diana_amba (скептик), yarn.irl (шутка), vyacheslav.gadyukin (Claude), nataluzik и pin_strategy (Pinterest), zefirka_minsk_pled и miss_dmitrievnaa (спор), gulzatik27 (ищет репетитора), olena_boon, alekseytutor (Sketchfab), threadsboost_b2b, sabl9905, accrevive, vanta_recovery (конкуренты), _dirk___diggler_, evgeniipivovarov_ (скептики). В сборниках kjkukkk и buyer.tyo новых людей нет, все уже наши.
 
 **threads-uniq остановил: 0.** Тексты 260-280 знаков, хвост везде «текстом», без платности.
+
+## 03.10.2026 вечер (19:15-19:35), @bahram.av - 17 ответов
+
+Второй подход дня. Старт сдвинут с 16:26 на 19:15 - пауза 3 часа после @bahramovartem (конец 16:13). Профиль Chrome Artembelyj414 (Browser 2; Browser 1 открыт под @bahramovartem, в нём не работали). 3 поиска recent (заблокировали бизнес аккаунт, снесли аккаунт, заблокировали тредс), ошибок нет. API 992 -> 1009.
+
+**Входящие:** с утра двое - @kharlovamv (ответила 2 ч. назад, согласилась перейти в Telegram; под постом про код тоже написала «Написала вам в директ») и @mia.kids_astana (Артём перевёл в Telegram 7 ч. назад). Запросы и Скрытые пустые.
+
+**Ответы тем, кто ответил нам (11):** ahir_dunkee (ватсап, когда ответит поддержка), yourfavorite.bakery [A] (апелляция висит), katya.prostt (связка по айфону), browstalis [A] (бан сразу после селфи), darina.viktorova.jewerly [A] (окончательно, беречь инсту с украшениями), dom_na_wode.art [A] (без обжалования), artsbrovkina [A] (инста зелёная), naswas99 (второй бан), iop.cargo [A] (обжалования без ответа), yulafurman (директ не пускает - позвал в инстаграм bahram.av), dia.xcv (инста без апелляции). Не отвечали: photo_caxap (резкий ответ), kharlovamv (уже в директе).
+
+**Новые: 6** ([A] 3, [B] 3)
+- [A] @ana._.ti (наша с утра, новый пост: снесли рабочий), @trainer_toma (рекрутер, спам-блок в телеграме за сообщения кандидатам с hh), @kroshkina_reels (reels, старый тредс заблокировали)
+- [B] @_savchenko_e.d._ (сборник assel_ecohome), @krivoruchko_d (ветка artsbrovkina, снесли без письма), @ai_nano.d.a.s (снесли за дубли своих веток)
+
+**Сборники:** assel_ecohome - 1 новый человек, остальные наши или @bahramovartem (sprinto.kz, alex.redsan); malinavibess - новых с болью нет; flashnaccks (ветка саморекламы для снесённых) - пусто.
+
+**Пропущено:** i_r_i_s_s_s_h_k_a_99 (вопрос без своей беды), darya_podelam, ananastasia__ (без текста), _missalena_69, kseny_ars, mihadyuk_ph (уже в директе у Артёма), madina_dossym, ttruedasha.mult, ivanovagrafika, polirominsk, schegolkova_pr (люди @bahramovartem), art_diana_amba, lumenta.
+
+**threads-uniq остановил: 1** (ana._.ti - начало как у @bahramovartem, переписан).
