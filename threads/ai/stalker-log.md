@@ -273,3 +273,21 @@ threads-uniq остановил 1 текст («по скрину видно» -
 - [B] @harisha_ewa_product, @_lerchik2002_, @urazalinovagulsana, @aibibij, @aleksandra_karavaeva, @souldaria, @hora__cosmica, @peachavanasoon, @notnicepersona, @olya.kvaratskheliya, @tatyana_sunshines, @evil.mahaa, @kk_kirka, @yourangeldiaries, @taty.moore, @alina.visual.diary, @re9ui.iem, @katanawinn, @natzil_content
 - Сборники: maslova.designer_reserv (43 ответа), evil.mahaa (30), urazalinovagulsana, noli_decor
 - threads-uniq остановил 4 текста (noli_decor, akari.sm, peachavanasoon, notnicepersona: хвост как у @bahram.av), переписаны
+
+## 03.10.2026 день (13:11-13:51), @bahramovartem - 25 ответов сразу
+
+Через 3 ч после @bahram.av (10:04). Первые отправки с 01.10 21:17. 10 поисков, 3 сборника, ошибок в браузере не было. Выдача за сутки выбрана: «восстановить аккаунт» 24 пропуска как наших, «взломали аккаунт» 16.
+
+**Входящие:** новых за сутки нет (_v_asilyeva_, alinagolubenko_, kainidin__, eva.artdesire - вчерашние, Артём ведёт). Запросы пустые. Комментариев под своими постами за 2 дня нет.
+
+**Новые ветки: 17** ([A] 8, [B] 9; из черновиков 02.10 - 13). API 135 -> 160.
+- [A] @alex.redsan (снесли третий подряд, первая инста 17к, хочет сайт; ветка r.ktrnd), @e_xxotic (инсту увели, взломщик поставил свою 2FA, поддержка и селфи не помогли), из черновиков 02.10: @sprinto.kz, @fin.uyutik, @maslova.designer_reserv, @northwest_art.gallery, @ely.on, @ttruedasha.mult
+- [B] @llnansy (телеграм шлёт код на другое устройство), @zhuludinova (ватсап, новый телефон, код и звонок не приходят), из черновиков: @evil.mahaa, @yourangeldiaries, @kk_kirka, @taty.moore, @olya.kvaratskheliya, @tatyana_sunshines, @notnicepersona
+- Сборники второго аккаунта теперь: maslova.designer_reserv, evil.mahaa, zhuludinova (12 ответов)
+
+**Ответы тем, кто ответил нам (8):** colorist.astana (спросила цену - цена после разбора, в директ текстом), miramit555, plein_air_life, aura_knit_, mbagretsova, c.vasya3, study_to_dreams, lil_johnny88. Не отвечали: ulyana.lazarevskaya (уже отвечено раньше), sibellekz (threads-uniq: человек @bahram.av), eva.artdesire (уже в директе), neurobatya, bl_onlylove, sabinamakeeva_, anastasia_vis17, pedranova.v, kolesnikov_chess, grace_designer.taplink, polepimkaa (закрыли тему сами).
+Итого 25: 17 новых веток (2 свежих [A] + 6 [A] из черновиков, 2 свежих [B] + 7 [B] из черновиков) и 8 повторных.
+
+**Пропущено:** akari.sm и alberigo.gala2.0 (посты удалены), zharikova_ai (МАКС), raimbekafk (Steam), fmip_off (продаёт решение), capitalfeed.info и the.silence.security (новости Microsoft), logancheg (AWS), faberje69toniskam, psylezneva, jeonw00, prilutskaiat (не про взлом), enriqueoptions, palata.6number, missis_malina, lugovs, fairsooou (советчики).
+
+**threads-uniq остановил: 6 раз** (mbagretsova, c.vasya3, study_to_dreams, lil_johnny88, yourangeldiaries - хвост похож на @bahram.av, переписаны; sibellekz - по нику, пропущена). Платности в текстах нет, тексты черновиков 02.10 подправлены по срокам.

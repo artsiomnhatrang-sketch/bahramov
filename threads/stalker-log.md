@@ -2240,3 +2240,27 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 - Сборники: malinavibess (20 ответов), buyer.tyo (13), kjkukkk (11), m.ikhsanova, dasha.sakuraa, lilya_botox_studio
 - threads-uniq остановил 3 текста (m.ikhsanova, neznamova679, poerat_the_rat: хвост как у @bahramovartem), переписаны; ещё 4 переписаны из-за сходства внутри пачки
 - Под kjkukkk, m.ikhsanova, buyer.tyo уже пишут конкуренты (accrevive, vanta_recovery, aidynzia) - отвечать первыми из этих, пока люди не ушли в личку к ним
+
+**Отправка 02.10, 23:05-23:33 по «публикуй»: 28 ответов (12 [A], 16 [B]). API 939 -> 967.** Пропущены 2: @_vaadll_ удалила оба поста до ответа; @oleg.dymshakov - ветка про блок аккаунта Claude, не соцсеть. 429 не было, ip-check ok после каждых ~5 ответов.
+- @naadine_design - её реплика оказалась в ветке @noli_decor, которую днём отобрали в черновики @bahramovartem (не отправлены, API ai 135 без изменений). Ветка noli_decor теперь у @bahram.av, из черновиков второго аккаунта вычеркнута.
+- Ответы под @kvartiry_almaty_nedorogo и @mia.kids_astana на странице после перезагрузки не видны, по API ушли (возможно, автор скрывает ответы).
+
+## 03.10.2026 08:39 - подход не начат: threads-ip-check 429 (дважды, с паузой 20 с)
+
+Артём разрешил работать на обоих аккаунтах без его одобрения. По правилу 02.10 при 429 браузер не открываем. Повторная проверка поставлена на 11:43 (таймер в чате 3a6a47e9), при ok - @bahram.av, через 3 часа после конца - @bahramovartem.
+
+## 03.10.2026 утро (09:25-10:04), @bahram.av - 25 ответов сразу, без черновиков
+
+Режим 03.10: ip-check не стоп, работали по браузеру - ошибок и пустой выдачи не было. Таймер 11:43 из чата 08:39 снят (попросил тот чат). 10 поисков (9 recent + Топ «снесли аккаунт»), 6 открытий сборников. В recent «удалили аккаунт» 40 пропусков как наших - выдачу за сутки уже выбрали.
+
+**Входящие:** blackorchid_19 (9 ч. назад, Артём перевёл в Telegram), neatkeeper_24 (21 ч., скинула в телегу). Запросы на переписку пустые. Комментариев под своими постами за 2 дня нет (60 постов).
+
+**Новые ветки: 18** ([A] 10, [B] 8). API 967 -> 992.
+- [A] @aman_bala_aktau (две инсты на одной почте, основной пропал, кнопки обжалования нет; ветка скрывает ответы, виден в профиле), @darina.viktorova.jewerly (украшения из стекла, 1000 за месяц, ветка _veridi_), @assel_ecohome (личный отключили, работы, заказы, 5000 - сборник 32 ответа), @artsbrovkina (художник, тредс навсегда после проверки), @browstalis, @dom_na_wode.art (росянки), @ufa_bashkortostan_702, @pledik.off (рабочий акк 29.09), @rs_pools_am (как застраховать инсту), @katya_for_psy - последние четыре в сборнике assel_ecohome
+- [B] @ekaterina_281099 (бан за музыку, сборник 15), @ana._.ti (SOS, конкурент предложил за 70$, дорого), @naswas99, @photo_caxap, @olya_sungurova63, @dia.xcv (сборник assel), @katya.prostt (10 акков, айфон в бане, сборник malinavibess), @yulafurman (ветка ana._.ti)
+
+**Ответы тем, кто ответил нам (7):** oleg_pro_zdorovie (третий на том же телефоне), an.ivshina (без обжалования - беречь инсту), mia.kids_astana (прислала картинку - текстом в директ), plasma_samara (отказ за час), master_galina.oboi_kleit (спросила, только ли инстаграм - нет, тредс, телеграм, ватсап), pencil.orange, zhmykhoff_foto. Не отвечали: poerat_the_rat, zoe__macht, nadezhda_design_bogacheva, tasha_belar_tut, __vep.katerina__ (закрыли тему сами), annd.cr (не пользуется инстой), suvorkova_anastasia (проверяет почту).
+
+**Пропущено:** art_diana_amba (скептик), yarn.irl (шутка), vyacheslav.gadyukin (Claude), nataluzik и pin_strategy (Pinterest), zefirka_minsk_pled и miss_dmitrievnaa (спор), gulzatik27 (ищет репетитора), olena_boon, alekseytutor (Sketchfab), threadsboost_b2b, sabl9905, accrevive, vanta_recovery (конкуренты), _dirk___diggler_, evgeniipivovarov_ (скептики). В сборниках kjkukkk и buyer.tyo новых людей нет, все уже наши.
+
+**threads-uniq остановил: 0.** Тексты 260-280 знаков, хвост везде «текстом», без платности.
