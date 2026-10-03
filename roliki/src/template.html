@@ -298,7 +298,19 @@ function build(V) {
   }
 }
 
+// Длинное слово (ЗАПРАШИВАЙТЕ) не должно вылезать за поля: уменьшаем кегль заголовка, пока самое
+// широкое слово не влезет. Мерим после загрузки шрифтов, один раз на сцену.
+function fitHead(s) {
+  if (s.fitted || document.fonts.status !== 'loaded') return;
+  const h = s.headNode, max = h.clientWidth;
+  let fs = parseFloat(getComputedStyle(h).fontSize);
+  const widest = () => Math.max(...[...h.children].map((w) => w.scrollWidth + 18));
+  while (widest() > max && fs > 40) { fs -= 2; h.style.fontSize = fs + 'px'; }
+  s.fitted = true;
+}
+
 function animHead(s, lt) {
+  fitHead(s);
   [...s.headNode.children].forEach((w, i) => {
     const k = ease((lt - i * 0.06) / 0.25);
     w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px)`;

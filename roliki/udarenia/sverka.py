@@ -6,11 +6,12 @@
 import json, os, re, sys, difflib, subprocess, tempfile
 
 # числа и порядковые приводим к цифре: Whisper пишет «шаг 3» вместо «шаг третий»
-NUM = {w: d for d, ws in {'1': 'один первый первая', '2': 'два второй вторая', '3': 'три третий третья',
+NUM = {w: d for d, ws in {'1': 'один первый первая первое', '2': 'два второй вторая второе', '3': 'три третий третья третье',
        '4': 'четыре четвертый четвертая', '5': 'пять пятый', '10': 'десять десятый', '100': 'сто'}.items() for w in ws.split()}
 def words(t):
     t = t.lower().replace('ё', 'е').replace('+', '').replace('\u0301', '').replace('%', ' процентов')
-    t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм')
+    t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм').replace('whatsapp', 'ватсап').replace('spam', 'спам')
+    t = re.sub(r'\bни\b', 'не', t)  # Whisper пишет «ни почта» вместо «не почта»
     # звонкая/глухая на конце слова звучит одинаково («бот» = «бод»), Whisper пишет как придётся
     dev = str.maketrans('дгбзвж', 'ткпсфш')
     return [NUM.get(w, w[:-1] + w[-1].translate(dev)) for w in re.findall(r'[а-яa-z0-9]+', t)]
@@ -18,8 +19,15 @@ def words(t):
 work = sys.argv[1]
 src = json.load(open(os.path.join(work, 'scenes.json')))
 out = tempfile.mkdtemp()
-wavs = [os.path.join(work, f's{i}.wav') for i in range(len(src))]
-subprocess.run(['whisper', *wavs, '--model', 'small', '--language', 'ru', '--output_format', 'txt',
+# полсекунды тишины перед каждой сценой: без неё Whisper теряет первое слово («код не приходит»)
+wavs = []
+for i in range(len(src)):
+    w = os.path.join(out, f's{i}.wav')
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-f', 'lavfi', '-t', '0.5', '-i', 'anullsrc=r=48000:cl=mono',
+                    '-i', os.path.join(work, f's{i}.wav'), '-filter_complex',
+                    '[1:a]aresample=48000,aformat=channel_layouts=mono[b];[0:a][b]concat=n=2:v=0:a=1', w], check=True)
+    wavs.append(w)
+subprocess.run(['whisper', *wavs, '--model', 'medium', '--language', 'ru', '--output_format', 'txt',
                 '--fp16', 'False', '--output_dir', out], capture_output=True)
 bad = 0
 for i, say in enumerate(src):

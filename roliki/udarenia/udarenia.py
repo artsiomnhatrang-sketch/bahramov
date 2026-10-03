@@ -61,6 +61,9 @@ def accent(text, slovar, report, full=True):
     out = m.process_all(text.replace('+', ''))
     def fix(mt):
         w = mt.group(0); plain = w.replace('+', ''); key = plain.lower()
+        # ruaccent сам ставит ё («все» → «всё»); ручная пометка сильнее — ищем её и по написанию с «е»
+        if key not in manual and key.replace('ё', 'е') in manual:
+            key = key.replace('ё', 'е'); plain = plain.replace('ё', 'е').replace('Ё', 'Е')
         nv = sum(c in VOWELS for c in plain)
         if nv == 0:
             return plain
