@@ -29,6 +29,12 @@
 ## Ближайшие задачи
 
 SEO-цикл - скилл `bahramovai-seo`, раздел 9.
+0. **НАЧАТЬ С ЭТОГО (03.10): разбор ролика коллеги Артёма** (3 мин, вертикальный, про SEO/сервисы, сервисы видны текстом на экране).
+   Всё в `.transcripts/kollega-2026-10-03/` (не коммитится): `video.mp4`, кадры каждые 3 с `f/001-060.jpg` (360 px),
+   листы по 12 кадров `sheet0-4.jpg`. Whisper medium запущен в фоне 03.10 ~18:10 -> `video.txt`/`video.srt` там же;
+   если файла нет - `whisper video.mp4 --model medium --language ru --output_dir .` (~5 мин). Кадры с текстом смотреть
+   в полном размере: `ffmpeg -ss <сек> -i video.mp4 -frames:v 1 x.jpg`. Итог Артёму: что советует, какие сервисы и
+   зачем, что подходит нам с учётом сделанного (сверить с docs/seo-external-playbook.md и docs/geo-ai-seo-playbook.md).
 1. **SEO, следующий чат:** GSC Проверка URL - вошли ли в индекс /uslugi/razblokirovka-instagram и
    /uslugi/vzlom-telegram-vosstanovlenie; если да - Gemini тем же вопросом с «Я в России». Habr 305794 - статус
    (Chrome, текст страницы черновика). Workspace статья 4 - curl профиля workspace.ru/id/artem-bahramov/.
