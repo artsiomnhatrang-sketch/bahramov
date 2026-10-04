@@ -4,5 +4,6 @@ out/
 media/*
 !media/pixabay.py
 !media/snimok.mjs
+!media/shots.sh
 muzyka/*.mp3
 zvuki/*.mp3

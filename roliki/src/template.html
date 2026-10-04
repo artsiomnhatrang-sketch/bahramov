@@ -308,6 +308,9 @@ const VIS = {
     if (v.tag && !full) wrap.appendChild(el('div', 'tag', `<span class="pill o">${v.tag}</span>`));
     if (full) { s.node.insertBefore(wrap, s.node.firstChild); }
     else { box.classList.add('media-box'); box.appendChild(wrap); }
+    // надпись поверх живой картинки (текст уведомления, шутка) — появляется через треть секунды
+    let joke = null;
+    if (v.joke) { joke = el('div', 'joke', `<span>${v.joke}</span>`); joke.style.top = full ? '700px' : '660px'; s.node.appendChild(joke); }
     const first = v.frames ? frameSrc(v, 0) : v.src;
     s.bg = first;
     img.src = first;
@@ -318,6 +321,7 @@ const VIS = {
       const k = ease(lt / 0.18);
       if (!full) { wrap.style.transform = `scale(${0.86 + 0.14 * k}) rotate(${(1 - k) * (v.rot ?? -2)}deg)`; wrap.style.opacity = k; }
       img.style.transform = `scale(${1.02 + zoom * p}) translate(${(v.pan ?? 0) * p}px, 0)`;
+      if (joke) { const kj = ease((lt - 0.35) / 0.16); joke.style.opacity = kj; joke.style.transform = `scale(${0.8 + 0.2 * kj}) rotate(-3deg)`; }
       if (v.frames) return setSrc(img, frameSrc(v, Math.floor(lt * 30)));
     } };
   },

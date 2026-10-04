@@ -4,6 +4,7 @@
 // не отвечает; бот работает круглосуточно через официальный API; при единицах обращений в неделю
 // автоматизация не окупается. Точного «N часов в неделю» в источнике нет — не выдумываем.
 import { cta } from '../formats/common.mjs';
+import { MEDIA_AVTO } from './media-v2.mjs';
 
 export const AVTOMATIZACIYA = [
   {
@@ -15,6 +16,7 @@ export const AVTOMATIZACIYA = [
     label: 'Автоматизация Instagram',
     ask: 'настроим бота под ваш директ',
     strip: 'Настрою бота под ваш директ: <b>Telegram</b>, ссылка в профиле',
+    media: MEDIA_AVTO,
     scenes: [
       { head: 'Часами в директе?', say: 'Отвечаете в директе часами?',
         vis: { type: 'list', appear: true, step: 0.3, items: [{ k: '?', t: 'Сколько стоит?' }, { k: '?', t: 'Как заказать?' }, { k: '?', t: 'Сколько стоит?' }] }, pad: 0.05 },

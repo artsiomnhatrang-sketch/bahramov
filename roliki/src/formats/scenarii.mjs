@@ -4,6 +4,7 @@
 import { readFileSync } from 'node:fs';
 import { SCENARII } from '../texts/scenarii.mjs';
 import { STRIP, pick } from './common.mjs';
+import { MEDIA_SCENARII, applyMedia } from '../texts/media-v2.mjs';
 
 const META = JSON.parse(readFileSync(new URL('../texts/scenarii-meta.json', import.meta.url), 'utf8'));
 
@@ -19,6 +20,6 @@ export function buildScenarii(date, n) {
     title: T.title ?? M.title,
     // в файле абзацы перенесены по ширине — склеиваем, ссылки и служебные строки оставляем отдельными
     description: unwrap(M.description).replace(/\n\nАртём Бахрамов/, `${unwrap(pinned)}\n\nАртём Бахрамов`),
-    scenes: T.scenes.map((s) => ({ ...s })),
+    scenes: applyMedia(T.scenes.map((s) => ({ ...s })), MEDIA_SCENARII[T.n]),
   };
 }

@@ -17,6 +17,6 @@ export const makeFormat = (TEXTS, { label, strip = STRIP }) => (date, n) => {
   return {
     slug: `${T.key}-${iso(date)}`, label: T.label ?? label, strip: T.strip ?? strip, title: T.title,
     description: `${T.hook}\n\n${T.about}` + tail(T.tags, T.ask),
-    scenes: T.scenes.map((s) => ({ ...s })),
+    scenes: T.scenes.map((s, i) => ({ ...s, ...(T.media?.[i] ?? {}) })),
   };
 };
