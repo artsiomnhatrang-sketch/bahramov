@@ -125,9 +125,42 @@ body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
 .strip { position: absolute; top: 1462px; left: 120px; right: 120px; text-align: center;
   font: 500 29px/1.3 Inter; color: var(--muted); padding-top: 20px; border-top: 1.5px solid var(--border); }
 .strip b { color: var(--text); font-weight: 600; }
+
+/* ── монтаж v2 (04.10): живые фото/видео, всплывающие скриншоты, субтитры по слову ── */
+/* фон сцены: та же картинка размыта и затемнена — кадр не бывает пустым чёрным */
+.bgfill { position: absolute; inset: -80px; background-size: cover; background-position: center;
+  filter: blur(42px) brightness(0.32) saturate(1.2); z-index: 0; opacity: 0; }
+#scenes, .label, .sub, .strip { position: absolute; z-index: 2; }
+#scenes { inset: 0; }
+.vis.media-box { left: 56px; right: 56px; top: 606px; height: 680px; }
+.media { position: absolute; inset: 0; border-radius: 30px; overflow: hidden; background: #111;
+  box-shadow: 0 34px 90px rgba(0,0,0,0.7); border: 3px solid rgba(255,255,255,0.14); }
+.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 40%; }
+.media .tag { position: absolute; left: 22px; bottom: 22px; }
+/* весь кадр (вертикальные исходники) */
+.full { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
+.full img { width: 100%; height: 100%; object-fit: cover; }
+.full::after { content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.25) 32%, rgba(0,0,0,0.2) 58%, rgba(0,0,0,0.85) 78%, #000 100%); }
+/* всплывающая вставка: скриншот, фото, плашка */
+.pop { position: absolute; z-index: 5; border-radius: 22px; overflow: hidden; background: #fff;
+  border: 6px solid #fff; box-shadow: 0 30px 80px rgba(0,0,0,0.75); }
+.pop img { display: block; width: 100%; }
+.popcap { position: absolute; z-index: 6; }
+.popcap span { display: inline-block; background: var(--orange); color: #000; font: 700 28px/1 Inter;
+  padding: 12px 22px; border-radius: 100px; white-space: nowrap; }
+.joke { position: absolute; z-index: 6; left: 0; right: 0; text-align: center; }
+.joke span { display: inline-block; font: 800 46px/1.1 Inter; color: #fff; padding: 14px 26px; border-radius: 14px;
+  background: rgba(0,0,0,0.72); border: 2px solid rgba(255,255,255,0.18); }
+/* субтитры по слову (как в референсе): одно слово крупно, обводка вместо фона */
+.sub.word { font: 800 78px/1 Inter; letter-spacing: -1px; color: #fff;
+  -webkit-text-stroke: 10px #000; paint-order: stroke fill; text-shadow: 0 6px 24px rgba(0,0,0,0.6); }
+.sub.word .hl { color: var(--orange); }
+.head { text-shadow: 0 4px 30px rgba(0,0,0,0.8); }
 </style>
 </head>
 <body>
+<div class="bgfill" id="bgfill"></div>
 <div class="label"><span id="label"></span></div>
 <div id="scenes"></div>
 <div class="sub" id="sub"></div>
@@ -265,6 +298,30 @@ const VIS = {
     } };
   },
 
+  // photo / video: живая картинка крупной карточкой (горизонтальные исходники) или на весь кадр
+  // (вертикальные, full: true). Видео — заранее нарезанные кадры (render.mjs), меняем src по времени.
+  photo(v, box, s) { return VIS.video(v, box, s); },
+  video(v, box, s) {
+    const full = !!v.full;
+    const wrap = full ? el('div', 'full') : el('div', 'media');
+    const img = el('img'); wrap.appendChild(img);
+    if (v.tag && !full) wrap.appendChild(el('div', 'tag', `<span class="pill o">${v.tag}</span>`));
+    if (full) { s.node.insertBefore(wrap, s.node.firstChild); }
+    else { box.classList.add('media-box'); box.appendChild(wrap); }
+    const first = v.frames ? frameSrc(v, 0) : v.src;
+    s.bg = first;
+    img.src = first;
+    const zoom = v.zoom ?? (v.frames ? 0.04 : 0.09);
+    return { anim(lt, sc) {
+      const p = clamp(lt / sc.dur);
+      // появление рывком: масштаб 0.86 → 1 за 0.18 с, потом медленный наезд (Ken Burns)
+      const k = ease(lt / 0.18);
+      if (!full) { wrap.style.transform = `scale(${0.86 + 0.14 * k}) rotate(${(1 - k) * (v.rot ?? -2)}deg)`; wrap.style.opacity = k; }
+      img.style.transform = `scale(${1.02 + zoom * p}) translate(${(v.pan ?? 0) * p}px, 0)`;
+      if (v.frames) return setSrc(img, frameSrc(v, Math.floor(lt * 30)));
+    } };
+  },
+
   cta(v, box, s) {
     const btn = el('div', 'btn', `<span>${v.btn ?? 'Ссылка в профиле'}</span>`); btn.style.top = '180px';
     const tg = el('div', 'tg', nb(v.t ?? 'Telegram @bahramovartsiom')); tg.style.top = '350px';
@@ -281,6 +338,45 @@ const VIS = {
   },
 };
 
+const frameSrc = (v, i) => `${v.frames}/${String(Math.min(i, v.nframes - 1) + 1).padStart(4, '0')}.jpg`;
+// смена src + ожидание декодирования: кадр не уйдёт в ролик, пока картинка не готова
+function setSrc(img, src) {
+  if (img.getAttribute('src') === src) return null;
+  img.src = src;
+  return img.decode().catch(() => {});
+}
+
+// Всплывающие вставки сцены: { src, at, dur, w, x, y, rot, cap } — скриншот или фото поверх кадра.
+function buildPops(s) {
+  s.popEls = (s.pop ?? []).map((p) => {
+    const w = p.w ?? 860, x = p.x ?? (1080 - w) / 2, y = p.y ?? 640;
+    const box = el('div', 'pop'); box.style.cssText += `left:${x}px;top:${y}px;width:${w}px`;
+    const im = el('img'); im.src = p.src; box.appendChild(im); s.node.appendChild(box);
+    let cap = null;
+    if (p.cap) { cap = el('div', 'popcap', `<span>${p.cap}</span>`); cap.style.cssText += `left:${x + 24}px;top:${y - 30}px`; s.node.appendChild(cap); }
+    let joke = null;
+    if (p.joke) { joke = el('div', 'joke', `<span>${p.joke}</span>`); joke.style.top = `${p.jy ?? y - 120}px`; s.node.appendChild(joke); }
+    return { p, box, cap, joke };
+  });
+}
+function animPops(s, lt) {
+  for (const { p, box, cap, joke } of s.popEls) {
+    const at = p.at ?? 0.6, end = at + (p.dur ?? 2.2);
+    const k = ease((lt - at) / 0.16), out = clamp((lt - end) / 0.15);
+    const on = lt >= at && lt < end + 0.15;
+    for (const e of [box, cap, joke]) if (e) e.style.display = on ? 'block' : 'none';
+    if (!on) continue;
+    // страховка: вставка не заходит на субтитры (полоса с 1280 px) — поднимаем целиком
+    const top0 = p.y ?? 640, over = top0 + box.offsetHeight - 1270;
+    box.style.top = `${over > 0 ? top0 - over : top0}px`;
+    if (cap) cap.style.top = `${(over > 0 ? top0 - over : top0) - 30}px`;
+    box.style.opacity = 1 - out;
+    box.style.transform = `scale(${0.82 + 0.18 * k - 0.08 * out}) rotate(${(p.rot ?? 2) * (1 - k * 0.6)}deg)`;
+    if (cap) { cap.style.opacity = k * (1 - out); }
+    if (joke) { joke.style.opacity = ease((lt - at - 0.25) / 0.15) * (1 - out); joke.style.transform = `rotate(${p.jrot ?? -3}deg)`; }
+  }
+}
+
 function build(V) {
   document.getElementById('label').textContent = V.label;
   document.getElementById('strip').innerHTML = V.strip;
@@ -290,6 +386,7 @@ function build(V) {
     s.headNode = headEl(s.head, s.small); node.appendChild(s.headNode);
     const box = el('div', 'vis'); node.appendChild(box);
     s.v = s.vis ? VIS[s.vis.type](s.vis, box, s) : null;
+    buildPops(s);
     // Субтитры: куски по предложениям и запятым, время пропорционально длине.
     const parts = (s.sub ?? s.say).replace(/\+/g, "").match(/[^.?!,:;]+[.?!,:;]?/g).map((x) => x.trim().replace(/[,:;]$/, '')).filter(Boolean);
     const total = parts.reduce((a, p) => a + p.length, 0);
@@ -317,21 +414,45 @@ function animHead(s, lt) {
   });
 }
 
+// Слово под голос: времена слов из Whisper (render.mjs → s.words), иначе пропорционально длине.
+function wordAt(s, lt) {
+  const W = s.words; if (!W?.length) return null;
+  let w = null; for (const x of W) { if (lt >= x.s - 0.04) w = x; else break; }
+  if (!w || lt > s.voiceDur + 0.05) return null;
+  return w.w;
+}
+
+let lastBg = null;
 window.seek = (t) => {
   const V = window.VIDEO;
   let cur = V.scenes[V.scenes.length - 1];
   for (const s of V.scenes) if (t >= s.start && t < s.start + s.dur) { cur = s; break; }
   for (const s of V.scenes) s.node.style.display = s === cur ? 'block' : 'none';
   const lt = t - cur.start;
+  // размытый фон: картинка текущей сцены, у схем — последняя показанная, чтобы кадр жил
+  const fill = document.getElementById('bgfill');
+  const bg = cur.bg ?? lastBg;
+  if (cur.bg) lastBg = cur.bg;
+  if (bg && fill.dataset.src !== bg) { fill.style.backgroundImage = `url("${bg}")`; fill.dataset.src = bg; }
+  fill.style.opacity = bg && !cur.vis?.full ? (cur.bg ? 1 : 0.55) : 0;
   animHead(cur, lt);
-  if (cur.v) cur.v.anim(lt, cur);
-  const sub = cur.subs.find((x) => lt >= x.start && lt < x.end) || (lt >= cur.voiceDur ? cur.subs[cur.subs.length - 1] : null);
+  const wait = cur.v ? cur.v.anim(lt, cur) : null;
+  animPops(cur, lt);
   const isCta = cur.vis?.type === 'cta';
-  document.getElementById('sub').textContent = sub && !isCta ? sub.text : '';
+  const subEl = document.getElementById('sub');
+  if (V.wordSubs) {
+    subEl.className = 'sub word';
+    const w = isCta ? null : wordAt(cur, lt);
+    subEl.innerHTML = w ? (/\d/.test(w) ? `<span class="hl">${w}</span>` : w) : '';
+  } else {
+    const sub = cur.subs.find((x) => lt >= x.start && lt < x.end) || (lt >= cur.voiceDur ? cur.subs[cur.subs.length - 1] : null);
+    subEl.textContent = sub && !isCta ? sub.text : '';
+  }
   document.getElementById('strip').style.opacity = isCta ? 0 : 1;
+  return wait;
 };
 
-window.init = (V) => { window.VIDEO = V; build(V); seek(0); };
+window.init = (V) => { window.VIDEO = V; build(V); return seek(0); };
 </script>
 </body>
 </html>

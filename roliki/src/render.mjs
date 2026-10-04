@@ -81,9 +81,54 @@ const filter = V.scenes.map((s, i) => `[${i}:a]apad=whole_dur=${s.dur.toFixed(3)
   ';' + V.scenes.map((_, i) => `[a${i}]`).join('') + `concat=n=${V.scenes.length}:v=0:a=1[out]`;
 execFileSync('ffmpeg', ['-v', 'error', '-y', ...inputs, '-filter_complex', filter, '-map', '[out]', '-c:a', 'aac', '-b:a', '160k', audio]);
 
+// 2б. Монтаж v2 (04.10): медиа сцен, кадры видео, слова субтитров, музыка и звуки.
+const V2 = V.scenes.some((s) => s.vis?.type === 'photo' || s.vis?.type === 'video' || s.pop);
+const fileUrl = (p) => pathToFileURL(p.startsWith('/') ? p : join(ROOT, p)).href;
+const sfx = []; // моменты «вжух»: появление живой картинки и всплывающих вставок
+if (V2) {
+  V.scenes.forEach((s, i) => {
+    const v = s.vis;
+    if (v && (v.type === 'photo' || v.type === 'video')) {
+      sfx.push(s.start);
+      if (v.type === 'video') {
+        // кадры клипа под длину сцены: 30 к/с, обрезка под карточку или весь кадр, по кругу если клип короче
+        const dir = join(work, `clip${i}`);
+        mkdirSync(dir, { recursive: true });
+        const [w, h] = v.full ? [1080, 1920] : [968, 680];
+        execFileSync('ffmpeg', ['-v', 'error', '-y', '-stream_loop', '-1', '-ss', String(v.from ?? 0.5), '-i', join(ROOT, v.src),
+          '-t', (s.dur + 0.2).toFixed(2), '-vf', `fps=${FPS},scale=${w}:${h}:force_original_aspect_ratio=increase,crop=${w}:${h}`,
+          '-q:v', '3', join(dir, '%04d.jpg')]);
+        v.nframes = Number(execFileSync('sh', ['-c', `ls "${dir}" | wc -l`]).toString().trim());
+        v.frames = pathToFileURL(dir).href;
+      } else v.src = fileUrl(v.src);
+    }
+    for (const p of s.pop ?? []) { p.src = fileUrl(p.src); sfx.push(s.start + (p.at ?? 0.6)); }
+  });
+  // субтитры по слову: Whisper small даёт время каждого слова
+  const words = JSON.parse((() => {
+    execFileSync('python3', [join(ROOT, 'udarenia', 'slova.py'), work],
+      { input: JSON.stringify(V.scenes.map((s) => s.sub ?? s.say)), stdio: ['pipe', 'inherit', 'inherit'] });
+    return execFileSync('cat', [join(work, 'words.json')]).toString();
+  })());
+  V.scenes.forEach((s, i) => { s.words = words[i]; });
+
+  // звук: голос (срез гула, компрессия) + музыка тихо под голосом + «вжух» на вставках, громкость -14 LUFS
+  const music = join(ROOT, 'muzyka', args.music ?? (n % 2 ? 't12.mp3' : 't16.mp3'));
+  const wh = [join(ROOT, 'zvuki', 'whoosh0.mp3'), join(ROOT, 'zvuki', 'whoosh2.mp3')];
+  const mix = join(work, 'mix.m4a');
+  const ins = ['-i', audio, '-stream_loop', '-1', '-i', music, ...sfx.flatMap((_, k) => ['-i', wh[k % 2]])];
+  const f = [`[0:a]highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6[vo]`,
+    `[1:a]atrim=0:${total.toFixed(2)},volume=0.13,afade=t=in:d=0.6,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[mu]`,
+    ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=0.45,adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
+    `[vo][mu]${sfx.map((_, k) => `[x${k}]`).join('')}amix=inputs=${sfx.length + 2}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[m]`];
+  execFileSync('ffmpeg', ['-v', 'error', '-y', ...ins, '-filter_complex', f.join(';'), '-map', '[m]', '-t', total.toFixed(2),
+    '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', mix]);
+  V.mix = mix;
+}
+
 // 3. Кадры → ffmpeg.
 const out = join(ROOT, 'out', `${V.slug}.mp4`);
-const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-i', audio,
+const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-i', V.mix ?? audio,
   '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'copy', '-shortest',
   '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
 
@@ -91,7 +136,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 await page.goto(pathToFileURL(join(ROOT, 'src', 'template.html')).href);
 const scenes = V.scenes.map(({ audio: _a, ...s }) => s);
-await page.evaluate(([v]) => window.init(v), [{ label: V.label, strip: V.strip, scenes }]);
+await page.evaluate(([v]) => window.init(v), [{ label: V.label, strip: V.strip, scenes, wordSubs: V2 }]);
 await page.evaluate(async () => {
   await document.fonts.ready;
   await Promise.all([...document.images].map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; })));

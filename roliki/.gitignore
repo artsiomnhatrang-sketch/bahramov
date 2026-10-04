@@ -1,4 +1,8 @@
 node_modules/
 out/
 .work/
-media/
+media/*
+!media/pixabay.py
+!media/snimok.mjs
+muzyka/*.mp3
+zvuki/*.mp3
