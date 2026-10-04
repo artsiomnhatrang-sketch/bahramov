@@ -307,3 +307,22 @@ threads-uniq остановил 1 текст («по скрину видно» -
 **Пропущено:** lena.serdechko (рассказ о мошенниках), olga_avery (Делимобиль), kseniya_funt (Авито), kofuco, elephant.2372469 (жалоба на аптеку), makarovaa94, anya__an____, popykss, lanayimm, art_diana_amba, новости Microsoft.
 
 **threads-uniq остановил: 1** (yanchikus555 - хвост как у @bahram.av, переписан).
+
+## 04.10.2026 вечер (20:50-21:58), @bahramovartem - 36 ответов
+
+Сразу после @bahram.av по прямой просьбе Артёма (паузу 3 часа он снял), 30 свежих веток, лимиты не считать. Профиль Chrome Browser 2. ~25 поисков (recent и Топ) + 6 сборников. Свежий пул к концу почти пуст: первый аккаунт за вечер забрал большую часть, по многим запросам seenSkip 20-36. Признаков лимита нет. API 174 -> 210.
+
+**Входящие:** с 03.10 новые - tatyana_sunshines, aselya_bay_, polirominsk (Артём перевёл в Telegram). Запросы пустые. Комментариев под своими постами за 2 дня нет.
+
+**Новые: 30** ([A] 12, [B] 18)
+- [A] @nailbyalena (маникюр, ватсап просит официальное приложение), @zhslnamrnv (2 года контента, инста в блоке, тредс жив), @tatyanatix (минус 400 подписчиков, тень), @ellapletneva (рилс 6 просмотров, ветка yallo.shavanova), @yallo.shavanova (дизайн, пробные рилс упали в 10 раз), @aromix_kg (парфюмерия Бишкек, взломали), @official_farida_222_ (ограничение на сообщения на месяц), @tarottime.kg (таро, ватсап, теряет клиентов), @kristin_tattoo (тату, теневой бан), @samoilovphoto2.0 (снесли аккаунт на 500 тыс), @aiko_notes (ватсап мамы, код), @40aliya3020 (служебное сообщение, пятый аккаунт с лета)
+- [B] @bellobem (телеграм после переноса), @yuliya_diva (ватсап взломали, Италия), @nikolajnikitinsimona, @kols_23, @thvjk.ask, @iv.evvv, @madina_tolykpayeva и @s.aidana.nkz (сборник aiko_notes), @yuryash (тредс взломали), @solovevaanna6127, @_elenbond (телеграм рассылает спам), @idgafllooll (инста взломана с 2023), @kuanysh.maden, @lesia_duhnay, @ninon_caos (подругу заблокировали), @_khalaeva.aisha (телеграм, слишком много попыток), @kanenski8, @olga_klimka
+
+**Ответы тем, кто ответил нам (6):** 40aliya3020 (отметка за пищевое расстройство, 5 аккаунтов), olga_nhatrang (отключили насовсем, написали, что Артём тоже в Нячанге), yanchikus555 (оспаривание без письма), yourangeldiaries (галочка и поддержка), schegolkova_pr (инста жива), grigorylesnikov (код не приходит). Не отвечали: alex.redsan (против всех), sara.arsenkyzy (см. ниже).
+
+**Накладки и что сделано:**
+- @anastasia.tlk.arts писала внутри ветки @amrenovzhassulan, где за час до этого ответил @bahram.av. Ответ @bahramovartem архивирован через минуту. С этого момента перед отправкой проверяется автор корня ветки по списку обоих журналов.
+- @sara.arsenkyzy 03.10 получила от @bahramovartem короткий ответ (Такие сейчас можно снимать тремя способами), которого не было в журнале и у которого в реестре не было ника, поэтому threads-uniq пропустил ответ @bahram.av 04.10. Ответ @bahram.av архивирован, в реестр дописан ник. Её вопрос Откуда ты остался без ответа.
+- Пропущены: @nyurochka.italia (закрыла ответы), @mariehrudzka (LinkedIn), @zolkahledi.2 (политическая ветка), @sashatoskaa, @akovalion (LinkedIn), @nadi_paris (оператор и госуслуги), конкуренты artemova.sofya, fmip_off, anna.miniapp, aidynzia.
+
+**threads-uniq остановил: 5** (anastasia.tlk.arts, zolkahledi.2, iv.evvv - хвост как у @bahram.av; _khalaeva.aisha - то же начало; sara.arsenkyzy - человек у @bahram.av).

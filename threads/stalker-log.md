@@ -2282,3 +2282,23 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 **Пропущено:** i_r_i_s_s_s_h_k_a_99 (вопрос без своей беды), darya_podelam, ananastasia__ (без текста), _missalena_69, kseny_ars, mihadyuk_ph (уже в директе у Артёма), madina_dossym, ttruedasha.mult, ivanovagrafika, polirominsk, schegolkova_pr (люди @bahramovartem), art_diana_amba, lumenta.
 
 **threads-uniq остановил: 1** (ana._.ti - начало как у @bahramovartem, переписан).
+
+## 04.10.2026 вечер (19:55-20:45), @bahram.av - 40 ответов
+
+Подход по прямой просьбе Артёма: ровно 30 свежих веток, лимиты не считать, сразу после - @bahramovartem (паузу 3 часа Артём снял). Профиль Chrome Browser 1 (Artembelyj414). 11 поисков recent (заблокировали тредс, снесли аккаунт, заблокировали бизнес аккаунт, заблокировали инстаграм, удалили аккаунт, проверка личности, действие заблокировано, заблокировали аккаунт, заблокировали навсегда, ограничили аккаунт, снесли страницу) + 6 сборников. Признаков лимита нет. API 1009 -> 1049.
+
+**Входящие:** с прошлого подхода 1 новый - @pledik.off (Артём перевёл в Telegram). Запросы пустые. Комментариев под своими постами за 2 дня нет (60 постов).
+
+**Новые: 30** ([A] 15, [B] 15)
+- [A] @saturna_knits74 (вязание, 2500), @slyusaar (украшения, рабочий тредс навсегда), @a_tileubek (казахский язык, 3000, ученики), @utul.na (мастер, 3к, страх), @ymadienglish (английский, снесли сегодня), @miray__brand (бренд одежды, 10К), @divina_bag_ (сумки, блок за цены), @milenasaveleva94 (пальто, ветка many.tourss), @daketova_art (художник, инста с 2012), @ronirosseeee (рабочий с работами), @amrenovzhassulan (галочка), @beloved_taro_ (таро, 200), @travelproadvisor (сборник slyusaar, 600к просмотров), @april_myheart4 (снесли после цены), @vikysikahandmade (шьёт, страх)
+- [B] @pavel_yarotskii (жена и дочь), @happylifemri (селфи и удаление), @_alymovaaaaa, @_t.babina (после взлёта просмотров), @domanina_k (ветка anhellinaash), @anhellinaash (3 года), @olya_nosikk.2.69, @bat.97521651 (Meta предлагает галочку), @clear.vika.sav, @miymiyhaaf (основное в телеграме), @ulyana.solovei (оказалось 5800 подписчиков - скорее A), @sara.arsenkyzy (сборник slyusaar, вся инста), @rennxciiin (селфи не прошло), @olga_iam, @oksanagoddess7772026 (сборник ulyana)
+
+**Ответы тем, кто ответил нам (10):** ymadienglish (хочет в директ, но Threads не пускает - дали Telegram), ulyana.solovei (5800), slyusaar (инста чистая, завела отдельный тредс), lilya_botox_studio (второй с того же телефона), _savchenko_e.d._ (отказ после обжалования), kroshkina_reels (инсту разблокировали), krivoruchko_d (селфи не засчитали), dia.xcv (почему связка), iop.cargo и yulafurman (директ не открывается - Telegram). Не отвечали: ai_nano.d.a.s (против помогаек), artsbrovkina (не продаёт), naswas99, katya.prostt.
+
+**Важно:** двое за сутки (ymadienglish, iop.cargo) не смогли написать в директ Threads. Похоже, директ открыт не всем - стоит проверить настройку сообщений.
+
+**Пропущено:** meta.ai, dmitry.ai (Claude), avito-ветки, vanta_recovery и aidynzia (конкуренты), terry_donster (2 месяца назад, причину знает), brailovskaya_a и prigladaai (советчики), persona_consultant (уже разблокировали), magictrifoliumnadi.
+
+**threads-uniq остановил: 6** (happylifemri, _alymovaaaaa, domanina_k, olya_nosikk.2.69, bat.97521651, ulyana.solovei - хвосты как у @bahramovartem или похоже на свои; переписаны).
+
+**Дополнение 22:00:** за час после подхода в директ @bahram.av написали 5 человек из сегодняшних: divina_bag_ [A] (уже в ватсапе), saturna_knits74 [A], rennxciiin, pavel_yarotskii (жена пишет в Telegram), olya_nosikk.2.69. Ответ @sara.arsenkyzy архивирован: 03.10 ей уже ответил @bahramovartem (в реестре не было ника).
