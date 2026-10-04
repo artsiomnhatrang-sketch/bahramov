@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png">
+  <title>Hermes Agent: что это и нужен ли он, если есть Claude Code</title>
+
+  <meta name="description" content="Hermes Agent от Nous Research: что умеет гермес агент, сколько стоит, как работает с Claude Code и подпиской Claude, кому он нужен, а кому хватит Claude Code." />
+  <link rel="canonical" href="https://bahramovai.com/blog/hermes-agent-claude-code.html" />
+  <link rel="alternate" type="application/rss+xml" title="Блог Артёма Бахрамова" href="https://bahramovai.com/feed.xml" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://bahramovai.com/blog/hermes-agent-claude-code.html" />
+  <meta property="og:site_name" content="BahramovAI">
+  <meta property="og:title" content="Hermes Agent: что это и нужен ли он, если есть Claude Code" />
+  <meta property="og:description" content="Hermes Agent от Nous Research: что умеет гермес агент, сколько стоит, как работает с Claude Code и подпиской Claude, кому он нужен, а кому хватит Claude Code." />
+  <meta property="og:image" content="https://bahramovai.com/photo.jpg" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="article:published_time" content="2026-10-04" />
+  <meta property="article:author" content="Артём Бахрамов" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Hermes Agent: что это и нужен ли он, если есть Claude Code" />
+  <meta name="twitter:description" content="Hermes Agent от Nous Research: что умеет гермес агент, сколько стоит, как работает с Claude Code и подпиской Claude, кому он нужен, а кому хватит Claude Code." />
+  <meta name="twitter:image" content="https://bahramovai.com/photo.jpg" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "Hermes Agent (Гермес агент): что это и нужен ли он, если есть Claude Code",
+    "description": "Hermes Agent от Nous Research: что умеет гермес агент, сколько стоит, как работает с Claude Code и подпиской Claude, кому он нужен, а кому хватит Claude Code.",
+    "image": "https://bahramovai.com/photo.jpg",
+    "datePublished": "2026-10-04T09:00:00+07:00",
+    "dateModified": "2026-10-04T09:00:00+07:00",
+    "url": "https://bahramovai.com/blog/hermes-agent-claude-code.html",
+    "inLanguage": "ru",
+    "author": {
+      "@type": "Person",
+      "@id": "https://bahramovai.com/#person",
+      "name": "Артём Бахрамов",
+      "alternateName": "Артём Бахрам",
+      "jobTitle": "AI-стратег и эксперт по автоматизации соцсетей",
+      "url": "https://bahramovai.com/about.html"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": "https://bahramovai.com/#business",
+      "name": "BahramovAI",
+      "url": "https://bahramovai.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://bahramovai.com/apple-touch-icon.png",
+        "width": 180,
+        "height": 180
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://bahramovai.com/blog/hermes-agent-claude-code.html"
+    }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Главная",
+        "item": "https://bahramovai.com/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Блог",
+        "item": "https://bahramovai.com/blog/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Hermes Agent (Гермес агент): что это и нужен ли он, если есть Claude Code",
+        "item": "https://bahramovai.com/blog/hermes-agent-claude-code.html"
+      }
+    ]
+  }
+  </script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    /* Ссылки: только фирменный оранжевый. Без синего и фиолетового по умолчанию браузера */
+    a { color: var(--orange, var(--accent, #f4672a)); }
+
+    /* Переход по якорю не должен прятать заголовок под фиксированную шапку.
+       Шапка на сайте 61-81 px в зависимости от страницы и ширины экрана. */
+    [id] { scroll-margin-top: 100px; }
+
+    /* Пункты шапки не ломаются на две строки: на about.html «Обо мне»
+       и «Бонусы» разрывались на 375 px и раздували шапку до 81 px. */
+    nav .nav-link, nav .nav-bonus, nav .nav-logo, nav .nav-cta { white-space: nowrap; }
+    /* Переносы: у заголовка не остаётся одинокого слова на последней строке,
+       у абзаца - тоже. Старые браузеры свойство игнорируют, вреда нет. */
+    h1, h2, h3 { text-wrap: balance; }
+    p, li, figcaption, summary { text-wrap: pretty; }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #000000;
+      --bg3: #0a0a0a;
+      --orange: #f4672a;
+      --orange-dim: rgba(244,103,42,0.12);
+      --orange-border: rgba(244,103,42,0.35);
+      --text: #e8e8e8;
+      --muted: #a3a3a3;
+      --border: rgba(255,255,255,0.07);
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(10,10,10,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { font-family: 'Unbounded', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; color: #fff; text-decoration: none; }
+    .nav-logo span { color: var(--orange); }
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    nav a.nav-link { color: var(--muted); text-decoration: none; font-size: 13px; font-weight: 500; transition: color .2s; padding: 9px 2px; }
+    nav a.nav-link:hover { color: #fff; }
+    nav a.nav-cta { background: var(--orange); color: #000; text-decoration: none; font-size: 13px; font-weight: 600; padding: 10px 22px; border-radius: 6px; transition: opacity .2s; }
+    nav a.nav-cta:hover { opacity: .85; }
+
+    .container { max-width: 760px; margin: 0 auto; padding: 0 40px; }
+
+    .article-header { padding: 130px 0 24px; border-bottom: 1px solid var(--border); }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; margin-bottom: 28px; font-size: 13px; color: var(--muted); }
+    .breadcrumb a { color: var(--orange); text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    .post-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap; }
+    .post-tag { font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); background: var(--orange-dim); border: 1px solid var(--orange-border); padding: 4px 10px; border-radius: 100px; }
+    .post-date { font-size: 13px; color: var(--muted); }
+    .post-readtime { font-size: 13px; color: var(--muted); }
+
+    h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; line-height: 1.2; color: #fff; margin-bottom: 20px; }
+    .article-header .lead { font-size: 18px; color: var(--muted); line-height: 1.7; }
+
+    .article-body { padding: 16px 0 72px; }
+    /* На телефоне 72 px перед футером читались пустой полосой - у футера
+       своя заливка и рамка, граница и так видна */
+    @media (max-width: 768px) { .article-body { padding-bottom: 32px; } }
+    .article-body h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: #fff; margin: 52px 0 18px; line-height: 1.3; }
+    .article-body h2 .accent { color: var(--orange); }
+    .article-body h3 { font-family: 'Unbounded', sans-serif; font-size: 16px; font-weight: 600; color: #fff; margin: 32px 0 12px; }
+    .article-body p { font-size: 16px; color: var(--text); line-height: 1.8; margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 16px 0 24px 0; padding-left: 0; list-style: none; }
+    .article-body ul li, .article-body ol li { font-size: 16px; color: var(--text); line-height: 1.75; padding: 6px 0 6px 24px; position: relative; }
+    .article-body ul li::before { content: ''; position: absolute; left: 0; top: 16px; width: 8px; height: 2px; background: var(--orange); }
+    .article-body ol { counter-reset: item; }
+    .article-body ol li { counter-increment: item; }
+    .article-body ol li::before { content: counter(item) "."; position: absolute; left: 0; color: var(--orange); font-weight: 600; font-size: 14px; }
+    .article-body a { color: var(--orange); text-decoration: underline; text-decoration-color: rgba(244,103,42,0.4); transition: text-decoration-color .2s; }
+    .article-body a:hover { text-decoration-color: var(--orange); }
+
+    .highlight-box { background: var(--orange-dim); border: 1px solid var(--orange-border); border-left: 3px solid var(--orange); border-radius: 8px; padding: 20px 24px; margin: 28px 0; }
+    .highlight-box p { margin: 0; font-size: 15px; color: var(--text); }
+    .highlight-box strong { color: var(--orange); }
+
+    .example-block { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 28px 0; }
+    .example-block .example-label { font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--orange); margin-bottom: 12px; }
+    .example-block p { margin: 0 0 8px; font-size: 15px; color: var(--muted); }
+    .example-block p:last-child { margin-bottom: 0; }
+    .example-block strong { color: var(--text); }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin: 40px 0; }
+    .stat-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px; text-align: center; }
+    .stat-number { font-family: 'Unbounded', sans-serif; font-size: clamp(18px, 3vw, 30px); font-weight: 700; color: var(--orange); display: block; margin-bottom: 8px; word-break: normal; overflow-wrap: break-word; hyphens: manual; line-height: 1.15; max-width: 100%; text-wrap: balance; }
+    /* Размер считается от ширины карточки, а не экрана: при 4vw «39 900 ₽»
+       не влезал в карточку 175 px и рвался на три строки. */
+    .stat-card, .stat-item { container-type: inline-size; }
+    @supports (font-size: 1cqi) { .stat-number { font-size: clamp(18px, 21cqi, 30px); } }
+    /* Чем длиннее значение, тем мельче кегль: иначе «большинство» и
+       «3 сценария» не влезают в карточку и рвутся посреди слова. */
+    @supports (font-size: 1cqi) {
+      .stat-number.len-m { font-size: clamp(17px, 17cqi, 25px); }
+      .stat-number.len-l { font-size: clamp(15px, 13cqi, 18px); }
+    }
+
+    .stat-label { font-size: 14px; color: var(--muted); line-height: 1.4; }
+
+    .compare-table { width: 100%; border-collapse: collapse; margin: 32px 0; font-size: 15px; }
+    .compare-table th { font-family: 'Unbounded', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); padding: 12px 16px; border-bottom: 1px solid var(--orange-border); text-align: left; }
+    .compare-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text); vertical-align: top; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table td:first-child { color: var(--muted); font-weight: 500; }
+    .compare-table .bad { color: #ff453a; }
+    .compare-table .good { color: #30d158; }
+
+    .case-block { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 16px; padding: 28px 32px; margin: 24px 0; }
+    .case-block h4 { font-family: 'Unbounded', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--orange); margin-bottom: 14px; }
+    .case-block p { margin-bottom: 10px; font-size: 15px; }
+    .case-block p:last-child { margin-bottom: 0; }
+
+    .checklist { margin: 24px 0; padding-left: 0; list-style: none; }
+    .checklist li { font-size: 16px; color: var(--text); line-height: 1.75; padding: 10px 0 10px 32px; position: relative; border-bottom: 1px solid var(--border); }
+    .checklist li:last-child { border-bottom: none; }
+    .checklist li::before { content: '✕'; position: absolute; left: 0; color: #ff453a; font-weight: 700; font-size: 14px; top: 12px; }
+
+    .cta-block { background: var(--orange-dim); border: 1px solid var(--orange-border); border-radius: 16px; padding: 40px; margin: 60px 0 0; text-align: center; }
+    .cta-block h3 { font-family: 'Unbounded', sans-serif; font-size: clamp(18px, 3vw, 24px); font-weight: 700; color: #fff; margin-bottom: 14px; line-height: 1.3; }
+    .cta-block p { font-size: 15px; color: var(--muted); margin-bottom: 28px; }
+    .cta-block .cta-note { font-size: 13px; color: var(--muted); margin-top: 20px; margin-bottom: 0; }
+    .btn-primary { display: inline-flex; align-items: center; gap: 8px; padding: 16px 32px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; background: var(--orange); color: #000; transition: all .2s; }
+    .article-body .btn-primary { color: #000; text-decoration: none; }
+    .btn-primary:hover { opacity: .88; transform: translateY(-2px); }
+
+    footer { border-top: 1px solid var(--border); padding: 32px 0; text-align: center; }
+    footer p { font-size: 13px; color: var(--muted); }
+    footer a { color: var(--orange); text-decoration: none; }
+
+    @media (max-width: 768px) {
+      nav { padding: 16px 24px; }
+      nav a.nav-cta { display: none; }
+      .container { padding: 0 24px; }
+      .cta-block { padding: 28px 24px; }
+      .compare-table { font-size: 13px; }
+      .compare-table th, .compare-table td { padding: 10px 8px; }
+    }
+  
+    /* Шапка на узких экранах: после добавления пункта «Услуги» пунктам стало тесно */
+    @media (max-width: 620px) {
+      nav { padding: 14px 16px; gap: 10px; }
+      .nav-logo { font-size: 13px; }
+      .nav-links { gap: 14px; }
+      nav a.nav-link { font-size: 12px; }
+    }
+    @media (max-width: 430px) {
+      .nav-links { gap: 11px; }
+      nav a.nav-link { font-size: 11.5px; }
+      nav a.nav-bonus { padding: 6px 10px; font-size: 11.5px; }
+    }
+  
+        /* Таблицы на мобиле: горизонтальная прокрутка вместо обрезки */
+        @media (max-width: 700px) {
+            .compare-table, .cmp, .cmp-table {
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .compare-table thead, .cmp thead, .cmp-table thead,
+            .compare-table tbody, .cmp tbody, .cmp-table tbody { display: table; width: max-content; min-width: 100%; }
+        }
+    
+        /* Длинные слова не вылезают за край на узких экранах */
+        @media (max-width: 700px) {
+            h1, h2, h3, h4, .hero-title, .article h1, .article h2 { overflow-wrap: break-word; -webkit-hyphens: auto; hyphens: auto; }
+        }
+    </style>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(110081984, "init", {
+        webvisor:true,
+        clickmap:true,
+        accurateTrackBounce:true,
+        trackLinks:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/110081984" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+<!-- nav-orange:start -->
+<style>
+/* Пункты шапки - оранжевые кнопки со стрелкой, как на главной.
+   Стрелка добавляется стилем, разметку шапки на страницах не трогаем. */
+nav a.nav-link, nav a.nav-bonus, nav.header-nav > a:not(.btn-cta) {
+  color: #f4672a !important; font-weight: 600 !important; text-decoration: none !important;
+  border: 1.5px solid #f4672a !important; border-radius: 100px !important;
+  padding: 8px 16px !important; background: transparent !important;
+  white-space: nowrap; transition: background .2s, color .2s;
+}
+nav a.nav-link::after, nav a.nav-bonus::after, nav.header-nav > a:not(.btn-cta)::after { content: " \2192"; }
+nav a.nav-link:hover, nav a.nav-bonus:hover, nav.header-nav > a:not(.btn-cta):hover,
+nav a.nav-link.active { background: #f4672a !important; color: #000 !important; }
+@media (max-width: 768px) {
+  nav a.nav-link, nav a.nav-bonus, nav.header-nav > a:not(.btn-cta) {
+    border: 0 !important; padding: 6px 2px !important; background: transparent !important;
+  }
+  nav a.nav-link:hover, nav a.nav-bonus:hover, nav.header-nav > a:not(.btn-cta):hover,
+  nav a.nav-link.active { background: transparent !important; color: #f4672a !important; }
+}
+/* Телефоны: без стрелок и рамок, иначе пункты не влезают в строку.
+   «Обо мне» прячем, ссылка есть в подвале. */
+@media (max-width: 480px) {
+  nav a.nav-link::after, nav a.nav-bonus::after, nav.header-nav > a:not(.btn-cta)::after { content: ""; }
+  nav a.nav-link, nav a.nav-bonus { font-size: 12.5px !important; padding: 4px 0 !important; }
+  nav.header-nav > a:not(.btn-cta) { padding: 4px 0 !important; }
+  nav .nav-links { gap: 12px !important; }
+  nav.header-nav { gap: 8px !important; }
+  nav a.nav-link[href="/about.html"] { display: none !important; }
+}
+@media (max-width: 359px) {
+  nav .nav-links { gap: 9px !important; }
+  nav a.nav-link, nav a.nav-bonus { font-size: 11.5px !important; }
+  nav .nav-logo { font-size: 12px !important; }
+  nav.header-nav { gap: 6px !important; }
+  nav.header-nav .btn-cta { padding: 6px 8px !important; font-size: 11px !important; }
+  nav.header-nav > a[href$="/blog/"] { display: none !important; }
+  .header-inner .nav-logo { font-size: 12px !important; }
+}
+</style>
+<!-- nav-orange:end -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что такое Hermes Agent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Бесплатный ИИ-агент с открытым кодом от Nous Research под лицензией MIT. Он ставится на компьютер или сервер, общается через Telegram и другие мессенджеры, помнит прошлые разговоры, сам создаёт навыки и выполняет задачи по расписанию."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hermes Agent бесплатный?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Сам агент бесплатный. Отдельно оплачивается нейросеть, к которой он подключается, и сервер, если агент должен работать круглосуточно. Бесплатно можно работать только на локальных моделях через Ollama, но им нужен мощный компьютер."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли подключить Гермес к Claude Code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Во встроенном навыке claude-code Гермес передаёт задачи с файлами и кодом в Claude Code, установленный на той же машине. Главным в такой связке остаётся Гермес, а Claude Code выполняет поручения."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Работает ли Hermes Agent с подпиской Claude?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "По документации Hermes тариф Pro через вход по подписке не подключается, нужен ключ API с оплатой за запросы. Тариф Max подключается, но тратятся только докупленные кредиты дополнительного использования, а не базовый лимит подписки."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Нужен ли Hermes Agent, если уже есть Claude Code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Если Claude Code закрывает ваши задачи, Гермес добавит в основном работу круглосуточно на сервере, пока компьютер выключен. За это придётся отдельно платить за модель и сервер и следить за безопасностью ещё одного агента."
+      }
+    }
+  ]
+}
+  </script>
+<!-- meta-wrap:start --><style>.article-meta,.post-meta{flex-wrap:wrap;row-gap:6px}.post-meta .post-date{white-space:normal}</style><!-- meta-wrap:end -->
+<!-- mobile-gaps:start -->
+<style>
+/* Телефон: в конце статей складывались отступы соседних блоков (100-160px пустоты). 01.10.2026 */
+@media (max-width:768px){
+  main.article,article.article-body,article.article{padding-bottom:24px!important}
+  section.faq,section.geo-faq{padding-top:24px!important}
+  section.faq h2,section.geo-faq h2{margin-top:0!important}
+  .related-posts{padding-top:24px!important;padding-bottom:16px!important}
+  .related-posts h2{margin-top:0!important}
+  [data-support-line]{margin-bottom:24px!important}
+  [data-offer-box]{margin-top:24px!important;margin-bottom:24px!important}
+  [data-svc-link]{margin-top:24px!important}
+  p.author-note{margin-top:24px!important}
+  .container .container{padding-left:0!important;padding-right:0!important}
+}
+.related-card h3:first-child{margin-top:0!important}
+</style>
+<!-- mobile-gaps:end -->
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">А<span>.</span>Бахрамов</a>
+  <div class="nav-links">
+    <a href="/uslugi/" class="nav-link">Услуги</a>
+    <a href="/blog/" class="nav-link">Блог</a>
+    <a href="https://t.me/bahramovartem_bot" class="nav-link" target="_blank" rel="noopener noreferrer">🎁 Бонусы</a>
+    <a href="https://t.me/bahramovartsiom" class="nav-cta" target="_blank" rel="noopener noreferrer">Бесплатный аудит →</a>
+  </div>
+</nav>
+
+<header class="article-header">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Главная</a>
+      <span>›</span>
+      <a href="/blog/">Блог</a>
+      <span>›</span>
+      <span>Hermes Agent и Claude Code</span>
+    </div>
+    <div class="post-meta">
+      <span class="post-tag">AI-агенты</span>
+      <span class="post-tag">Инструменты</span>
+      <span class="post-date">4 октября 2026</span>
+      <span class="post-readtime">· 8 мин чтения</span>
+    </div>
+    <h1>Hermes Agent (Гермес агент): что это и нужен ли он, если есть Claude Code</h1>
+    <p data-geo-answer style="margin:18px 0 24px;font-size:17px;line-height:1.65;color:#e8e8e8;max-width:760px;text-align:left"><strong style="color:#f4672a;font-weight:600">Коротко:</strong> Hermes Agent - бесплатный ИИ-агент с открытым кодом от Nous Research. Он ставится на компьютер или сервер, общается с вами через Telegram и другие мессенджеры, помнит прошлые разговоры, сам создаёт навыки и выполняет задачи по расписанию. Если вы уже работаете в Claude Code, Гермес добавляет в основном одно: работу круглосуточно на сервере, пока ваш компьютер выключен.</p>
+    <p class="lead">Про гермес агент сейчас спрашивают постоянно: в Вордстате за месяц около 13,8 тыс. запросов hermes agent и ещё 2,4 тыс. запросов кириллицей. Я каждый день работаю в Claude Code, поэтому разобрал Гермеса с одной стороны: что он даёт тому, у кого Claude Code уже есть.</p>
+  </div>
+</header>
+
+<article class="article-body">
+  <div class="container">
+
+    <div data-hub-link style="border-left:3px solid #f4672a;background:rgba(244,103,42,0.07);padding:14px 18px;margin:0 0 32px;border-radius:0 8px 8px 0">
+      <p style="margin:0;font-size:15px;line-height:1.65;color:#d8d8d8"><strong style="color:#e8e8e8">Это часть большого разбора.</strong> Если ещё не решили, какой инструмент нужен именно вам, начните с <a href="/blog/ai-agents-2026.html" style="color:#f4672a">полного руководства по AI-агентам и автоматизации</a> - там разбор по ситуациям и переходы во все материалы кластера.</p>
+    </div>
+
+    <p>Сразу о том, откуда взяты факты. Сам я Гермеса не устанавливал: всё, что у меня было в работе, уже закрывает Claude Code. Описание возможностей, цен и ограничений ниже взято из официальной документации Hermes Agent и его страницы на GitHub на 4 октября 2026 года. Оценки, кому он нужен, - мои, по опыту работы с Claude Code.</p>
+
+    <div class="stats-grid">
+      <div class="stat-card">
+        <span class="stat-number">MIT</span>
+        <div class="stat-label">открытая лицензия, сам агент бесплатный</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number len-m">251&nbsp;тыс.</span>
+        <div class="stat-label">звёзд у проекта на GitHub</div>
+      </div>
+      <div class="stat-card">
+        <span class="stat-number">20+</span>
+        <div class="stat-label">мессенджеров и платформ для общения с агентом</div>
+      </div>
+    </div>
+
+    <h2>Что такое <span class="accent">Hermes Agent</span>?</h2>
+
+    <p>Hermes Agent - это программа-агент от исследовательской команды Nous Research. Разработчики называют его самообучающимся агентом: после сложной задачи он сам записывает навык, чтобы в следующий раз сделать похожее быстрее. Код открыт под лицензией MIT, то есть сам агент бесплатный.</p>
+
+    <p>Что он умеет по документации:</p>
+    <ul>
+      <li><strong>Память между разговорами.</strong> Агент ищет по прошлым сессиям и подтягивает нужное, а не начинает каждый раз с нуля.</li>
+      <li><strong>Навыки.</strong> Создаёт их сам после сложных задач и умеет брать готовые из общего каталога.</li>
+      <li><strong>Мессенджеры.</strong> Telegram, Discord, Slack, WhatsApp, Signal, почта и другие: вы пишете агенту как человеку.</li>
+      <li><strong>Расписание.</strong> Встроенный планировщик выполняет задачи в заданное время и присылает результат в мессенджер.</li>
+      <li><strong>Помощники.</strong> Агент запускает отдельных субагентов, чтобы вести несколько задач параллельно.</li>
+      <li><strong>Подключения.</strong> Поддерживает MCP - стандарт, через который агенты подключаются к сервисам и программам.</li>
+    </ul>
+
+    <p>Работает на macOS, Linux, Windows и даже на Android через Termux. Есть настольное приложение Hermes Desktop. Сам агент модели не содержит: к нему подключают нейросеть со стороны, от Claude и OpenAI до бесплатных моделей, запущенных прямо на компьютере.</p>
+
+    <h2>Чем Hermes Agent отличается <span class="accent">от Claude Code</span>?</h2>
+
+    <p>Их часто ставят в один ряд, но задачи у них разные. Claude Code - агент Anthropic для работы с файлами, кодом и задачами на компьютере: он живёт в терминале, в редакторе кода, в настольном приложении и в браузере. Hermes Agent - агент-ассистент, который рассчитан жить на сервере и общаться с вами через мессенджеры.</p>
+
+    <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;margin:32px 0">
+    <table class="compare-table" style="margin:0;min-width:520px">
+      <thead>
+        <tr>
+          <th>Параметр</th>
+          <th>Claude Code</th>
+          <th>Hermes Agent</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Где работает</td>
+          <td>Терминал, редактор кода, приложение Claude, браузер</td>
+          <td>Ваш компьютер или сервер, приложение Hermes Desktop</td>
+        </tr>
+        <tr>
+          <td>Как с ним общаться</td>
+          <td>В окне чата или в терминале</td>
+          <td>Через Telegram, WhatsApp, Slack и другие мессенджеры</td>
+        </tr>
+        <tr>
+          <td>Модели</td>
+          <td>Claude</td>
+          <td>Любые: Claude, OpenAI, модели через OpenRouter, локальные</td>
+        </tr>
+        <tr>
+          <td>Код программы</td>
+          <td>Продукт Anthropic</td>
+          <td>Открытый, лицензия MIT</td>
+        </tr>
+        <tr>
+          <td>Сколько стоит</td>
+          <td>Входит в подписку Claude или оплата по API</td>
+          <td>Бесплатно, отдельно платите за модель и сервер</td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+
+    <p>Главное практическое отличие - где агент живёт. Гермес задуман как постоянно включённый помощник на сервере: компьютер можно закрыть, а агент продолжит отвечать в Telegram и выполнять задачи по расписанию. Claude Code тоже умеет запускать задачи по расписанию, но в моей работе он связан с компьютером, на котором открыт проект.</p>
+
+    <h2>Можно ли управлять <span class="accent">Claude Code через Гермес</span>?</h2>
+
+    <p>Да, но здесь часто путают, кто кем управляет. Нередко можно услышать, что Гермесом управляют через Claude Code, а по документации связка устроена наоборот. В Гермесе есть встроенный навык claude-code. С ним Гермес становится главным, а Claude Code - исполнителем: Гермес получает задачу, например из Telegram, и передаёт программную часть в Claude Code.</p>
+
+    <p>Как это устроено по документации:</p>
+    <ul>
+      <li>Claude Code должен быть установлен на той же машине, что и Гермес, и в нём нужно войти в аккаунт Claude или указать ключ API.</li>
+      <li>Короткие задачи Гермес отдаёт в разовом режиме: Claude Code выполняет задачу, возвращает результат и закрывается.</li>
+      <li>Длинные задачи идут в интерактивном режиме: Гермес ведёт сессию Claude Code, дописывает уточнения и следит за ходом работы.</li>
+      <li>Чтобы задача не съела лишнего, задаётся предел шагов и бюджет в долларах на одну задачу.</li>
+    </ul>
+
+    <div class="highlight-box">
+      <p><strong>Простая аналогия:</strong> Гермес - секретарь, который принимает поручения в мессенджере, а Claude Code - специалист, которому секретарь передаёт работу с файлами и кодом. Если вы сами сидите за компьютером и даёте задачи Claude Code напрямую, секретарь в цепочке не нужен.</p>
+    </div>
+
+    <h2>Сколько стоит <span class="accent">Hermes Agent</span>?</h2>
+
+    <p>Сам агент бесплатный. Платить придётся за две вещи: за нейросеть, которая думает за агента, и за сервер, если нужна работа круглосуточно. В документации приводится пример сервера за 5 долларов в месяц.</p>
+
+    <p>С моделями есть важная деталь для тех, у кого уже есть подписка Claude:</p>
+    <ul>
+      <li><strong>Тариф Claude Pro</strong> через вход по подписке не подключается. Остаётся только ключ API с оплатой за каждый запрос.</li>
+      <li><strong>Тариф Claude Max</strong> подключается, но по документации Hermes базовый лимит подписки при этом не тратится. Списываются только докупленные сверху кредиты дополнительного использования.</li>
+      <li><strong>Nous Portal</strong> - подписка от самих разработчиков, документация называет её рекомендуемым способом: один вход и больше 300 моделей.</li>
+      <li><strong>OpenRouter</strong> - один ключ к моделям разных компаний с оплатой за использование.</li>
+      <li><strong>Локальные модели через Ollama</strong> работают бесплатно на вашем компьютере, без ключа. Для работы агента документация советует модели с контекстом от 64 тыс. токенов, а такие требуют мощного железа и всё равно уступают облачным.</li>
+    </ul>
+
+    <p>Итог по цене: подписка Claude, которая уже оплачена ради Claude Code, Гермеса не покрывает. Это отдельная статья расходов.</p>
+
+    <h2>Кому Гермес нужен, <span class="accent">а кому нет</span>?</h2>
+
+    <p>Гермес имеет смысл, если:</p>
+    <ul>
+      <li>агент должен работать круглосуточно, а ваш компьютер выключается на ночь;</li>
+      <li>вы хотите давать задачи голосом или текстом из мессенджера, не открывая ноутбук;</li>
+      <li>нужно переключаться между моделями разных компаний или работать на локальных моделях без отправки данных наружу;</li>
+      <li>у вас есть время настраивать сервер и следить за его безопасностью.</li>
+    </ul>
+
+    <p>Гермес можно не ставить, если Claude Code уже закрывает ваши задачи. У меня на Claude Code работают сайт и статьи, проверки перед публикацией, аналитика из Яндекс Вебмастера и задачи по расписанию. Гермес из этого списка добавил бы только работу при выключенном компьютере, а взамен потребовал бы отдельную оплату модели, сервер и ещё одного агента с доступом к аккаунтам.</p>
+
+    <p>И отдельно про бизнес. Если вам нужен агент, который отвечает клиентам в Instagram или Telegram и доводит их до заявки, это другая задача. Ни Гермес, ни Claude Code для неё не нужны: такой агент собирается на готовой платформе вроде ChatPlace, официального партнёра Meta. Чем он отличается от обычного бота, я разбирал в статье <a href="/blog/ai-agent-vs-chatbot-2026.html">чат-бот или AI-агент</a>, а про сборку в мессенджере - в разборе <a href="/blog/telegram-ai-agenty-konstruktor-2026.html">AI-агентов в Telegram</a>.</p>
+
+    <h2>На что смотреть <span class="accent">перед установкой</span>?</h2>
+
+    <p>Гермес ставится одной командой с официального сайта Nous Research, для Windows есть отдельная команда через PowerShell. Перед тем как дать ему доступ к своим делам, стоит учесть несколько вещей:</p>
+    <ul>
+      <li><strong>Ставьте только с официального сайта или GitHub.</strong> Вокруг популярных агентов появляются сайты-двойники с похожими адресами.</li>
+      <li><strong>Агент работает без присмотра.</strong> У него есть доступ к терминалу, файлам и тем сервисам, которые вы подключите. Документация позволяет запускать его в изолированном окружении, например в Docker, - этим стоит пользоваться.</li>
+      <li><strong>Не давайте ключи от основных аккаунтов.</strong> Для пробы лучше завести отдельные доступы с ограниченными правами.</li>
+      <li><strong>Поставьте лимит расходов</strong> у провайдера модели: агент, который сам ставит себе задачи, может потратить больше, чем вы ожидаете.</li>
+    </ul>
+
+    <p>Если хотите сначала понять, нужен ли вашему бизнесу агент вообще и какой, начните с <a href="/blog/7-signs-you-need-ai-agent.html">7 признаков, что пора внедрять AI-агента</a>.</p>
+
+    <div data-offer-box style="max-width:760px;margin:40px auto;padding:24px;border:1px solid rgba(244,103,42,0.35);border-radius:14px;background:rgba(244,103,42,0.06);font-family:'Inter',sans-serif;">
+  <div style="font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:#f4672a;margin-bottom:10px;">Нужна помощь с этим?</div>
+  <div style="font-family:'Unbounded',sans-serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:6px;">AI-агент под ключ - от 30 000 ₽</div>
+  <p style="font-size:14.5px;line-height:1.6;color:#a5a5a5;margin:0 0 16px;">Подберу инструмент под вашу задачу и соберу агента, который отвечает клиентам 24/7 и передаёт вам готовые заявки.</p>
+  <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:#f4672a;color:#000;text-decoration:none;font-size:14px;font-weight:600;padding:12px 24px;border-radius:100px;">Рассчитать стоимость →</a>
+  <a href="/uslugi/ai-agent.html" style="display:inline-block;margin-left:16px;font-size:14px;font-weight:600;color:#f4672a;text-decoration:none;">Разработка AI-агента под ключ &rarr;</a>
+  <div style="font-size:12px;color:#7a7a7a;margin-top:12px;">Сначала бесплатный разбор - посмотрю ситуацию и скажу, что делать. Ни к чему не обязывает.</div>
+</div>
+
+<div class="cta-block">
+      <h3>Не знаете, какой агент нужен именно вам?</h3>
+      <p>Расскажите, какие задачи хотите отдать ИИ. Подскажу, хватит ли Claude Code, нужен ли отдельный агент на сервере или задачу проще решить готовым агентом в мессенджере.</p>
+      <a href="https://t.me/bahramovartsiom" class="btn-primary" target="_blank" rel="noopener noreferrer">
+        Написать в Telegram →
+      </a>
+    </div>
+
+  </div>
+</article>
+
+
+<!-- geo-faq:start -->
+<style>
+  .geo-faq { padding: 60px 0 20px; }
+  .geo-faq .geo-faq-in { max-width: 760px; margin: 0 auto; padding: 0 24px; box-sizing: border-box; }
+  .geo-faq h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; color: var(--text, #e8e8e8); margin: 0 0 36px; text-align: left; }
+  .geo-faq details { border-bottom: 1px solid #222; }
+  .geo-faq details:first-of-type { border-top: 1px solid #222; }
+  .geo-faq summary { font-family: 'Unbounded', sans-serif; font-size: 0.88rem; font-weight: 600; color: var(--text, #e8e8e8); cursor: pointer; padding: 20px 0; list-style: none; display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; transition: color .2s; line-height: 1.5; text-align: left; }
+  .geo-faq summary::-webkit-details-marker { display: none; }
+  .geo-faq summary::after { content: '+'; color: var(--orange, #f4672a); font-size: 1.4rem; font-weight: 300; flex-shrink: 0; margin-top: -2px; }
+  .geo-faq details[open] summary { color: var(--orange, #f4672a); }
+  .geo-faq details[open] summary::after { content: '−'; }
+  .geo-faq .faq-answer { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.75; color: var(--muted, #a3a3a3); padding: 0 32px 20px 0; margin: 0; text-align: left; }
+  @media (max-width: 768px) {
+    .geo-faq { padding: 40px 0 20px; }
+    .geo-faq summary { font-size: 0.82rem; padding: 16px 0; }
+    .geo-faq .faq-answer { font-size: 0.88rem; padding-bottom: 16px; }
+  }
+</style>
+<section class="geo-faq">
+  <div class="geo-faq-in">
+    <h2>Частые вопросы</h2>
+
+    <details>
+      <summary>Что такое Hermes Agent?</summary>
+      <p class="faq-answer">Бесплатный ИИ-агент с открытым кодом от Nous Research под лицензией MIT. Он ставится на компьютер или сервер, общается через Telegram и другие мессенджеры, помнит прошлые разговоры, сам создаёт навыки и выполняет задачи по расписанию.</p>
+    </details>
+
+    <details>
+      <summary>Hermes Agent бесплатный?</summary>
+      <p class="faq-answer">Сам агент бесплатный. Отдельно оплачивается нейросеть, к которой он подключается, и сервер, если агент должен работать круглосуточно. Бесплатно можно работать только на локальных моделях через Ollama, но им нужен мощный компьютер.</p>
+    </details>
+
+    <details>
+      <summary>Можно ли подключить Гермес к Claude Code?</summary>
+      <p class="faq-answer">Да. Во встроенном навыке claude-code Гермес передаёт задачи с файлами и кодом в Claude Code, установленный на той же машине. Главным в такой связке остаётся Гермес, а Claude Code выполняет поручения.</p>
+    </details>
+
+    <details>
+      <summary>Работает ли Hermes Agent с подпиской Claude?</summary>
+      <p class="faq-answer">По документации Hermes тариф Pro через вход по подписке не подключается, нужен ключ API с оплатой за запросы. Тариф Max подключается, но тратятся только докупленные кредиты дополнительного использования, а не базовый лимит подписки.</p>
+    </details>
+
+    <details>
+      <summary>Нужен ли Hermes Agent, если уже есть Claude Code?</summary>
+      <p class="faq-answer">Если Claude Code закрывает ваши задачи, Гермес добавит в основном работу круглосуточно на сервере, пока компьютер выключен. За это придётся отдельно платить за модель и сервер и следить за безопасностью ещё одного агента.</p>
+    </details>
+
+  </div>
+</section>
+<!-- geo-faq:end -->
+
+<!-- support-line:start -->
+<div data-support-line style="max-width:760px;margin:8px auto 48px;padding:0 24px;box-sizing:border-box;text-align:center;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;color:#8f8f8f;">Статья оказалась полезной? Поддержать автора можно, купив книгу Наставники за 298&nbsp;₽ – <a href="/kniga.html" style="color:#f4672a;font-weight:600;text-decoration:none;">посмотреть книгу&nbsp;→</a></div>
+<!-- support-line:end -->
+
+<!-- sf-nav:start -->
+<style>
+.sf-nav{position:static!important;inset:auto!important;transform:none!important;width:auto!important;height:auto!important;max-width:none!important;z-index:auto!important;backdrop-filter:none!important;border-top:1px solid rgba(255,255,255,.10);margin:0;padding:34px 20px 6px;background:#000;font-family:'Inter',system-ui,-apple-system,sans-serif}
+.sf-nav-in{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:26px 28px}
+.sf-nav h3{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#a3a3a3;margin:0 0 12px;font-weight:600;font-family:inherit}
+.sf-nav ul{list-style:none;margin:0;padding:0}
+.sf-nav li{margin:0 0 9px;line-height:1.45}
+.sf-nav a{color:#e6e6e6;text-decoration:none;font-size:15px}
+.sf-nav a:hover,.sf-nav a:focus{color:#f4672a;text-decoration:underline}
+.sf-nav .sf-cur{color:#a3a3a3;font-size:15px}
+@media (max-width:640px){
+  .sf-nav{padding:28px 16px 4px}
+  .sf-nav-in{grid-template-columns:1fr;gap:22px}
+  .sf-nav a,.sf-nav .sf-cur{font-size:16px}
+  .sf-nav li{margin-bottom:11px}
+}
+</style>
+<div class="sf-nav" role="navigation" aria-label="Разделы сайта"><div class="sf-nav-in">
+<div><h3>Услуги</h3><ul>
+<li><a href="/uslugi/razblokirovka-instagram.html">Разблокировка Instagram</a></li>
+<li><a href="/uslugi/vzlom-telegram-vosstanovlenie.html">Взломали Telegram: вернуть доступ</a></li>
+<li><a href="/uslugi/ai-agent.html">AI-агент под ключ</a></li>
+<li><a href="/uslugi/">Все услуги и цены</a></li>
+</ul></div>
+<div><h3>Блог по темам</h3><ul>
+<li><a href="/blog/#razblokirovki">Разблокировки и безопасность</a></li>
+<li><a href="/blog/#messengery">Мессенджеры для бизнеса</a></li>
+<li><a href="/blog/#prodvizhenie">Продвижение и контент</a></li>
+<li><a href="/blog/#ai-assistenty">AI-ассистенты и автоматизация</a></li>
+</ul></div>
+<div><h3>Сайт</h3><ul>
+<li><a href="/">Главная</a></li>
+<li><a href="/blog/">Все статьи</a></li>
+<li><a href="/about.html">Обо мне</a></li>
+<li><a href="/kniga.html">Книга Наставники</a></li>
+</ul></div>
+</div></div>
+<!-- sf-nav:end -->
+<footer>
+  <div class="container">
+    <p>© 2026 Артём Бахрамов · <a href="/blog/">Блог</a> · <a href="/about.html">Обо мне</a> · <a href="https://t.me/bahramovartsiom" target="_blank" rel="noopener noreferrer">Telegram</a></p>
+  </div>
+</footer>
+
+<script>
+  // Цель Метрики: из какого кластера блога пришло обращение
+  (function () {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a') : null;
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      if (href.indexOf('t.me/') === -1 && href.indexOf('max.ru/') === -1) return;
+      if (href.indexOf('t.me/tribute') !== -1) return; // покупка, а не заявка — своя цель
+      var name = href.indexOf('bahramovartem_bot') !== -1 ? 'bonus_click' : 'tg_blog_ai-assistenty';
+      if (typeof window.ym !== 'function') return;
+      window.ym(110081984, 'reachGoal', name);
+      if (name !== 'bonus_click') window.ym(110081984, 'reachGoal', 'lead');
+    }, true);
+  })();
+</script>
+</body>
+</html>
