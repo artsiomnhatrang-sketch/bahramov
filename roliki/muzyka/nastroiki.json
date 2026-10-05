@@ -1,0 +1,10 @@
+{
+  "_": "С какой секунды брать трек (пропуск тихого вступления). Громкость музыки выравнивается в render.mjs (loudnorm), отдельно подбирать не нужно.",
+  "v1-dark-trap-violin.mp3": {"from": 0},
+  "v2-damned-soul.mp3": {"from": 26},
+  "v3-violin-aura.mp3": {"from": 14},
+  "v4-hush-drill.mp3": {"from": 44},
+  "v5-orchestra-trap.mp3": {"from": 4},
+  "t16.mp3": {"from": 0},
+  "t12.mp3": {"from": 0}
+}

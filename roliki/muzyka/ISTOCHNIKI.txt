@@ -4,3 +4,9 @@ muzyka/t12.mp3 - DELOSound, Tense Suspense Background Music (Suspense, 1:12) - �
 muzyka/t17.mp3 - HitsLab, Tense Suspense Background Music (1:58), к концу нарастает - не для фона
 muzyka/t13.mp3 - SigmaMusicArt, Suspense Tense Music Background (Crime Scene, 1:13) - громкость скачет
 zvuki/whoosh0-3.mp3 - Pixabay sound effects, поиск whoosh, первые позиции (2, 2, 1, 1 с)
+05.10.2026, стиль «тёмная скрипка» (выбор Артёма: 1 и 3 основные):
+muzyka/v1-dark-trap-violin.mp3 - Dark Trap type Beat x Hard trap beat x Violin Type Beat (pixabay.com/music/...-162828)
+muzyka/v2-damned-soul.mp3 - Dark Trap Drill | Sad Violin (Damned soul)
+muzyka/v3-violin-aura.mp3 - Watermelon_Beats, VIOLIN AURA
+muzyka/v4-hush-drill.mp3 - Panda-Beats, (Royalty free) hush | hard Drill type beat (violin)
+muzyka/v5-orchestra-trap.mp3 - NiiRo, orchestra TRAP

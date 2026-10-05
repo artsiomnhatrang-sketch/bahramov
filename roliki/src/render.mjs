@@ -113,12 +113,17 @@ if (V2) {
   V.scenes.forEach((s, i) => { s.words = words[i]; });
 
   // звук: голос (срез гула, компрессия) + музыка тихо под голосом + «вжух» на вставках, громкость -14 LUFS
-  const music = join(ROOT, 'muzyka', args.music ?? (n % 2 ? 't12.mp3' : 't16.mp3'));
+  const musicName = args.music ?? (n % 2 ? 'v3-violin-aura.mp3' : 'v1-dark-trap-violin.mp3'); // выбор Артёма 05.10: скрипка 1 и 3
+  const music = join(ROOT, 'muzyka', musicName);
+  // с какой секунды брать трек (у многих тихое вступление) — muzyka/nastroiki.json или --musicFrom
+  const MN = JSON.parse(execFileSync('cat', [join(ROOT, 'muzyka', 'nastroiki.json')]).toString());
+  const mFrom = Number(args.musicFrom ?? MN[musicName]?.from ?? 0);
   const wh = [join(ROOT, 'zvuki', 'whoosh0.mp3'), join(ROOT, 'zvuki', 'whoosh2.mp3')];
   const mix = join(work, 'mix.m4a');
   const ins = ['-i', audio, '-stream_loop', '-1', '-i', music, ...sfx.flatMap((_, k) => ['-i', wh[k % 2]])];
   const f = [`[0:a]highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6[vo]`,
-    `[1:a]atrim=0:${total.toFixed(2)},volume=0.13,afade=t=in:d=0.6,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[mu]`,
+    // музыка: с нужного места, громкость выровнена (треки бывают от -8 до -25 дБ), затем тихо под голос
+    `[1:a]atrim=start=${mFrom}:duration=${(total + 0.5).toFixed(2)},asetpts=PTS-STARTPTS,loudnorm=I=-16:TP=-2,aresample=48000,volume=${args.musicVol ?? 0.2},afade=t=in:d=0.6,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[mu]`,
     ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=0.45,adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
     `[vo][mu]${sfx.map((_, k) => `[x${k}]`).join('')}amix=inputs=${sfx.length + 2}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[m]`];
   execFileSync('ffmpeg', ['-v', 'error', '-y', ...ins, '-filter_complex', f.join(';'), '-map', '[m]', '-t', total.toFixed(2),
