@@ -540,6 +540,11 @@
       background: var(--orange-dim);
     }
     .cat-section { scroll-margin-top: 184px; }
+    /* 4 кнопки разделов стояли столбиком: липкая плашка 205px закрывала четверть экрана. 06.10.2026 */
+    @media (max-width: 560px) {
+      .cat-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px 0; }
+      .cat-nav a { font-size: 10px; letter-spacing: 0.03em; padding: 9px 6px; text-align: center; white-space: nowrap; }
+    }
     .cat-section + .cat-section { margin-top: 72px; }
     .cat-title {
       font-family: 'Unbounded', sans-serif;
@@ -1113,8 +1118,8 @@ nav a.nav-link.active { background: #f4672a !important; color: #000 !important; 
           <span class="post-tag">Кейс</span>
           <span class="post-date">5 октября 2026</span>
         </div>
-        <h2>Кейс AI-агента в инстаграм: 3 846 диалогов за 4 недели для H2PRO</h2>
-        <p>Как AI-агент ChatPlace работает поверх воронок по кодовым словам в двух аккаунтах: правила, динамика по неделям, пик 4 519 обращений за день и 129 номеров для менеджера.</p>
+        <h2>Кейс AI-агента в инстаграм: 3 781 диалог за 26 дней для H2PRO</h2>
+        <p>Как AI-агент ChatPlace работает поверх воронок по кодовым словам в двух аккаунтах: правила, динамика по неделям, пик 4 519 обращений за день и 120 номеров для менеджера.</p>
         <span class="post-read-more">Читать статью →</span>
       </a>
 
