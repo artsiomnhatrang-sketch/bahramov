@@ -10,13 +10,18 @@
 
   python3 scripts/threads-uniq.py sync
       забрать по API все ответы обоих аккаунтов в реестр threads/sent-texts.jsonl
-      (запускать в начале и в конце подхода)
+      (запускать в начале и в конце подхода). Адресат (user, post, root) API
+      отдаёт только для ответов внутри НАШИХ постов; в чужих ветках поля пустые,
+      их заполняет record с тем же текстом (sync склеивает). Безадресные ответы
+      за 3 дня sync печатает - дописать record, иначе check их не видит (04.10)
 
-  python3 scripts/threads-uniq.py check --account main|ai --user NICK [--post ID] "текст"
+  python3 scripts/threads-uniq.py check --account main|ai --user NICK [--post ID] [--root НИК|ID] "текст"
       перед каждым ответом в новой ветке. Выход 1 = не отправлять
+      --root      автор или ID корня ветки, если пишем вложенным ответом:
+                  корень уже у другого аккаунта = СТОП (04.10, anastasia.tlk.arts)
       --followup  человек ответил нам сам: свой журнал по нику не проверяем
 
-  python3 scripts/threads-uniq.py record --account main|ai --user NICK [--post ID] "текст"
+  python3 scripts/threads-uniq.py record --account main|ai --user NICK [--post ID] [--root НИК|ID] "текст"
       записать отправленный ответ сразу (sync потом подтянет его и по API)
 
   python3 scripts/threads-uniq.py stats
@@ -120,9 +125,15 @@ def load_env():
     return env
 
 
+API = "https://graph.threads.net/v1.0/"
+
+
 def fetch_replies(token):
-    url = "https://graph.threads.net/v1.0/me/replies?" + urllib.parse.urlencode({
-        "fields": "id,text,timestamp,permalink", "limit": 100, "access_token": token})
+    # replied_to и root_post Meta отдаёт только в ветках, где корень наш;
+    # в чужих ветках их нет (проверено 05.10 на обоих аккаунтах)
+    url = API + "me/replies?" + urllib.parse.urlencode({
+        "fields": "id,text,timestamp,permalink,shortcode,replied_to,root_post",
+        "limit": 100, "access_token": token})
     out, pages = [], 0
     while url and pages < 30:
         with urllib.request.urlopen(url, timeout=30) as r:
@@ -134,11 +145,58 @@ def fetch_replies(token):
     return out
 
 
+def media_info(token, mid, cache):
+    """ник автора и shortcode поста по его ID (кэш на один прогон)"""
+    if mid not in cache:
+        url = API + mid + "?" + urllib.parse.urlencode({"fields": "username,shortcode", "access_token": token})
+        try:
+            with urllib.request.urlopen(url, timeout=30) as r:
+                d = json.loads(r.read().decode("utf-8"))
+            cache[mid] = ((d.get("username") or "").lower(), d.get("shortcode") or mid)
+        except Exception:
+            cache[mid] = ("", mid)
+        time.sleep(0.2)
+    return cache[mid]
+
+
+def fill_target(row, rep, token, cache):
+    """заполнить user/post/root из replied_to и root_post. True - что-то дописали"""
+    to, root = (rep.get("replied_to") or {}).get("id"), (rep.get("root_post") or {}).get("id")
+    if not to or row.get("user"):
+        return False
+    row["user"], row["post"] = media_info(token, to, cache)
+    if root:
+        row["root"] = media_info(token, root, cache)[1]
+    return True
+
+
+def merge_records(rows):
+    """ручной record без id + строка из API с тем же текстом = одна строка с адресатом.
+    Случай sara.arsenkyzy: ответ 03.10 пришёл из API без ника, ник дописали record'ом
+    отдельной строкой, и check по реестру его не видел"""
+    blank = {}
+    for r in rows:
+        if r.get("id") and not r.get("user"):
+            blank.setdefault((r["account"], norm(r["text"])), []).append(r)
+    out, merged = [], 0
+    for r in rows:
+        k = (r["account"], norm(r["text"]))
+        if not r.get("id") and r.get("user") and blank.get(k):
+            t = blank[k].pop(0)
+            for f in ("user", "post", "root"):
+                if r.get(f):
+                    t[f] = r[f]
+            merged += 1
+            continue
+        out.append(r)
+    return out, merged
+
+
 def cmd_sync():
     env = load_env()
     rows = load_reg()
-    known = {r.get("id") for r in rows if r.get("id")}
-    added = 0
+    known = {r.get("id"): r for r in rows if r.get("id")}
+    added = filled = 0
     for acc, key in (("main", "THREADS_ACCESS_TOKEN"), ("ai", "THREADS_AI_ACCESS_TOKEN")):
         tok = env.get(key)
         if not tok:
@@ -149,21 +207,37 @@ def cmd_sync():
         except Exception as e:  # сеть или истёкший токен - не валим подход
             print("%s: API не ответил (%s)" % (NAMES[acc], e))
             continue
+        cache = {}
         for r in reps:
-            if r.get("id") in known or not r.get("text"):
+            if not r.get("text"):
+                continue
+            if r.get("id") in known:
+                filled += fill_target(known[r["id"]], r, tok, cache)  # догон старых строк
                 continue
             # запись, сделанная вручную через record, получает id при sync
             match = [x for x in rows if not x.get("id") and x["account"] == acc and norm(x["text"]) == norm(r["text"])]
             if match:
                 match[0]["id"] = r["id"]
+                known[r["id"]] = match[0]
+                fill_target(match[0], r, tok, cache)
                 continue
-            rows.append({"id": r["id"], "account": acc, "ts": r.get("timestamp", ""),
-                         "text": r["text"], "user": "", "post": ""})
-            known.add(r["id"])
+            row = {"id": r["id"], "account": acc, "ts": r.get("timestamp", ""),
+                   "text": r["text"], "user": "", "post": ""}
+            fill_target(row, r, tok, cache)
+            rows.append(row)
+            known[r["id"]] = row
             added += 1
         print("%s: ответов по API %d" % (NAMES[acc], len(reps)))
+    rows, merged = merge_records(rows)
     save_reg(rows)
-    print("реестр: %d текстов, новых %d" % (len(rows), added))
+    print("реестр: %d текстов, новых %d, адресат из API %d, склеено с record %d" % (len(rows), added, filled, merged))
+    # чужие ветки API не раскрывает - свежие безадресные ответы показать, чтобы дописать record
+    since = time.strftime("%Y-%m-%d", time.localtime(time.time() - 3 * 86400))
+    lost = [r for r in rows if r.get("id") and not r.get("user") and r.get("ts", "")[:10] >= since]
+    if lost:
+        print("без адресата за 3 дня: %d - check их не видит, дописать record --user с тем же текстом:" % len(lost))
+        for r in lost[-15:]:
+            print("  %s %s: %s" % (NAMES[r["account"]], r["ts"][:16], r["text"][:70]))
 
 
 def arg(name, default=""):
@@ -182,6 +256,7 @@ def cmd_check(record=False):
         sys.exit("--account: main или ai")
     user = arg("--user").lstrip("@").lower()
     post = arg("--post")
+    root = arg("--root").lstrip("@")
     followup = "--followup" in sys.argv
     rest = [a for a in sys.argv[2:] if a != "--followup"]
     text = " ".join(rest).strip() or sys.stdin.read().strip()
@@ -192,7 +267,7 @@ def cmd_check(record=False):
 
     if record:
         rows.append({"id": "", "account": acc, "ts": time.strftime("%Y-%m-%dT%H:%M:%S"),
-                     "text": text, "user": user, "post": post})
+                     "text": text, "user": user, "post": post, "root": root})
         save_reg(rows)
         print("записано в реестр")
         return
@@ -205,6 +280,15 @@ def cmd_check(record=False):
             stop.append("@%s уже есть в журнале %s - одному человеку дважды не пишем" % (user, NAMES[acc]))
     if post and (post in posts_in_log(other) or any(r.get("post") == post for r in rows if r["account"] == other)):
         stop.append("ветка %s уже у %s - два аккаунта в одной ветке нельзя" % (post, NAMES[other]))
+    theirs = [r for r in rows if r["account"] == other]
+    if post and any(r.get("root") == post for r in theirs):
+        stop.append("в ветке %s уже есть вложенный ответ %s" % (post, NAMES[other]))
+    if root:
+        # корень можно дать ником автора или ID поста - сверяем обоими способами
+        rn = root.lower()
+        if rn in nicks_in_log(other) or any(r.get("user") == rn for r in theirs) \
+                or root in posts_in_log(other) or any(x in (r.get("post"), r.get("root")) for r in theirs for x in (root, rn)):
+            stop.append("корень ветки %s уже у %s - вложенным ответом туда тоже нельзя" % (root, NAMES[other]))
 
     h = head(text)
     for r in rows:
