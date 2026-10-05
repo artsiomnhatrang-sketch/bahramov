@@ -2302,3 +2302,19 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 **threads-uniq остановил: 6** (happylifemri, _alymovaaaaa, domanina_k, olya_nosikk.2.69, bat.97521651, ulyana.solovei - хвосты как у @bahramovartem или похоже на свои; переписаны).
 
 **Дополнение 22:00:** за час после подхода в директ @bahram.av написали 5 человек из сегодняшних: divina_bag_ [A] (уже в ватсапе), saturna_knits74 [A], rennxciiin, pavel_yarotskii (жена пишет в Telegram), olya_nosikk.2.69. Ответ @sara.arsenkyzy архивирован: 03.10 ей уже ответил @bahramovartem (в реестре не было ника).
+
+## 05.10.2026 вечер (17:55-19:05), @bahram.av - 43 ответа
+
+Подход по прямой просьбе Артёма: 30 свежих веток, лимиты не считать, сразу после - @bahramovartem. Профиль Chrome Browser 1 (Artembelyj414). 22 поиска recent + 2 выдачи Топ + 6 сборников. Признаков лимита нет. API 1048 -> 1091. Последние 6 поисков почти пустые: выдача за 2 дня выбрана, честно 28 новых вместо 30.
+
+**Входящие:** с прошлого подхода 6 человек, все в Запросах и Скрытых (не во Входящих - Артёму принять): sabi.faradzheva (как отвязать инсту от тредс), happylifemri (старый тредс margaritalifediary), и уже с этого подхода dameli_azamatkyzy [A] (прислала текст отключения: kondybaeva.p отключён 02.10 из-за связи с mfo_grafik_2025), grand_cacao54 [A] (korolkova__tatyana), __occult__esoterica_kz [A] (что не делать на новом), brummdasha.o.lichnom (не может отправить картинку). Комментариев под своими постами за 2 дня нет (60 постов).
+
+**Новые: 28** ([A] 14, [B] 14)
+- [A] @lovasvechi (свечи, день рождения, belova_elenaa - она же), @stervella_mary (пиар-агентство, обжалование), @__occult__esoterica_kz (эзотерика), @zakuski.astana (закуски, клиенты), @modul_kuhniproo (кухни, жалобы конкурентов), @alya_hatieva (4000, впн), @molchanovdaniel (инста снесена после хейта на сериал), @grand_cacao54 (десерты Новосибирск), @kristina_tarot_vibes777 (магазин шуб, 6 блоков), @elaya__jewell (украшения, третий акк, ветка aniiij), @mundoespanol (испанский, 5000 постов), @dameli_azamatkyzy (рабочая инста и личная по одной почте), @med_amicus_content (медицина, срез охвата), @the_forgotten_st (школа)
+- [B] @brummdasha.o.lichnom, @sokolova_____tv, @emiiilloo, @aniiij (сборник 30 ответов), @al.ksen (ограничения сняты, войти не может), @vigodno.rus (ветка stervella_mary), @stydia_frilanca (впн, ветка aniiij), @av.kotov.av (200к за сутки), @dmchk (тикток, перезаливы), @jullizinch27 (инста в приложении кидает на фейсбук), @indira.ashimk (ветка zakuski), @kkathkate (страх), @iva_author (ветка slyusaar), @yuli_chinaa (ветка sokolova, ответила: мы с вами уже болтали - в журналах её нет, возможно Артём лично)
+
+**Ответы тем, кто ответил нам (15):** вчерашние miray__brand [A] (почему нельзя новый тредс), ronirosseeee, april_myheart4, travelproadvisor, domanina_k, _savchenko_e.d._, _t.babina, slyusaar (новая страница krasi.jewellry, посмотрел шапку); сегодняшние stervella_mary (выбрасывает), med_amicus_content, mundoespanol, av.kotov.av, __occult__esoterica_kz, grand_cacao54, vigodno.rus. Не отвечали: clear.vika.sav, anhellinaash, oksanagoddess7772026, vikysikahandmade (заказы уже в ТГ), bat.97521651, krivoruchko_d - разговор закрыт.
+
+**Пропущено:** milena__look (это milenasaveleva94, уже наша), anna.blashukk (= anna.blashuuk), lemi_arts_pets (человек @bahramovartem), qorpehome.kz, alina.tellme, violetta304839, nastya_bond1991 (вложенные под чужими постами), metamasterjane (сама отвечает на вопросы про тредс), nhatrang2026 (уже восстановил), hlada.r и lelikkk333 (подростки), krasi.jewellry (= slyusaar), конкуренты vanta_recovery, accrevive, misterxhacking в чужих ветках не трогали.
+
+**threads-uniq остановил: 0.** Сбой: `threads-uniq.py record --help` записал строку --help в реестр, удалена руками.
