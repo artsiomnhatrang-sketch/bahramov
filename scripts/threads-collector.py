@@ -5,7 +5,8 @@
 Он кладёт в localStorage список ников из журналов обоих аккаунтов и набор
 функций. Дальше каждая функция вызывается одной строкой, без ручного разбора.
 
-  python3 scripts/threads-collector.py          напечатать JS для вставки
+  python3 scripts/threads-collector.py [--account ai]   напечатать JS для вставки
+      (cl_acc = чей профиль; cl_send не отправит из чужого профиля Chrome)
 
 После вставки (всё вызывать первой строкой, иначе CSP запрещает eval):
   await eval(localStorage.getItem('cl_collect'))   на странице поиска recent:
@@ -26,6 +27,7 @@
 voice-lint и threads-uniq check перед отправкой всё равно обязательны.
 """
 import json
+import sys
 import re
 from pathlib import Path
 
@@ -70,13 +72,17 @@ TOP = r"""(()=>{const seen=new Set(localStorage.getItem('cl_seen').split(' '));c
 
 HARV = r"""(async()=>{const seen=new Set(localStorage.getItem('cl_seen').split(' ')); const acc={}; for(let i=0;i<8;i++){ for(const c of document.querySelectorAll('div[data-pressable-container]')){const a=c.querySelector('a[href*="/post/"]'); const h=a?a.getAttribute('href'):''; if(!h||acc[h]) continue; const u=h.split('/')[1]?.slice(1)||''; acc[h]=(seen.has(u)?'SEEN ':'')+h+' | '+c.innerText.replace(/\n/g,' ').slice(0,220);} window.scrollBy(0,2000); await new Promise(r=>setTimeout(r,1000)); } localStorage.setItem('cl_thread', (localStorage.getItem('cl_thread')||'')+'\n\n=== '+location.pathname+'\n'+Object.values(acc).join('\n')); return Object.keys(acc).length;})()"""
 
-SEND = r"""(async()=>{const T=localStorage.getItem('cl_T'); const bad=new RegExp('['+String.fromCharCode(8212,8211,171,187,8220,8221,8222,34)+']'); if (!T || bad.test(T) || /\.\s*$/.test(T)) throw new Error('voice-lint'); const exp=[...document.querySelectorAll('[role=button]')].find(b=>b.getAttribute('aria-label')==='Развернуть конструктор'); if(!exp) throw new Error('no composer'); exp.click(); await new Promise(r=>setTimeout(r,2000)); const dlg=document.querySelector('[role=dialog]'); const el=[...dlg.querySelectorAll('[contenteditable="true"]')].pop(); el.focus(); const dt=new DataTransfer(); dt.setData('text/plain', T); el.dispatchEvent(new ClipboardEvent('paste',{clipboardData:dt,bubbles:true,cancelable:true})); await new Promise(r=>setTimeout(r,1200)); if(el.innerText.length!==T.length) throw new Error('len mismatch '+el.innerText.length+' vs '+T.length); const head=dlg.innerText.slice(0,70).replace(/\n/g,' '); [...dlg.querySelectorAll('[role=button],button')].find(b=>/^Опубликовать$/.test(b.innerText.trim())).click(); await new Promise(r=>setTimeout(r,5000)); localStorage.setItem('cl_probe', T.slice(0,35)); return {head, ok:true};})()"""
+SEND = r"""(async()=>{const acc=localStorage.getItem('cl_acc'); const prof=[...document.querySelectorAll('a')].filter(a=>/Профиль|Profile/.test(a.getAttribute('aria-label')||a.innerText)).map(a=>a.getAttribute('href'))[0]; if(!acc||prof!==acc) throw new Error('WRONG ACCOUNT '+prof+' != '+acc); const T=localStorage.getItem('cl_T'); const bad=new RegExp('['+String.fromCharCode(8212,8211,171,187,8220,8221,8222,34)+']'); if (!T || bad.test(T) || /\.\s*$/.test(T)) throw new Error('voice-lint'); const exp=[...document.querySelectorAll('[role=button]')].find(b=>b.getAttribute('aria-label')==='Развернуть конструктор'); if(!exp) throw new Error('no composer'); exp.click(); await new Promise(r=>setTimeout(r,2000)); const dlg=document.querySelector('[role=dialog]'); const el=[...dlg.querySelectorAll('[contenteditable="true"]')].pop(); el.focus(); const dt=new DataTransfer(); dt.setData('text/plain', T); el.dispatchEvent(new ClipboardEvent('paste',{clipboardData:dt,bubbles:true,cancelable:true})); await new Promise(r=>setTimeout(r,1200)); if(el.innerText.length!==T.length) throw new Error('len mismatch '+el.innerText.length+' vs '+T.length); const head=dlg.innerText.slice(0,70).replace(/\n/g,' '); [...dlg.querySelectorAll('[role=button],button')].find(b=>/^Опубликовать$/.test(b.innerText.trim())).click(); await new Promise(r=>setTimeout(r,5000)); localStorage.setItem('cl_probe', T.slice(0,35)); return {head, ok:true};})()"""
 
 CHECK = r"""(()=>{const p=localStorage.getItem('cl_probe'); const n=document.body.innerText.split(p).length-1; if(n!==1) throw new Error('CHECK FAILED count='+n+' for '+p); return 'ok '+p;})()"""
 
 
 def main():
+    # 05.10: расширение само переключалось на другой профиль Chrome посреди подхода.
+    # cl_send отказывается отправлять, если ссылка Профиль не совпадает с cl_acc.
+    acc = "/@bahramovartem" if "--account" in sys.argv and "ai" in sys.argv else "/@bahram.av"
     parts = {
+        "cl_acc": acc,
         "cl_seen": " ".join(seen_nicks()),
         "cl_collect": COLLECT,
         "cl_dump": DUMP,
