@@ -25,11 +25,15 @@ const box = await p.evaluate(([sel, to, mark]) => {
     if (ps === 'fixed' || ps === 'sticky') e.style.display = 'none';
   }
   // sel вида «text:Что сделать» — заголовок по тексту; to вида «+ul» — ближайший следующий соседний блок
-  const A = sel.startsWith('text:')
+  let A = sel.startsWith('text:')
     ? [...document.querySelectorAll('h1,h2,h3')].find((h) => h.textContent.includes(sel.slice(5)))
     : document.querySelector(sel);
   let B = A;
-  if (to && to.startsWith('+')) { B = A?.nextElementSibling; while (B && !B.matches(to.slice(1))) B = B.nextElementSibling; }
+  // to вида «~p» — только блок после заголовка, в котором стоит mark (когда фраза не в первом абзаце)
+  if (to && to.startsWith('~')) {
+    B = [...document.querySelectorAll(to.slice(1))].find((e) => (A.compareDocumentPosition(e) & 4) && e.textContent.includes(mark));
+    A = B;
+  } else if (to && to.startsWith('+')) { B = A?.nextElementSibling; while (B && !B.matches(to.slice(1))) B = B.nextElementSibling; }
   else if (to) B = document.querySelector(to);
   if (!A || !B) return null;
   if (mark) {
