@@ -1,5 +1,7 @@
 # Расписание Shorts в @bahramovai (поставлено 03.10.2026, 14 роликов перезалиты в монтаже v2 04.10, 13 из них голосом aidar и со скрипкой 05.10; 7 новых тем на 18-24.10 поставлены 05.10)
 
+06.10: регистрация и спам-блок поменялись датами (регистрация раньше - под просадку Яндекса по этому запросу).
+
 Все в 18:00 МСК (22:00 по времени Studio, GMT+7).
 
 | Дата | Файл | Название | Ссылка |
@@ -7,7 +9,7 @@
 | 3.10 | 04-vzlomali-telegram-chto-delat | Взломали телеграмм что делать | https://youtube.com/shorts/seR9xiHhZNI |
 | 4.10 | 02-ohvaty-3-oshibki | Упали охваты в инстаграм? 3 ошибки, которые делают только хуже | https://youtube.com/shorts/IlRvZX29-wk |
 | 5.10 | 13-vzlomali-instagram | Взломали инстаграм что делать | https://youtube.com/shorts/FS5QMWYYS1Q |
-| 6.10 | 16-spam-blok-telegram | Как снять спам блок в телеграме | https://youtube.com/shorts/O4gVuTErd_0 |
+| 6.10 | 17-registraciya-instagram | Как зарегистрироваться в инстаграм в 2026 | https://youtube.com/shorts/uQR_e4FW0NY |
 | 7.10 | 03-avtomatizaciya-direkt | Отвечаете в директе часами? Эту работу можно отдать боту | https://youtube.com/shorts/GDsSs-XsRxE |
 | 8.10 | 05-vzlomali-telegram-ne-mogu-zajti | Взломали телеграмм не могу зайти | https://youtube.com/shorts/2vB-ulTJ9b4 |
 | 9.10 | 11-instagram-kak-vosstanovit | Инстаграм заблокировал аккаунт как восстановить | https://youtube.com/shorts/U64xdEghPNs |
@@ -19,7 +21,7 @@
 | 15.10 | 07-vernut-telegram-kanal | Как вернуть телеграм канал | https://youtube.com/shorts/2xmEXisjA1k |
 | 16.10 | 15-vatsap-biznes | Заблокировали ватсап бизнес что делать | https://youtube.com/shorts/2R8nxXiO5e4 |
 | 17.10 | 09-zablokirovali-instagram-chto-delat | Заблокировали инстаграм что делать | https://youtube.com/shorts/9Z6gUK2yjDk |
-| 18.10 | 17-registraciya-instagram | Как зарегистрироваться в инстаграм в 2026 | https://youtube.com/shorts/uQR_e4FW0NY |
+| 18.10 | 16-spam-blok-telegram | Как снять спам блок в телеграме | https://youtube.com/shorts/O4gVuTErd_0 |
 | 19.10 | 18-pochemu-blokiruet-instagram | Почему инстаграм блокирует аккаунты сейчас | https://youtube.com/shorts/q6jcruXAJYE |
 | 20.10 | 19-sozdanie-zablokirovano | Создание учетной записи заблокировано инстаграм | https://youtube.com/shorts/TlB5QoFeklw |
 | 21.10 | 20-podderzhka-instagram | Как написать в поддержку инстаграм | https://youtube.com/shorts/1duVxy0QEJw |
