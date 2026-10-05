@@ -1,4 +1,4 @@
-# Расписание Shorts в @bahramovai (поставлено 03.10.2026, 14 роликов перезалиты в монтаже v2 04.10)
+# Расписание Shorts в @bahramovai (поставлено 03.10.2026, 14 роликов перезалиты в монтаже v2 04.10, 13 из них голосом aidar 05.10)
 
 Все в 18:00 МСК (22:00 по времени Studio, GMT+7).
 
@@ -6,19 +6,19 @@
 |---|---|---|---|
 | 3.10 | 04-vzlomali-telegram-chto-delat | Взломали телеграмм что делать | https://youtube.com/shorts/seR9xiHhZNI |
 | 4.10 | 02-ohvaty-3-oshibki | Упали охваты в инстаграм? 3 ошибки, которые делают только хуже | https://youtube.com/shorts/IlRvZX29-wk |
-| 5.10 | 13-vzlomali-instagram | Взломали инстаграм что делать | https://youtube.com/shorts/BZbaPlDxcdk |
-| 6.10 | 16-spam-blok-telegram | Как снять спам блок в телеграме | https://youtube.com/shorts/Up4H5JKJ1j0 |
-| 7.10 | 03-avtomatizaciya-direkt | Отвечаете в директе часами? Эту работу можно отдать боту | https://youtube.com/shorts/ISxzKUVK-zM |
-| 8.10 | 05-vzlomali-telegram-ne-mogu-zajti | Взломали телеграмм не могу зайти | https://youtube.com/shorts/eCGwXHzUjWg |
-| 9.10 | 11-instagram-kak-vosstanovit | Инстаграм заблокировал аккаунт как восстановить | https://youtube.com/shorts/n5pgq3Hdz1I |
-| 10.10 | 14-vatsap-zablokirovali | Заблокировали ватсап что делать | https://youtube.com/shorts/fDSfzfVLTBU |
-| 11.10 | 06-telegram-bez-nomera | Как вернуть телеграм аккаунт без номера | https://youtube.com/shorts/Bacb4yE5U-E |
-| 12.10 | 12-instagram-ne-prihodit-kod | Не могу зайти в инстаграм не приходит код | https://youtube.com/shorts/CrWQppWnJBI |
-| 13.10 | 08-telegram-posle-vzloma | Восстановить telegram после взлома | https://youtube.com/shorts/YFxCKe81VPo |
-| 14.10 | 10-instagram-navsegda | Заблокировали инстаграм навсегда | https://youtube.com/shorts/tCU9vlQF25Y |
-| 15.10 | 07-vernut-telegram-kanal | Как вернуть телеграм канал | https://youtube.com/shorts/nnwOlJlCDpg |
-| 16.10 | 15-vatsap-biznes | Заблокировали ватсап бизнес что делать | https://youtube.com/shorts/fJy-fMnyeuI |
-| 17.10 | 09-zablokirovali-instagram-chto-delat | Заблокировали инстаграм что делать | https://youtube.com/shorts/_p7lXYkmaJI |
+| 5.10 | 13-vzlomali-instagram | Взломали инстаграм что делать | https://youtube.com/shorts/WUQaKGppIKs |
+| 6.10 | 16-spam-blok-telegram | Как снять спам блок в телеграме | https://youtube.com/shorts/T0V7Mb8O8V8 |
+| 7.10 | 03-avtomatizaciya-direkt | Отвечаете в директе часами? Эту работу можно отдать боту | https://youtube.com/shorts/XgL9AILKSNc |
+| 8.10 | 05-vzlomali-telegram-ne-mogu-zajti | Взломали телеграмм не могу зайти | https://youtube.com/shorts/_SMbUXcFQWY |
+| 9.10 | 11-instagram-kak-vosstanovit | Инстаграм заблокировал аккаунт как восстановить | https://youtube.com/shorts/NFuD28XEG3U |
+| 10.10 | 14-vatsap-zablokirovali | Заблокировали ватсап что делать | https://youtube.com/shorts/dtsFGY9GwHo |
+| 11.10 | 06-telegram-bez-nomera | Как вернуть телеграм аккаунт без номера | https://youtube.com/shorts/MzcMjE1J2u0 |
+| 12.10 | 12-instagram-ne-prihodit-kod | Не могу зайти в инстаграм не приходит код | https://youtube.com/shorts/sVJP1MZdwvc |
+| 13.10 | 08-telegram-posle-vzloma | Восстановить telegram после взлома | https://youtube.com/shorts/yo2kRwU31L8 |
+| 14.10 | 10-instagram-navsegda | Заблокировали инстаграм навсегда | https://youtube.com/shorts/cJWjF_fa9o4 |
+| 15.10 | 07-vernut-telegram-kanal | Как вернуть телеграм канал | https://youtube.com/shorts/r-GB8nIEzj4 |
+| 16.10 | 15-vatsap-biznes | Заблокировали ватсап бизнес что делать | https://youtube.com/shorts/OYLKgniyIz8 |
+| 17.10 | 09-zablokirovali-instagram-chto-delat | Заблокировали инстаграм что делать | https://youtube.com/shorts/Q619Ad_cdTc |
 
 Черновик «ЧЕРНОВИК старая версия, не публиковать» — старая сборка ролика 04, скрытый, не публиковать.
 
