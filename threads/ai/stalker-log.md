@@ -326,3 +326,20 @@ threads-uniq остановил 1 текст («по скрину видно» -
 - Пропущены: @nyurochka.italia (закрыла ответы), @mariehrudzka (LinkedIn), @zolkahledi.2 (политическая ветка), @sashatoskaa, @akovalion (LinkedIn), @nadi_paris (оператор и госуслуги), конкуренты artemova.sofya, fmip_off, anna.miniapp, aidynzia.
 
 **threads-uniq остановил: 5** (anastasia.tlk.arts, zolkahledi.2, iv.evvv - хвост как у @bahram.av; _khalaeva.aisha - то же начало; sara.arsenkyzy - человек у @bahram.av).
+
+## 05.10.2026 вечер (19:05-19:25), @bahramovartem - 18 ответов
+
+Сразу после @bahram.av по просьбе Артёма (паузу 3 часа снял он). Профиль Chrome Browser 2 (artsiomnhatrang). 19 поисков recent по своему набору (взломы, коды, доступ) + 4 своих ветки-сборника. Признаков лимита нет. API 210 -> 228. Выдача за 2 дня почти вся уже разобрана @bahram.av в этот же вечер: честно 9 новых вместо 30.
+
+**Входящие:** ka.rine.k написала в директ через 10 минут после ответа. Запросы и Скрытые пустые.
+
+**Новые: 9** ([A] 5, [B] 4)
+- [A] @anna_andreevna_abramova (Первый Цветочный Новосибирск, 2600, Томск следующий), @aiim.target (таргетолог, фейсбук 3 месяца без кода), @as_alisherkyzy (украшения, теневой бан рабочего dameli_jwl, прислала скрин), @anastasya_protasova (визажист СПб, теневой бан, просила лайки), @yuliana_kosmoo (блогер, от нового акка подписчице пришло странное сообщение)
+- [B] @ka.rine.k (11 лет, нет доступа к почте и номеру - уже в директе), @ognevapai02 (третий акк, ветка anna_andreevna_abramova), @dolphin.2014193 (впн, смена стран), @kg.reporter (Каракол, сбор взломанных ватсапов)
+
+**Ответы тем, кто ответил нам (9):** olga_klimka (письмо картинкой), _elenbond (телеграм не пускает), kols_23 (страницу удалили), schegolkova_pr (2 раза), olga_nhatrang (новый номер, Нячанг), s.aidana.nkz (ватсап без почты), ellapletneva (охваты после весеннего взлёта), as_alisherkyzy (скрин статуса).
+
+**Пропущено:** конкуренты и взломщики в ветках (misterxhacking, tony_trade, accrevive, _woschanko_, lisovskiy_st, threads_elena), Steam и Авито, kv1.russia и прочая реклама.
+
+**threads-uniq остановил: 2** (as_alisherkyzy, anastasya_protasova - хвост как у @bahram.av, переписаны).
+**Сбой:** расширение Claude дважды само переключалось на Browser 1 (@bahram.av) посреди подхода. Ничего не ушло: перед каждой отправкой стояла JS-проверка ссылки Профиль (cl_guard), без /@bahramovartem пакет останавливается. В zsh аргумент `--root` в трёх record склеился с текстом - реестр поправлен.
