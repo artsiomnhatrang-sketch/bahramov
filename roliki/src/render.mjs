@@ -1,8 +1,8 @@
 // Сборка ролика: сценарий → озвучка по сценам (edge-tts) → кадры из template.html
 // (Playwright) → mp4 1080×1920 (ffmpeg). Токены и деньги не тратит.
 //   node src/render.mjs --format blokirovka [--n 0] [--date 2026-10-03] [--voice artem|aidar|dmitry] [--slug имя]
-import { spawn, execFileSync } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { spawn, spawnSync, execFileSync } from 'node:child_process';
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -66,10 +66,14 @@ if (IS_SILERO) {
   execFileSync('python3', [join(ROOT, 'udarenia', 'silero_tts.py')], { stdio: ['pipe', 'inherit', 'inherit'],
     input: JSON.stringify({ speaker: VOICE, items: acc, out: V.scenes.map((_, i) => join(work, `s${i}.raw.wav`)) }) });
 }
-if (IS_CLONE) { // ~28 с на фразу на Маке (MPS)
+if (IS_CLONE) { // ~28 с на фразу на Маке (MPS); фразу с тем же текстом и голосом не озвучиваем заново
   const dir = CLONES[VOICE_ARG];
-  execFileSync(join(dir, '.venv', 'bin', 'python'), [join(dir, 'say.py')], { stdio: ['pipe', 'inherit', 'inherit'],
-    input: JSON.stringify({ items: acc, out: V.scenes.map((_, i) => join(work, `s${i}.raw.wav`)) }) });
+  const key = (i) => `${VOICE_ARG}\n${acc[i]}`;
+  const todo = acc.map((_, i) => i).filter((i) => !existsSync(join(work, `s${i}.raw.wav`)) || !existsSync(join(work, `s${i}.key`))
+    || readFileSync(join(work, `s${i}.key`), 'utf8') !== key(i));
+  if (todo.length) execFileSync(join(dir, '.venv', 'bin', 'python'), [join(dir, 'say.py')], { stdio: ['pipe', 'inherit', 'inherit'],
+    input: JSON.stringify({ items: todo.map((i) => acc[i]), out: todo.map((i) => join(work, `s${i}.raw.wav`)) }) });
+  todo.forEach((i) => writeFileSync(join(work, `s${i}.key`), key(i)));
 }
 V.scenes.forEach((s, i) => {
   const raw = join(work, PLUS ? `s${i}.raw.wav` : `s${i}.mp3`);
@@ -131,11 +135,16 @@ if (V2) {
   const mFrom = Number(args.musicFrom ?? MN[musicName]?.from ?? 0);
   const wh = [join(ROOT, 'zvuki', 'whoosh0.mp3'), join(ROOT, 'zvuki', 'whoosh2.mp3')];
   const mix = join(work, 'mix.m4a');
+  // Голос к одной громкости (-18,7 LUFS, как был aidar; под неё подобраны музыка и «вжух»). Клон Артёма
+  // выходит на ~4 дБ тише, без выравнивания «вжух» перекрывал голос (жалоба Артёма 06.10).
+  const lufs = Number(/I:\s+(-?[\d.]+) LUFS/.exec(spawnSync('ffmpeg', ['-v', 'info', '-i', audio, '-af', 'ebur128', '-f', 'null', '-'],
+    { encoding: 'utf8' }).stderr.split('Summary:').pop())?.[1] ?? -18.7);
+  const voiceGain = Math.max(-12, Math.min(12, -18.7 - lufs)).toFixed(1);
   const ins = ['-i', audio, '-stream_loop', '-1', '-i', music, ...sfx.flatMap((_, k) => ['-i', wh[k % 2]])];
-  const f = [`[0:a]highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6[vo]`,
+  const f = [`[0:a]volume=${voiceGain}dB,highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6[vo]`,
     // музыка: с нужного места, громкость выровнена (треки бывают от -8 до -25 дБ), затем тихо под голос
     `[1:a]atrim=start=${mFrom}:duration=${(total + 0.5).toFixed(2)},asetpts=PTS-STARTPTS,loudnorm=I=-16:TP=-2,aresample=48000,volume=${args.musicVol ?? 0.2},afade=t=in:d=0.6,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[mu]`,
-    ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=0.45,adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
+    ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=${args.sfxVol ?? 0.3},adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
     `[vo][mu]${sfx.map((_, k) => `[x${k}]`).join('')}amix=inputs=${sfx.length + 2}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[m]`];
   execFileSync('ffmpeg', ['-v', 'error', '-y', ...ins, '-filter_complex', f.join(';'), '-map', '[m]', '-t', total.toFixed(2),
     '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', mix]);
