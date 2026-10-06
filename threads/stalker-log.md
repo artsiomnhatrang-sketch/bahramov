@@ -2318,3 +2318,17 @@ valeriyasaaa, art.v.blumen). Ниже 30 веток из-за лимита по�
 **Пропущено:** milena__look (это milenasaveleva94, уже наша), anna.blashukk (= anna.blashuuk), lemi_arts_pets (человек @bahramovartem), qorpehome.kz, alina.tellme, violetta304839, nastya_bond1991 (вложенные под чужими постами), metamasterjane (сама отвечает на вопросы про тредс), nhatrang2026 (уже восстановил), hlada.r и lelikkk333 (подростки), krasi.jewellry (= slyusaar), конкуренты vanta_recovery, accrevive, misterxhacking в чужих ветках не трогали.
 
 **threads-uniq остановил: 0.** Сбой: `threads-uniq.py record --help` записал строку --help в реестр, удалена руками.
+
+## 06.10.2026 утро (09:55-10:40), @bahram.av - 30 ответов
+
+Подход по прямой просьбе Артёма: 30 свежих веток, лимиты не считать, @bahramovartem через 3 часа. Профили Chrome сегодня поменялись местами: @bahram.av открыт в Browser 2 (перед работой сверена ссылка Профиль). 14 поисков recent + 3 ветки-сборника (alya_hatieva, belova_elenaa, si_nitsa_beauty). Признаков лимита нет. API 1091 -> 1121. Комментариев под своими постами за 2 дня нет (60 постов).
+
+**Входящие с прошлого подхода:** aizhan_shoes [A] (обувь, заблокировали инсту, написала Можете помочь? в Скрытые, к концу подхода из Скрытых ушла), molchanovdaniel (Артём уже ответил), miray__brand (фото), jullizinch27 и brummdasha.o.lichnom (ушли в Telegram), __occult__esoterica_kz (в WhatsApp).
+
+**Новые: 30** ([A] 15, [B] 15)
+- [A] @valeriamatusina (брови СПб, рабочий тредс), @alenakimka (организатор пространства, первый заказ из тредс), @lesyakozlovskaya (4500, заявки из блога), @karpovtrdblog (230к с тредс), @evgeny_pro_ai (15 аккаунтов инсты по цепочке, готов платить), @zhansayusha02 (ватсап и ватсап бизнес для работы), @annnaquiver (бренд украшений BOHOANN, 10к, спам комментами), @lumiekz (товары, 10к), @b2b_054 (врач, страницу удалила клиника), @chest_avto.180_ (5000), @amorte.candle (свечи, ветка alya_hatieva, инсте 13 лет), @s_ifbb83 (инста), @si_nitsa_beauty (бьюти, теневой бан, сборник 46 ответов), @miniesephora (косметика, тень за цены), @emin.tutaev_ (2 млн охвата)
+- [B] @markuz69mk (10 000), @dana.oos, @an_snour, @kaidarova_zeynep (ватсап, код после суточного блока), @alexsashanz (Новая Зеландия), @dimka_sheik (2 новых за 2 дня), @agpvvidss и @lllenochekkk (ветка belova_elenaa), @emekova (новичок, что такое тень), @manukovskii (обвал охватов), @k_a_r_i_n_a_lim (ветка yulianchikkk_ya, спам-блок телеграм), @a.klimovaa_a, @urna_of, @symbat.phh (ветка alya_hatieva), @av.dubrakova (ветка si_nitsa_beauty)
+
+**Пропущено:** aizhan_shoes (уже в директе), irinakelina_ph (вместо неё автор корня evgeny_pro_ai), m_misssshhheelll (паника, блок банков), maridvdva и babaika202 (уже восстановили), metamasterjane и lesyakozlovskaya-канал не трогали как продажу, eduard_melnikov (конкурент AML), kozhevina3346 (спам парфюма), мемы про тень (kutettyy, virina537), nastya_bond1991 и milena__look (уже наши).
+
+**threads-uniq остановил: 3** (valeriamatusina, chest_avto.180_, a.klimovaa_a - хвост как у @bahramovartem, переписаны). Сбой: длинный браузерный пакет отвалился по таймауту, ответ alexsashanz ушёл внутри него - защита ours here не дала отправить второй раз.
