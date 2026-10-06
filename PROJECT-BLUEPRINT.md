@@ -18,7 +18,7 @@
 - **Сайт:** https://bahramovai.com
 - **vc.ru:** https://vc.ru/u/4106389-artem-bahram
 - **LinkedIn:** linkedin.com/in/артём-бахрамов-469271406 (имя в профиле — Артём Бахрамов)
-- **Дзен:** не используем (отказ 06.10)
+- **Дзен:** канал dzen.ru/bahramovai.com (работает с 06.10)
 - **Instagram:** @bahram.av
 
 ### Аудитория
