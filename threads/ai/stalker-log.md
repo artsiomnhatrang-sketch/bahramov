@@ -343,3 +343,20 @@ threads-uniq остановил 1 текст («по скрину видно» -
 
 **threads-uniq остановил: 2** (as_alisherkyzy, anastasya_protasova - хвост как у @bahram.av, переписаны).
 **Сбой:** расширение Claude дважды само переключалось на Browser 1 (@bahram.av) посреди подхода. Ничего не ушло: перед каждой отправкой стояла JS-проверка ссылки Профиль (cl_guard), без /@bahramovartem пакет останавливается. В zsh аргумент `--root` в трёх record склеился с текстом - реестр поправлен.
+
+## 06.10.2026 вечер (19:55-21:25), @bahramovartem - 30 новых веток + 8 вторых ответов
+
+Подход по прямой просьбе Артёма (30 веток, лимиты не считать, потом @bahram.av). Раздачу с телефона @bahramovartem Артём забрал с собой, по его решению Mac работал на домашнем Wi-Fi (FPT 1.53.199.221), а сам аккаунт он открывает с телефона на мобильном интернете. Профиль Chrome Browser 2, ссылка Профиль = /@bahramovartem. 16 поисков recent + Топ по «снесли аккаунт» + ветки-сборники anastasia.zapuski (34 ответа), wyrttattoo (74), alymova.anya. Признаков лимита нет. API 228 -> 266.
+
+**Входящие:** с прошлого подхода никто. За подход в Скрытые написали двое [A]: alsmy_alena (украшения, 18К, аккаунт и инста на одной почте и номере, решение окончательное) и pechat3dminsk (фигурки для кофеен, Минск, просит объяснить, что делать). Артёму принять с телефона. Комментариев под своими постами нет (60 постов).
+
+**Новые: 30** ([A] 16, [B] 14)
+- [A] @alsmy_alena (украшения, 18К, без заказов), @tumarsait.kg (рекламный кабинет Meta увели, крутят рекламу), @mirai_onshop (рабочий с товарами), @anastasia.zapuski (продюсер, у клиентки снесли тредс 21К), @expert_level_up26 (эксперт, 4 аккаунта в связке на проверке, ветка anastasia.zapuski), @anas.tasiaaam (подборки товаров, 100 млн просмотров, та же ветка), @v_greenvald (инста 700К, та же ветка), @pechat3dminsk (3D фигурки для кофеен), @ivanova.custom (снесли хейтеры), @ruzanna_exclusive (вязание), @vsedomatutrf (магазин, прошли проверку на человека), @alymova.anya (репетитор, новый аккаунт, 3 заявки), @vredina_190580 (2 аккаунта за 2 дня, ветка wyrttattoo), @krasota__666 (ресницы, рабочий, та же ветка), @liza_arcana (удалили через 3 дня работы, та же ветка), @anneta_butkevich (обзоры продуктов Минск, взлом 02.10)
+- [B] @oksana_turik7 (телеграм взломали, ждёт поддержку), @ulykbekovaa (ватсап блок повторно), @komillitaryman (фейсбук, двухфакторка), @zhanerke__nurbolkyzy (ищет хакера для инсты, Астана), @nahodka.dlya.shpiona (тредс ошибка после пароля 10 дней), @shnar_altaeva (ватсап код не приходит), @delarejn (взломали, новая страница), @kardamon.i.pieprz (тредс без причины), @didi.soul_ (ветка alymova.anya), @catherinevarzer и @elvira.k777 и @al.grashchenkova (ветка anastasia.zapuski), @dinama4365 (инста после взлома, ветка pozdrav.ok), @log_marina_ (ветка _lukiia)
+
+**Ответы тем, кто ответил нам (8):** _khalaeva.aisha (телеграм, лимит на номере), yuliana_kosmoo (всплывающее сообщение от её имени), kg.reporter (PIN ватсапа 7 дней), и уже из этого подхода alsmy_alena (кнопки нет -> написала в директ), komillitaryman 2 раза (всё на руках), shnar_altaeva (таймер по кругу), didi.soul_ (полгода, одно устройство).
+pechat3dminsk ответила в ветке и сразу написала в директ.
+
+**Пропущено:** wizard_lingerie (вложенная под недоступным постом), avzan23121979 (шутка), nurassylkoja, tasov_ad, tony_trade, vanta_recovery, aidyn.ziabek, n0d1ggity (конкуренты и взломщики в ветках), batyrkhanov.15 (Steam), lika_lika0503 (Kaspi), flymanager (OpenAI), люди @bahram.av в чужих ветках (brummdasha.o.lichnom, sara.arsenkyzy, vigodno.rus, alya_hatieva, lesyakozlovskaya, ishkova_pro, a.klimovaa_a, an_snour).
+
+**threads-uniq остановил: 2** (pechat3dminsk и alsmy_alena второй ответ - то же начало, что у @bahram.av, переписаны). voice-lint дважды поймал слово появляется (ложное является), переписано.
