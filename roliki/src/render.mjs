@@ -1,8 +1,9 @@
 // Сборка ролика: сценарий → озвучка по сценам (edge-tts) → кадры из template.html
 // (Playwright) → mp4 1080×1920 (ffmpeg). Токены и деньги не тратит.
-//   node src/render.mjs --format blokirovka [--n 0] [--date 2026-10-03] [--voice dmitry|svetlana] [--slug имя]
+//   node src/render.mjs --format blokirovka [--n 0] [--date 2026-10-03] [--voice artem|aidar|dmitry] [--slug имя]
 import { spawn, execFileSync } from 'node:child_process';
 import { mkdirSync, writeFileSync } from 'node:fs';
+import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
@@ -13,15 +14,20 @@ const FPS = 30;
 // Silero (по умолчанию): ударение «+» выполняется всегда. edge-tts — старые голоса, ударения в них ненадёжны.
 const SILERO = ['aidar', 'eugene', 'baya', 'xenia', 'kseniya'];
 const VOICES = { dmitry: 'ru-RU-DmitryNeural', svetlana: 'ru-RU-SvetlanaNeural' };
+// Голос Артёма (с 06.10, по умолчанию): клон ESpeech-TTS по образцу, ударение «+» как у Silero.
+// Модель и образцы - вне репозитория (он открыт всем): ~/Developer/golos-artem, см. там say.py и golos.json.
+const CLONES = { artem: process.env.ROLIKI_GOLOS_DIR ?? join(homedir(), 'Developer', 'golos-artem') };
 const args = Object.fromEntries(process.argv.slice(2).join(' ').split('--').filter(Boolean)
   .map((a) => a.trim().split(/\s+/)).map(([k, v]) => [k, v ?? true]));
 const format = args.format ?? 'blokirovka';
 const date = args.date ? new Date(`${args.date}T12:00:00`) : new Date();
 const n = Number(args.n ?? 0);
-const VOICE_ARG = args.voice ?? process.env.ROLIKI_VOICE ?? 'aidar';
+const VOICE_ARG = args.voice ?? process.env.ROLIKI_VOICE ?? 'artem';
 const IS_SILERO = SILERO.includes(VOICE_ARG);
+const IS_CLONE = VOICE_ARG in CLONES;
+const PLUS = IS_SILERO || IS_CLONE; // голос понимает «+» перед ударной гласной
 const VOICE = IS_SILERO ? VOICE_ARG : VOICES[VOICE_ARG] ?? VOICE_ARG;
-const TEMPO = Number(args.tempo ?? 1.05); // Silero говорит неторопливо — ускоряем без смены тона
+const TEMPO = Number(args.tempo ?? (IS_CLONE ? 1.0 : 1.05)); // Silero говорит неторопливо — ускоряем без смены тона; клон говорит в темпе Артёма
 const RATE = args.rate ?? '+20%';
 
 if (!FORMATS[format]) throw new Error(`Нет формата ${format}. Есть: ${Object.keys(FORMATS).join(', ')}`);
@@ -35,7 +41,7 @@ const duration = (f) => Number(execFileSync('ffprobe', ['-v', 'error', '-show_en
 
 // 0. Ударения: весь текст голоса — через udarenia/udarenia.py (свой словарь + ruaccent).
 //    Голос читает текст со знаками ударения, субтитры остаются без них.
-const acc = JSON.parse(execFileSync('python3', [join(ROOT, 'udarenia', 'udarenia.py'), '--json', '--strict', ...(IS_SILERO ? [] : ['--edge'])],
+const acc = JSON.parse(execFileSync('python3', [join(ROOT, 'udarenia', 'udarenia.py'), '--json', '--strict', ...(PLUS ? [] : ['--edge'])],
   { input: JSON.stringify({ items: V.scenes.map((s) => s.say) }), stdio: ['pipe', 'pipe', 'inherit'] }).toString()).items;
 writeFileSync(join(work, 'udarenia.txt'), acc.join('\n'));
 writeFileSync(join(work, 'scenes.json'), JSON.stringify(V.scenes.map((s) => s.say)));
@@ -60,13 +66,18 @@ if (IS_SILERO) {
   execFileSync('python3', [join(ROOT, 'udarenia', 'silero_tts.py')], { stdio: ['pipe', 'inherit', 'inherit'],
     input: JSON.stringify({ speaker: VOICE, items: acc, out: V.scenes.map((_, i) => join(work, `s${i}.raw.wav`)) }) });
 }
+if (IS_CLONE) { // ~28 с на фразу на Маке (MPS)
+  const dir = CLONES[VOICE_ARG];
+  execFileSync(join(dir, '.venv', 'bin', 'python'), [join(dir, 'say.py')], { stdio: ['pipe', 'inherit', 'inherit'],
+    input: JSON.stringify({ items: acc, out: V.scenes.map((_, i) => join(work, `s${i}.raw.wav`)) }) });
+}
 V.scenes.forEach((s, i) => {
-  const raw = join(work, IS_SILERO ? `s${i}.raw.wav` : `s${i}.mp3`);
+  const raw = join(work, PLUS ? `s${i}.raw.wav` : `s${i}.mp3`);
   s.audio = join(work, `s${i}.wav`);
-  if (!IS_SILERO) tts(acc[i], raw);
+  if (!PLUS) tts(acc[i], raw);
   // edge-tts кладёт ~0,2 с тишины в начале и ~0,8 с в конце — срезаем, иначе ролик тянется.
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', raw, '-af',
-    'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,apad=pad_dur=0.06' + (IS_SILERO ? `,atempo=${TEMPO}` : ''),
+    'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,apad=pad_dur=0.06' + (PLUS && TEMPO !== 1 ? `,atempo=${TEMPO}` : ''),
     s.audio]);
   s.voiceDur = duration(s.audio);
   s.dur = s.voiceDur + (s.pad ?? 0.08);
