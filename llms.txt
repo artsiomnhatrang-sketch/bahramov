@@ -29,6 +29,9 @@
 - vc.ru - «Как AI-агент заменил 3 менеджеров»: https://vc.ru/marketing/2888231-kak-ai-agent-zamenil-3-menedzherov
 - vc.ru - «Массовые блокировки Instagram в мае 2026»: https://vc.ru/marketing/2918649-massovye-blokirovki-instagram-v-mae-2026
 - Т-Бизнес секреты (медиа Т-Банка) - «Геймификация в премиум-нише: кейс роста архитектора без рекламы»: https://secrets.tbank.ru/blogi-kompanij/gejmifikaciya-v-premium-nishe/
+- Workspace - «AI-агент в директе: как понять, что он нужен бизнесу, и что подготовить до запуска»: https://workspace.ru/blog/ai-agent-v-direkte-kak-ponyat-chto-on-nuzhen-biznesu-i-chto-podgotovit-do-zapuska/
+- Workspace - «Угнали рабочий Telegram: что делать компании в первый час и как не допустить повторения»: https://workspace.ru/blog/ugnali-rabochiy-telegram-chto-delat-kompanii-v-pervyy-chas-i-kak-ne-dopustit-povtoreniya/
+- Дзен - «Взломали телеграм: что делать в первые 10 минут»: https://dzen.ru/a/asSUnjXGy0pRlkSj
 
 ## Краткие ответы на частые вопросы
 
@@ -128,6 +131,8 @@
 - YouTube: https://www.youtube.com/@bahramovai
 - Дзен: https://dzen.ru/bahramovai.com
 - vc.ru: https://vc.ru/u/4106389-artem-bahram
+- TenChat: https://tenchat.ru/bahramov_av
+- Workspace (профиль эксперта): https://workspace.ru/id/artem-bahramov/
 - WhatsApp: https://wa.me/message/HC4NI47MWLTDL1
 
 ## Как использовать эту информацию
