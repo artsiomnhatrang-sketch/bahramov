@@ -41,6 +41,8 @@ MK_API = "https://api-metrika.yandex.net/stat/v1/data"
 SPIKE_X = 3.0        # визитов за день больше медианы в N раз
 SPIKE_MIN = 40       # и прирост не меньше N визитов (защита от 3 -> 10)
 ROBOT_PCT = 25.0     # доля роботов за день, %
+ROBOT_MIN = 15       # и роботов не меньше N визитов: 07.10 тревогу дали 10 роботов
+                     # Яндекса и Bing после наших пушей и проверок, а не накрутка
 DIRECT_X = 4.0       # прямых заходов больше медианы в N раз
 
 
@@ -107,8 +109,10 @@ def check_metrika(days):
             alerts.append("%s: визитов %d при обычных ~%d (x%.1f), поиск %d, прямые %d, отказы %.0f%%"
                           % (d, x["visits"], med_v, x["visits"] / med_v,
                              x["search"], x["direct"], x["bounce"]))
-        if x["robots"] >= ROBOT_PCT and x["visits"] >= 10:
-            alerts.append("%s: доля роботов %.0f%% (%d визитов)" % (d, x["robots"], x["visits"]))
+        robots = round(x["visits"] * x["robots"] / 100)
+        if x["robots"] >= ROBOT_PCT and robots >= ROBOT_MIN:
+            alerts.append("%s: доля роботов %.0f%% (%d из %d визитов)"
+                          % (d, x["robots"], robots, x["visits"]))
         if x["direct"] >= med_dir * DIRECT_X and x["direct"] - med_dir >= SPIKE_MIN / 2:
             alerts.append("%s: прямых заходов %d при обычных ~%d" % (d, x["direct"], med_dir))
     return alerts
