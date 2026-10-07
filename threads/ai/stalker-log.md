@@ -360,3 +360,21 @@ pechat3dminsk ответила в ветке и сразу написала в �
 **Пропущено:** wizard_lingerie (вложенная под недоступным постом), avzan23121979 (шутка), nurassylkoja, tasov_ad, tony_trade, vanta_recovery, aidyn.ziabek, n0d1ggity (конкуренты и взломщики в ветках), batyrkhanov.15 (Steam), lika_lika0503 (Kaspi), flymanager (OpenAI), люди @bahram.av в чужих ветках (brummdasha.o.lichnom, sara.arsenkyzy, vigodno.rus, alya_hatieva, lesyakozlovskaya, ishkova_pro, a.klimovaa_a, an_snour).
 
 **threads-uniq остановил: 2** (pechat3dminsk и alsmy_alena второй ответ - то же начало, что у @bahram.av, переписаны). voice-lint дважды поймал слово появляется (ложное является), переписано.
+
+## 07.10.2026 день (11:20-12:05), @bahramovartem - 30 новых веток + 4 вторых ответа, первый подход без призыва в директ
+
+Утром отключили FB и @bahram.av (вернули селфи), разбор в `instagram-blokirovki-log.md`. С этого подхода ответы только рекомендации, концовка-предупреждение, ни директа, ни помощи (COMMENT-RULES раздел 3, проверка DM_CALL в threads-uniq). @bahram.av сегодня не трогали. Mac на домашнем Wi-Fi: раздачу с iPhone Артём отменил.
+
+**Входящие:** с прошлого подхода kaldygulova (новая, Артём перевёл в Telegram), _khalaeva.aisha (перешла из ветки), oksana_turik7 ответила Ватсапп и ждёт Артёма. Запросы и Скрытые пустые. За сам подход новых нет (директ отстаёт на полдня).
+
+**Новые: 30** ([A] 15, [B] 15)
+- [A] @sapa_books (книги, заказы шли из тредса), @ayala_home_01 (Астана, тредс 130К охвата, цены в постах), @mirastudio_spb (детский фотограф, студия, взаимные подписки), @iconmade.production (сменила имя, описание и тип разом, блок для защиты, смс нет), @ali.sonnyck (блог иммиграционного специалиста 30К, цепочка от FB, FB вернули, инсту нет), @dostavka_gz (доставка, предупреждает о мошенниках-разблокировщиках), @aizhan_shoes (обувь из кожи, третья страница инсты), @bulateckayaart (художник, Ростов), @mariya_prokhozheva (круизы для турагентов), @kate_ipatova.swim (тредс без возврата), @fuzzy.markettt (работы руками), @saidex707 (ремонт электроники, два одинаковых поста подряд), @volodidoch (товары, цены в постах), @angelikaa__psy (психолог, вместе с тредсом инста 15 лет), @nadezhda_petuhova_art (художник, 5000+)
+- [B] @ani_edvardovna (4 профиля после правки описания), @ne_hilo (за что банят пачками), @oiiimusiiio (телеграм без ссылок и смс), @sholpansatpnaeva (взломали инсту), @nedosh.a (полный блок тредс), @your_last_mistake_1 (второй снесли за 5 минут, первый вернули), @pauline___travelling (45 подписчиков, 60К просмотров), @kokakolostik (удалили сегодня), @sasha.haki (мат под постом), @blashuk.anna (4-й аккаунт за 2 недели), @alinabekesh_ (новая инста сразу в блок), @kamimakh, @kil_s_h, @albertmuhametshin (ограничение за комментарий), @leonteva.top (бан с 13 мая, окно 180 дней до ~9.11)
+
+**Ответы тем, кто ответил нам (4):** kardamon.i.pieprz (письма нет, ждёт), vredina_190580 (разные номера, один телефон), dinama4365 (восстановление по кругу, завела новый), nahodka.dlya.shpiona (ошибка на шаге нового пароля, скрин; профиль исчез сразу после ответа). anneta_butkevich, alsmy_alena, pechat3dminsk, _elenbond, anna_andreevna_abramova, anastasya_protasova - закрыли тему сами или ушли в директ.
+
+**Поиски: 12.** Новых кандидатов: восстановить аккаунт 9, заблокировали тредс 11, заблокировали аккаунт 10, заблокировали инстаграм 9, удалили аккаунт 8, снесли аккаунт 5, не приходит код 5, взломали 3, удалили тредс 1 новый, телеграм взломали 0, проверка личности 0, заблокировали ватсап 0 (реклама). Живых из ~70 кандидатов около 25, остальное шутки, Claude и Apple ID, вложенные и споры. Сборники: ветка alsmy_alena (наша) +3, volodidoch +1, pauline___travelling +2.
+
+**Пропущено:** massage__batumi_valentina (Apple ID), target.kostya (таргетолог, конкурент), apolinariyaost_ (телеграм, интимные видео родителям, похоже на подростка), ev.gert (Apple ID). Конкуренты в ветках: nurassylkoja, vanta_recovery, darknet.kzz (пришёл под kate_ipatova.swim через 7 минут после нас), pollytravelhub (был в нашем журнале, теперь сам предлагает разблокировку), productika.
+
+**threads-uniq остановил: 1** (nedosh.a - то же начало, что у @bahram.av, переписано). DM_CALL не сработал ни разу: призывов в директ в текстах не было.
