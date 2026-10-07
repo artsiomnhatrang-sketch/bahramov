@@ -20,6 +20,9 @@
       --root      автор или ID корня ветки, если пишем вложенным ответом:
                   корень уже у другого аккаунта = СТОП (04.10, anastasia.tlk.arts)
       --followup  человек ответил нам сам: свой журнал по нику не проверяем
+      --asked     человек сам спросил, как связаться: можно ответить «пишите в директ».
+                  Без флага призыв в директ, личку, «напишите мне», «помогу» = СТОП
+                  (07.10.2026: после бана @bahram.av ответы только рекомендации)
 
   python3 scripts/threads-uniq.py record --account main|ai --user NICK [--post ID] [--root НИК|ID] "текст"
       записать отправленный ответ сразу (sync потом подтянет его и по API)
@@ -48,7 +51,17 @@ NAMES = {"main": "@bahram.av", "ai": "@bahramovartem"}
 # дают сходство 0.02-0.12, переписанный под другого человека текст - от 0.30
 SIM_OTHER = 0.22   # с текстами другого аккаунта - строже
 SIM_OWN = 0.32     # со своими - чтобы не штамповать
-TAIL_OTHER = 0.35  # последнее предложение (приглашение в директ) против другого аккаунта
+TAIL_OTHER = 0.35  # последнее предложение (концовка) против другого аккаунта
+
+# 07.10.2026: незнакомец приходит к человеку с баном и зовёт в директ - это
+# схема мошенников «верну аккаунт», за неё @bahram.av и отключили. В ответах
+# только рекомендации; в личку - если человек сам спросил (флаг --asked).
+DM_CALL = re.compile(
+    r"директ|direct|\bдм\b|\bdm\b|в\s+лич(ку|ке|ные|ных)|в\s+лс\b|"
+    r"(напиш|пиш|скин|кин|пришл|отправ|черкн|покаж)\w*\s+(мне|сюда)|мне\s+в\s+(тг|телеграм)|"
+    r"bahramov|t\.me/|обращайтесь|\bпомогу\b|могу\s+помочь|\bпомогаю\b|"
+    r"разбер(у|ём|ем)(ся)?\s+(вам|ваш|под)|подскажу\s+(под|по\s+ваш)",
+    re.I)
 
 
 def norm(t):
@@ -258,7 +271,8 @@ def cmd_check(record=False):
     post = arg("--post")
     root = arg("--root").lstrip("@")
     followup = "--followup" in sys.argv
-    rest = [a for a in sys.argv[2:] if a != "--followup"]
+    asked = "--asked" in sys.argv
+    rest = [a for a in sys.argv[2:] if a not in ("--followup", "--asked")]
     text = " ".join(rest).strip() or sys.stdin.read().strip()
     if not text:
         sys.exit("нет текста")
@@ -273,6 +287,10 @@ def cmd_check(record=False):
         return
 
     stop = []
+    m = DM_CALL.search(text)
+    if m and not asked:
+        stop.append("призыв в директ или предложение помощи (%r) - с 07.10 только рекомендации, "
+                    "в личку зовём, только если человек сам спросил (--asked)" % m.group())
     if user:
         if user in nicks_in_log(other) or any(r.get("user") == user for r in rows if r["account"] == other):
             stop.append("@%s уже есть у %s - второй аккаунт к этому человеку не идёт" % (user, NAMES[other]))
