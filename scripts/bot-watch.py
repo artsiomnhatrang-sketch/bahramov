@@ -8,7 +8,7 @@ GitHub Pages ломать нечего, но чужие боты на наш с�
 Что смотрит:
   - Метрика 110081984, визиты по дням за 15 дней: всплеск визитов против
     медианы прошлых дней, доля роботов, отказы и прямые заходы;
-  - Вебмастер: проблемы сайта с важностью FATAL/CRITICAL (там же санкции).
+  - Вебмастер: проблемы сайта с важностью FATAL (там же санкции, THREATS).
 
 Тревога: сообщение Артёму в Telegram (scripts/telegram_send.py) и готовое
 письмо в поддержку Яндекса в drafts/yandex-support-<дата>.md. Само письмо
@@ -37,13 +37,17 @@ STATE = ROOT / "drafts" / ".bot-watch-state.json"
 WM_API = "https://api.webmaster.yandex.net/v4"
 MK_API = "https://api-metrika.yandex.net/stat/v1/data"
 
-# Пороги. Обычный день сейчас ~10-25 визитов (Метрика, сентябрь 2026).
+# Пороги. Обычный день сейчас ~10-35 визитов (Метрика, сентябрь-октябрь 2026).
+# 07.10 Артём: «по пустякам не тревожить» - ложная тревога от 10 роботов Яндекса
+# и Bing (наши же пуши и проверки) в неполный день. Поэтому смотрим только
+# законченный вчерашний день и только массовые отклонения.
 SPIKE_X = 3.0        # визитов за день больше медианы в N раз
 SPIKE_MIN = 40       # и прирост не меньше N визитов (защита от 3 -> 10)
-ROBOT_PCT = 25.0     # доля роботов за день, %
-ROBOT_MIN = 15       # и роботов не меньше N визитов: 07.10 тревогу дали 10 роботов
-                     # Яндекса и Bing после наших пушей и проверок, а не накрутка
+ROBOT_MIN = 50       # визитов-роботов за день: Метрика их и так отсеивает, опасны только толпой
 DIRECT_X = 4.0       # прямых заходов больше медианы в N раз
+DIRECT_MIN = 40      # и прирост прямых не меньше N визитов
+WM_SEVERITY = ("FATAL",)  # CRITICAL там - 5xx и медленный ответ, у GitHub Pages разовые сбои
+MSK = datetime.timezone(datetime.timedelta(hours=3))  # часовой пояс счётчика
 
 
 def load_env():
@@ -96,24 +100,26 @@ def daily(tok):
 
 
 def check_metrika(days):
+    """Только законченные дни по Москве: неполный сегодняшний даёт ложные проценты."""
     alerts = []
-    dates = sorted(days)
+    today = datetime.datetime.now(MSK).date().isoformat()
+    dates = sorted(d for d in days if d < today)
     if len(dates) < 5:
         return alerts
-    base = dates[:-2]
+    base = dates[:-1]
     med_v = statistics.median(days[d]["visits"] for d in base) or 1
     med_dir = statistics.median(days[d]["direct"] for d in base) or 1
-    for d in dates[-2:]:  # вчера и сегодня
+    for d in dates[-1:]:  # вчера
         x = days[d]
         if x["visits"] >= med_v * SPIKE_X and x["visits"] - med_v >= SPIKE_MIN:
             alerts.append("%s: визитов %d при обычных ~%d (x%.1f), поиск %d, прямые %d, отказы %.0f%%"
                           % (d, x["visits"], med_v, x["visits"] / med_v,
                              x["search"], x["direct"], x["bounce"]))
         robots = round(x["visits"] * x["robots"] / 100)
-        if x["robots"] >= ROBOT_PCT and robots >= ROBOT_MIN:
+        if robots >= ROBOT_MIN:
             alerts.append("%s: доля роботов %.0f%% (%d из %d визитов)"
                           % (d, x["robots"], robots, x["visits"]))
-        if x["direct"] >= med_dir * DIRECT_X and x["direct"] - med_dir >= SPIKE_MIN / 2:
+        if x["direct"] >= med_dir * DIRECT_X and x["direct"] - med_dir >= DIRECT_MIN:
             alerts.append("%s: прямых заходов %d при обычных ~%d" % (d, x["direct"], med_dir))
     return alerts
 
@@ -134,7 +140,7 @@ def check_webmaster(tok):
         return [], "Вебмастер diagnostics: " + r["_error"]
     out = []
     for code, p in (r.get("problems") or {}).items():
-        if p.get("state") == "PRESENT" and p.get("severity") in ("FATAL", "CRITICAL"):
+        if p.get("state") == "PRESENT" and p.get("severity") in WM_SEVERITY:
             out.append("Вебмастер: проблема %s (%s)" % (code, p["severity"]))
     return out, None
 
