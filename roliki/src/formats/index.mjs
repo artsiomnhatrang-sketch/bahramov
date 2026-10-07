@@ -5,6 +5,7 @@ import { OHVATY } from '../texts/ohvaty.mjs';
 import { AVTOMATIZACIYA } from '../texts/avtomatizaciya.mjs';
 import { buildScenarii } from './scenarii.mjs';
 import { UZHE } from '../texts/uzhe.mjs';
+import { POISK } from '../texts/poisk.mjs';
 
 export const FORMATS = {
   blokirovka: buildBlokirovka,
@@ -12,4 +13,5 @@ export const FORMATS = {
   avtomatizaciya: makeFormat(AVTOMATIZACIYA, { label: 'Автоматизация Instagram' }),
   scenarii: buildScenarii,
   uzhe: makeFormat(UZHE, { label: 'Ограничения Instagram' }),
+  poisk: makeFormat(POISK, { label: 'Безопасность аккаунтов' }),
 };

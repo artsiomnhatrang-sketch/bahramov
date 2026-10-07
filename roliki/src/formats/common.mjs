@@ -16,7 +16,7 @@ export const makeFormat = (TEXTS, { label, strip = STRIP }) => (date, n) => {
   const T = pick(TEXTS, n);
   return {
     slug: `${T.key}-${iso(date)}`, label: T.label ?? label, strip: T.strip ?? strip, title: T.title,
-    description: `${T.hook}\n\n${T.about}` + tail(T.tags, T.ask),
+    description: T.description ?? `${T.hook}\n\n${T.about}` + tail(T.tags, T.ask), // свой текст - когда в ролике один CTA (чеклист 07.10)
     scenes: T.scenes.map((s, i) => ({ ...s, ...(T.media?.[i] ?? {}) })),
   };
 };
