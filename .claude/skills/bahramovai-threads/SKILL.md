@@ -26,7 +26,7 @@ description: Рабочий цикл Threads для ОБОИХ аккаунто�
 | ключ скриптов | без ключа (`main` в threads-uniq) | `--account ai` |
 | маркер API в `.env` | `THREADS_*`, продлевается сам | `THREADS_AI_*`, до 25.11.2026 |
 | профиль Chrome | Artembelyj414@gmail.com | artsiomnhatrang@gmail.com |
-| сеть (с 06.10) | домашний Wi-Fi, утром | раздача с телефона @bahramovartem (его SIM), днём; на домашнем Wi-Fi телефона Threads не открывать |
+| сеть (с 07.10) | домашний Wi-Fi | домашний Wi-Fi, через 3 часа после другого аккаунта; раздачу с iPhone не предлагать |
 | журнал веток | `threads/stalker-log.md` | `threads/ai/stalker-log.md` |
 | промпт запуска | `threads/PROMPT-bahram-av.md` | `threads/ai/PROMPT.md` |
 | почерк | мастер: вопрос по факту, коротко | разбор: сначала почему так вышло |
