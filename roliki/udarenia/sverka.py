@@ -33,7 +33,7 @@ def numbers(ws):
 
 def words(t):
     t = t.lower().replace('ё', 'е').replace('+', '').replace('\u0301', '').replace('%', ' процентов')
-    t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм').replace('whatsapp', 'ватсап').replace('spam', 'спам')
+    t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм').replace('whatsapp', 'ватсап').replace('spam', 'спам').replace('authenticator', 'аутентификатор')
     t = re.sub(r'\bни\b', 'не', t)  # Whisper пишет «ни почта» вместо «не почта»
     # звонкая/глухая на конце слова звучит одинаково («бот» = «бод»), Whisper пишет как придётся
     dev = str.maketrans('дгбзвж', 'ткпсфш')
