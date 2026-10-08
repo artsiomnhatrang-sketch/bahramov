@@ -38,7 +38,7 @@
 **Остальное:**
 9. Ролики: YouTube Shorts в расписании до 24.10; ~20.10 новая партия (скилл `bahramovai-roliki`, чеклист roliki/CHEKLIST-SCENARIEV.md).
 10. Дзен ролики (`roliki/dzen-ochered.md`) и TikTok (`roliki/raspisanie-tiktok.md`, 2 в день, не больше 2 загрузок за подход).
-11. Threads: два подхода в день на аккаунт по скиллу `bahramovai-threads`.
+11. Threads: ПАУЗА в чужих ветках до 22.10 (08.10 приостановлен @bahramovartem, 07.10 @bahram.av, оба за мошенничество). Только директ и ответы тем, кто ответил нам. 22.10 сверить почту на письма Meta.
 12. ~12.10 резюме в Telegram-чатах (память telegram-free-resume-chats).
 
 ## Что заблокировано и почему
