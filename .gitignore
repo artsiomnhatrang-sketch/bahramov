@@ -57,3 +57,5 @@ __pycache__/
 
 # Расшифровки роликов YouTube (scripts/yt-transcript.py): чужой текст, не публикуем
 .transcripts/
+.instagram-ok
+.threads-ok
