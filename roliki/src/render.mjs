@@ -2,7 +2,8 @@
 // (Playwright) → mp4 1080×1920 (ffmpeg). Токены и деньги не тратит.
 //   node src/render.mjs --format blokirovka [--n 0] [--date 2026-10-03] [--voice artem|aidar|dmitry] [--slug имя]
 import { spawn, spawnSync, execFileSync } from 'node:child_process';
-import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, openSync, readFileSync, renameSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import { homedir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
@@ -60,6 +61,11 @@ function tts(text, out) {
   throw new Error(`edge-tts не озвучил: ${text}`);
 }
 
+// Студийная обработка клона (08.10, «голос студийный»): срез гула, мягкая чистка, тело и разборчивость,
+// приглушить «с»/«ш», ровная громкость. --raw отключает.
+const STUDIO = ',aresample=48000,highpass=f=75,afftdn=nr=6:nf=-50,equalizer=f=160:t=q:w=1:g=1.5,'
+  + 'equalizer=f=3200:t=q:w=1.4:g=1.5,deesser=i=0.3,acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120:makeup=2';
+
 // 1. Озвучка по сценам — длина сцены = длина голоса + пауза, поэтому всё совпадает.
 let t = 0;
 if (IS_SILERO) {
@@ -68,7 +74,8 @@ if (IS_SILERO) {
 }
 if (IS_CLONE) { // ~28 с на фразу на Маке (MPS); фразу с тем же текстом и голосом не озвучиваем заново
   const dir = CLONES[VOICE_ARG];
-  const key = (i) => `${VOICE_ARG}\n${acc[i]}`;
+  const ref = JSON.parse(readFileSync(join(dir, process.env.GOLOS_JSON ?? 'golos.json'), 'utf8')).ref;
+  const key = (i) => `${VOICE_ARG}|${ref}\n${acc[i]}`; // другой образец голоса = другая озвучка, старая не подхватится
   const todo = acc.map((_, i) => i).filter((i) => !existsSync(join(work, `s${i}.raw.wav`)) || !existsSync(join(work, `s${i}.key`))
     || readFileSync(join(work, `s${i}.key`), 'utf8') !== key(i));
   if (todo.length) execFileSync(join(dir, '.venv', 'bin', 'python'), [join(dir, 'say.py')], { stdio: ['pipe', 'inherit', 'inherit'],
@@ -81,7 +88,7 @@ V.scenes.forEach((s, i) => {
   if (!PLUS) tts(acc[i], raw);
   // edge-tts кладёт ~0,2 с тишины в начале и ~0,8 с в конце — срезаем, иначе ролик тянется.
   execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', raw, '-af',
-    'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,apad=pad_dur=0.06' + (PLUS && TEMPO !== 1 ? `,atempo=${TEMPO}` : ''),
+    'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,areverse,apad=pad_dur=0.06' + (PLUS && TEMPO !== 1 ? `,atempo=${TEMPO}` : '') + (IS_CLONE && !args.raw ? STUDIO : ''),
     s.audio]);
   s.voiceDur = duration(s.audio);
   s.dur = s.voiceDur + (s.pad ?? 0.08);
@@ -99,7 +106,7 @@ execFileSync('ffmpeg', ['-v', 'error', '-y', ...inputs, '-filter_complex', filte
 // 2б. Монтаж v2 (04.10): медиа сцен, кадры видео, слова субтитров, музыка и звуки.
 const V2 = V.scenes.some((s) => s.vis?.type === 'photo' || s.vis?.type === 'video' || s.pop);
 const fileUrl = (p) => pathToFileURL(p.startsWith('/') ? p : join(ROOT, p)).href;
-const sfx = []; // моменты «вжух»: появление живой картинки и всплывающих вставок
+const sfx = []; // моменты «вжух»: появление живой картинки и всплывающих вставок; громкость 0.12 (08.10: при 0.3 было громко)
 if (V2) {
   V.scenes.forEach((s, i) => {
     const v = s.vis;
@@ -144,7 +151,7 @@ if (V2) {
   const f = [`[0:a]volume=${voiceGain}dB,highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6[vo]`,
     // музыка: с нужного места, громкость выровнена (треки бывают от -8 до -25 дБ), затем тихо под голос
     `[1:a]atrim=start=${mFrom}:duration=${(total + 0.5).toFixed(2)},asetpts=PTS-STARTPTS,loudnorm=I=-16:TP=-2,aresample=48000,volume=${args.musicVol ?? 0.2},afade=t=in:d=0.6,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[mu]`,
-    ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=${args.sfxVol ?? 0.3},adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
+    ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=${args.sfxVol ?? 0.12},adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
     `[vo][mu]${sfx.map((_, k) => `[x${k}]`).join('')}amix=inputs=${sfx.length + 2}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[m]`];
   execFileSync('ffmpeg', ['-v', 'error', '-y', ...ins, '-filter_complex', f.join(';'), '-map', '[m]', '-t', total.toFixed(2),
     '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', mix]);
@@ -156,12 +163,28 @@ const out = join(ROOT, 'out', `${V.slug}.mp4`);
 const ff = spawn('ffmpeg', ['-v', 'error', '-y', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-', '-i', V.mix ?? audio,
   '-c:v', 'libx264', '-preset', 'medium', '-crf', '20', '-pix_fmt', 'yuv420p', '-c:a', 'copy', '-shortest',
   '-movflags', '+faststart', out], { stdio: ['pipe', 'inherit', 'inherit'] });
+// ждать закрытия ffmpeg подписываемся сразу: если он закроется раньше, чем дойдём до await, событие не потеряется (08.10)
+const ffDone = new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(new Error(`ffmpeg ${c}`)))));
+
+// 3а. Кружок с лицом Артёма (08.10). Губы под голос рисует MuseTalk вне репозитория
+//     (~/Developer/lico-artem, лицо в открытый репозиторий не кладём), параллельно кадрам.
+const LICO_DIR = process.env.ROLIKI_LICO_DIR ?? join(homedir(), 'Developer', 'lico-artem');
+const licoOut = join(work, 'lico.mp4');
+// тот же голос и то же лицо = готовое видео лица из прошлой сборки (губы рисуются ~5 мин)
+// По умолчанию у голоса Артёма кружок с лицом artem (дома, чёрная майка и кепка, молча) - единственный референс (08.10).
+// --lico none - без кружка.
+const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? 'artem' : null;
+const licoKey = LICO ? `${LICO}\n${createHash('md5').update(readFileSync(audio)).digest('hex')}` : '';
+const licoCached = LICO && existsSync(licoOut) && existsSync(join(work, 'lico.key')) && readFileSync(join(work, 'lico.key'), 'utf8') === licoKey;
+const licoDone = licoCached ? Promise.resolve() : LICO ? new Promise((r, j) => spawn(join(LICO_DIR, '.venv', 'bin', 'python'),
+  [join(LICO_DIR, 'govori.py'), audio, licoOut, LICO], { stdio: ['ignore', 'ignore', openSync(join(work, 'lico.log'), 'w')] })
+  .on('close', (c) => (c === 0 ? (writeFileSync(join(work, 'lico.key'), licoKey), r()) : j(new Error(`лицо не собрано (код ${c}), см. ${join(work, 'lico.log')}`))))) : null;
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 await page.goto(pathToFileURL(join(ROOT, 'src', 'template.html')).href);
 const scenes = V.scenes.map(({ audio: _a, ...s }) => s);
-await page.evaluate(([v]) => window.init(v), [{ label: V.label, strip: V.strip, scenes, wordSubs: V2 }]);
+await page.evaluate(([v]) => window.init(v), [{ label: V.label, strip: V.strip, scenes, wordSubs: V2, lico: !!LICO }]);
 await page.evaluate(async () => {
   await document.fonts.ready;
   await Promise.all([...document.images].map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; })));
@@ -177,7 +200,15 @@ for (let f = 0; f < frames; f++) {
 }
 ff.stdin.end();
 await browser.close();
-await new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(new Error(`ffmpeg ${c}`)))));
+await ffDone;
+if (licoDone) {
+  console.log('\nждём лицо (MuseTalk)…');
+  await licoDone;
+  // хук: лицо крупно всю первую фразу, кроме ~0,7 с в конце - на последних словах уходит в кружок и открывает картинку
+  const intro = Math.max(1.5, V.scenes[0].dur - 0.7).toFixed(2);
+  execFileSync('python3', [join(ROOT, 'src', 'krug.py'), out, licoOut, join(work, 'krug.mp4'), '--intro', intro], { stdio: 'inherit' });
+  renameSync(join(work, 'krug.mp4'), out);
+}
 
 writeFileSync(join(ROOT, 'out', `${V.slug}.json`), JSON.stringify({ title: V.title, description: V.description, duration: total, voice: VOICE }, null, 2));
 console.log(`\nготово: ${out} · ${total.toFixed(1)} с · ${((Date.now() - t0) / 1000).toFixed(0)} с на кадры`);

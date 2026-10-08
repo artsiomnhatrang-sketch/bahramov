@@ -8,13 +8,36 @@ import json, os, re, sys, difflib, subprocess, tempfile
 # числа и порядковые приводим к цифре: Whisper пишет «шаг 3» вместо «шаг третий»
 NUM = {w: d for d, ws in {'1': 'один первый первая первое', '2': 'два второй вторая второе', '3': 'три третий третья третье',
        '4': 'четыре четвертый четвертая', '5': 'пять пятый', '10': 'десять десятый', '100': 'сто'}.items() for w in ws.split()}
+# составные числа словами -> цифрами: «сто восемьдесят» = «180», как пишет Whisper (08.10)
+NUMW = {w: v for v, ws in {0: 'ноль', 1: 'один одна одно', 2: 'два две', 3: 'три', 4: 'четыре', 5: 'пять', 6: 'шесть',
+        7: 'семь', 8: 'восемь', 9: 'девять', 10: 'десять', 11: 'одиннадцать', 12: 'двенадцать', 13: 'тринадцать',
+        14: 'четырнадцать', 15: 'пятнадцать', 16: 'шестнадцать', 17: 'семнадцать', 18: 'восемнадцать', 19: 'девятнадцать',
+        20: 'двадцать', 30: 'тридцать', 40: 'сорок', 50: 'пятьдесят', 60: 'шестьдесят', 70: 'семьдесят', 80: 'восемьдесят',
+        90: 'девяносто', 100: 'сто', 200: 'двести', 300: 'триста', 400: 'четыреста', 500: 'пятьсот', 600: 'шестьсот',
+        700: 'семьсот', 800: 'восемьсот', 900: 'девятьсот'}.items() for w in ws.split()}
+def numbers(ws):
+    out, acc, cur = [], None, 0
+    for w in ws + ['']:
+        if w in NUMW or (w.startswith('тысяч') and acc is not None):
+            acc = acc or 0
+            if w.startswith('тысяч'):
+                acc, cur = acc + (cur or 1) * 1000, 0
+            else:
+                cur += NUMW[w]
+            continue
+        if acc is not None:
+            out.append(str(acc + cur)); acc, cur = None, 0
+        if w:
+            out.append(w)
+    return out
+
 def words(t):
     t = t.lower().replace('ё', 'е').replace('+', '').replace('\u0301', '').replace('%', ' процентов')
     t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм').replace('whatsapp', 'ватсап').replace('spam', 'спам')
     t = re.sub(r'\bни\b', 'не', t)  # Whisper пишет «ни почта» вместо «не почта»
     # звонкая/глухая на конце слова звучит одинаково («бот» = «бод»), Whisper пишет как придётся
     dev = str.maketrans('дгбзвж', 'ткпсфш')
-    return [NUM.get(w, w[:-1] + w[-1].translate(dev)) for w in re.findall(r'[а-яa-z0-9]+', t)]
+    return [w if w.isdigit() else NUM.get(w, w[:-1] + w[-1].translate(dev)) for w in numbers(re.findall(r'[а-яa-z0-9]+', t))]
 
 work = sys.argv[1]
 src = json.load(open(os.path.join(work, 'scenes.json')))

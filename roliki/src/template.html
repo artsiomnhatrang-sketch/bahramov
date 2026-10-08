@@ -156,6 +156,8 @@ body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
 .sub.word { font: 800 78px/1 Inter; letter-spacing: -1px; color: #fff;
   -webkit-text-stroke: 10px #000; paint-order: stroke fill; text-shadow: 0 6px 24px rgba(0,0,0,0.6); }
 .sub.word .hl { color: var(--orange); }
+/* 08.10: с кружком лица справа (--lico) субтитры уходят левее, чтобы длинные слова не заезжали под кружок */
+.lico .sub { right: 360px; }
 .head { text-shadow: 0 4px 30px rgba(0,0,0,0.8); }
 </style>
 </head>
@@ -448,6 +450,7 @@ window.seek = (t) => {
     subEl.className = 'sub word';
     const w = isCta ? null : wordAt(cur, lt);
     subEl.innerHTML = w ? (/\d/.test(w) ? `<span class="hl">${w}</span>` : w) : '';
+    subEl.style.fontSize = V.lico && w && w.length > 12 ? `${Math.round(78 * 12 / w.length)}px` : ''; // длинное слово ужимаем в 600px
   } else {
     const sub = cur.subs.find((x) => lt >= x.start && lt < x.end) || (lt >= cur.voiceDur ? cur.subs[cur.subs.length - 1] : null);
     subEl.textContent = sub && !isCta ? sub.text : '';
@@ -456,7 +459,7 @@ window.seek = (t) => {
   return wait;
 };
 
-window.init = (V) => { window.VIDEO = V; build(V); return seek(0); };
+window.init = (V) => { window.VIDEO = V; document.body.classList.toggle('lico', !!V.lico); build(V); return seek(0); };
 </script>
 </body>
 </html>
