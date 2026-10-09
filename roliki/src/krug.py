@@ -23,12 +23,15 @@ p.add_argument('--cy', type=int, default=1355)
 p.add_argument('--r', type=int, default=108)
 p.add_argument('--intro', type=float, default=0.0)
 p.add_argument('--big', default='540,945,330', help='крупное лицо на хуке: cx,cy,r (место картинки сцены)')
+p.add_argument('--plan', help='монтаж v3: JSON {keys: [[t, cx, cy, r], ...], bounce: [t, ...]} из render.mjs')
 a = p.parse_args()
 
 W, H, SHRINK = 1080, 1920, 0.35
 BIG = tuple(int(v) for v in a.big.split(','))
 SMALL = (a.cx, a.cy, a.r)
 ORANGE = (244, 103, 42)
+PLAN = json.load(open(a.plan)) if a.plan else None
+BOUNCE = 0.28  # подпрыгивание кружка на акценте: вверх и чуть больше, за 0,28 с обратно
 
 
 def probe(path):
@@ -39,8 +42,31 @@ def probe(path):
     return s['width'], s['height'], int(n) / int(d), float(j['format']['duration'])
 
 
+def geom_plan(t):
+    """v3: между ключевыми точками плана - плавно (ease-in-out), плюс подпрыгивание маленького кружка."""
+    K = PLAN['keys']
+    if t <= K[0][0]:
+        g = K[0][1:]
+    elif t >= K[-1][0]:
+        g = K[-1][1:]
+    else:
+        j = next(i for i in range(1, len(K)) if K[i][0] >= t)
+        (t0, *g0), (t1, *g1) = K[j - 1], K[j]
+        k = (t - t0) / (t1 - t0) if t1 > t0 else 1.0
+        k = 4 * k ** 3 if k < 0.5 else 1 - (-2 * k + 2) ** 3 / 2
+        g = [b + (s - b) * k for b, s in zip(g0, g1)]
+    cx, cy, r = g
+    if r < 150:
+        b = max((np.sin(np.pi * (t - tb) / BOUNCE) for tb in PLAN.get('bounce', []) if 0 <= t - tb < BOUNCE), default=0.0)
+        cy -= 18 * b
+        r *= 1 + 0.12 * b
+    return round(cx), round(cy), round(r)
+
+
 def geom(t):
     """Центр и радиус кружка в момент t: крупно на хуке, плавное уменьшение, дальше маленький."""
+    if PLAN:
+        return geom_plan(t)
     if t < a.intro:
         return BIG
     k = min(1.0, (t - a.intro) / SHRINK) if a.intro else 1.0
@@ -48,7 +74,7 @@ def geom(t):
     return tuple(round(b + (s - b) * k) for b, s in zip(BIG, SMALL))
 
 
-@lru_cache(maxsize=64)
+@lru_cache(maxsize=512)
 def layers(r):
     """Маска лица (сглаженный край), тень и оранжевое кольцо. Кэш по радиусу."""
     ring = max(5, round(r * 0.065)); S = 4

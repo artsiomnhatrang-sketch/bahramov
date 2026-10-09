@@ -9,6 +9,7 @@ import { dirname, join } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { chromium } from 'playwright';
 import { FORMATS } from './formats/index.mjs';
+import { LOOP, planV3, krugPlan } from './v3.mjs';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const FPS = 30;
@@ -30,6 +31,10 @@ const PLUS = IS_SILERO || IS_CLONE; // голос понимает «+» пер�
 const VOICE = IS_SILERO ? VOICE_ARG : VOICES[VOICE_ARG] ?? VOICE_ARG;
 const TEMPO = Number(args.tempo ?? (IS_CLONE ? 1.0 : 1.05)); // Silero говорит неторопливо — ускоряем без смены тона; клон говорит в темпе Артёма
 const RATE = args.rate ?? '+20%';
+// Монтаж v3 (09.10): наезды и тряска на акцентах, цветные слова и эмодзи в субтитрах, звуки (бас, щелчки, дзынь,
+// нарастание, ducking), таймер/крестики/галочки, полоска прогресса, разные переходы, лицо крупно на CTA и в середине,
+// петля. Включается --v3; без флага ролики собираются как раньше (v2).
+const V3 = !!args.v3;
 
 if (!FORMATS[format]) throw new Error(`Нет формата ${format}. Есть: ${Object.keys(FORMATS).join(', ')}`);
 const V = FORMATS[format](date, n);
@@ -75,11 +80,17 @@ if (IS_SILERO) {
 if (IS_CLONE) { // ~28 с на фразу на Маке (MPS); фразу с тем же текстом и голосом не озвучиваем заново
   const dir = CLONES[VOICE_ARG];
   const ref = JSON.parse(readFileSync(join(dir, process.env.GOLOS_JSON ?? 'golos.json'), 'utf8')).ref;
-  const key = (i) => `${VOICE_ARG}|${ref}\n${acc[i]}`; // другой образец голоса = другая озвучка, старая не подхватится
+  // другой образец голоса = другая озвучка, старая не подхватится. speed у сцены (09.10): короткую фразу клон
+  // проглатывает («Это мошенник» Whisper слышал «Это машина») - на 0.85 читается чётко, такие сцены озвучиваются отдельно
+  const sp = (i) => V.scenes[i].speed ?? 1;
+  const key = (i) => `${VOICE_ARG}|${ref}${sp(i) !== 1 ? `|${sp(i)}` : ''}\n${acc[i]}`;
   const todo = acc.map((_, i) => i).filter((i) => !existsSync(join(work, `s${i}.raw.wav`)) || !existsSync(join(work, `s${i}.key`))
     || readFileSync(join(work, `s${i}.key`), 'utf8') !== key(i));
-  if (todo.length) execFileSync(join(dir, '.venv', 'bin', 'python'), [join(dir, 'say.py')], { stdio: ['pipe', 'inherit', 'inherit'],
-    input: JSON.stringify({ items: todo.map((i) => acc[i]), out: todo.map((i) => join(work, `s${i}.raw.wav`)) }) });
+  for (const speed of [...new Set(todo.map(sp))]) {
+    const part = todo.filter((i) => sp(i) === speed);
+    execFileSync(join(dir, '.venv', 'bin', 'python'), [join(dir, 'say.py')], { stdio: ['pipe', 'inherit', 'inherit'],
+      input: JSON.stringify({ items: part.map((i) => acc[i]), out: part.map((i) => join(work, `s${i}.raw.wav`)), ...(speed !== 1 ? { speed } : {}) }) });
+  }
   todo.forEach((i) => writeFileSync(join(work, `s${i}.key`), key(i)));
 }
 V.scenes.forEach((s, i) => {
@@ -133,6 +144,7 @@ if (V2) {
     return execFileSync('cat', [join(work, 'words.json')]).toString();
   })());
   V.scenes.forEach((s, i) => { s.words = words[i]; });
+  if (V3) planV3(V, ROOT);
 
   // звук: голос (срез гула, компрессия) + музыка тихо под голосом + «вжух» на вставках, громкость -14 LUFS
   const musicName = args.music ?? (n % 2 ? 'v3-violin-aura.mp3' : 'v1-dark-trap-violin.mp3'); // выбор Артёма 05.10: скрипка 1 и 3
@@ -147,12 +159,19 @@ if (V2) {
   const lufs = Number(/I:\s+(-?[\d.]+) LUFS/.exec(spawnSync('ffmpeg', ['-v', 'info', '-i', audio, '-af', 'ebur128', '-f', 'null', '-'],
     { encoding: 'utf8' }).stderr.split('Summary:').pop())?.[1] ?? -18.7);
   const voiceGain = Math.max(-12, Math.min(12, -18.7 - lufs)).toFixed(1);
-  const ins = ['-i', audio, '-stream_loop', '-1', '-i', music, ...sfx.flatMap((_, k) => ['-i', wh[k % 2]])];
-  const f = [`[0:a]volume=${voiceGain}dB,highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6[vo]`,
+  // события звука: «вжух» (как в v2) + в v3 бас, щелчки, дзынь, нарастание, штампы, поп (planV3 -> V.sfx3)
+  const ev = [...sfx.map((t, k) => ({ t: t - 0.08, f: wh[k % 2], v: Number(args.sfxVol ?? 0.12), len: 1.0 })), ...(V.sfx3 ?? [])]
+    .filter((e) => e.t < total - 0.05);
+  const ins = ['-i', audio, '-stream_loop', '-1', '-i', music, ...ev.flatMap((e) => ['-i', e.f])];
+  // v3: музыка с первого кадра (без медленного вступления), под голосом приглушается (ducking), в паузах громче;
+  // в конце короткий спад - ролик зациклен, конец переходит в начало
+  const [mVol, fIn, fOut] = V3 ? [args.musicVol ?? 0.3, 0.03, 0.35] : [args.musicVol ?? 0.2, 0.6, 1.2];
+  const f = [`[0:a]volume=${voiceGain}dB,highpass=f=80,acompressor=threshold=-20dB:ratio=3:attack=5:release=80,volume=1.6${V3 ? ',aformat=channel_layouts=stereo,asplit=2[vo][vk]' : '[vo]'}`, // v3: стерео (раньше всё сводилось в моно)
     // музыка: с нужного места, громкость выровнена (треки бывают от -8 до -25 дБ), затем тихо под голос
-    `[1:a]atrim=start=${mFrom}:duration=${(total + 0.5).toFixed(2)},asetpts=PTS-STARTPTS,loudnorm=I=-16:TP=-2,aresample=48000,volume=${args.musicVol ?? 0.2},afade=t=in:d=0.6,afade=t=out:st=${(total - 1.2).toFixed(2)}:d=1.2[mu]`,
-    ...sfx.map((t, k) => `[${k + 2}:a]atrim=0:1.0,afade=t=out:st=0.7:d=0.3,volume=${args.sfxVol ?? 0.12},adelay=${Math.max(0, Math.round((t - 0.08) * 1000))}:all=1[x${k}]`),
-    `[vo][mu]${sfx.map((_, k) => `[x${k}]`).join('')}amix=inputs=${sfx.length + 2}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[m]`];
+    `[1:a]atrim=start=${mFrom}:duration=${(total + 0.5).toFixed(2)},asetpts=PTS-STARTPTS,loudnorm=I=-16:TP=-2,aresample=48000,volume=${mVol},afade=t=in:d=${fIn},afade=t=out:st=${(total - fOut).toFixed(2)}:d=${fOut}${V3 ? '[m0]' : '[mu]'}`,
+    ...(V3 ? ['[m0][vk]sidechaincompress=threshold=0.02:ratio=5:attack=12:release=300:makeup=1[mu]'] : []),
+    ...ev.map((e, k) => `[${k + 2}:a]aformat=channel_layouts=stereo,aresample=48000,atrim=0:${e.len},afade=t=out:st=${Math.max(0, e.len - (e.cut ? 0.02 : 0.3)).toFixed(2)}:d=${e.cut ? 0.02 : 0.3},volume=${e.v},adelay=${Math.max(0, Math.round(e.t * 1000))}:all=1[x${k}]`),
+    `[vo][mu]${ev.map((_, k) => `[x${k}]`).join('')}amix=inputs=${ev.length + 2}:normalize=0:duration=first,loudnorm=I=-14:TP=-1.5:LRA=11[m]`];
   execFileSync('ffmpeg', ['-v', 'error', '-y', ...ins, '-filter_complex', f.join(';'), '-map', '[m]', '-t', total.toFixed(2),
     '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', mix]);
   V.mix = mix;
@@ -171,9 +190,9 @@ const ffDone = new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(ne
 const LICO_DIR = process.env.ROLIKI_LICO_DIR ?? join(homedir(), 'Developer', 'lico-artem');
 const licoOut = join(work, 'lico.mp4');
 // тот же голос и то же лицо = готовое видео лица из прошлой сборки (губы рисуются ~5 мин)
-// По умолчанию у голоса Артёма кружок с лицом artem (дома, чёрная майка и кепка, молча) - единственный референс (08.10).
-// --lico none - без кружка.
-const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? 'artem' : null;
+// По умолчанию у голоса Артёма кружок с лицом (09.10): artem3 (IMG_4681) и artem4 (IMG_4682) по очереди, как музыка -
+// чётный n artem3, нечётный artem4. Старое artem (IMG_4658, 08.10) - запасное, только --lico artem. --lico none - без кружка.
+const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? (n % 2 ? 'artem4' : 'artem3') : null;
 const licoKey = LICO ? `${LICO}\n${createHash('md5').update(readFileSync(audio)).digest('hex')}` : '';
 const licoCached = LICO && existsSync(licoOut) && existsSync(join(work, 'lico.key')) && readFileSync(join(work, 'lico.key'), 'utf8') === licoKey;
 const licoDone = licoCached ? Promise.resolve() : LICO ? new Promise((r, j) => spawn(join(LICO_DIR, '.venv', 'bin', 'python'),
@@ -184,7 +203,7 @@ const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
 await page.goto(pathToFileURL(join(ROOT, 'src', 'template.html')).href);
 const scenes = V.scenes.map(({ audio: _a, ...s }) => s);
-await page.evaluate(([v]) => window.init(v), [{ label: V.label, strip: V.strip, scenes, wordSubs: V2, lico: !!LICO }]);
+await page.evaluate(([v]) => window.init(v), [{ label: V.label, strip: V.strip, scenes, wordSubs: V2, lico: !!LICO, v3: V3, total, loop: V3 ? LOOP : 0 }]);
 await page.evaluate(async () => {
   await document.fonts.ready;
   await Promise.all([...document.images].map((im) => im.complete ? 0 : new Promise((r) => { im.onload = im.onerror = r; })));
@@ -205,8 +224,13 @@ if (licoDone) {
   console.log('\nждём лицо (MuseTalk)…');
   await licoDone;
   // хук: лицо крупно всю первую фразу, кроме ~0,7 с в конце - на последних словах уходит в кружок и открывает картинку
-  const intro = Math.max(1.5, V.scenes[0].dur - 0.7).toFixed(2);
-  execFileSync('python3', [join(ROOT, 'src', 'krug.py'), out, licoOut, join(work, 'krug.mp4'), '--intro', intro], { stdio: 'inherit' });
+  const intro = Math.max(1.5, V.scenes[0].dur - 0.7);
+  // v3: план кружка - крупно на хуке, на сцене с lico:'big' в середине и на CTA, к последнему кадру снова как в кадре 0
+  // (петля); на акцентах маленький кружок подпрыгивает
+  const plan = V3 ? join(work, 'krug-plan.json') : null;
+  if (plan) writeFileSync(plan, JSON.stringify(krugPlan(V, total, intro)));
+  execFileSync('python3', [join(ROOT, 'src', 'krug.py'), out, licoOut, join(work, 'krug.mp4'), '--intro', intro.toFixed(2),
+    ...(plan ? ['--plan', plan] : [])], { stdio: 'inherit' });
   renameSync(join(work, 'krug.mp4'), out);
 }
 

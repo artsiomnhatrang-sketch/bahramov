@@ -7,3 +7,4 @@ media/*
 !media/shots.sh
 muzyka/*.mp3
 zvuki/*.mp3
+zvuki/*.wav

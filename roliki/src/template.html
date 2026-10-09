@@ -159,6 +159,56 @@ body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
 /* 08.10: с кружком лица справа (--lico) субтитры уходят левее, чтобы длинные слова не заезжали под кружок */
 .lico .sub { right: 360px; }
 .head { text-shadow: 0 4px 30px rgba(0,0,0,0.8); }
+
+/* ── монтаж v3 (09.10): камера, прогресс, вспышка, эмодзи, петля, таймер, штампы, путь по настройкам ── */
+#cam { position: absolute; inset: 0; z-index: 1; transform-origin: 540px 945px; }
+#prog { position: absolute; z-index: 8; top: 272px; left: 120px; right: 120px; height: 10px; border-radius: 5px;
+  background: rgba(255,255,255,0.16); overflow: hidden; display: none; }
+#prog i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 5px; background: var(--orange);
+  box-shadow: 0 0 16px rgba(244,103,42,0.9); }
+#flash { position: absolute; inset: 0; z-index: 9; background: #fff; opacity: 0; display: none; }
+#emoji { position: absolute; z-index: 7; left: 596px; top: 1200px; width: 130px; text-align: center; opacity: 0;
+  font: 96px/1 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6)); }
+#loophead { position: absolute; inset: 0; z-index: 3; display: none; }
+.sub.word span { display: inline-block; white-space: nowrap; }
+/* секундомер: кольцо убывает, цифры тикают */
+.timer { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.timer .dial { position: relative; width: 420px; height: 420px; }
+.timer .knob { position: absolute; left: 50%; top: -30px; width: 76px; height: 30px; margin-left: -38px; background: #3a3a3a; border-radius: 12px 12px 0 0; }
+.timer svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.timer .tr { fill: var(--bg3); stroke: rgba(255,255,255,0.12); stroke-width: 26; }
+.timer .tf { fill: none; stroke: var(--orange); stroke-width: 26; stroke-linecap: round; }
+.timer .td { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  font: 800 128px/1 Unbounded; letter-spacing: -4px; font-variant-numeric: tabular-nums; }
+.timer .tc { margin-top: 40px; font: 700 54px/1.1 Unbounded; text-transform: uppercase; color: var(--orange); }
+/* плашка-таймер поверх живой картинки */
+.badge { position: absolute; z-index: 6; left: 90px; top: 580px; display: flex; align-items: center; gap: 18px;
+  background: rgba(10,10,10,0.9); border: 3px solid #ff3b30; border-radius: 22px; padding: 18px 28px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.6); }
+.badge .dot { width: 22px; height: 22px; border-radius: 50%; background: #ff3b30; flex: none; }
+.badge .bd { font: 800 62px/1 Unbounded; color: #fff; letter-spacing: -1px; font-variant-numeric: tabular-nums; }
+.badge .bc { font: 600 28px/1.15 Inter; color: #ff9b94; max-width: 170px; }
+/* штамп: крестик или галочка */
+.stamp { position: absolute; z-index: 6; }
+.stamp svg, .checks .ic svg { display: block; width: 100%; height: 100%; filter: drop-shadow(0 12px 26px rgba(0,0,0,0.55)); }
+/* checks: строки по очереди, у каждой штамп */
+.checks { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 26px; }
+.checks .row { padding: 28px 30px; }
+.checks .row .tx { flex: 1; }
+.checks .ic { flex: none; width: 92px; height: 92px; }
+.checks .row.bad { border-color: rgba(255,59,48,0.8); }
+.checks .row.good { border-color: rgba(52,199,89,0.8); }
+/* path: путь по настройкам - экраны сменяются, палец нажимает нужную строку */
+.path .phone { overflow: hidden; }
+.path .scr { position: absolute; inset: 0; background: var(--bg3); padding: 96px 30px 0; }
+.path .st { font: 700 40px/1 Unbounded; margin: 0 6px 30px; }
+.path .pr { position: relative; display: flex; align-items: center; gap: 20px; padding: 24px 20px; margin-bottom: 12px;
+  border-radius: 16px; background: var(--bg4); border: 2px solid transparent; font: 600 30px/1.2 Inter; overflow: hidden; }
+.path .pr i { flex: none; width: 46px; height: 46px; border-radius: 12px; background: #2a2a2a; }
+.path .pr.on { border-color: var(--orange); background: rgba(244,103,42,0.16); }
+.path .tap { position: absolute; width: 90px; height: 90px; margin: -45px 0 0 -45px; border-radius: 50%;
+  background: rgba(255,255,255,0.55); pointer-events: none; }
+.path .crumb { position: absolute; left: 0; right: 0; top: -2px; text-align: center; }
 </style>
 </head>
 <body>
@@ -167,12 +217,19 @@ body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
 <div id="scenes"></div>
 <div class="sub" id="sub"></div>
 <div class="strip" id="strip"></div>
+<div id="loophead"></div><div id="emoji"></div><div id="prog"><i></i></div><div id="flash"></div>
 
 <script>
 const clamp = (x) => Math.max(0, Math.min(1, x));
 const ease = (x) => 1 - Math.pow(1 - clamp(x), 3);
 const el = (tag, cls, html) => { const e = document.createElement(tag); if (cls) e.className = cls; if (html != null) e.innerHTML = html; return e; };
 const nb = (s) => String(s).replace(/(^|\s)(\S{1,2})\s/g, '$1$2 '); // короткие слова не висят в конце строки
+// v3: штампы ✕ / ✓ рисуем сами (SVG) - одинаково на любом компьютере, без чужих иконок
+const SVG_X = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#ff3b30"/><path d="M33 33L67 67M67 33L33 67" stroke="#fff" stroke-width="11" stroke-linecap="round"/></svg>';
+const SVG_OK = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#34c759"/><path d="M28 52L44 67L73 35" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const p2 = (n) => String(n).padStart(2, '0');
+const fmtTime = (n, f) => f === 'hms' ? `${p2(Math.floor(n / 3600))}:${p2(Math.floor(n / 60) % 60)}:${p2(n % 60)}` : `0:${p2(n)}`;
+const backOut = (x) => { const c = 1.9; x = clamp(x) - 1; return 1 + (c + 1) * x * x * x + c * x * x; };
 
 function headEl(text, small) {
   const h = el('div', 'head' + (small ? ' small' : ''));
@@ -328,11 +385,87 @@ const VIS = {
     } };
   },
 
+  // v3: секундомер - «за 5 секунд», «через час»: кольцо убывает, цифры тикают с толчком, подпись появляется к слову
+  timer(v, box) {
+    const w = el('div', 'timer'), C = 2 * Math.PI * 175;
+    w.innerHTML = `<div class="dial"><div class="knob"></div><svg viewBox="0 0 420 420"><circle class="tr" cx="210" cy="210" r="175"/>
+      <circle class="tf" cx="210" cy="210" r="175" stroke-dasharray="${C}" stroke-dashoffset="0"/></svg><div class="td"></div></div>`;
+    const dial = w.querySelector('.dial'), tf = w.querySelector('.tf'), td = w.querySelector('.td');
+    const c = v.c ? el('div', 'tc', nb(v.c)) : null; if (c) w.appendChild(c);
+    box.appendChild(w);
+    const at = v.at ?? 0.25, tick = v.tick ?? 0.42;
+    return { anim(lt) {
+      const k = ease(lt / 0.25);
+      dial.style.opacity = k; dial.style.transform = `scale(${0.7 + 0.3 * k})`;
+      const x = Math.max(0, (lt - at) / tick), n = Math.max(0, v.from - Math.floor(x));
+      td.textContent = fmtTime(n, v.fmt);
+      td.style.color = n <= 1 ? '#ff3b30' : '';
+      const ph = n > 0 ? x % 1 : 1; // толчок цифр на каждом тике
+      td.style.transform = `scale(${1 + 0.1 * Math.pow(1 - Math.min(1, ph * 4), 2)})`;
+      tf.setAttribute('stroke-dashoffset', String(C * Math.min(1, x / v.from)));
+      if (c) { const k2 = ease((lt - (v.cAt ?? 1.2)) / 0.25); c.style.opacity = k2; c.style.transform = `translateY(${(1 - k2) * 30}px) scale(${0.85 + 0.15 * k2})`; }
+    } };
+  },
+
+  // v3: строки по очереди, на каждой с ударом штамп ✕ или ✓ (ok: true) - вместо статичного списка
+  checks(v, box) {
+    const L = el('div', 'checks');
+    const rows = v.items.map((it) => {
+      const r = el('div', 'row', `<div class="tx">${nb(it.t)}</div>`);
+      const ic = el('div', 'ic', it.ok ? SVG_OK : SVG_X); r.appendChild(ic); L.appendChild(r);
+      return { r, ic, ok: !!it.ok };
+    });
+    box.appendChild(L);
+    return { anim(lt) {
+      rows.forEach(({ r, ic, ok }, i) => {
+        const a = (v.at ?? 0.2) + i * (v.step ?? 0.32);
+        const k = ease((lt - a) / 0.2), k2 = clamp((lt - a - 0.12) / 0.14);
+        r.style.opacity = k; r.style.transform = `translateX(${(1 - k) * 80}px)`;
+        ic.style.opacity = k2; ic.style.transform = `scale(${2.2 - 1.2 * ease(k2)}) rotate(${(1 - k2) * -25}deg)`;
+        r.classList.toggle(ok ? 'good' : 'bad', k2 >= 1);
+      });
+    } };
+  },
+
+  // v3: путь по настройкам - экраны телефона сменяются, на нужной строке нажатие (палец-круг) и подсветка.
+  // { type: 'path', screens: [{ t: 'Настройки', rows: [...], tap: 1 }, ...], at, step }
+  path(v, box) {
+    const p = el('div', 'phone'), wrap = el('div', 'path'); wrap.appendChild(p);
+    p.innerHTML = '<div class="bar" style="z-index:3"></div>';
+    const scr = v.screens.map((S) => {
+      const d = el('div', 'scr', `<div class="st">${S.t}</div>`);
+      const rows = S.rows.map((r) => { const x = el('div', 'pr', `<i></i><span>${nb(r)}</span>`); d.appendChild(x); return x; });
+      const tap = el('div', 'tap'); d.appendChild(tap); p.appendChild(d);
+      return { d, rows, tap, k: S.tap ?? 0 };
+    });
+    box.appendChild(wrap);
+    const at = v.at ?? 0.3, step = v.step ?? 1.0;
+    return { anim(lt) {
+      const k0 = ease(lt / 0.3); p.style.opacity = k0; p.style.transform = `translateY(${(1 - k0) * 60}px)`;
+      scr.forEach((S, i) => {
+        const t0 = at + i * step, kin = i ? ease((lt - t0) / 0.28) : 1;
+        S.d.style.transform = `translateX(${(1 - kin) * 100}%)`;
+        S.d.style.display = i && lt < t0 ? 'none' : 'block';
+        const tt = t0 + step * 0.55, d = lt - tt, row = S.rows[S.k];
+        row.classList.toggle('on', d >= 0);
+        const on = d >= 0 && d < 0.45;
+        S.tap.style.display = on ? 'block' : 'none';
+        if (on) {
+          S.tap.style.left = `${row.offsetLeft + row.offsetWidth * 0.72}px`; S.tap.style.top = `${row.offsetTop + row.offsetHeight / 2}px`;
+          S.tap.style.transform = `scale(${0.4 + 1.2 * ease(d / 0.45)})`; S.tap.style.opacity = 0.9 * (1 - d / 0.45);
+        }
+      });
+    } };
+  },
+
   cta(v, box, s) {
-    const btn = el('div', 'btn', `<span>${v.btn ?? 'Ссылка в профиле'}</span>`); btn.style.top = '180px';
-    const tg = el('div', 'tg', nb(v.t ?? 'Telegram @bahramovartsiom')); tg.style.top = '350px';
+    // v3 с лицом: лицо крупно над кнопкой («Пиши НАВИГАТОР» в камеру), кнопка и темы ниже лица
+    const face = window.VIDEO?.v3 && window.VIDEO?.lico;
+    const btn = el('div', 'btn', `<span>${v.btn ?? 'Ссылка в профиле'}</span>`); btn.style.top = face ? '505px' : '180px';
+    const tg = el('div', 'tg', nb(v.t ?? 'Telegram @bahramovartsiom')); tg.style.top = face ? '640px' : '350px';
+    if (face) tg.style.fontSize = '38px';
     // темы, с которыми пишут, — загораются по очереди, чтобы финал не стоял на месте
-    const ch = el('div', 'tg'); ch.style.top = '470px';
+    const ch = el('div', 'tg'); ch.style.top = face ? '745px' : '470px';
     const chips = (v.chips ?? ['Блокировка', 'Взлом', 'Восстановление']).map((c) => { const p = el('span', 'pill g', c); p.style.margin = '0 8px 16px'; ch.appendChild(p); return p; });
     box.append(btn, tg, ch);
     return { anim(lt) {
@@ -383,6 +516,37 @@ function animPops(s, lt) {
   }
 }
 
+// v3: поверх сцены - штамп ✕/✓ ({ at, e: 'x'|'ok', x, y, size }) и плашка-таймер ({ at, from, tick, cap })
+function buildMarks(s) {
+  if (s.stamp) {
+    const st = s.stamp, z = st.size ?? 220, m = el('div', 'stamp', st.e === 'ok' ? SVG_OK : SVG_X);
+    m.style.cssText += `left:${st.x ?? 720}px;top:${st.y ?? 600}px;width:${z}px;height:${z}px`;
+    s.node.appendChild(m); s.stampEl = m;
+  }
+  if (s.badge) {
+    const b = el('div', 'badge', `<div class="dot"></div><div class="bd"></div>${s.badge.cap ? `<div class="bc">${nb(s.badge.cap)}</div>` : ''}`);
+    s.node.appendChild(b); s.badgeEl = b;
+  }
+}
+function animMarks(s, lt) {
+  if (s.stampEl) {
+    const d = lt - s.stamp.at, k = clamp(d / 0.16);
+    s.stampEl.style.display = d >= 0 ? 'block' : 'none';
+    // удар: из крупного в свой размер с поворотом, потом лёгкое покачивание
+    s.stampEl.style.transform = `scale(${2.4 - 1.4 * ease(k)}) rotate(${-24 + 14 * ease(k) + (k >= 1 ? Math.sin((d - 0.16) * 9) * 2 * Math.exp(-(d - 0.16) * 3) : 0)}deg)`;
+    s.stampEl.style.opacity = k;
+  }
+  if (s.badgeEl) {
+    const b = s.badge, d = lt - b.at, k = ease(d / 0.18);
+    s.badgeEl.style.display = d >= 0 ? 'flex' : 'none';
+    const n = Math.max(0, b.from - Math.max(0, Math.floor(d / (b.tick ?? 0.25))));
+    s.badgeEl.querySelector('.bd').textContent = fmtTime(n, 'hms');
+    s.badgeEl.querySelector('.dot').style.opacity = Math.floor(d / 0.25) % 2 ? 0.25 : 1; // мигает, как запись
+    s.badgeEl.style.transform = `scale(${0.6 + 0.4 * backOut(d / 0.25)}) translateX(${d < 0.35 ? Math.sin(d * 80) * 8 * (1 - d / 0.35) : 0}px)`;
+    s.badgeEl.style.opacity = k;
+  }
+}
+
 function build(V) {
   document.getElementById('label').textContent = V.label;
   document.getElementById('strip').innerHTML = V.strip;
@@ -393,6 +557,7 @@ function build(V) {
     const box = el('div', 'vis'); node.appendChild(box);
     s.v = s.vis ? VIS[s.vis.type](s.vis, box, s) : null;
     buildPops(s);
+    buildMarks(s);
     // Субтитры: куски по предложениям и запятым, время пропорционально длине.
     const parts = (s.sub ?? s.say).replace(/\+/g, "").match(/[^.?!,:;]+[.?!,:;]?/g).map((x) => x.trim().replace(/[,:;]$/, '')).filter(Boolean);
     const total = parts.reduce((a, p) => a + p.length, 0);
@@ -414,6 +579,7 @@ function fitHead(s) {
 
 function animHead(s, lt) {
   fitHead(s);
+  if (window.VIDEO.v3 && s === window.VIDEO.scenes[0]) lt += 1; // v3: заголовок хука виден с кадра 0
   [...s.headNode.children].forEach((w, i) => {
     const k = ease((lt - i * 0.06) / 0.25);
     w.style.opacity = k; w.style.transform = `translateY(${(1 - k) * 40}px)`;
@@ -426,6 +592,51 @@ function wordAt(s, lt) {
   let w = null; for (const x of W) { if (lt >= x.s - 0.04) w = x; else break; }
   if (!w || lt > s.voiceDur + 0.05) return null;
   return w.w;
+}
+
+function wordIdx(s, lt) {
+  const W = s.words; if (!W?.length || lt > s.voiceDur + 0.05) return -1;
+  let k = -1; for (let i = 0; i < W.length; i++) { if (lt >= W[i].s - 0.04) k = i; else break; }
+  return k;
+}
+
+// v3: камера (переход в сцену, наезд на акценте, тряска), вспышка, эмодзи, полоска прогресса, петля
+function camV3(V, cur, lt, t) {
+  const i = V.scenes.indexOf(cur), cam = document.getElementById('cam');
+  let sc = 1, tx = 0, ty = 0, rot = 0, blur = 0, fl = 0;
+  if (i > 0 && lt < 0.26) {
+    const k = ease(lt / 0.24);
+    if (cur.trans === 'zoom') { sc *= 1.16 - 0.16 * k; blur = 14 * (1 - k); }        // наезд с размытием
+    else if (cur.trans === 'slide') { tx = 200 * (1 - k); blur = 9 * (1 - k); }      // сдвиг
+    else if (cur.trans === 'flash') { fl = 0.75 * (1 - clamp(lt / 0.18)); sc *= 1.06 - 0.06 * k; } // вспышка
+  }
+  // резкий наезд на акцентном слове: за 0,07 с до +7 %, дальше держится на половине до конца сцены
+  for (const p of cur.fx?.punch ?? []) { const d = lt - p; if (d >= 0) sc *= 1 + 0.07 * (d < 0.07 ? ease(d / 0.07) : 0.5 + 0.5 * Math.exp(-(d - 0.07) * 6)); }
+  // лёгкая тряска на «мошенник», «взлом», «удалят»...
+  for (const p of cur.fx?.shake ?? []) { const d = lt - p; if (d >= 0 && d < 0.4) { const a = 1 - d / 0.4; tx += Math.sin(d * 97) * 12 * a; ty += Math.cos(d * 73) * 9 * a; rot += Math.sin(d * 59) * 0.8 * a; } }
+  cam.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${sc.toFixed(4)}) rotate(${rot.toFixed(2)}deg)`;
+  cam.style.filter = blur > 0.3 ? `blur(${blur.toFixed(1)}px)` : 'none';
+  const flash = document.getElementById('flash'); flash.style.display = fl > 0.01 ? 'block' : 'none'; flash.style.opacity = fl;
+  // эмодзи-оценка над субтитром: выскакивает с перелётом, ~1 с
+  const emo = document.getElementById('emoji'), em = (cur.fx?.emoji ?? []).find((e) => lt >= e.at && lt < e.at + 1.0);
+  if (em) {
+    const d = lt - em.at;
+    emo.textContent = em.e; emo.style.opacity = d > 0.8 ? 1 - (d - 0.8) / 0.2 : 1;
+    emo.style.transform = `scale(${backOut(d / 0.22)}) rotate(${-14 + 10 * ease(d / 0.3)}deg) translateY(${-10 * ease(d / 1.0)}px)`;
+  } else emo.style.opacity = 0;
+  // полоска прогресса; петля: последние V.loop с ролик плавно становится своим кадром 0
+  const lk = V.loop ? ease((t - (V.total - V.loop)) / V.loop) : 0;
+  const prog = document.getElementById('prog');
+  // в петле полоска «отматывается» к нулю - последний кадр совпадает с кадром 0
+  prog.firstChild.style.width = `${(Math.min(100, t / V.total * 100) * (1 - lk)).toFixed(2)}%`;
+  const lh = document.getElementById('loophead');
+  for (const s of V.scenes) s.node.style.opacity = s === cur && lk > 0 ? 1 - lk : '';
+  lh.style.display = lk > 0 ? 'block' : 'none'; lh.style.opacity = lk;
+  if (lk > 0) lh.firstChild.style.fontSize = V.scenes[0].headNode.style.fontSize; // кегль как у заголовка в кадре 0
+  if (lk > 0) {
+    const fill = document.getElementById('bgfill'); fill.style.opacity = (parseFloat(fill.style.opacity) || 0) * (1 - lk);
+    document.getElementById('strip').style.opacity = lk;
+  }
 }
 
 let lastBg = null;
@@ -444,22 +655,45 @@ window.seek = (t) => {
   animHead(cur, lt);
   const wait = cur.v ? cur.v.anim(lt, cur) : null;
   animPops(cur, lt);
+  animMarks(cur, lt);
   const isCta = cur.vis?.type === 'cta';
   const subEl = document.getElementById('sub');
   if (V.wordSubs) {
     subEl.className = 'sub word';
+    if (V.v3) {
+      // v3: ключевые слова (из заголовка, цифры, «мошенник») - оранжевые и крупнее; каждое слово выскакивает
+      const k = isCta ? -1 : wordIdx(cur, lt), w = k >= 0 ? cur.words[k].w : null, hl = k >= 0 && (cur.fx?.hl ?? []).includes(k);
+      subEl.innerHTML = w ? `<span class="${hl ? 'hl' : ''}">${w}</span>` : '';
+      let fs = hl ? 92 : 78; subEl.style.fontSize = fs + 'px';
+      const sp = subEl.firstChild;
+      while (sp && sp.offsetWidth > subEl.clientWidth - 8 && fs > 40) { fs -= 3; subEl.style.fontSize = fs + 'px'; }
+      subEl.style.transform = w ? `scale(${(1 + (hl ? 0.2 : 0.08) * (1 - ease((lt - cur.words[k].s) / 0.14))).toFixed(3)})` : '';
+    } else {
     const w = isCta ? null : wordAt(cur, lt);
     subEl.innerHTML = w ? (/\d/.test(w) ? `<span class="hl">${w}</span>` : w) : '';
     subEl.style.fontSize = V.lico && w && w.length > 12 ? `${Math.round(78 * 12 / w.length)}px` : ''; // длинное слово ужимаем в 600px
+    }
   } else {
     const sub = cur.subs.find((x) => lt >= x.start && lt < x.end) || (lt >= cur.voiceDur ? cur.subs[cur.subs.length - 1] : null);
     subEl.textContent = sub && !isCta ? sub.text : '';
   }
   document.getElementById('strip').style.opacity = isCta ? 0 : 1;
+  if (V.v3) camV3(V, cur, lt, t);
   return wait;
 };
 
-window.init = (V) => { window.VIDEO = V; document.body.classList.toggle('lico', !!V.lico); build(V); return seek(0); };
+window.init = (V) => {
+  window.VIDEO = V; document.body.classList.toggle('lico', !!V.lico);
+  if (V.v3) {
+    const cam = el('div'); cam.id = 'cam';
+    document.body.insertBefore(cam, document.body.firstChild);
+    cam.append(document.getElementById('bgfill'), document.getElementById('scenes'));
+    document.getElementById('prog').style.display = 'block';
+  }
+  build(V);
+  if (V.v3 && V.loop) { const s0 = V.scenes[0]; document.getElementById('loophead').appendChild(headEl(s0.head, s0.small)); }
+  return seek(0);
+};
 </script>
 </body>
 </html>
