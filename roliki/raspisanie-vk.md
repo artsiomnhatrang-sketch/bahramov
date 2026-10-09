@@ -23,3 +23,8 @@
 | 22.10 | 21-multiakkaunt-ban | ждёт |
 | 23.10 | 22-celostnost-akkaunta | ждёт |
 | 24.10 | 23-dva-akkaunta-odin-telefon | ждёт |
+| 25.10 | 24-180-dnej | ждёт |
+| 26.10 | 25-vzlomali-ili-net | ждёт |
+| 27.10 | 26-moshenniki-vzlomali-telegram | ждёт |
+| 28.10 | 27-avtorskie-prava | ждёт |
+| 29.10 | 28-moshenniki-pishut | ждёт |

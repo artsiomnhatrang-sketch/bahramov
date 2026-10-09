@@ -1,4 +1,4 @@
-# Расписание Shorts в @bahramovai (поставлено 03.10.2026, 14 роликов перезалиты в монтаже v2 04.10, 13 из них голосом aidar и со скрипкой 05.10; 7 новых тем на 18-24.10 поставлены 05.10)
+# Расписание Shorts в @bahramovai (25-29.10: №24-28 в монтаже v3 с новым лицом, поставлены 09.10 с отметкой ИИ; поставлено 03.10.2026, 14 роликов перезалиты в монтаже v2 04.10, 13 из них голосом aidar и со скрипкой 05.10; 7 новых тем на 18-24.10 поставлены 05.10)
 
 06.10: регистрация и спам-блок поменялись датами (регистрация раньше - под просадку Яндекса по этому запросу).
 
@@ -28,6 +28,11 @@
 | 22.10 | 21-multiakkaunt-ban | Дают ли бан за мультиаккаунт в инстаграм | https://youtube.com/shorts/gFiBqSu7l94 |
 | 23.10 | 22-celostnost-akkaunta | Нарушение целостности аккаунта инстаграм | https://youtube.com/shorts/Ye-SqYnOOeY |
 | 24.10 | 23-dva-akkaunta-odin-telefon | Два аккаунта инстаграм на одном телефоне | https://youtube.com/shorts/0rqityIswq0 |
+| 25.10 | 24-180-dnej | Заблокировали инстаграм на 180 дней | https://youtube.com/shorts/IPKG_UjJ_1k |
+| 26.10 | 25-vzlomali-ili-net | Как узнать взломали инстаграм или нет | https://youtube.com/shorts/8ORIEO7AooY |
+| 27.10 | 26-moshenniki-vzlomali-telegram | Мошенники взломали телеграмм что делать | https://youtube.com/shorts/YtJIONY41VI |
+| 28.10 | 27-avtorskie-prava | Заблокировали инстаграм за нарушение авторских прав | https://youtube.com/shorts/NZcWhXOH078 |
+| 29.10 | 28-moshenniki-pishut | Мошенники пишут в телеграм | https://youtube.com/shorts/NSVtK6MkUhs |
 
 Черновик «ЧЕРНОВИК старая версия, не публиковать» — старая сборка ролика 04, скрытый, не публиковать.
 
@@ -54,4 +59,8 @@
 | 21 multiakkaunt ban | instagram-cepnaya-blokirovka-multiakkaunty-2026 |
 | 22 celostnost akkaunta | instagram-celostnost-akkaunta-2026 |
 | 23 dva akkaunta odin telefon | instagram-dva-akkaunta-odin-telefon-2026 |
+| 24 180 dnej | instagram-account-recovery-2026 |
+| 25 vzlomali ili net | instagram-vzlom-akkaunta-vernut-dostup-2026 |
+| 26, 28 мошенники Telegram | telegram-akkaunt-ugon-fishing-2026 |
+| 27 avtorskie prava | instagram-bezopasnyy-zapusk-posle-blokirovki-2026 |
 | 07 канал, 16 спам-блок | отдельной статьи нет - не вставлять или instagram-telegram-unblock |
