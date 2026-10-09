@@ -54,7 +54,7 @@ export function planV3(V, ROOT) {
     if (s.stamp) add(s.start + s.stamp.at, 'stamp', 0.35, 0.35);
     if (s.badge) add(s.start + s.badge.at, 'stamp', 0.25, 0.35);
     if (v.type === 'checks') v.items.forEach((_, k) => add(s.start + (v.at ?? 0.2) + k * (v.step ?? 0.32) + 0.12, 'stamp', 0.3, 0.35));
-    if (v.type === 'timer') for (let k = 1; k <= v.from; k++) {
+    if (v.type === 'timer' && (v.tick ?? 0.42) >= 0.2) for (let k = 1; k <= v.from; k++) { // быстрый счёт - без щелчков
       const tt = (v.at ?? 0.25) + k * (v.tick ?? 0.42);
       if (tt < s.dur) add(s.start + tt, 'click', 0.14, 0.09);
     }

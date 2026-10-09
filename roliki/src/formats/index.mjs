@@ -5,7 +5,6 @@ import { OHVATY } from '../texts/ohvaty.mjs';
 import { AVTOMATIZACIYA } from '../texts/avtomatizaciya.mjs';
 import { buildScenarii } from './scenarii.mjs';
 import { UZHE } from '../texts/uzhe.mjs';
-import { POISK } from '../texts/poisk.mjs';
 import { POISK3 } from '../texts/poisk-v3.mjs';
 
 export const FORMATS = {
@@ -14,6 +13,6 @@ export const FORMATS = {
   avtomatizaciya: makeFormat(AVTOMATIZACIYA, { label: 'Автоматизация Instagram' }),
   scenarii: buildScenarii,
   uzhe: makeFormat(UZHE, { label: 'Ограничения Instagram' }),
-  poisk: makeFormat(POISK, { label: 'Безопасность аккаунтов' }),
-  poisk3: makeFormat(POISK3, { label: 'Безопасность аккаунтов' }), // монтаж v3 (09.10), собирать с --v3
+  poisk: makeFormat(POISK3, { label: 'Безопасность аккаунтов' }), // тексты poisk.mjs + картинки v3 (poisk-v3.mjs)
+  poisk3: makeFormat(POISK3, { label: 'Безопасность аккаунтов' }),
 };

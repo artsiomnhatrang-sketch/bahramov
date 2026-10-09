@@ -171,6 +171,8 @@ body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
   font: 96px/1 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; filter: drop-shadow(0 8px 18px rgba(0,0,0,0.6)); }
 #loophead { position: absolute; inset: 0; z-index: 3; display: none; }
 .sub.word span { display: inline-block; white-space: nowrap; }
+.sub.word .emo { margin-left: 16px; font-family: 'Apple Color Emoji', 'Noto Color Emoji', sans-serif; font-size: 0.85em;
+  -webkit-text-stroke: 0; text-shadow: none; filter: drop-shadow(0 6px 14px rgba(0,0,0,0.6)); }
 /* секундомер: кольцо убывает, цифры тикают */
 .timer { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
 .timer .dial { position: relative; width: 420px; height: 420px; }
@@ -228,7 +230,7 @@ const nb = (s) => String(s).replace(/(^|\s)(\S{1,2})\s/g, '$1$2 '); // коро
 const SVG_X = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#ff3b30"/><path d="M33 33L67 67M67 33L33 67" stroke="#fff" stroke-width="11" stroke-linecap="round"/></svg>';
 const SVG_OK = '<svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="46" fill="#34c759"/><path d="M28 52L44 67L73 35" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const p2 = (n) => String(n).padStart(2, '0');
-const fmtTime = (n, f) => f === 'hms' ? `${p2(Math.floor(n / 3600))}:${p2(Math.floor(n / 60) % 60)}:${p2(n % 60)}` : `0:${p2(n)}`;
+const fmtTime = (n, f) => f === 'hms' ? `${p2(Math.floor(n / 3600))}:${p2(Math.floor(n / 60) % 60)}:${p2(n % 60)}` : f === 'n' ? String(n) : `0:${p2(n)}`;
 const backOut = (x) => { const c = 1.9; x = clamp(x) - 1; return 1 + (c + 1) * x * x * x + c * x * x; };
 
 function headEl(text, small) {
@@ -617,13 +619,6 @@ function camV3(V, cur, lt, t) {
   cam.style.transform = `translate(${tx.toFixed(1)}px,${ty.toFixed(1)}px) scale(${sc.toFixed(4)}) rotate(${rot.toFixed(2)}deg)`;
   cam.style.filter = blur > 0.3 ? `blur(${blur.toFixed(1)}px)` : 'none';
   const flash = document.getElementById('flash'); flash.style.display = fl > 0.01 ? 'block' : 'none'; flash.style.opacity = fl;
-  // эмодзи-оценка над субтитром: выскакивает с перелётом, ~1 с
-  const emo = document.getElementById('emoji'), em = (cur.fx?.emoji ?? []).find((e) => lt >= e.at && lt < e.at + 1.0);
-  if (em) {
-    const d = lt - em.at;
-    emo.textContent = em.e; emo.style.opacity = d > 0.8 ? 1 - (d - 0.8) / 0.2 : 1;
-    emo.style.transform = `scale(${backOut(d / 0.22)}) rotate(${-14 + 10 * ease(d / 0.3)}deg) translateY(${-10 * ease(d / 1.0)}px)`;
-  } else emo.style.opacity = 0;
   // полоска прогресса; петля: последние V.loop с ролик плавно становится своим кадром 0
   const lk = V.loop ? ease((t - (V.total - V.loop)) / V.loop) : 0;
   const prog = document.getElementById('prog');
@@ -663,7 +658,10 @@ window.seek = (t) => {
     if (V.v3) {
       // v3: ключевые слова (из заголовка, цифры, «мошенник») - оранжевые и крупнее; каждое слово выскакивает
       const k = isCta ? -1 : wordIdx(cur, lt), w = k >= 0 ? cur.words[k].w : null, hl = k >= 0 && (cur.fx?.hl ?? []).includes(k);
-      subEl.innerHTML = w ? `<span class="${hl ? 'hl' : ''}">${w}</span>` : '';
+      // эмодзи-оценка - в строке субтитра после слова (над субтитром он налезал на телефон и списки)
+      const em = (cur.fx?.emoji ?? []).find((e) => lt >= e.at && lt < e.at + 1.0), d = em ? lt - em.at : 0;
+      const emo = em && w ? `<span class="emo" style="opacity:${d > 0.8 ? (1 - (d - 0.8) / 0.2).toFixed(2) : 1};transform:scale(${backOut(d / 0.22).toFixed(3)}) rotate(${(-14 + 10 * ease(d / 0.3)).toFixed(1)}deg)">${em.e}</span>` : '';
+      subEl.innerHTML = w ? `<span class="ln"><span class="${hl ? 'hl' : ''}">${w}</span>${emo}</span>` : '';
       let fs = hl ? 92 : 78; subEl.style.fontSize = fs + 'px';
       const sp = subEl.firstChild;
       while (sp && sp.offsetWidth > subEl.clientWidth - 8 && fs > 40) { fs -= 3; subEl.style.fontSize = fs + 'px'; }
