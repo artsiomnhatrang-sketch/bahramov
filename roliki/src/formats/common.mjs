@@ -18,5 +18,6 @@ export const makeFormat = (TEXTS, { label, strip = STRIP }) => (date, n) => {
     slug: `${T.key}-${iso(date)}`, label: T.label ?? label, strip: T.strip ?? strip, title: T.title,
     description: T.description ?? `${T.hook}\n\n${T.about}` + tail(T.tags, T.ask), // свой текст - когда в ролике один CTA (чеклист 07.10)
     scenes: T.scenes.map((s, i) => ({ ...s, ...(T.media?.[i] ?? {}) })),
+    ctaIg: T.ctaIg, stripIg: T.stripIg, capIg: T.capIg, capTt: T.capTt, // 09.10: вторая концовка для Instagram (--cta ig)
   };
 };

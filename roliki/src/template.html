@@ -571,7 +571,8 @@ function build(V) {
 // Длинное слово (ЗАПРАШИВАЙТЕ) не должно вылезать за поля: уменьшаем кегль заголовка, пока самое
 // широкое слово не влезет. Мерим после загрузки шрифтов, один раз на сцену.
 function fitHead(s) {
-  if (s.fitted || document.fonts.status !== 'loaded') return;
+  // 09.10: ждать именно Unbounded - иначе мерили запасной шрифт (он уже), длинное слово «влезало» и вылезало потом
+  if (s.fitted || document.fonts.status !== 'loaded' || !document.fonts.check('800 40px Unbounded')) return;
   const h = s.headNode, max = h.clientWidth;
   let fs = parseFloat(getComputedStyle(h).fontSize);
   const widest = () => Math.max(...[...h.children].map((w) => w.scrollWidth + 18));

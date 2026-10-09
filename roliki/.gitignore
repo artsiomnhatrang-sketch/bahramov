@@ -5,6 +5,7 @@ media/*
 !media/pixabay.py
 !media/snimok.mjs
 !media/shots.sh
+!media/shots3.sh
 muzyka/*.mp3
 zvuki/*.mp3
 zvuki/*.wav

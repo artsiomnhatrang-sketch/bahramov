@@ -39,6 +39,12 @@ const V3 = !args.v2;
 if (!FORMATS[format]) throw new Error(`Нет формата ${format}. Есть: ${Object.keys(FORMATS).join(', ')}`);
 const V = FORMATS[format](date, n);
 if (args.slug) V.slug = args.slug;
+// 09.10: концовка для Instagram (НАВИГАТОР) вместо основной (комментарий + Telegram) - меняется только последняя сцена
+if (args.cta === 'ig') {
+  if (!V.ctaIg) throw new Error('у формата нет концовки для Instagram (ctaIg)');
+  V.scenes[V.scenes.length - 1] = { ...V.ctaIg };
+  if (V.stripIg) V.strip = V.stripIg;
+}
 const work = join(ROOT, '.work', V.slug);
 mkdirSync(work, { recursive: true });
 mkdirSync(join(ROOT, 'out'), { recursive: true });
