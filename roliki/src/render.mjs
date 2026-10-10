@@ -196,9 +196,11 @@ const ffDone = new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(ne
 const LICO_DIR = process.env.ROLIKI_LICO_DIR ?? join(homedir(), 'Developer', 'lico-artem');
 const licoOut = join(work, 'lico.mp4');
 // тот же голос и то же лицо = готовое видео лица из прошлой сборки (губы рисуются ~5 мин)
-// По умолчанию у голоса Артёма кружок с лицом (09.10): artem3 (IMG_4681) и artem4 (IMG_4682) по очереди, как музыка -
-// чётный n artem3, нечётный artem4. Старое artem (IMG_4658, 08.10) - запасное, только --lico artem. --lico none - без кружка.
-const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? (n % 2 ? 'artem4' : 'artem3') : null;
+// По умолчанию у голоса Артёма кружок с лицом. С 10.10 лица из новых видео Артёма по очереди по n: artem8 (рубашка, кепка),
+// artem5 (футболка, кепка), artem7 (рубашка без кепки), artem6 (футболка, кепка) - одежда чередуется. Старые artem/artem3/artem4
+// по слову Артёма в Корзине. --lico <имя> - одно лицо, --lico none - без кружка.
+const LICA = ['artem8', 'artem5', 'artem7', 'artem6'];
+const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? LICA[n % LICA.length] : null;
 const licoKey = LICO ? `${LICO}\n${createHash('md5').update(readFileSync(audio)).digest('hex')}` : '';
 const licoCached = LICO && existsSync(licoOut) && existsSync(join(work, 'lico.key')) && readFileSync(join(work, 'lico.key'), 'utf8') === licoKey;
 const licoDone = licoCached ? Promise.resolve() : LICO ? new Promise((r, j) => spawn(join(LICO_DIR, '.venv', 'bin', 'python'),
