@@ -8,6 +8,7 @@ import { UZHE } from '../texts/uzhe.mjs';
 import { POISK3 } from '../texts/poisk-v3.mjs';
 import { PACHKA2 } from '../texts/pachka2.mjs';
 import { PACHKA3 } from '../texts/pachka3.mjs';
+import { PACHKA4 } from '../texts/pachka4.mjs';
 
 export const FORMATS = {
   blokirovka: buildBlokirovka,
@@ -19,4 +20,5 @@ export const FORMATS = {
   poisk3: makeFormat(POISK3, { label: 'Безопасность аккаунтов' }),
   pachka2: makeFormat(PACHKA2, { label: 'Безопасность аккаунтов' }), // пачка 09.10, 7 роликов, --cta ig - концовка Instagram
   pachka3: makeFormat(PACHKA3, { label: 'Безопасность аккаунтов' }), // пачка 3 от 10.10, №36-42, новое лицо
+  pachka4: makeFormat(PACHKA4, { label: 'Безопасность аккаунтов' }), // пачка 4 от 10.10, №43-49, 25-31.10
 };
