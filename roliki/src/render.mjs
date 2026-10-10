@@ -196,11 +196,19 @@ const ffDone = new Promise((r, j) => ff.on('close', (c) => (c === 0 ? r() : j(ne
 const LICO_DIR = process.env.ROLIKI_LICO_DIR ?? join(homedir(), 'Developer', 'lico-artem');
 const licoOut = join(work, 'lico.mp4');
 // тот же голос и то же лицо = готовое видео лица из прошлой сборки (губы рисуются ~5 мин)
-// По умолчанию у голоса Артёма кружок с лицом. С 10.10 лица из новых видео Артёма по очереди по n: artem8 (рубашка, кепка),
-// artem5 (футболка, кепка), artem7 (рубашка без кепки), artem6 (футболка, кепка) - одежда чередуется. Старые artem/artem3/artem4
-// по слову Артёма в Корзине. --lico <имя> - одно лицо, --lico none - без кружка.
-const LICA = ['artem8', 'artem5', 'artem7', 'artem6'];
-const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? LICA[n % LICA.length] : null;
+// По умолчанию у голоса Артёма кружок с лицом. С 10.10 шесть лиц по кругу через ВСЕ ролики подряд (не по n внутри пачки),
+// старые и новые вперемешку - просьба Артёма, чтобы не было одного и того же: рубашка с кепкой, майка 09.10, футболка 10.10,
+// рубашка без кепки, майка 09.10, футболка 10.10. Кому какое досталось - .work/lica.json (пересборка и -ig берут то же).
+// artem (IMG_4658) - запасное, только --lico artem. --lico <имя> - одно лицо, --lico none - без кружка.
+const LICA = ['artem8', 'artem3', 'artem5', 'artem7', 'artem4', 'artem6'];
+function licoKrug(slug) {
+  const f = join(ROOT, '.work', 'lica.json');
+  const m = existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : { next: 0, by: {} };
+  const key = slug.replace(/-ig$/, '');
+  if (!m.by[key]) { m.by[key] = LICA[m.next % LICA.length]; m.next += 1; writeFileSync(f, JSON.stringify(m, null, 2)); }
+  return m.by[key];
+}
+const LICO = args.lico === 'none' ? null : typeof args.lico === 'string' ? args.lico : (args.lico || IS_CLONE) ? licoKrug(V.slug) : null;
 const licoKey = LICO ? `${LICO}\n${createHash('md5').update(readFileSync(audio)).digest('hex')}` : '';
 const licoCached = LICO && existsSync(licoOut) && existsSync(join(work, 'lico.key')) && readFileSync(join(work, 'lico.key'), 'utf8') === licoKey;
 const licoDone = licoCached ? Promise.resolve() : LICO ? new Promise((r, j) => spawn(join(LICO_DIR, '.venv', 'bin', 'python'),
