@@ -11,10 +11,10 @@
 | 10.10 | 14-vatsap-zablokirovali | в отложенных ВК |
 | 11.10 | 06-telegram-bez-nomera | в отложенных ВК |
 | 12.10 | 12-instagram-ne-prihodit-kod | в отложенных ВК |
-| 13.10 | 08-telegram-posle-vzloma | ждёт |
-| 14.10 | 10-instagram-navsegda | ждёт |
-| 15.10 | 07-vernut-telegram-kanal | ждёт |
-| 16.10 | 15-vatsap-biznes | ждёт |
+| 13.10 | 08-telegram-posle-vzloma | в отложенных ВК |
+| 14.10 | 10-instagram-navsegda | в отложенных ВК |
+| 15.10 | 07-vernut-telegram-kanal | в отложенных ВК |
+| 16.10 | 15-vatsap-biznes | в отложенных ВК |
 | 17.10 | 09-zablokirovali-instagram-chto-delat | ждёт |
 | 18.10 | 16-spam-blok-telegram | ждёт |
 | 19.10 | 18-pochemu-blokiruet-instagram | ждёт |
@@ -41,3 +41,16 @@
 | 15.10 12:00 | 33-apellyaciya-telegram | в отложенных ВК |
 | 16.10 12:00 | 34-oficialnyj-proksi | в отложенных ВК |
 | 17.10 12:00 | 35-drug-prosit-kod | в отложенных ВК |
+
+## Пачка 3 (№36-42): 12:00 по Вьетнаму, 18-24.10 (автопилот 10.10)
+Подпись - блок YOUTUBE / ДЗЕН / ВКОНТАКТЕ из .txt без ссылки и #shorts.
+
+| Дата | Файл | Статус |
+|---|---|---|
+| 18.10 12:00 | 36-garantiya | ждёт сборки |
+| 19.10 12:00 | 37-dengi-ot-imeni | ждёт сборки |
+| 20.10 12:00 | 38-pereezd-chata | ждёт сборки |
+| 21.10 12:00 | 39-noutbuk | ждёт сборки |
+| 22.10 12:00 | 40-treds-instagram | ждёт сборки |
+| 23.10 12:00 | 41-rezervnye-kody | ждёт сборки |
+| 24.10 12:00 | 42-ne-udalyaj | ждёт сборки |

@@ -43,6 +43,7 @@ body { font-family: Inter, sans-serif; color: var(--text); position: relative; }
 .big .n { font: 800 230px/1 Unbounded; color: var(--orange); letter-spacing: -6px; position: relative; white-space: nowrap; }
 .big .n.l { font-size: 170px; letter-spacing: -4px; }
 .big .n.xl { font-size: 120px; letter-spacing: -3px; }
+.big .n.xxl { font-size: 86px; letter-spacing: -2px; }
 .big .n .x { position: absolute; left: -4%; right: -4%; top: 50%; height: 16px; background: var(--text); border-radius: 8px; transform-origin: left center; }
 .big .c { margin-top: 40px; font: 500 46px/1.3 Inter; color: var(--text); max-width: 820px; }
 
@@ -244,7 +245,7 @@ const VIS = {
   big(v, box) {
     const w = el('div', 'big');
     const len = String(v.n).length;
-    const n = el('div', 'n' + (len > 7 ? ' xl' : len > 4 ? ' l' : ''), v.n);
+    const n = el('div', 'n' + (len > 10 ? ' xxl' : len > 7 ? ' xl' : len > 4 ? ' l' : ''), v.n); // xxl: 11+ знаков («крайняя мера» в 120px вылезала за кадр, 10.10)
     let x = null; if (v.strike) { x = el('i', 'x'); n.appendChild(x); }
     w.appendChild(n);
     const c = v.c ? el('div', 'c', nb(v.c)) : null; if (c) w.appendChild(c);
