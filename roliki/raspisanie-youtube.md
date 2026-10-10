@@ -34,6 +34,18 @@
 | 28.10 | 27-avtorskie-prava | Заблокировали инстаграм за нарушение авторских прав | https://youtube.com/shorts/NZcWhXOH078 |
 | 29.10 | 28-moshenniki-pishut | Мошенники пишут в телеграм | https://youtube.com/shorts/NSVtK6MkUhs |
 
+## Пачка 2 (№29-35): 12:00 по Вьетнаму = 8:00 МСК, 11-17.10 («да» Артёма 10.10, отметка ИИ)
+
+| Дата | Файл | Название | Ссылка |
+|---|---|---|---|
+| 11.10 12:00 | 29-dejstvie-zablokirovano | Действие заблокировано инстаграм что делать | https://youtube.com/shorts/Qgsv2Ph19ro |
+| 12.10 12:00 | 30-videoselfi | Инстаграм просит видеоселфи что делать | https://youtube.com/shorts/PhweaXhrnAM |
+| 13.10 12:00 | 31-novyj-telefon | Почему не работает инстаграм на новом телефоне | https://youtube.com/shorts/QtdMnqE-Y14 |
+| 14.10 12:00 | 32-posle-razblokirovki | Разблокировали инстаграм что делать дальше | https://youtube.com/shorts/9nq7zeNuHHk |
+| 15.10 12:00 | 33-apellyaciya-telegram | Апелляция телеграмм как подать | https://youtube.com/shorts/920Ocg6hBbM |
+| 16.10 12:00 | 34-oficialnyj-proksi | Официальный прокси телеграм мошенники | https://youtube.com/shorts/Xrort-4Frf8 |
+| 17.10 12:00 | 35-drug-prosit-kod | Друг просит прислать код телеграм | https://youtube.com/shorts/xnwy3qbRl4M |
+
 Черновик «ЧЕРНОВИК старая версия, не публиковать» — старая сборка ролика 04, скрытый, не публиковать.
 
 ## Ролик -> статья для блока yt-short (вставлять 17-18.10 одним заходом)

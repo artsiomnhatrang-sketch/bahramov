@@ -28,3 +28,16 @@
 | 27.10 | 26-moshenniki-vzlomali-telegram | ждёт |
 | 28.10 | 27-avtorskie-prava | ждёт |
 | 29.10 | 28-moshenniki-pishut | ждёт |
+
+## Пачка 2 (№29-35): 12:00 по Вьетнаму, 11-17.10 («да» Артёма 10.10)
+Подпись - блок YOUTUBE / ДЗЕН / ВКОНТАКТЕ из .txt (призыв: комментарий + Telegram, решение 09.10).
+
+| Дата | Файл | Статус |
+|---|---|---|
+| 11.10 12:00 | 29-dejstvie-zablokirovano | в отложенных ВК |
+| 12.10 12:00 | 30-videoselfi | в отложенных ВК |
+| 13.10 12:00 | 31-novyj-telefon | в отложенных ВК |
+| 14.10 12:00 | 32-posle-razblokirovki | в отложенных ВК |
+| 15.10 12:00 | 33-apellyaciya-telegram | ждёт |
+| 16.10 12:00 | 34-oficialnyj-proksi | ждёт |
+| 17.10 12:00 | 35-drug-prosit-kod | ждёт |

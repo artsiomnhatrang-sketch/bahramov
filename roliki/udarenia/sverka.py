@@ -35,7 +35,7 @@ def words(t):
     t = t.lower().replace('ё', 'е').replace('+', '').replace('\u0301', '').replace('%', ' процентов')
     t = t.replace('instagram', 'инстаграм').replace('telegram', 'телеграм').replace('whatsapp', 'ватсап').replace('spam', 'спам').replace('authenticator', 'аутентификатор')
     # 09.10: латиница, которой Whisper пишет то, что голос сказал по-русски
-    t = t.replace('proxy', 'прокси').replace('bot', 'бот').replace('org', 'орг').replace('f6', 'эф 6').replace('эсэмэс', 'смс').replace('точка орг', 'орг')
+    t = t.replace('proxy', 'прокси').replace('bot', 'бот').replace('org', 'орг').replace('f6', 'эф 6').replace('эсэмэс', 'смс').replace('sms', 'смс').replace('точка орг', 'орг')
     t = re.sub(r'\bни\b', 'не', t)  # Whisper пишет «ни почта» вместо «не почта»
     # звонкая/глухая на конце слова звучит одинаково («бот» = «бод»), Whisper пишет как придётся
     dev = str.maketrans('дгбзвж', 'ткпсфш')
