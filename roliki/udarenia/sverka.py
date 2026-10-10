@@ -4,6 +4,8 @@
   python3 sverka.py <папка .work/ролик>   → печатает расхождения, выход 4 если они есть
 """
 import json, os, re, sys, difflib, subprocess, tempfile
+sys.path.insert(0, os.path.expanduser('~/.claude/scripts'))
+from ochered import zanyat  # общая очередь тяжёлых задач на весь Мак (10.10): ждём, пока идёт другой голос, Whisper или MuseTalk
 
 # числа и порядковые приводим к цифре: Whisper пишет «шаг 3» вместо «шаг третий»
 NUM = {w: d for d, ws in {'1': 'один первый первая первое', '2': 'два второй вторая второе', '3': 'три третий третья третье',
@@ -52,7 +54,8 @@ for i in range(len(src)):
                     '-i', os.path.join(work, f's{i}.wav'), '-filter_complex',
                     '[1:a]aresample=48000,aformat=channel_layouts=mono[b];[0:a][b]concat=n=2:v=0:a=1', w], check=True)
     wavs.append(w)
-subprocess.run(['whisper', *wavs, '--model', 'medium', '--language', 'ru', '--output_format', 'txt',
+with zanyat('whisper сверка ' + os.path.basename(work.rstrip('/')), 'whisper'):
+  subprocess.run(['whisper', *wavs, '--model', 'medium', '--language', 'ru', '--output_format', 'txt',
                 '--fp16', 'False', '--output_dir', out], capture_output=True)
 bad = 0
 for i, say in enumerate(src):
