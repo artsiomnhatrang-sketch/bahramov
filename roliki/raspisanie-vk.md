@@ -10,7 +10,7 @@
 | 9.10 | 11-instagram-kak-vosstanovit | в отложенных ВК |
 | 10.10 | 14-vatsap-zablokirovali | в отложенных ВК |
 | 11.10 | 06-telegram-bez-nomera | в отложенных ВК |
-| 12.10 | 12-instagram-ne-prihodit-kod | ждёт |
+| 12.10 | 12-instagram-ne-prihodit-kod | в отложенных ВК |
 | 13.10 | 08-telegram-posle-vzloma | ждёт |
 | 14.10 | 10-instagram-navsegda | ждёт |
 | 15.10 | 07-vernut-telegram-kanal | ждёт |
@@ -38,6 +38,6 @@
 | 12.10 12:00 | 30-videoselfi | в отложенных ВК |
 | 13.10 12:00 | 31-novyj-telefon | в отложенных ВК |
 | 14.10 12:00 | 32-posle-razblokirovki | в отложенных ВК |
-| 15.10 12:00 | 33-apellyaciya-telegram | ждёт |
-| 16.10 12:00 | 34-oficialnyj-proksi | ждёт |
-| 17.10 12:00 | 35-drug-prosit-kod | ждёт |
+| 15.10 12:00 | 33-apellyaciya-telegram | в отложенных ВК |
+| 16.10 12:00 | 34-oficialnyj-proksi | в отложенных ВК |
+| 17.10 12:00 | 35-drug-prosit-kod | в отложенных ВК |
